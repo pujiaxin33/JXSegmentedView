@@ -1,5 +1,5 @@
 //
-//  JXSegmentedBaseView.swift
+//  JXSegmentedView.swift
 //  JXSegmentedView
 //
 //  Created by jiaxin on 2018/12/26.
@@ -10,37 +10,43 @@ import UIKit
 
 
 @objc
-public protocol JXSegmentedViewDataSource: NSObjectProtocol {
-    func dataSource(in segmentedView: JXSegmentedBaseView) -> [JXSegmentedBaseItemModel]
+public protocol JXSegmentedViewDataSource {
+    func dataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel]
 
-    func segmentedView(_ segmentedView: JXSegmentedBaseView, widthForItemAt index: Int) -> CGFloat
+    func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat
 
-    func segmentedView(_ segmentedView: JXSegmentedBaseView, cellForItemAt index: Int) -> JXSegmentedBaseCell
+    func registerCellClass(in segmentedView: JXSegmentedView)
+
+    func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell
 
     func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel)
+
+    func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double)
 }
 
 @objc
 public protocol JXSegmentedViewDelegate: NSObjectProtocol {
-    @objc optional func segmentedView(_ segmentedView: JXSegmentedBaseView, didSelectedItemAt index: Int)
+    @objc optional func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int)
 
-    @objc optional func segmentedView(_ segmentedView: JXSegmentedBaseView, didClickSelectedItemAt index: Int)
+    @objc optional func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int)
 
-    @objc optional func segmentedView(_ segmentedView: JXSegmentedBaseView, didScrollSelectedItemAt index: Int)
+    @objc optional func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int)
 
-    @objc optional func segmentedView(_ segmentedView: JXSegmentedBaseView, scrollingFrom leftIndex: Int, to rightIndex: Int, progress: CGFloat)
+    @objc optional func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: Double)
 }
 
 let JXSegmentedViewAutomaticDimension: CGFloat = -1
 
-open class JXSegmentedBaseView: UIView {
+open class JXSegmentedView: UIView {
     open weak var dataSource: JXSegmentedViewDataSource?
     open weak var delegate: JXSegmentedViewDelegate?
     open var contentScrollView: UIScrollView? {
-        willSet{
+        willSet {
             contentScrollView?.removeObserver(self, forKeyPath: "contentOffset")
-            newValue?.scrollsToTop = false
-            newValue?.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
+        }
+        didSet {
+            contentScrollView?.scrollsToTop = false
+            contentScrollView?.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
         }
     }
     public var indicators = [JXSegmentedIndicatorProtocol & UIView]() {
@@ -53,7 +59,7 @@ open class JXSegmentedBaseView: UIView {
             selectedIndex = defaultSelectedIndex
         }
     }
-    open internal(set) var selectedIndex: Int = 0
+    open private(set) var selectedIndex: Int = 0
     open var itemWidthIncrement: CGFloat = 0
     open var contentEdgeInsetLeft: CGFloat = JXSegmentedViewAutomaticDimension
     open var contentEdgeInsetRight: CGFloat = JXSegmentedViewAutomaticDimension
@@ -123,6 +129,8 @@ open class JXSegmentedBaseView: UIView {
     }
 
     open func reloadData() {
+        //FIXME:registerCellClass
+        self.dataSource?.registerCellClass(in: self)
         if let itemSource = self.dataSource?.dataSource(in: self) {
             itemDataSource = itemSource
         }
@@ -198,14 +206,16 @@ open class JXSegmentedBaseView: UIView {
             }else {
                 indicator.isHidden = false
                 let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
+                //FIXME:contentSize
+                indicatorParamsModel.contentSize = collectionView.contentSize
                 indicatorParamsModel.currentSelectedIndex = selectedIndex
-                indicatorParamsModel.currentSelectedItemFrame = getItemFrameAt(index: selectedIndex)
+                let selectedItemFrame = getItemFrameAt(index: selectedIndex)
+                indicatorParamsModel.currentSelectedItemFrame = selectedItemFrame
                 indicator.refreshIndicatorState(model: indicatorParamsModel)
-//                if ([component isKindOfClass:[JXCategoryIndicatorBackgroundView class]]) {
-                    //                    CGRect maskFrame = component.frame;
-                    //                    maskFrame.origin.x = maskFrame.origin.x - selectedCellFrame.origin.x;
-                    //                    selectedCellModel.backgroundViewMaskFrame = maskFrame;
-                    //                }
+
+                var indicatorConvertToItemFrame = indicator.frame
+                indicatorConvertToItemFrame.origin.x -= selectedItemFrame.origin.x
+                itemDataSource[selectedIndex].indicatorConvertToItemFrame = indicatorConvertToItemFrame
             }
         }
     }
@@ -220,7 +230,7 @@ open class JXSegmentedBaseView: UIView {
             let contentOffset = change?[NSKeyValueChangeKey.newKey] as! CGPoint
             if contentScrollView?.isTracking == true || contentScrollView?.isDecelerating == true {
                 //用户滚动引起的contentOffset变化，才处理。
-                var progress = contentOffset.x/contentScrollView!.bounds.size.width
+                var progress = Double(contentOffset.x/contentScrollView!.bounds.size.width)
                 if Int(progress) > itemDataSource.count - 1 || progress < 0 {
                     //超过了边界，不需要处理
                     return
@@ -235,9 +245,9 @@ open class JXSegmentedBaseView: UIView {
                     return
                 }
 
-                progress = max(0, min(CGFloat(itemDataSource.count - 1), progress))
+                progress = max(0, min(Double(itemDataSource.count - 1), progress))
                 let baseIndex = Int(floor(progress))
-                let remainderProgress = progress - CGFloat(baseIndex)
+                let remainderProgress = progress - Double(baseIndex)
 
                 let leftItemFrame = getItemFrameAt(index: baseIndex)
                 let rightItemFrame = getItemFrameAt(index: baseIndex + 1)
@@ -248,7 +258,7 @@ open class JXSegmentedBaseView: UIView {
                 indicatorParamsModel.leftItemFrame = leftItemFrame
                 indicatorParamsModel.rightIndex = baseIndex + 1
                 indicatorParamsModel.rightItemFrame = rightItemFrame
-                indicatorParamsModel.percent = Double(remainderProgress)
+                indicatorParamsModel.percent = remainderProgress
 
                 if remainderProgress == 0 {
                     //滑动翻页，需要更新选中状态
@@ -256,35 +266,43 @@ open class JXSegmentedBaseView: UIView {
                     if !(lastContentOffset.x == contentOffset.x && selectedIndex == baseIndex) {
                         scrollSelectItemAt(index: baseIndex)
                     }
-                    for indicator in indicators {
-                        indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
+                    if baseIndex + 1 < itemDataSource.count {
+                        //右边的index不能越界
+                        for indicator in indicators {
+                            indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
+                        }
                     }
                 }else {
                     //快速滑动翻页，当remainderRatio没有变成0，但是已经翻页了，需要通过下面的判断，触发选中
-                    if abs(progress - CGFloat(selectedIndex)) > 1 {
+                    if abs(progress - Double(selectedIndex)) > 1 {
                         var targetIndex = baseIndex
-                        if progress < CGFloat(selectedIndex) {
+                        if progress < Double(selectedIndex) {
                             targetIndex = baseIndex + 1
                         }
                         scrollSelectItemAt(index: targetIndex)
                     }
 
-                    delegate?.segmentedView?(self, scrollingFrom: baseIndex, to: baseIndex + 1, progress: remainderProgress)
+                    dataSource?.refreshItemModel(leftItemModel: itemDataSource[baseIndex], rightItemModel: itemDataSource[baseIndex + 1], percent: remainderProgress)
 
                     for indicator in indicators {
                         indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
-//                        if ([component isKindOfClass:[JXCategoryIndicatorBackgroundView class]]) {
-//                            CGRect leftMaskFrame = component.frame;
-//                            leftMaskFrame.origin.x = leftMaskFrame.origin.x - leftCellFrame.origin.x;
-//                            leftCellModel.backgroundViewMaskFrame = leftMaskFrame;
-//
-//                            CGRect rightMaskFrame = component.frame;
-//                            rightMaskFrame.origin.x = rightMaskFrame.origin.x - rightCellFrame.origin.x;
-//                            rightCellModel.backgroundViewMaskFrame = rightMaskFrame;
-//                        }
+
+                        var leftIndicatorConvertToItemFrame = indicator.frame
+                        leftIndicatorConvertToItemFrame.origin.x -= leftItemFrame.origin.x
+                        itemDataSource[baseIndex].indicatorConvertToItemFrame = leftIndicatorConvertToItemFrame
+
+                        var rightIndicatorConvertToItemFrame = indicator.frame
+                        rightIndicatorConvertToItemFrame.origin.x -= rightItemFrame.origin.x
+                        itemDataSource[baseIndex + 1].indicatorConvertToItemFrame = rightIndicatorConvertToItemFrame
                     }
 
+                    let leftCell = collectionView.cellForItem(at: IndexPath(item: baseIndex, section: 0)) as? JXSegmentedBaseCell
+                    leftCell?.reloadData(itemModel: itemDataSource[baseIndex], isClicked: false)
 
+                    let rightCell = collectionView.cellForItem(at: IndexPath(item: baseIndex + 1, section: 0)) as? JXSegmentedBaseCell
+                    rightCell?.reloadData(itemModel: itemDataSource[baseIndex + 1], isClicked: false)
+
+                    delegate?.segmentedView?(self, scrollingFrom: baseIndex, to: baseIndex + 1, percent: remainderProgress)
                 }
             }
             lastContentOffset = contentOffset
@@ -349,11 +367,10 @@ open class JXSegmentedBaseView: UIView {
             indicatorParamsModel.currentSelectedItemFrame = currentSelectedItemFrame
             indicatorParamsModel.isClicked = isClicked
             indicator.selectItem(model: indicatorParamsModel)
-//            if ([component isKindOfClass:[JXCategoryIndicatorBackgroundView class]]) {
-//                CGRect maskFrame = component.frame;
-//                maskFrame.origin.x = maskFrame.origin.x - clickedCellFrame.origin.x;
-//                selectedCellModel.backgroundViewMaskFrame = maskFrame;
-//            }
+
+            var indicatorConvertToItemFrame = indicator.frame
+            indicatorConvertToItemFrame.origin.x -= currentSelectedItemFrame.origin.x
+            itemDataSource[selectedIndex].indicatorConvertToItemFrame = indicatorConvertToItemFrame
         }
     }
 
@@ -385,7 +402,7 @@ open class JXSegmentedBaseView: UIView {
     }
 }
 
-extension JXSegmentedBaseView: UICollectionViewDataSource {
+extension JXSegmentedView: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -404,13 +421,13 @@ extension JXSegmentedBaseView: UICollectionViewDataSource {
     }
 }
 
-extension JXSegmentedBaseView: UICollectionViewDelegate {
+extension JXSegmentedView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         clickSelectItemAt(index: indexPath.item)
     }
 }
 
-extension JXSegmentedBaseView: UICollectionViewDelegateFlowLayout {
+extension JXSegmentedView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: getContentEdgeInsetLeft(), bottom: 0, right: getContentEdgeInsetRight())
     }

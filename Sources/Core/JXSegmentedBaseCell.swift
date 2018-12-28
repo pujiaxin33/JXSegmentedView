@@ -22,7 +22,7 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
     }
 
     open func commonInit() {
-
+        
     }
 
     open func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool) {

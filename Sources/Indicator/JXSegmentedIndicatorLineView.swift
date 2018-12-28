@@ -8,46 +8,81 @@
 
 import UIKit
 
-open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
-    open var lineViewHeight: CGFloat = 3
-    open var lineViewWidth: CGFloat = JXSegmentedViewAutomaticDimension     //默认JXCategoryViewAutomaticDimension（与cellWidth相等）
-    open var lineViewCornerRadius: CGFloat = JXSegmentedViewAutomaticDimension      //默认JXCategoryViewAutomaticDimension （等于self.indicatorLineViewHeight/2）
-    open var lineViewColor: UIColor = .red
+public enum JXSegmentedIndicatorLineStyle {
+    case normal
+    case lengthen
+    case lengthenOffset
+}
 
-    public override func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel) {
+open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
+    open var lineStyle: JXSegmentedIndicatorLineStyle = .normal
+    open var lineScrollOffsetX: CGFloat = 10    //lineStyle为lengthenOffset使用，滚动时x的偏移量
+
+    open override func commonInit() {
+        super.commonInit()
+
+        indicatorHeight = 3
+    }
+
+    open override func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel) {
         super.refreshIndicatorState(model: model)
 
-        backgroundColor = lineViewColor
-        layer.cornerRadius = getLineViewCornerRadius()
+        backgroundColor = indicatorColor
+        layer.cornerRadius = getIndicatorCornerRadius(itemFrame: model.currentSelectedItemFrame)
 
-        let selectedLineWidth = getLineViewWidth(itemFrame: model.currentSelectedItemFrame)
-        let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - selectedLineWidth)/2
-        var y = superview!.bounds.size.height - lineViewHeight - verticalMargin
+        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
+        let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
+        let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
+        var y = model.currentSelectedItemFrame.size.height - height - verticalMargin
         if indicatorPosition == .top {
             y = verticalMargin
         }
-        frame = CGRect(x: x, y: y, width: selectedLineWidth, height: lineViewHeight)
+        frame = CGRect(x: x, y: y, width: width, height: height)
     }
 
-    public override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
+    open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
         super.contentScrollViewDidScroll(model: model)
 
         let rightItemFrame = model.rightItemFrame
         let leftItemFrame = model.leftItemFrame
         let percent = model.percent
-        var targetX = leftItemFrame.origin.x
-        var targetWidth = getLineViewWidth(itemFrame: leftItemFrame)
+        var targetX: CGFloat = leftItemFrame.origin.x
+        var targetWidth = getIndicatorWidth(itemFrame: leftItemFrame)
 
         if percent == 0 {
             targetX = leftItemFrame.origin.x + (leftItemFrame.size.width - targetWidth)/2
         }else {
             let leftWidth = targetWidth
-            let rightWidth = getLineViewWidth(itemFrame: rightItemFrame)
+            let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame)
             let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - leftWidth)/2
             let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - rightWidth)/2
-            targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: percent)
-            if lineViewWidth == JXSegmentedViewAutomaticDimension {
-                targetWidth = JXSegmentedViewTool.interpolate(from: leftItemFrame.size.width, to: rightItemFrame.size.width, percent: percent)
+
+            switch lineStyle {
+                case .normal:
+                    targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: CGFloat(percent))
+                    if indicatorWidth == JXSegmentedViewAutomaticDimension {
+                        targetWidth = JXSegmentedViewTool.interpolate(from: leftItemFrame.size.width, to: rightItemFrame.size.width, percent: CGFloat(percent))
+                    }
+                case .lengthen:
+                    //前50%，只增加width；后50%，移动x并减小width
+                    let maxWidth = rightX - leftX + rightWidth
+                    if percent <= 0.5 {
+                        targetX = leftX
+                        targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: maxWidth, percent: CGFloat(percent*2))
+                    }else {
+                        targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: CGFloat((percent - 0.5)*2))
+                        targetWidth = JXSegmentedViewTool.interpolate(from: maxWidth, to: rightWidth, percent: CGFloat((percent - 0.5)*2))
+                    }
+                case .lengthenOffset:
+                    //前50%，增加width，并少量移动x；后50%，少量移动x并减小width
+                    let maxWidth = rightX - leftX + rightWidth - lineScrollOffsetX*2
+                    if percent <= 0.5 {
+                        targetX = JXSegmentedViewTool.interpolate(from: leftX, to: leftX + lineScrollOffsetX, percent: CGFloat(percent*2))
+                        targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: maxWidth, percent: CGFloat(percent*2))
+                    }else {
+                        targetX = JXSegmentedViewTool.interpolate(from:leftX + lineScrollOffsetX, to: rightX, percent: CGFloat((percent - 0.5)*2))
+                        targetWidth = JXSegmentedViewTool.interpolate(from: maxWidth, to: rightWidth, percent: CGFloat((percent - 0.5)*2))
+                    }
             }
         }
 
@@ -58,10 +93,10 @@ open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
         }
     }
 
-    public override func selectItem(model: JXSegmentedIndicatorParamsModel) {
+    open override func selectItem(model: JXSegmentedIndicatorParamsModel) {
         super.selectItem(model: model)
 
-        let targetWidth = getLineViewWidth(itemFrame: model.currentSelectedItemFrame)
+        let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
         var toFrame = self.frame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - targetWidth)/2
         toFrame.size.width = targetWidth
@@ -75,17 +110,4 @@ open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
         }
     }
 
-    public final func getLineViewCornerRadius() -> CGFloat {
-        if lineViewCornerRadius == JXSegmentedViewAutomaticDimension {
-            return lineViewHeight/2
-        }
-        return lineViewCornerRadius
-    }
-
-    public final func getLineViewWidth(itemFrame: CGRect) -> CGFloat {
-        if lineViewWidth == JXSegmentedViewAutomaticDimension {
-            return itemFrame.size.width
-        }
-        return lineViewWidth
-    }
 }

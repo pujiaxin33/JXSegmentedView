@@ -14,6 +14,7 @@ public protocol JXSegmentedIndicatorProtocol {
     /// 视图重置状态时调用，已当前选中的index更新状态
     /// param selectedIndex 当前选中的index
     /// param selectedCellFrame 当前选中的cellFrame
+    /// param contentSize collectionView的contentSize
     /// - Parameter model: model description
     func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel)
 
