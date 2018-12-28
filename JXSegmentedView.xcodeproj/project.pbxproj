@@ -31,6 +31,10 @@
 		1904AA6021D5C84300316F97 /* JXSegmentedIndicatorRainbowLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA5F21D5C84300316F97 /* JXSegmentedIndicatorRainbowLineView.swift */; };
 		1904AA6221D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6121D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift */; };
 		1904AA6421D5F4B400316F97 /* JXSegmentedIndicatorTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6321D5F4B400316F97 /* JXSegmentedIndicatorTriangleView.swift */; };
+		1904AA6721D6041600316F97 /* JXSegmentedBaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6621D6041500316F97 /* JXSegmentedBaseDataSource.swift */; };
+		1904AA6921D6090600316F97 /* JXSegmentedNumberDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6821D6090600316F97 /* JXSegmentedNumberDataSource.swift */; };
+		1904AA6B21D6093600316F97 /* JXSegmentedNumberItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6A21D6093600316F97 /* JXSegmentedNumberItemModel.swift */; };
+		1904AA6D21D612C000316F97 /* JXSegmentedNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6C21D612C000316F97 /* JXSegmentedNumberCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,10 @@
 		1904AA5F21D5C84300316F97 /* JXSegmentedIndicatorRainbowLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorRainbowLineView.swift; sourceTree = "<group>"; };
 		1904AA6121D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorBackgroundView.swift; sourceTree = "<group>"; };
 		1904AA6321D5F4B400316F97 /* JXSegmentedIndicatorTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorTriangleView.swift; sourceTree = "<group>"; };
+		1904AA6621D6041500316F97 /* JXSegmentedBaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedBaseDataSource.swift; sourceTree = "<group>"; };
+		1904AA6821D6090600316F97 /* JXSegmentedNumberDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedNumberDataSource.swift; sourceTree = "<group>"; };
+		1904AA6A21D6093600316F97 /* JXSegmentedNumberItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedNumberItemModel.swift; sourceTree = "<group>"; };
+		1904AA6C21D612C000316F97 /* JXSegmentedNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedNumberCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +116,9 @@
 		1904AA3821D31F9700316F97 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1904AA5821D37B6300316F97 /* Common */,
+				1904AA6521D6036F00316F97 /* Number */,
 				1904AA4D21D3667C00316F97 /* Title */,
+				1904AA5821D37B6300316F97 /* Common */,
 				1904AA4621D35EBC00316F97 /* Indicator */,
 				1904AA3921D31F9700316F97 /* Core */,
 			);
@@ -123,6 +132,7 @@
 				1904AA4021D3241E00316F97 /* JXSegmentedCollectionView.swift */,
 				1904AA3E21D3215900316F97 /* JXSegmentedBaseCell.swift */,
 				1904AA3C21D3212300316F97 /* JXSegmentedBaseItemModel.swift */,
+				1904AA6621D6041500316F97 /* JXSegmentedBaseDataSource.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -175,6 +185,16 @@
 				1904AA4B21D3637300316F97 /* JXSegmentedViewTool.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		1904AA6521D6036F00316F97 /* Number */ = {
+			isa = PBXGroup;
+			children = (
+				1904AA6821D6090600316F97 /* JXSegmentedNumberDataSource.swift */,
+				1904AA6A21D6093600316F97 /* JXSegmentedNumberItemModel.swift */,
+				1904AA6C21D612C000316F97 /* JXSegmentedNumberCell.swift */,
+			);
+			path = Number;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +278,9 @@
 				1904AA3B21D31FBE00316F97 /* JXSegmentedView.swift in Sources */,
 				1904AA6421D5F4B400316F97 /* JXSegmentedIndicatorTriangleView.swift in Sources */,
 				1904AA5721D3732C00316F97 /* ListBaseViewController.swift in Sources */,
+				1904AA6721D6041600316F97 /* JXSegmentedBaseDataSource.swift in Sources */,
 				1904AA4F21D3668E00316F97 /* JXSegmentedTitleDataSource.swift in Sources */,
+				1904AA6B21D6093600316F97 /* JXSegmentedNumberItemModel.swift in Sources */,
 				1904AA3D21D3212300316F97 /* JXSegmentedBaseItemModel.swift in Sources */,
 				1904AA4321D3533E00316F97 /* JXSegmentedIndicatorProtocol.swift in Sources */,
 				1904AA5A21D37B8800316F97 /* JXSegmentedListContainerView.swift in Sources */,
@@ -268,6 +290,8 @@
 				1904AA4821D35EF500316F97 /* JXSegmentedIndicatorLineView.swift in Sources */,
 				1904AA5E21D38D1300316F97 /* TestListBaseView.swift in Sources */,
 				1904AA2721D31F6400316F97 /* AppDelegate.swift in Sources */,
+				1904AA6D21D612C000316F97 /* JXSegmentedNumberCell.swift in Sources */,
+				1904AA6921D6090600316F97 /* JXSegmentedNumberDataSource.swift in Sources */,
 				1904AA4121D3241E00316F97 /* JXSegmentedCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

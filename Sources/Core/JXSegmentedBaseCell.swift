@@ -9,6 +9,8 @@
 import UIKit
 
 open class JXSegmentedBaseCell: UICollectionViewCell {
+    open var itemModel: JXSegmentedBaseItemModel?
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -26,6 +28,6 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
     }
 
     open func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool) {
-        
+        self.itemModel = itemModel
     }
 }

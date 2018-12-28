@@ -60,6 +60,5 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         titleLabel.attributedText = attriText
         titleLabel.sizeToFit()
         setNeedsLayout()
-        layoutIfNeeded()
     }
 }

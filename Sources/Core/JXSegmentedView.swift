@@ -60,7 +60,6 @@ open class JXSegmentedView: UIView {
         }
     }
     open private(set) var selectedIndex: Int = 0
-    open var itemWidthIncrement: CGFloat = 0
     open var contentEdgeInsetLeft: CGFloat = JXSegmentedViewAutomaticDimension
     open var contentEdgeInsetRight: CGFloat = JXSegmentedViewAutomaticDimension
     open var itemSpacing: CGFloat = 20
@@ -140,7 +139,7 @@ open class JXSegmentedView: UIView {
         var totalContentWidth: CGFloat = getContentEdgeInsetLeft()
         for (index, itemModel) in itemDataSource.enumerated() {
             itemModel.index = index
-            itemModel.itemWidth = (self.dataSource?.segmentedView(self, widthForItemAt: index) ?? 0) + itemWidthIncrement
+            itemModel.itemWidth = (self.dataSource?.segmentedView(self, widthForItemAt: index) ?? 0)
             itemModel.isSelected = (index == selectedIndex)
             totalItemWidth += itemModel.itemWidth
             if index == itemDataSource.count - 1 {

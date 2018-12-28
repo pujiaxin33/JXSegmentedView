@@ -10,13 +10,14 @@ import UIKit
 
 class ContentBaseViewController: UIViewController {
     var segmentedView: JXSegmentedView!
-    var segmentedDataSource: JXSegmentedTitleDataSource!
+    var segmentedDataSource: JXSegmentedNumberDataSource!
     var listContainerView: JXSegmentedListContainerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segmentedDataSource = JXSegmentedTitleDataSource()
+        segmentedDataSource = JXSegmentedNumberDataSource()
+        segmentedDataSource.numbers = [1, 2, 3, 4]
         segmentedDataSource.titles = ["动画", "爱上了了", "额外", "测试啊啊"]
         segmentedDataSource.isTitleColorGradientEnabled = true
 //        segmentedDataSource.titleFont = UIFont.systemFont(ofSize: 15)
@@ -24,7 +25,6 @@ class ContentBaseViewController: UIViewController {
 //        segmentedDataSource.isTitleZoomEnabled = true
 //        segmentedDataSource.isTitleStrokeWidthEnabled = true
 //        segmentedDataSource.titleSelectedStrokeWidth = -6
-
 
         segmentedView = JXSegmentedView()
         segmentedView.dataSource = segmentedDataSource

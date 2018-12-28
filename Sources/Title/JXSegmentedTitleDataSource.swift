@@ -8,9 +8,8 @@
 
 import UIKit
 
-open class JXSegmentedTitleDataSource {
+open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open var titles = [String]()
-    open var itemWidth: CGFloat = JXSegmentedViewAutomaticDimension
     open var titleColor: UIColor = .black
     open var titleSelectedColor: UIColor = .red
     open var titleFont: UIFont = UIFont.systemFont(ofSize: 15)
@@ -23,12 +22,15 @@ open class JXSegmentedTitleDataSource {
 
 //    @property (nonatomic, assign) BOOL titleLabelMaskEnabled;   //默认：NO，titleLabel是否遮罩过滤。（需要backgroundEllipseLayerShowEnabled = YES）
 
-    open var dataSource = [JXSegmentedBaseItemModel]()
+    open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
+        return JXSegmentedTitleItemModel()
+    }
 
-    open func reloadData(selectedIndex: Int) {
-        dataSource.removeAll()
+    open override func reloadData(selectedIndex: Int) {
+        super.reloadData(selectedIndex: selectedIndex)
+
         for (index, title) in titles.enumerated() {
-            let itemModel = JXSegmentedTitleItemModel()
+            let itemModel = preferredItemModelInstance() as! JXSegmentedTitleItemModel
             itemModel.title = title
             itemModel.titleColor = titleColor
             itemModel.titleSelectedColor = titleSelectedColor
@@ -47,35 +49,35 @@ open class JXSegmentedTitleDataSource {
             dataSource.append(itemModel)
         }
     }
-}
 
-extension JXSegmentedTitleDataSource: JXSegmentedViewDataSource {
+    //MARK: - JXSegmentedViewDataSource
+    open override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
+        let width = super.segmentedView(segmentedView, widthForItemAt: index)
 
-    public func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
-        if itemWidth == JXSegmentedViewAutomaticDimension {
+        if itemContentWidth == JXSegmentedViewAutomaticDimension {
             if let title = (dataSource[index] as? JXSegmentedTitleItemModel)?.title {
-                let width = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleFont], context: nil).size.width
-                return CGFloat(ceilf(Float(width)))
+                let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleFont], context: nil).size.width
+                return CGFloat(ceilf(Float(textWidth))) + width
             }
         }
-        return itemWidth
+        return itemContentWidth + width
     }
 
-    public func registerCellClass(in segmentedView: JXSegmentedView) {
+    open override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "cell")
     }
 
-    public func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
+    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
         let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         return cell
     }
 
-    public func dataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel] {
+    open override func dataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel] {
         reloadData(selectedIndex: segmentedView.selectedIndex)
         return dataSource
     }
 
-    public func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double) {
+    open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double) {
         guard let leftModel = leftItemModel as? JXSegmentedTitleItemModel, let rightModel = rightItemModel as? JXSegmentedTitleItemModel else {
             return
         }
@@ -123,7 +125,7 @@ extension JXSegmentedTitleDataSource: JXSegmentedViewDataSource {
         }
     }
 
-    public func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel) {
+    open override func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel) {
         if let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleItemModel {
             myCurrentSelectedItemModel.titleColor = titleColor
             myCurrentSelectedItemModel.titleSelectedColor = titleSelectedColor
