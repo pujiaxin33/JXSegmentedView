@@ -15,4 +15,5 @@ open class JXSegmentedNumberItemModel: JXSegmentedTitleItemModel {
     open var numberTextColor: UIColor = .white
     open var numberWidthIncrement: CGFloat = 10
     open var numberFont: UIFont = UIFont.systemFont(ofSize: 11)
+    open var numberOffset: CGPoint = CGPoint.zero
 }

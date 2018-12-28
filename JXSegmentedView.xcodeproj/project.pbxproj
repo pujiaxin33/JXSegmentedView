@@ -35,6 +35,9 @@
 		1904AA6921D6090600316F97 /* JXSegmentedNumberDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6821D6090600316F97 /* JXSegmentedNumberDataSource.swift */; };
 		1904AA6B21D6093600316F97 /* JXSegmentedNumberItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6A21D6093600316F97 /* JXSegmentedNumberItemModel.swift */; };
 		1904AA6D21D612C000316F97 /* JXSegmentedNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6C21D612C000316F97 /* JXSegmentedNumberCell.swift */; };
+		1904AA7021D6226D00316F97 /* JXSegmentedDotDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6F21D6226D00316F97 /* JXSegmentedDotDataSource.swift */; };
+		1904AA7221D624AC00316F97 /* JXSegmentedDotItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7121D624AC00316F97 /* JXSegmentedDotItemModel.swift */; };
+		1904AA7421D624BC00316F97 /* JXSegmentedDotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7321D624BC00316F97 /* JXSegmentedDotCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +71,9 @@
 		1904AA6821D6090600316F97 /* JXSegmentedNumberDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedNumberDataSource.swift; sourceTree = "<group>"; };
 		1904AA6A21D6093600316F97 /* JXSegmentedNumberItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedNumberItemModel.swift; sourceTree = "<group>"; };
 		1904AA6C21D612C000316F97 /* JXSegmentedNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedNumberCell.swift; sourceTree = "<group>"; };
+		1904AA6F21D6226D00316F97 /* JXSegmentedDotDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedDotDataSource.swift; sourceTree = "<group>"; };
+		1904AA7121D624AC00316F97 /* JXSegmentedDotItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedDotItemModel.swift; sourceTree = "<group>"; };
+		1904AA7321D624BC00316F97 /* JXSegmentedDotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedDotCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,7 @@
 		1904AA3821D31F9700316F97 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1904AA6E21D6224D00316F97 /* Dot */,
 				1904AA6521D6036F00316F97 /* Number */,
 				1904AA4D21D3667C00316F97 /* Title */,
 				1904AA5821D37B6300316F97 /* Common */,
@@ -197,6 +204,16 @@
 			path = Number;
 			sourceTree = "<group>";
 		};
+		1904AA6E21D6224D00316F97 /* Dot */ = {
+			isa = PBXGroup;
+			children = (
+				1904AA6F21D6226D00316F97 /* JXSegmentedDotDataSource.swift */,
+				1904AA7121D624AC00316F97 /* JXSegmentedDotItemModel.swift */,
+				1904AA7321D624BC00316F97 /* JXSegmentedDotCell.swift */,
+			);
+			path = Dot;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,13 +289,16 @@
 				1904AA6221D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift in Sources */,
 				1904AA4521D3541800316F97 /* JXSegmentedIndicatorParamsModel.swift in Sources */,
 				1904AA5C21D38A8600316F97 /* ContentBaseViewController.swift in Sources */,
+				1904AA7221D624AC00316F97 /* JXSegmentedDotItemModel.swift in Sources */,
 				1904AA5321D36A8700316F97 /* JXSegmentedTitleCell.swift in Sources */,
 				1904AA2921D31F6400316F97 /* ViewController.swift in Sources */,
 				1904AA4C21D3637300316F97 /* JXSegmentedViewTool.swift in Sources */,
+				1904AA7421D624BC00316F97 /* JXSegmentedDotCell.swift in Sources */,
 				1904AA3B21D31FBE00316F97 /* JXSegmentedView.swift in Sources */,
 				1904AA6421D5F4B400316F97 /* JXSegmentedIndicatorTriangleView.swift in Sources */,
 				1904AA5721D3732C00316F97 /* ListBaseViewController.swift in Sources */,
 				1904AA6721D6041600316F97 /* JXSegmentedBaseDataSource.swift in Sources */,
+				1904AA7021D6226D00316F97 /* JXSegmentedDotDataSource.swift in Sources */,
 				1904AA4F21D3668E00316F97 /* JXSegmentedTitleDataSource.swift in Sources */,
 				1904AA6B21D6093600316F97 /* JXSegmentedNumberItemModel.swift in Sources */,
 				1904AA3D21D3212300316F97 /* JXSegmentedBaseItemModel.swift in Sources */,

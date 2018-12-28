@@ -17,6 +17,8 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
     open var numberBackgroundColor: UIColor = .red
     open var numberTextColor: UIColor = .white
     open var numberFont: UIFont = UIFont.systemFont(ofSize: 11)
+    /// numberLabel的默认位置是center在titleLabel的右上角，可以通过numberOffset控制X、Y轴的偏移
+    open var numberOffset: CGPoint = CGPoint.zero
 
     open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
         return JXSegmentedNumberItemModel()
@@ -29,6 +31,7 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
             itemModel.number = numbers[index]
             itemModel.numberTextColor = numberTextColor
             itemModel.numberBackgroundColor = numberBackgroundColor
+            itemModel.numberOffset = numberOffset
         }
     }
 

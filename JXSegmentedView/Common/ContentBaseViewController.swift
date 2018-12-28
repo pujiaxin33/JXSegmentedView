@@ -10,14 +10,18 @@ import UIKit
 
 class ContentBaseViewController: UIViewController {
     var segmentedView: JXSegmentedView!
-    var segmentedDataSource: JXSegmentedNumberDataSource!
+    var segmentedDataSource = JXSegmentedNumberDataSource()
     var listContainerView: JXSegmentedListContainerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segmentedDataSource = JXSegmentedNumberDataSource()
+//        segmentedDataSource.dotStates = [true, false, true, false]
+//        segmentedDataSource.dotOffset = CGPoint(x: -10, y: 10)
+
         segmentedDataSource.numbers = [1, 2, 3, 4]
+        segmentedDataSource.numberOffset = CGPoint(x: -10, y: 10)
+
         segmentedDataSource.titles = ["动画", "爱上了了", "额外", "测试啊啊"]
         segmentedDataSource.isTitleColorGradientEnabled = true
 //        segmentedDataSource.titleFont = UIFont.systemFont(ofSize: 15)
