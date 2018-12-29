@@ -34,17 +34,16 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
             itemModel.title = title
             itemModel.titleColor = titleColor
             itemModel.titleSelectedColor = titleSelectedColor
+            itemModel.titleFont = titleFont
             itemModel.titleSelectedFont = titleSelectedFont
             itemModel.isTitleZoomEnabled = isTitleZoomEnabled
             itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
             if index == selectedIndex {
-                itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
                 itemModel.titleZoomScale = titleZoomScale
-                itemModel.titleFont = UIFont(descriptor: titleSelectedFont.fontDescriptor, size: titleSelectedFont.pointSize*CGFloat(itemModel.titleZoomScale))
+                itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
             }else {
-                itemModel.titleSelectedStrokeWidth = 0
                 itemModel.titleZoomScale = 1
-                itemModel.titleFont = titleFont
+                itemModel.titleSelectedStrokeWidth = 0
             }
             dataSource.append(itemModel)
         }
@@ -84,22 +83,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
         if isTitleZoomEnabled {
             leftModel.titleZoomScale = JXSegmentedViewTool.interpolate(from: titleZoomScale, to: 1, percent: percent)
-            var leftFontPointSize = titleFont.pointSize
-            var leftFontDescriptor = titleFont.fontDescriptor
-            if leftModel.isSelected {
-                leftFontPointSize = leftModel.titleSelectedFont.pointSize
-                leftFontDescriptor = leftModel.titleSelectedFont.fontDescriptor
-            }
-            leftModel.titleFont = UIFont(descriptor: leftFontDescriptor, size: leftFontPointSize*CGFloat(leftModel.titleZoomScale))
-
             rightModel.titleZoomScale = JXSegmentedViewTool.interpolate(from: 1, to: titleZoomScale, percent: percent)
-            var rightFontPointSize = titleFont.pointSize
-            var rightFontDescriptor = titleFont.fontDescriptor
-            if rightModel.isSelected {
-                rightFontPointSize = rightModel.titleSelectedFont.pointSize
-                rightFontDescriptor = rightModel.titleSelectedFont.fontDescriptor
-            }
-            rightModel.titleFont = UIFont(descriptor: rightFontDescriptor, size: rightFontPointSize*CGFloat(rightModel.titleZoomScale))
         }
 
         if isTitleStrokeWidthEnabled {
@@ -126,19 +110,18 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     }
 
     open override func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel) {
-        if let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleItemModel {
-            myCurrentSelectedItemModel.titleColor = titleColor
-            myCurrentSelectedItemModel.titleSelectedColor = titleSelectedColor
-            myCurrentSelectedItemModel.titleZoomScale = 1
-            myCurrentSelectedItemModel.titleSelectedStrokeWidth = 0
-            myCurrentSelectedItemModel.titleFont = titleFont
+        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleItemModel else {
+            return
         }
-        if let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleItemModel {
-            myWilltSelectedItemModel.titleColor = titleColor
-            myWilltSelectedItemModel.titleSelectedColor = titleSelectedColor
-            myWilltSelectedItemModel.titleZoomScale = titleZoomScale
-            myWilltSelectedItemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
-            myWilltSelectedItemModel.titleFont = UIFont(descriptor: titleSelectedFont.fontDescriptor, size: titleSelectedFont.pointSize*CGFloat(myWilltSelectedItemModel.titleZoomScale))
-        }
+
+        myCurrentSelectedItemModel.titleColor = titleColor
+        myCurrentSelectedItemModel.titleSelectedColor = titleSelectedColor
+        myCurrentSelectedItemModel.titleZoomScale = 1
+        myCurrentSelectedItemModel.titleSelectedStrokeWidth = 0
+
+        myWilltSelectedItemModel.titleColor = titleColor
+        myWilltSelectedItemModel.titleSelectedColor = titleSelectedColor
+        myWilltSelectedItemModel.titleZoomScale = titleZoomScale
+        myWilltSelectedItemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
     }
 }

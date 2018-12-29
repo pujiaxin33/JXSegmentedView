@@ -38,6 +38,9 @@
 		1904AA7021D6226D00316F97 /* JXSegmentedDotDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA6F21D6226D00316F97 /* JXSegmentedDotDataSource.swift */; };
 		1904AA7221D624AC00316F97 /* JXSegmentedDotItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7121D624AC00316F97 /* JXSegmentedDotItemModel.swift */; };
 		1904AA7421D624BC00316F97 /* JXSegmentedDotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7321D624BC00316F97 /* JXSegmentedDotCell.swift */; };
+		1904AA7721D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7621D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift */; };
+		1904AA7921D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7821D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift */; };
+		1904AA7B21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7A21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,9 @@
 		1904AA6F21D6226D00316F97 /* JXSegmentedDotDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedDotDataSource.swift; sourceTree = "<group>"; };
 		1904AA7121D624AC00316F97 /* JXSegmentedDotItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedDotItemModel.swift; sourceTree = "<group>"; };
 		1904AA7321D624BC00316F97 /* JXSegmentedDotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedDotCell.swift; sourceTree = "<group>"; };
+		1904AA7621D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleImageDataSource.swift; sourceTree = "<group>"; };
+		1904AA7821D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleImageItemModel.swift; sourceTree = "<group>"; };
+		1904AA7A21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 		1904AA3821D31F9700316F97 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1904AA7521D70A1B00316F97 /* TitleImage */,
 				1904AA6E21D6224D00316F97 /* Dot */,
 				1904AA6521D6036F00316F97 /* Number */,
 				1904AA4D21D3667C00316F97 /* Title */,
@@ -214,6 +221,16 @@
 			path = Dot;
 			sourceTree = "<group>";
 		};
+		1904AA7521D70A1B00316F97 /* TitleImage */ = {
+			isa = PBXGroup;
+			children = (
+				1904AA7621D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift */,
+				1904AA7821D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift */,
+				1904AA7A21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift */,
+			);
+			path = TitleImage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -301,16 +318,19 @@
 				1904AA7021D6226D00316F97 /* JXSegmentedDotDataSource.swift in Sources */,
 				1904AA4F21D3668E00316F97 /* JXSegmentedTitleDataSource.swift in Sources */,
 				1904AA6B21D6093600316F97 /* JXSegmentedNumberItemModel.swift in Sources */,
+				1904AA7921D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift in Sources */,
 				1904AA3D21D3212300316F97 /* JXSegmentedBaseItemModel.swift in Sources */,
 				1904AA4321D3533E00316F97 /* JXSegmentedIndicatorProtocol.swift in Sources */,
 				1904AA5A21D37B8800316F97 /* JXSegmentedListContainerView.swift in Sources */,
 				1904AA3F21D3215900316F97 /* JXSegmentedBaseCell.swift in Sources */,
+				1904AA7B21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift in Sources */,
 				1904AA5121D36A6E00316F97 /* JXSegmentedTitleItemModel.swift in Sources */,
 				1904AA4A21D35F3100316F97 /* JXSegmentedIndicatorBaseView.swift in Sources */,
 				1904AA4821D35EF500316F97 /* JXSegmentedIndicatorLineView.swift in Sources */,
 				1904AA5E21D38D1300316F97 /* TestListBaseView.swift in Sources */,
 				1904AA2721D31F6400316F97 /* AppDelegate.swift in Sources */,
 				1904AA6D21D612C000316F97 /* JXSegmentedNumberCell.swift in Sources */,
+				1904AA7721D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift in Sources */,
 				1904AA6921D6090600316F97 /* JXSegmentedNumberDataSource.swift in Sources */,
 				1904AA4121D3241E00316F97 /* JXSegmentedCollectionView.swift in Sources */,
 			);

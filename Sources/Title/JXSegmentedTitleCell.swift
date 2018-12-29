@@ -31,19 +31,32 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             return
         }
         titleLabel.text = myItemModel.title
-        if isClicked {
-            if itemModel.isSelected {
-                UIView.animate(withDuration: 0.5) {
-                    self.titleLabel.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                }
+        if myItemModel.isTitleZoomEnabled {
+            if myItemModel.isSelected {
+                titleLabel.font = UIFont(descriptor: myItemModel.titleSelectedFont.fontDescriptor, size: myItemModel.titleSelectedFont.pointSize*CGFloat(myItemModel.titleZoomScale))
             }else {
-                UIView.animate(withDuration: 0.5) {
-                    self.titleLabel.transform = CGAffineTransform.identity
-                }
+                titleLabel.font = UIFont(descriptor: myItemModel.titleFont.fontDescriptor, size: myItemModel.titleFont.pointSize*CGFloat(myItemModel.titleZoomScale))
             }
         }else {
-            titleLabel.font = myItemModel.titleFont
+            if myItemModel.isSelected {
+                titleLabel.font = myItemModel.titleSelectedFont
+            }else {
+                titleLabel.font = myItemModel.titleFont
+            }
         }
+//        if isClicked {
+//            if itemModel.isSelected {
+//                UIView.animate(withDuration: 0.5) {
+//                    self.titleLabel.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+//                }
+//            }else {
+//                UIView.animate(withDuration: 0.5) {
+//                    self.titleLabel.transform = CGAffineTransform.identity
+//                }
+//            }
+//        }else {
+//            titleLabel.font = myItemModel.titleFont
+//        }
 
         let title = myItemModel.title ?? ""
         let attriText = NSMutableAttributedString(string: title)
