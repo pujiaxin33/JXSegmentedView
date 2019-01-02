@@ -9,13 +9,17 @@
 import UIKit
 
 class ContentBaseViewController: UIViewController {
-    var segmentedView: JXSegmentedView!
-    var segmentedDataSource = JXSegmentedTitleImageDataSource()
-    var listContainerView: JXSegmentedListContainerView!
+    var segmentedDataSource: JXSegmentedViewDataSource?
+    let segmentedView = JXSegmentedView()
+    lazy var listContainerView: JXSegmentedListContainerView! = {
+        return JXSegmentedListContainerView(parentVC: self, delegate: self)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = .white
+        
         /*
         segmentedDataSource.titleImageType = .bottomImage
         segmentedDataSource.isImageZoomEnabled = true
@@ -32,15 +36,14 @@ class ContentBaseViewController: UIViewController {
 //        segmentedDataSource.numbers = [1, 2, 3, 4]
 //        segmentedDataSource.numberOffset = CGPoint(x: -10, y: 10)
 
-        segmentedDataSource.titles = ["猴哥", "黄焖鸡", "旺财", "粉红猪", "喜羊羊", "青蛙王子", "小马哥", "牛魔王", "大象先生", "神龙"]
-        segmentedDataSource.isTitleColorGradientEnabled = true
+//        segmentedDataSource.titles = ["猴哥", "黄焖鸡", "旺财", "粉红猪", "喜羊羊", "青蛙王子", "小马哥", "牛魔王", "大象先生", "神龙"]
+//        segmentedDataSource.isTitleColorGradientEnabled = true
 //        segmentedDataSource.titleFont = UIFont.systemFont(ofSize: 15)
 //        segmentedDataSource.titleSelectedFont = UIFont.systemFont(ofSize: 20)
 //        segmentedDataSource.isTitleZoomEnabled = true
 //        segmentedDataSource.isTitleStrokeWidthEnabled = true
 //        segmentedDataSource.titleSelectedStrokeWidth = -6
 
-        segmentedView = JXSegmentedView()
         segmentedView.dataSource = segmentedDataSource
         segmentedView.delegate = self
 //        segmentedView.isItemSpacingAverageEnabled = false
@@ -48,23 +51,21 @@ class ContentBaseViewController: UIViewController {
 //        segmentedView.contentEdgeInsetRight = 10
 //        segmentedView.itemSpacing = 100
 //        segmentedView.itemWidthIncrement = 30
-        segmentedView.isContentScrollViewClickTransitionAnimateEnabled = false
-        print(segmentedView.selectedIndex)
+//        segmentedView.isContentScrollViewClickTransitionAnimateEnabled = false
         segmentedView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 50)
         view.addSubview(segmentedView)
 
-        let indicator = JXSegmentedIndicatorRainbowLineView()
-        indicator.lineStyle = .lengthenOffset
-        indicator.indicatorColors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.purple]
+//        let indicator = JXSegmentedIndicatorRainbowLineView()
+//        indicator.lineStyle = .lengthenOffset
+//        indicator.indicatorColors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.purple]
+//
+//        let backgroundIndicator = JXSegmentedIndicatorBackgroundView()
+//
+//        let triangleIndicator = JXSegmentedIndicatorTriangleView()
+//
+//
+//        segmentedView.indicators = [triangleIndicator, backgroundIndicator]
 
-        let backgroundIndicator = JXSegmentedIndicatorBackgroundView()
-
-        let triangleIndicator = JXSegmentedIndicatorTriangleView()
-
-
-        segmentedView.indicators = [triangleIndicator, backgroundIndicator]
-
-        listContainerView = JXSegmentedListContainerView(parentVC: self, delegate: self)
         segmentedView.contentScrollView = listContainerView.scrollView
         view.addSubview(listContainerView)
     }
@@ -89,7 +90,10 @@ extension ContentBaseViewController: JXSegmentedViewDelegate {
 
 extension ContentBaseViewController: JXSegmentedListContainerViewDelegate {
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
-        return segmentedDataSource.titles.count
+        if let titleDataSource = segmentedView.dataSource as? JXSegmentedBaseDataSource {
+            return titleDataSource.dataSource.count
+        }
+        return 0
     }
 
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate {

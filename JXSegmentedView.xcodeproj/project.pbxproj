@@ -41,6 +41,10 @@
 		1904AA7721D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7621D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift */; };
 		1904AA7921D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7821D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift */; };
 		1904AA7B21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7A21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift */; };
+		1904AA7E21D7549600316F97 /* IndicatorCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7D21D7549600316F97 /* IndicatorCustomizeViewController.swift */; };
+		1904AA8021D754C400316F97 /* CellCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA7F21D754C400316F97 /* CellCustomizeViewController.swift */; };
+		1904AA8221D754F500316F97 /* SpecialCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA8121D754F500316F97 /* SpecialCustomizeViewController.swift */; };
+		1904AA8421D75BA200316F97 /* TitleImageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AA8321D75BA200316F97 /* TitleImageSettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +84,10 @@
 		1904AA7621D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleImageDataSource.swift; sourceTree = "<group>"; };
 		1904AA7821D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleImageItemModel.swift; sourceTree = "<group>"; };
 		1904AA7A21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleImageCell.swift; sourceTree = "<group>"; };
+		1904AA7D21D7549600316F97 /* IndicatorCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorCustomizeViewController.swift; sourceTree = "<group>"; };
+		1904AA7F21D754C400316F97 /* CellCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCustomizeViewController.swift; sourceTree = "<group>"; };
+		1904AA8121D754F500316F97 /* SpecialCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialCustomizeViewController.swift; sourceTree = "<group>"; };
+		1904AA8321D75BA200316F97 /* TitleImageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleImageSettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +196,10 @@
 				1904AA5B21D38A8600316F97 /* ContentBaseViewController.swift */,
 				1904AA5621D3732C00316F97 /* ListBaseViewController.swift */,
 				1904AA5D21D38D1300316F97 /* TestListBaseView.swift */,
+				1904AA7D21D7549600316F97 /* IndicatorCustomizeViewController.swift */,
+				1904AA7F21D754C400316F97 /* CellCustomizeViewController.swift */,
+				1904AA8121D754F500316F97 /* SpecialCustomizeViewController.swift */,
+				1904AA8321D75BA200316F97 /* TitleImageSettingViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -302,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1904AA7E21D7549600316F97 /* IndicatorCustomizeViewController.swift in Sources */,
 				1904AA6021D5C84300316F97 /* JXSegmentedIndicatorRainbowLineView.swift in Sources */,
 				1904AA6221D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift in Sources */,
 				1904AA4521D3541800316F97 /* JXSegmentedIndicatorParamsModel.swift in Sources */,
@@ -312,8 +325,11 @@
 				1904AA4C21D3637300316F97 /* JXSegmentedViewTool.swift in Sources */,
 				1904AA7421D624BC00316F97 /* JXSegmentedDotCell.swift in Sources */,
 				1904AA3B21D31FBE00316F97 /* JXSegmentedView.swift in Sources */,
+				1904AA8021D754C400316F97 /* CellCustomizeViewController.swift in Sources */,
 				1904AA6421D5F4B400316F97 /* JXSegmentedIndicatorTriangleView.swift in Sources */,
+				1904AA8421D75BA200316F97 /* TitleImageSettingViewController.swift in Sources */,
 				1904AA5721D3732C00316F97 /* ListBaseViewController.swift in Sources */,
+				1904AA8221D754F500316F97 /* SpecialCustomizeViewController.swift in Sources */,
 				1904AA6721D6041600316F97 /* JXSegmentedBaseDataSource.swift in Sources */,
 				1904AA7021D6226D00316F97 /* JXSegmentedDotDataSource.swift in Sources */,
 				1904AA4F21D3668E00316F97 /* JXSegmentedTitleDataSource.swift in Sources */,

@@ -38,7 +38,12 @@ public protocol JXSegmentedViewDelegate: NSObjectProtocol {
 let JXSegmentedViewAutomaticDimension: CGFloat = -1
 
 open class JXSegmentedView: UIView {
-    open weak var dataSource: JXSegmentedViewDataSource?
+    open weak var dataSource: JXSegmentedViewDataSource? {
+        didSet {
+            setNeedsLayout()
+            layoutIfNeeded()
+        }
+    }
     open weak var delegate: JXSegmentedViewDelegate?
     open var contentScrollView: UIScrollView? {
         willSet {
@@ -199,7 +204,7 @@ open class JXSegmentedView: UIView {
         collectionView.collectionViewLayout.invalidateLayout()
         collectionView.reloadData()
 
-        for indicator in indicators {
+        for (index, indicator) in indicators.enumerated() {
             if itemDataSource.isEmpty {
                 indicator.isHidden = true
             }else {
@@ -212,9 +217,11 @@ open class JXSegmentedView: UIView {
                 indicatorParamsModel.currentSelectedItemFrame = selectedItemFrame
                 indicator.refreshIndicatorState(model: indicatorParamsModel)
 
-                var indicatorConvertToItemFrame = indicator.frame
-                indicatorConvertToItemFrame.origin.x -= selectedItemFrame.origin.x
-                itemDataSource[selectedIndex].indicatorConvertToItemFrame = indicatorConvertToItemFrame
+                if indicator.isIndicatorConvertToItemFrameEnabled || (!indicator.isIndicatorConvertToItemFrameEnabled && index == indicators.count - 1) {
+                    var indicatorConvertToItemFrame = indicator.frame
+                    indicatorConvertToItemFrame.origin.x -= selectedItemFrame.origin.x
+                    itemDataSource[selectedIndex].indicatorConvertToItemFrame = indicatorConvertToItemFrame
+                }
             }
         }
     }
@@ -283,16 +290,18 @@ open class JXSegmentedView: UIView {
 
                     dataSource?.refreshItemModel(leftItemModel: itemDataSource[baseIndex], rightItemModel: itemDataSource[baseIndex + 1], percent: remainderProgress)
 
-                    for indicator in indicators {
+                    for (index, indicator) in indicators.enumerated() {
                         indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
 
-                        var leftIndicatorConvertToItemFrame = indicator.frame
-                        leftIndicatorConvertToItemFrame.origin.x -= leftItemFrame.origin.x
-                        itemDataSource[baseIndex].indicatorConvertToItemFrame = leftIndicatorConvertToItemFrame
+                        if indicator.isIndicatorConvertToItemFrameEnabled || (!indicator.isIndicatorConvertToItemFrameEnabled && index == indicators.count - 1) {
+                            var leftIndicatorConvertToItemFrame = indicator.frame
+                            leftIndicatorConvertToItemFrame.origin.x -= leftItemFrame.origin.x
+                            itemDataSource[baseIndex].indicatorConvertToItemFrame = leftIndicatorConvertToItemFrame
 
-                        var rightIndicatorConvertToItemFrame = indicator.frame
-                        rightIndicatorConvertToItemFrame.origin.x -= rightItemFrame.origin.x
-                        itemDataSource[baseIndex + 1].indicatorConvertToItemFrame = rightIndicatorConvertToItemFrame
+                            var rightIndicatorConvertToItemFrame = indicator.frame
+                            rightIndicatorConvertToItemFrame.origin.x -= rightItemFrame.origin.x
+                            itemDataSource[baseIndex + 1].indicatorConvertToItemFrame = rightIndicatorConvertToItemFrame
+                        }
                     }
 
                     let leftCell = collectionView.cellForItem(at: IndexPath(item: baseIndex, section: 0)) as? JXSegmentedBaseCell
@@ -359,7 +368,7 @@ open class JXSegmentedView: UIView {
         delegate?.segmentedView?(self, didSelectedItemAt: index)
 
         let currentSelectedItemFrame = getItemFrameAt(index: selectedIndex)
-        for indicator in indicators {
+        for (index, indicator) in indicators.enumerated() {
             let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
             indicatorParamsModel.lastSelectedIndex = lastSelectedIndex
             indicatorParamsModel.currentSelectedIndex = selectedIndex
@@ -367,9 +376,12 @@ open class JXSegmentedView: UIView {
             indicatorParamsModel.isClicked = isClicked
             indicator.selectItem(model: indicatorParamsModel)
 
-            var indicatorConvertToItemFrame = indicator.frame
-            indicatorConvertToItemFrame.origin.x -= currentSelectedItemFrame.origin.x
-            itemDataSource[selectedIndex].indicatorConvertToItemFrame = indicatorConvertToItemFrame
+            if indicator.isIndicatorConvertToItemFrameEnabled || (!indicator.isIndicatorConvertToItemFrameEnabled && index == indicators.count - 1) {
+                var indicatorConvertToItemFrame = indicator.frame
+                indicatorConvertToItemFrame.origin.x -= currentSelectedItemFrame.origin.x
+                itemDataSource[selectedIndex].indicatorConvertToItemFrame = indicatorConvertToItemFrame
+                willSelectedCell?.reloadData(itemModel: willSelectedItemModel, isClicked: isClicked)
+            }
         }
     }
 

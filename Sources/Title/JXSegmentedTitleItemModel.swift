@@ -18,4 +18,5 @@ open class JXSegmentedTitleItemModel: JXSegmentedBaseItemModel {
     open var titleZoomScale: Double = 1.2
     open var isTitleStrokeWidthEnabled: Bool = false
     open var titleSelectedStrokeWidth: Double = -2
+    open var isTitleMaskEnabled: Bool = false
 }

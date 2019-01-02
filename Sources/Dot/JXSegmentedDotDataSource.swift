@@ -47,9 +47,4 @@ open class JXSegmentedDotDataSource: JXSegmentedTitleDataSource {
         let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         return cell
     }
-
-    open override func dataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel] {
-        reloadData(selectedIndex: segmentedView.selectedIndex)
-        return dataSource
-    }
 }

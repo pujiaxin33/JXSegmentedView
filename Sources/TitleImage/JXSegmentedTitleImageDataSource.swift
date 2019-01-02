@@ -79,11 +79,6 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         return cell
     }
 
-    open override func dataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel] {
-        reloadData(selectedIndex: segmentedView.selectedIndex)
-        return dataSource
-    }
-
     open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double) {
         super.refreshItemModel(leftItemModel: leftItemModel, rightItemModel: rightItemModel, percent: percent)
 

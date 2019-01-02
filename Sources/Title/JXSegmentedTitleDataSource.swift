@@ -19,8 +19,8 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open var titleZoomScale: Double = 1.2   //isTitleZoomEnabled为true才生效
     open var isTitleStrokeWidthEnabled: Bool = false
     open var titleSelectedStrokeWidth: Double = -2  //用于控制字体的粗细（底层通过NSStrokeWidthAttributeName实现）。使用该属性，务必让titleFont和titleSelectedFont设置为一样的！！！
-
-//    @property (nonatomic, assign) BOOL titleLabelMaskEnabled;   //默认：NO，titleLabel是否遮罩过滤。（需要backgroundEllipseLayerShowEnabled = YES）
+    /// titleLabel是否使用遮罩过渡
+    open var isTitleMaskEnabled: Bool = false
 
     open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
         return JXSegmentedTitleItemModel()
@@ -38,6 +38,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
             itemModel.titleSelectedFont = titleSelectedFont
             itemModel.isTitleZoomEnabled = isTitleZoomEnabled
             itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
+            itemModel.isTitleMaskEnabled = isTitleMaskEnabled
             if index == selectedIndex {
                 itemModel.titleZoomScale = titleZoomScale
                 itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
@@ -69,11 +70,6 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
         let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         return cell
-    }
-
-    open override func dataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel] {
-        reloadData(selectedIndex: segmentedView.selectedIndex)
-        return dataSource
     }
 
     open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double) {
@@ -118,6 +114,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         myCurrentSelectedItemModel.titleSelectedColor = titleSelectedColor
         myCurrentSelectedItemModel.titleZoomScale = 1
         myCurrentSelectedItemModel.titleSelectedStrokeWidth = 0
+        myCurrentSelectedItemModel.indicatorConvertToItemFrame = CGRect.zero
 
         myWilltSelectedItemModel.titleColor = titleColor
         myWilltSelectedItemModel.titleSelectedColor = titleSelectedColor
