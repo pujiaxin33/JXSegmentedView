@@ -31,6 +31,18 @@ class SpecialCustomizeViewController: UITableViewController {
             let vc = PagingViewController()
             vc.title = itemTitle
             self.navigationController?.pushViewController(vc, animated: true)
+        case "SegmentedControl":
+            let vc = SegmentedControlViewController()
+            vc.title = itemTitle
+            self.navigationController?.pushViewController(vc, animated: true)
+        case "导航栏使用":
+            let vc = NaviSegmentedControlViewController()
+            vc.title = itemTitle
+            self.navigationController?.pushViewController(vc, animated: true)
+        case "嵌套使用":
+            let vc = NestViewController()
+            vc.title = itemTitle
+            self.navigationController?.pushViewController(vc, animated: true)
         default: break
         }
     }

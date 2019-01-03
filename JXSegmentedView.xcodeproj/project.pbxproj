@@ -57,6 +57,10 @@
 		195A9BBA21DDD7BB0005B7A7 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BB921DDD7BB0005B7A7 /* PagingViewController.swift */; };
 		195A9BBF21DDD7F90005B7A7 /* PagingViewTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BBC21DDD7F80005B7A7 /* PagingViewTableHeaderView.swift */; };
 		195A9BC221DDDC8B0005B7A7 /* PagingListBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BC121DDDC8B0005B7A7 /* PagingListBaseView.swift */; };
+		195A9BC521DDEB8E0005B7A7 /* SegmentedControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BC421DDEB8E0005B7A7 /* SegmentedControlViewController.swift */; };
+		195A9BC721DDEF060005B7A7 /* NaviSegmentedControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BC621DDEF060005B7A7 /* NaviSegmentedControlViewController.swift */; };
+		195A9BCA21DDF6410005B7A7 /* NestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BC921DDF6410005B7A7 /* NestViewController.swift */; };
+		195A9BCC21DDF7720005B7A7 /* NestChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BCB21DDF7720005B7A7 /* NestChildViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +116,10 @@
 		195A9BB921DDD7BB0005B7A7 /* PagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		195A9BBC21DDD7F80005B7A7 /* PagingViewTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewTableHeaderView.swift; sourceTree = "<group>"; };
 		195A9BC121DDDC8B0005B7A7 /* PagingListBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingListBaseView.swift; sourceTree = "<group>"; };
+		195A9BC421DDEB8E0005B7A7 /* SegmentedControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlViewController.swift; sourceTree = "<group>"; };
+		195A9BC621DDEF060005B7A7 /* NaviSegmentedControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviSegmentedControlViewController.swift; sourceTree = "<group>"; };
+		195A9BC921DDF6410005B7A7 /* NestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestViewController.swift; sourceTree = "<group>"; };
+		195A9BCB21DDF7720005B7A7 /* NestChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestChildViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +284,8 @@
 		195A9BAD21DDD7400005B7A7 /* Special */ = {
 			isa = PBXGroup;
 			children = (
+				195A9BC821DDF6310005B7A7 /* Nest */,
+				195A9BC321DDEB640005B7A7 /* SegmentedControl */,
 				195A9BAF21DDD7560005B7A7 /* Personal */,
 			);
 			path = Special;
@@ -301,6 +311,24 @@
 				195A9BB421DDD7990005B7A7 /* JXPagingListContainerView.swift */,
 			);
 			path = "JXPagingView-Swift";
+			sourceTree = "<group>";
+		};
+		195A9BC321DDEB640005B7A7 /* SegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				195A9BC421DDEB8E0005B7A7 /* SegmentedControlViewController.swift */,
+				195A9BC621DDEF060005B7A7 /* NaviSegmentedControlViewController.swift */,
+			);
+			path = SegmentedControl;
+			sourceTree = "<group>";
+		};
+		195A9BC821DDF6310005B7A7 /* Nest */ = {
+			isa = PBXGroup;
+			children = (
+				195A9BC921DDF6410005B7A7 /* NestViewController.swift */,
+				195A9BCB21DDF7720005B7A7 /* NestChildViewController.swift */,
+			);
+			path = Nest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				195A9BCA21DDF6410005B7A7 /* NestViewController.swift in Sources */,
 				1904AA7E21D7549600316F97 /* IndicatorCustomizeViewController.swift in Sources */,
 				1904AA6021D5C84300316F97 /* JXSegmentedIndicatorRainbowLineView.swift in Sources */,
 				1904AA6221D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift in Sources */,
@@ -385,6 +414,7 @@
 				1904AA2921D31F6400316F97 /* ViewController.swift in Sources */,
 				1904AA4C21D3637300316F97 /* JXSegmentedViewTool.swift in Sources */,
 				195A9BB521DDD7990005B7A7 /* JXPagingMainTableView.swift in Sources */,
+				195A9BC521DDEB8E0005B7A7 /* SegmentedControlViewController.swift in Sources */,
 				1904AA7421D624BC00316F97 /* JXSegmentedDotCell.swift in Sources */,
 				195A9BAA21DD9CB30005B7A7 /* JXSegmentedTitleAttributeItemModel.swift in Sources */,
 				1904AA3B21D31FBE00316F97 /* JXSegmentedView.swift in Sources */,
@@ -398,6 +428,7 @@
 				195A9BBF21DDD7F90005B7A7 /* PagingViewTableHeaderView.swift in Sources */,
 				195A9BAC21DD9CC10005B7A7 /* JXSegmentedTitleAttributeCell.swift in Sources */,
 				195A9BB621DDD7990005B7A7 /* JXPagingView.swift in Sources */,
+				195A9BC721DDEF060005B7A7 /* NaviSegmentedControlViewController.swift in Sources */,
 				1904AA7021D6226D00316F97 /* JXSegmentedDotDataSource.swift in Sources */,
 				1904AA4F21D3668E00316F97 /* JXSegmentedTitleDataSource.swift in Sources */,
 				1904AA6B21D6093600316F97 /* JXSegmentedNumberItemModel.swift in Sources */,
@@ -406,6 +437,7 @@
 				1904AA3D21D3212300316F97 /* JXSegmentedBaseItemModel.swift in Sources */,
 				1904AA4321D3533E00316F97 /* JXSegmentedIndicatorProtocol.swift in Sources */,
 				1904AA5A21D37B8800316F97 /* JXSegmentedListContainerView.swift in Sources */,
+				195A9BCC21DDF7720005B7A7 /* NestChildViewController.swift in Sources */,
 				195A9BB721DDD7990005B7A7 /* JXPagingListRefreshView.swift in Sources */,
 				1904AA3F21D3215900316F97 /* JXSegmentedBaseCell.swift in Sources */,
 				1904AA7B21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift in Sources */,

@@ -196,8 +196,13 @@ open class JXSegmentedView: UIView {
             if contentScrollView!.frame.equalTo(CGRect.zero) &&
                 contentScrollView!.superview != nil {
                 //某些情况、系统会出现JXCategoryView先布局，contentScrollView后布局。就会导致下面指定defaultSelectedIndex失效，所以发现frame为zero时，强行触发布局。
-                contentScrollView?.superview?.setNeedsLayout()
-                contentScrollView?.superview?.layoutIfNeeded()
+                var parentView = contentScrollView?.superview
+                if contentScrollView!.superview?.superview != nil {
+                    //比如JXSegmentedListContainerView会将contentScrollView包裹起来使用，所以折中情况需要JXSegmentedListContainerView.superView触发布局更新
+                    parentView = contentScrollView!.superview?.superview
+                }
+                parentView?.setNeedsLayout()
+                parentView?.layoutIfNeeded()
             }
 
             contentScrollView!.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * contentScrollView!.bounds.size.width
