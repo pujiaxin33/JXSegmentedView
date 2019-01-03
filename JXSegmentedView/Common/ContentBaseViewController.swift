@@ -20,6 +20,7 @@ class ContentBaseViewController: UIViewController {
 
         self.view.backgroundColor = .white
 
+        //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedView.dataSource = segmentedDataSource
         segmentedView.delegate = self
         segmentedView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 50)

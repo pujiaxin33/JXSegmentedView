@@ -101,7 +101,6 @@ open class JXSegmentedView: UIView {
         collectionView.scrollsToTop = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue | UIView.AutoresizingMask.flexibleHeight.rawValue)
         if #available(iOS 10.0, *) {
             collectionView.isPrefetchingEnabled = false
         }
@@ -114,6 +113,7 @@ open class JXSegmentedView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
 
+        collectionView.frame = self.bounds
         reloadData()
     }
 
