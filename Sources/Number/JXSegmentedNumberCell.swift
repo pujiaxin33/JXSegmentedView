@@ -41,7 +41,7 @@ open class JXSegmentedNumberCell: JXSegmentedTitleCell {
 
         numberLabel.backgroundColor = myItemModel.numberBackgroundColor
         numberLabel.textColor = myItemModel.numberTextColor
-        numberLabel.text = "\(myItemModel.number)"
+        numberLabel.text = myItemModel.numberString
         numberLabel.font = myItemModel.numberFont
         numberLabel.sizeToFit()
         numberLabel.isHidden = myItemModel.number == 0

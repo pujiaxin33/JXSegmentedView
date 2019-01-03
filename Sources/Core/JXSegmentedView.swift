@@ -41,7 +41,6 @@ open class JXSegmentedView: UIView {
     open weak var dataSource: JXSegmentedViewDataSource? {
         didSet {
             setNeedsLayout()
-            layoutIfNeeded()
         }
     }
     open weak var delegate: JXSegmentedViewDelegate?
@@ -174,18 +173,22 @@ open class JXSegmentedView: UIView {
 
         var selectedItemFrameX = innerItemSpacing
         var selectedItemWidth: CGFloat = 0
-        totalContentWidth = innerItemSpacing
+        totalContentWidth = getContentEdgeInsetLeft()
         for (index, itemModel) in itemDataSource.enumerated() {
             if index < selectedIndex {
                 selectedItemFrameX += itemModel.itemWidth + innerItemSpacing
             }else if index == selectedIndex {
                 selectedItemWidth = itemModel.itemWidth
             }
-            totalItemWidth += itemModel.itemWidth + innerItemSpacing
+            if index == itemDataSource.count - 1 {
+                totalContentWidth += itemModel.itemWidth + getContentEdgeInsetRight()
+            }else {
+                totalContentWidth += itemModel.itemWidth + innerItemSpacing
+            }
         }
 
         let minX: CGFloat = 0
-        let maxX = totalItemWidth - self.bounds.size.width
+        let maxX = totalContentWidth - self.bounds.size.width
         let targetX = selectedItemFrameX - self.bounds.size.width/2 + selectedItemWidth/2
         collectionView.setContentOffset(CGPoint(x: max(min(maxX, targetX), minX), y: 0), animated: false)
 
@@ -201,17 +204,13 @@ open class JXSegmentedView: UIView {
                 , y: 0), animated: false)
         }
 
-        collectionView.collectionViewLayout.invalidateLayout()
-        collectionView.reloadData()
-
         for (index, indicator) in indicators.enumerated() {
             if itemDataSource.isEmpty {
                 indicator.isHidden = true
             }else {
                 indicator.isHidden = false
                 let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
-                //FIXME:contentSize
-                indicatorParamsModel.contentSize = collectionView.contentSize
+                indicatorParamsModel.contentSize = CGSize(width: totalContentWidth, height: self.bounds.size.height)
                 indicatorParamsModel.currentSelectedIndex = selectedIndex
                 let selectedItemFrame = getItemFrameAt(index: selectedIndex)
                 indicatorParamsModel.currentSelectedItemFrame = selectedItemFrame
@@ -224,6 +223,7 @@ open class JXSegmentedView: UIView {
                 }
             }
         }
+        collectionView.reloadData()
     }
 
     open func selectItemAt(index: Int) {

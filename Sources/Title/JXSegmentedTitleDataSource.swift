@@ -52,15 +52,13 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
     //MARK: - JXSegmentedViewDataSource
     open override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
-        let width = super.segmentedView(segmentedView, widthForItemAt: index)
-
         if itemContentWidth == JXSegmentedViewAutomaticDimension {
             if let title = (dataSource[index] as? JXSegmentedTitleItemModel)?.title {
                 let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleFont], context: nil).size.width
-                return CGFloat(ceilf(Float(textWidth))) + width
+                return CGFloat(ceilf(Float(textWidth))) + itemWidthIncrement
             }
         }
-        return itemContentWidth + width
+        return itemContentWidth + itemWidthIncrement
     }
 
     open override func registerCellClass(in segmentedView: JXSegmentedView) {

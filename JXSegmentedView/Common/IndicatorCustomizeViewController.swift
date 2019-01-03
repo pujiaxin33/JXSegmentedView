@@ -18,56 +18,49 @@ class IndicatorCustomizeViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        var title: String?
+        var itemTitle: String?
         for subview in cell!.contentView.subviews {
             if let label = subview as? UILabel {
-                title = label.text
+                itemTitle = label.text
                 break
             }
         }
 
         let titles = ["猴哥", "黄焖鸡", "旺财", "粉红猪", "喜羊羊", "青蛙王子", "小马哥", "牛魔王", "大象先生", "神龙"]
         let vc = ContentBaseViewController()
-        vc.title = title
+        vc.title = itemTitle
 
-        switch title! {
-        case "ss":
-            print("22")
-        default:
-            break
-        }
-
-        switch indexPath.row {
-        case 0:
-            //固定宽度
+        switch itemTitle! {
+        case "LineView固定长度":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()
             indicator.indicatorWidth = 20
             vc.segmentedView.indicators = [indicator]
-        case 1:
-            //与cell等宽
+        case "LineView与Cell同宽":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()
             indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
             vc.segmentedView.indicators = [indicator]
-        case 2:
-            //lineView延长
+        case "LineView延长style":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
@@ -75,12 +68,12 @@ class IndicatorCustomizeViewController: UITableViewController {
             indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
             indicator.lineStyle = .lengthen
             vc.segmentedView.indicators = [indicator]
-        case 3:
-            //lineView延长+偏移
+        case "LineView延长+偏移style":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
@@ -88,12 +81,12 @@ class IndicatorCustomizeViewController: UITableViewController {
             indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
             indicator.lineStyle = .lengthenOffset
             vc.segmentedView.indicators = [indicator]
-        case 4:
-            //lineView延长+偏移+🌈彩虹效果
+        case "LineView彩虹":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
@@ -102,24 +95,78 @@ class IndicatorCustomizeViewController: UITableViewController {
             indicator.lineStyle = .lengthenOffset
             indicator.indicatorColors = [.red, .yellow, .blue, .orange, .purple, .cyan, .gray, .red, .yellow, .blue]
             vc.segmentedView.indicators = [indicator]
-        case 5:
-            //三角形
+        case "TriangleView三角形":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorTriangleView()
             vc.segmentedView.indicators = [indicator]
-        case 6:
-            //椭圆形
+        case "BallView小红点":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorBackgroundView()
+            indicator.indicatorHeight = 30
+            vc.segmentedView.indicators = [indicator]
+        case "BackgroundView椭圆形":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorBackgroundView()
+            indicator.indicatorHeight = 30
+            vc.segmentedView.indicators = [indicator]
+        case "BackgroundView椭圆形+阴影":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorBackgroundView()
+            indicator.indicatorHeight = 30
+            indicator.layer.shadowColor = UIColor.red.cgColor
+            indicator.layer.shadowRadius = 3
+            indicator.layer.shadowOffset = CGSize(width: 3, height: 4)
+            indicator.layer.shadowOpacity = 0.6
+            vc.segmentedView.indicators = [indicator]
+        case "BackgroundView遮罩有背景":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = false
             dataSource.isTitleMaskEnabled = true
             dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorBackgroundView()
+            indicator.isIndicatorConvertToItemFrameEnabled = true
+            indicator.indicatorHeight = 30
+            vc.segmentedView.indicators = [indicator]
+        case "BackgroundView遮罩无背景":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = false
+            dataSource.isTitleMaskEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
@@ -128,176 +175,74 @@ class IndicatorCustomizeViewController: UITableViewController {
             indicator.isIndicatorConvertToItemFrameEnabled = true
             indicator.indicatorHeight = 30
             vc.segmentedView.indicators = [indicator]
+        case "BackgroundView渐变色":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorBackgroundView()
+            indicator.indicatorHeight = 30
+            //相当于把JXSegmentedIndicatorBackgroundView当做视图容器，你可以在上面添加任何想要的效果
+            let gradientView = JXSegmentedIndicatorGradientView()
+            gradientView.gradientLayer.endPoint = CGPoint(x: 1, y: 0)
+            gradientView.gradientLayer.colors = [UIColor(red: 90/255, green: 215/255, blue: 202/255, alpha: 1).cgColor, UIColor(red: 122/255, green: 232/255, blue: 169/255, alpha: 1).cgColor]
+            //设置gradientView布局和JXSegmentedIndicatorBackgroundView一样
+            gradientView.autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue | UIView.AutoresizingMask.flexibleHeight.rawValue)
+            indicator.addSubview(gradientView)
+            vc.segmentedView.indicators = [indicator]
+        case "ImageView底部":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorImageView()
+            indicator.image = UIImage(named: "car")
+            indicator.indicatorWidth = 24
+            indicator.indicatorHeight = 18
+            vc.segmentedView.indicators = [indicator]
+        case "ImageView背景":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorImageView()
+            indicator.indicatorWidth = 50
+            indicator.indicatorHeight = 50
+            indicator.image = UIImage(named: "light")
+            vc.segmentedView.indicators = [indicator]
+        case "混合使用":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let lineIndicator = JXSegmentedIndicatorLineView()
+            lineIndicator.indicatorWidth = JXSegmentedViewAutomaticDimension
+            lineIndicator.lineStyle = .lengthenOffset
+
+            let bgIndicator = JXSegmentedIndicatorBackgroundView()
+            bgIndicator.indicatorHeight = 30
+            vc.segmentedView.indicators = [lineIndicator, bgIndicator]
+        case "indicator自定义-点线效果":
+            print("xx")
         default:
             break
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
-//    if (indexPath.row == 12) {
-//    //IndicatorImageView底部
-//    IndicatorImageViewViewController *indicatorImageViewVC = [[IndicatorImageViewViewController alloc] init];
-//    indicatorImageViewVC.title = title;
-//    [self.navigationController pushViewController:indicatorImageViewVC animated:YES];
-//    return;
-//    }else if (indexPath.row == 13) {
-//    //IndicatorImageView cell背景
-//    BackgroundImageViewController *backgroundImageVC = [[BackgroundImageViewController alloc] init];
-//    backgroundImageVC.title = title;
-//    [self.navigationController pushViewController:backgroundImageVC animated:YES];
-//    return;
-//    }else if (indexPath.row == 14) {
-//    //足球滚动
-//    FootballViewController *footballVC = [[FootballViewController alloc] init];
-//    footballVC.title = title;
-//    [self.navigationController pushViewController:footballVC animated:YES];
-//    return;
-//    }
-
-//{
-//    //qq红点
-//    testVC.isNeedIndicatorPositionChangeItem = YES;
-//    titleCategoryView.titleColorGradientEnabled = YES;
-//    JXCategoryIndicatorBallView *ballView = [[JXCategoryIndicatorBallView alloc] init];
-//    titleCategoryView.indicators = @[ballView];
-//    }
-//    break;
-//    case 5:
-//{
-
-//    case 6:
-//{
-//    //椭圆形
-//    titleCategoryView.titleColorGradientEnabled = YES;
-//    JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
-//    JXGradientView *gradientView = [JXGradientView new];
-//    gradientView.gradientLayer.endPoint = CGPointMake(1, 0);
-//    gradientView.gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:90.0/255 green:215.0/255 blue:202.0/255 alpha:1].CGColor, (__bridge id)[UIColor colorWithRed:122.0/255 green:232.0/255 blue:169.0/255 alpha:1].CGColor,];
-//    //设置gradientView的渐变色
-//    //用约束gradientView与backgroundView一样的大小
-//    gradientView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    [backgroundView addSubview:gradientView];
-//    backgroundView.backgroundViewHeight = 20;
-//    backgroundView.backgroundViewCornerRadius = JXCategoryViewAutomaticDimension;
-//    titleCategoryView.indicators = @[backgroundView];
-//    }
-//    break;
-//    case 7:
-//{
-//    //阴影
-//    titleCategoryView.titleColorGradientEnabled = YES;
-//    JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
-//    backgroundView.backgroundViewHeight = 20;
-//    backgroundView.backgroundViewCornerRadius = JXCategoryViewAutomaticDimension;
-//    backgroundView.layer.shadowColor = [UIColor redColor].CGColor;
-//    backgroundView.layer.shadowRadius = 3;
-//    backgroundView.layer.shadowOffset = CGSizeMake(3, 4);
-//    backgroundView.layer.shadowOpacity = 0.6;
-//    titleCategoryView.indicators = @[backgroundView];
-//    }
-//    break;
-//    case 8:
-//{
-//    //长方形
-//    titleCategoryView.titleColorGradientEnabled = YES;
-//    JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
-//    backgroundView.backgroundViewHeight = JXCategoryViewAutomaticDimension;
-//    backgroundView.backgroundViewCornerRadius = 0;
-//    titleCategoryView.indicators = @[backgroundView];
-//    }
-//    break;
-//    case 9:
-//{
-//    //文字遮罩有背景
-//    titleCategoryView.titleColorGradientEnabled = NO;
-//    titleCategoryView.titleLabelMaskEnabled = YES;
-//
-//    JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
-//    backgroundView.backgroundViewWidthIncrement = 10;
-//    backgroundView.backgroundViewHeight = 20;
-//    titleCategoryView.indicators = @[backgroundView];
-//    }
-//    break;
-//    case 10:
-//{
-//    //文字遮罩无背景
-//    titleCategoryView.titleColorGradientEnabled = NO;
-//    titleCategoryView.titleLabelMaskEnabled = YES;
-//
-//    JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
-//    backgroundView.backgroundViewWidthIncrement = 10;
-//    backgroundView.backgroundViewHeight = 20;
-//    backgroundView.alpha = 0;
-//    titleCategoryView.indicators = @[backgroundView];
-//    }
-//    break;
-//    case 11:
-//{
-//    //渐变色
-//    titleCategoryView.titleColorGradientEnabled = YES;
-//    titleCategoryView.titleSelectedColor = [UIColor whiteColor];
-//    JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
-//
-//    //相当于把JXCategoryIndicatorBackgroundView当做视图容器，你可以在上面添加任何想要的效果
-//    JXGradientView *gradientView = [JXGradientView new];
-//    gradientView.gradientLayer.endPoint = CGPointMake(1, 0);
-//    gradientView.gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:90.0/255 green:215.0/255 blue:202.0/255 alpha:1].CGColor, (__bridge id)[UIColor colorWithRed:122.0/255 green:232.0/255 blue:169.0/255 alpha:1].CGColor,];
-//    //设置gradientView布局和JXCategoryIndicatorBackgroundView一样
-//    gradientView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    [backgroundView addSubview:gradientView];
-//
-//    backgroundView.backgroundViewHeight = 20;
-//    backgroundView.backgroundViewCornerRadius = 0;
-//    titleCategoryView.indicators = @[backgroundView];
-//    break;
-//    }
-//    case 15:
-//{
-//    //混合使用
-//    titleCategoryView.titleColorGradientEnabled = NO;
-//    titleCategoryView.titleLabelMaskEnabled = YES;
-//
-//    JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-//    JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
-//    backgroundView.backgroundViewHeight = 20;
-//
-//    titleCategoryView.indicators = @[backgroundView, lineView];
-//    }
-//    break;
-//    case 16:
-//{
-//    //indicator自定义-点线效果
-//    testVC.isNeedIndicatorPositionChangeItem = YES;
-//    titleCategoryView.titleColorGradientEnabled = YES;
-//    JXCategoryIndicatorDotLineView *lineView = [[JXCategoryIndicatorDotLineView alloc] init];
-//    titleCategoryView.indicators = @[lineView];
-//    }
-//    break;
-//    case 17:
-//{
-//    //indicatorLineView-🌈彩虹效果
-//    testVC.isNeedIndicatorPositionChangeItem = YES;
-//    JXCategoryIndicatorRainbowLineView *lineView = [[JXCategoryIndicatorRainbowLineView alloc] init];
-//    NSArray *colors = @[[UIColor redColor],
-//    [UIColor yellowColor],
-//    [UIColor blueColor],
-//    [UIColor orangeColor],
-//    [UIColor purpleColor],
-//    [UIColor cyanColor],
-//    [UIColor magentaColor],
-//    [UIColor grayColor],
-//    [UIColor redColor],
-//    [UIColor yellowColor],
-//    [UIColor blueColor],];
-//    lineView.indicatorColors = colors;
-//    lineView.indicatorLineWidth = JXCategoryViewAutomaticDimension;
-//    titleCategoryView.indicators = @[lineView];
-//    }
-//    break;
-//
-//    default:
-//    break;
-//    }
-//    [self.navigationController pushViewController:testVC animated:YES];
-//    }
-
 }
