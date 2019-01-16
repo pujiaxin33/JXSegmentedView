@@ -26,15 +26,7 @@ open class JXSegmentedDotDataSource: JXSegmentedTitleDataSource {
         super.reloadData(selectedIndex: selectedIndex)
 
         for (index, itemModel) in (dataSource as! [JXSegmentedDotItemModel]).enumerated() {
-            itemModel.dotOffset = dotOffset
-            itemModel.dotState = dotStates[index]
-            itemModel.dotColor = dotColor
-            itemModel.dotSize = dotSize
-            if dotCornerRadius == JXSegmentedViewAutomaticDimension {
-                itemModel.dotCornerRadius = dotSize.height/2
-            }else {
-                itemModel.dotCornerRadius = dotCornerRadius
-            }
+            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
         }
     }
 
@@ -46,5 +38,23 @@ open class JXSegmentedDotDataSource: JXSegmentedTitleDataSource {
     open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
         let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         return cell
+    }
+
+    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+
+        guard let itemModel = itemModel as? JXSegmentedDotItemModel else {
+            return
+        }
+
+        itemModel.dotOffset = dotOffset
+        itemModel.dotState = dotStates[index]
+        itemModel.dotColor = dotColor
+        itemModel.dotSize = dotSize
+        if dotCornerRadius == JXSegmentedViewAutomaticDimension {
+            itemModel.dotCornerRadius = dotSize.height/2
+        }else {
+            itemModel.dotCornerRadius = dotCornerRadius
+        }
     }
 }

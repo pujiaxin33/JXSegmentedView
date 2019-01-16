@@ -28,7 +28,7 @@ class CellCustomizeViewController: UITableViewController {
 
         let titles = ["猴哥", "黄焖鸡", "旺财", "粉红猪", "喜羊羊", "青蛙王子", "小马哥", "牛魔王", "大象先生", "神龙"]
         let numbers = [1, 22, 333, 44444, 0, 66, 777, 0, 99999, 10]
-        let dotStates = [true, false, true, true, false, false, true, true, false, true]
+        let dotStates = [false, true, true, true, false, false, true, true, false, true]
         let vc = ContentBaseViewController()
         vc.title = itemTitle
 

@@ -34,15 +34,7 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
         super.reloadData(selectedIndex: selectedIndex)
 
         for (index, itemModel) in (dataSource as! [JXSegmentedNumberItemModel]).enumerated() {
-            itemModel.number = numbers[index]
-            if numberStringFormatterClosure != nil {
-                itemModel.numberString = numberStringFormatterClosure!(itemModel.number)
-            }else {
-                itemModel.numberString = "\(itemModel.number)"
-            }
-            itemModel.numberTextColor = numberTextColor
-            itemModel.numberBackgroundColor = numberBackgroundColor
-            itemModel.numberOffset = numberOffset
+            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
         }
     }
 
@@ -54,5 +46,23 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
     open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
         let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         return cell
+    }
+
+    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+
+        guard let itemModel = itemModel as? JXSegmentedNumberItemModel else {
+            return
+        }
+
+        itemModel.number = numbers[index]
+        if numberStringFormatterClosure != nil {
+            itemModel.numberString = numberStringFormatterClosure!(itemModel.number)
+        }else {
+            itemModel.numberString = "\(itemModel.number)"
+        }
+        itemModel.numberTextColor = numberTextColor
+        itemModel.numberBackgroundColor = numberBackgroundColor
+        itemModel.numberOffset = numberOffset
     }
 }

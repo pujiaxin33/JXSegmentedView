@@ -40,6 +40,7 @@ open class JXSegmentedListContainerView: UIView {
 
     init(parentVC: UIViewController, delegate: JXSegmentedListContainerViewDelegate) {
         self.parentVC = parentVC
+        self.parentVC.automaticallyAdjustsScrollViewInsets = false
         self.delegate = delegate
 
         super.init(frame: CGRect.zero)

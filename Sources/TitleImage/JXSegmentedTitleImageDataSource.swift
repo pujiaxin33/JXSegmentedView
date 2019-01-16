@@ -41,17 +41,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         super.reloadData(selectedIndex: selectedIndex)
 
         for (index, itemModel) in (dataSource as! [JXSegmentedTitleImageItemModel]).enumerated() {
-            itemModel.titleImageType = titleImageType
-            itemModel.imageInfo = imageInfos?[index]
-            itemModel.selectedImageInfo = selectedImageInfos?[index]
-            itemModel.loadImageClosure = loadImageClosure
-            itemModel.imageSize = imageSize
-            itemModel.isImageZoomEnabled = isImageZoomEnabled
-            if index == selectedIndex {
-                itemModel.imageZoomScale = imageZoomScale
-            }else {
-                itemModel.imageZoomScale = 1
-            }
+            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
         }
     }
 
@@ -104,6 +94,26 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
             myWilltSelectedItemModel.imageZoomScale = imageZoomScale
         }else {
             myWilltSelectedItemModel.imageZoomScale = 1
+        }
+    }
+
+    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+
+        guard let itemModel = itemModel as? JXSegmentedTitleImageItemModel else {
+            return
+        }
+
+        itemModel.titleImageType = titleImageType
+        itemModel.imageInfo = imageInfos?[index]
+        itemModel.selectedImageInfo = selectedImageInfos?[index]
+        itemModel.loadImageClosure = loadImageClosure
+        itemModel.imageSize = imageSize
+        itemModel.isImageZoomEnabled = isImageZoomEnabled
+        if index == selectedIndex {
+            itemModel.imageZoomScale = imageZoomScale
+        }else {
+            itemModel.imageZoomScale = 1
         }
     }
 }

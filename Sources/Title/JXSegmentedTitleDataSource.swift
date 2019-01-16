@@ -29,23 +29,9 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open override func reloadData(selectedIndex: Int) {
         super.reloadData(selectedIndex: selectedIndex)
 
-        for (index, title) in titles.enumerated() {
-            let itemModel = preferredItemModelInstance() as! JXSegmentedTitleItemModel
-            itemModel.title = title
-            itemModel.titleColor = titleColor
-            itemModel.titleSelectedColor = titleSelectedColor
-            itemModel.titleFont = titleFont
-            itemModel.titleSelectedFont = titleSelectedFont
-            itemModel.isTitleZoomEnabled = isTitleZoomEnabled
-            itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
-            itemModel.isTitleMaskEnabled = isTitleMaskEnabled
-            if index == selectedIndex {
-                itemModel.titleZoomScale = titleZoomScale
-                itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
-            }else {
-                itemModel.titleZoomScale = 1
-                itemModel.titleSelectedStrokeWidth = 0
-            }
+        for (index, _) in titles.enumerated() {
+            let itemModel = preferredItemModelInstance()
+            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
             dataSource.append(itemModel)
         }
     }
@@ -118,5 +104,27 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         myWilltSelectedItemModel.titleSelectedColor = titleSelectedColor
         myWilltSelectedItemModel.titleZoomScale = titleZoomScale
         myWilltSelectedItemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
+    }
+
+    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        guard let itemModel = itemModel as? JXSegmentedTitleItemModel else {
+            return
+        }
+
+        itemModel.title = titles[index]
+        itemModel.titleColor = titleColor
+        itemModel.titleSelectedColor = titleSelectedColor
+        itemModel.titleFont = titleFont
+        itemModel.titleSelectedFont = titleSelectedFont
+        itemModel.isTitleZoomEnabled = isTitleZoomEnabled
+        itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
+        itemModel.isTitleMaskEnabled = isTitleMaskEnabled
+        if index == selectedIndex {
+            itemModel.titleZoomScale = titleZoomScale
+            itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
+        }else {
+            itemModel.titleZoomScale = 1
+            itemModel.titleSelectedStrokeWidth = 0
+        }
     }
 }

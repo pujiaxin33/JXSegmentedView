@@ -56,11 +56,22 @@ class ContentBaseViewController: UIViewController {
 }
 
 extension ContentBaseViewController: JXSegmentedViewDelegate {
+    func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
+        if let dotDataSource = segmentedDataSource as? JXSegmentedDotDataSource {
+            //先更新数据源的数据
+            dotDataSource.dotStates[index] = false
+            //再调用reloadItem(at: index)
+            segmentedView.reloadItem(at: index)
+        }
+    }
+
     func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
+        //传递didClickSelectedItemAt事件给listContainerView，必须调用！！！
         listContainerView.didClickSelectedItem(at: index)
     }
 
     func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: Double) {
+        //传递scrollingFrom事件给listContainerView，必须调用！！！
         listContainerView.categoryViewScrolling(from: leftIndex, to: rightIndex, percent: percent, selectedIndex: segmentedView.selectedIndex)
     }
 }

@@ -43,6 +43,14 @@ class SpecialCustomizeViewController: UITableViewController {
             let vc = NestViewController()
             vc.title = itemTitle
             self.navigationController?.pushViewController(vc, animated: true)
+        case "刷新数据+JXSegmentedListContainerView":
+            let vc = LoadDataViewController()
+            vc.title = itemTitle
+            self.navigationController?.pushViewController(vc, animated: true)
+        case "刷新数据+列表自定义":
+            let vc = LoadDataCustomViewController()
+            vc.title = itemTitle
+            self.navigationController?.pushViewController(vc, animated: true)
         default: break
         }
     }

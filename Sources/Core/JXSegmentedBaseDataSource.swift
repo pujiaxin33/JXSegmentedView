@@ -16,7 +16,6 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     open var itemWidthIncrement: CGFloat = 0
     open var dataSource = [JXSegmentedBaseItemModel]()
 
-
     /// 配置完各种属性之后，需要手动调用该方法，更新数据源
     ///
     /// - Parameter selectedIndex: 当前选中的item的index
@@ -50,6 +49,10 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     }
 
     open func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double) {
+
+    }
+
+    open func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
 
     }
 }

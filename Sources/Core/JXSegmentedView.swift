@@ -19,6 +19,8 @@ public protocol JXSegmentedViewDataSource {
 
     func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell
 
+    func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int)
+
     func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel)
 
     func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double)
@@ -137,6 +139,9 @@ open class JXSegmentedView: UIView {
         if let itemSource = self.dataSource?.dataSource(in: self) {
             itemDataSource = itemSource
         }
+        if selectedIndex < 0 || selectedIndex >= itemDataSource.count {
+            selectedIndex = 0
+        }
 
         innerItemSpacing = itemSpacing
         var totalItemWidth: CGFloat = 0
@@ -195,11 +200,11 @@ open class JXSegmentedView: UIView {
         if contentScrollView != nil {
             if contentScrollView!.frame.equalTo(CGRect.zero) &&
                 contentScrollView!.superview != nil {
-                //某些情况、系统会出现JXCategoryView先布局，contentScrollView后布局。就会导致下面指定defaultSelectedIndex失效，所以发现frame为zero时，强行触发布局。
+                //某些情况系统会出现JXCategoryView先布局，contentScrollView后布局。就会导致下面指定defaultSelectedIndex失效，所以发现contentScrollView的frame为zero时，强行触发其父视图链里面已经有frame的一个父视图的layoutSubviews方法。
+                //比如JXSegmentedListContainerView会将contentScrollView包裹起来使用，该情况需要JXSegmentedListContainerView.superView触发布局更新
                 var parentView = contentScrollView?.superview
-                if contentScrollView!.superview?.superview != nil {
-                    //比如JXSegmentedListContainerView会将contentScrollView包裹起来使用，所以折中情况需要JXSegmentedListContainerView.superView触发布局更新
-                    parentView = contentScrollView!.superview?.superview
+                while parentView != nil && parentView?.frame.equalTo(CGRect.zero) == true {
+                    parentView = parentView?.superview
                 }
                 parentView?.setNeedsLayout()
                 parentView?.layoutIfNeeded()
@@ -229,6 +234,16 @@ open class JXSegmentedView: UIView {
             }
         }
         collectionView.reloadData()
+    }
+
+    open func reloadItem(at index: Int) {
+        guard index >= 0 && index < itemDataSource.count else {
+            return
+        }
+
+        dataSource?.refreshItemModel(itemDataSource[index], at: index, selectedIndex: selectedIndex)
+        let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? JXSegmentedBaseCell
+        cell?.reloadData(itemModel: itemDataSource[index], isClicked: false)
     }
 
     open func selectItemAt(index: Int) {
@@ -332,7 +347,7 @@ open class JXSegmentedView: UIView {
     }
 
     fileprivate func selectIteAt(index: Int, isClicked: Bool) {
-        guard index < itemDataSource.count else {
+        guard index >= 0 && index < itemDataSource.count else {
             return
         }
 
