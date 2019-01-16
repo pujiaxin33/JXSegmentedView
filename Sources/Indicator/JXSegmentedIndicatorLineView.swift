@@ -43,8 +43,9 @@ open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
     open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
         super.contentScrollViewDidScroll(model: model)
 
-        if model.percent == 0 {
+        if model.percent == 0 || !isScrollEnabled {
             //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
+            //isScrollEnabled为false不需要处理
             return
         }
 
@@ -87,11 +88,8 @@ open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
             }
         }
 
-        //允许变动frame的情况：1、允许滚动；2、不允许滚动，但是已经通过手势滚动切换一页内容了；
-        if isScrollEnabled || (!isScrollEnabled && !model.isClicked && percent == 0) {
-            self.frame.origin.x = targetX
-            self.frame.size.width = targetWidth
-        }
+        self.frame.origin.x = targetX
+        self.frame.size.width = targetWidth
     }
 
     open override func selectItem(model: JXSegmentedIndicatorParamsModel) {

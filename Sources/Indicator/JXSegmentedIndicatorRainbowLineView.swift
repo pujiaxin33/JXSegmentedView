@@ -24,6 +24,12 @@ open class JXSegmentedIndicatorRainbowLineView: JXSegmentedIndicatorLineView {
     open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
         super.contentScrollViewDidScroll(model: model)
 
+        if model.percent == 0 || !isScrollEnabled {
+            //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
+            //isScrollEnabled为false不需要处理
+            return
+        }
+
         backgroundColor = JXSegmentedViewTool.interpolateColor(from: indicatorColors[model.leftIndex], to: indicatorColors[model.rightIndex], percent: model.percent)
     }
 

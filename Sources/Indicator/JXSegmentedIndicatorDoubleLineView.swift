@@ -48,8 +48,9 @@ class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
     open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
         super.contentScrollViewDidScroll(model: model)
 
-        if model.percent == 0 {
+        if model.percent == 0 || !isScrollEnabled {
             //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
+            //isScrollEnabled为false不需要处理
             return
         }
 
@@ -69,26 +70,22 @@ class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
         let leftAlpha: CGFloat = JXSegmentedViewTool.interpolate(from: 1, to: 0, percent: CGFloat(percent))
         let rightAlpha: CGFloat = JXSegmentedViewTool.interpolate(from: 0, to: 1, percent: CGFloat(percent))
 
-        //允许变动frame的情况：1、允许滚动；2、不允许滚动，但是已经通过手势滚动切换一页内容了；
-        //FIXME:isClicked是否可以去掉
-        if isScrollEnabled || (!isScrollEnabled && !model.isClicked && percent == 0) {
-            if model.currentSelectedIndex == model.leftIndex {
-                selectedLineView.bounds.size.width = leftWidth
-                selectedLineView.center = leftCenter
-                selectedLineView.alpha = leftAlpha
+        if model.currentSelectedIndex == model.leftIndex {
+            selectedLineView.bounds.size.width = leftWidth
+            selectedLineView.center = leftCenter
+            selectedLineView.alpha = leftAlpha
 
-                otherLineView.bounds.size.width = rightWidth
-                otherLineView.center = rightCenter
-                otherLineView.alpha = rightAlpha
-            }else {
-                otherLineView.bounds.size.width = leftWidth
-                otherLineView.center = leftCenter
-                otherLineView.alpha = leftAlpha
+            otherLineView.bounds.size.width = rightWidth
+            otherLineView.center = rightCenter
+            otherLineView.alpha = rightAlpha
+        }else {
+            otherLineView.bounds.size.width = leftWidth
+            otherLineView.center = leftCenter
+            otherLineView.alpha = leftAlpha
 
-                selectedLineView.bounds.size.width = rightWidth
-                selectedLineView.center = rightCenter
-                selectedLineView.alpha = rightAlpha
-            }
+            selectedLineView.bounds.size.width = rightWidth
+            selectedLineView.center = rightCenter
+            selectedLineView.alpha = rightAlpha
         }
     }
 
