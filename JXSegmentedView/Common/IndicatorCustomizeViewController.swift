@@ -238,8 +238,17 @@ class IndicatorCustomizeViewController: UITableViewController {
             let bgIndicator = JXSegmentedIndicatorBackgroundView()
             bgIndicator.indicatorHeight = 30
             vc.segmentedView.indicators = [lineIndicator, bgIndicator]
-        case "indicator自定义-点线效果":
-            print("xx")
+        case "DotLine点线效果":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorDotLineView()
+            vc.segmentedView.indicators = [indicator]
         default:
             break
         }

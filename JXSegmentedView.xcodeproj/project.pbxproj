@@ -67,6 +67,7 @@
 		195A9C4F21E332080005B7A7 /* LoadDataCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9C4E21E332080005B7A7 /* LoadDataCustomViewController.swift */; };
 		195A9C5121E3322C0005B7A7 /* LoadDataCustomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9C5021E3322C0005B7A7 /* LoadDataCustomListViewController.swift */; };
 		195A9C5321E3383D0005B7A7 /* UIWindow+JXSafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9C5221E3383D0005B7A7 /* UIWindow+JXSafeArea.swift */; };
+		19B5D5CF21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +133,7 @@
 		195A9C4E21E332080005B7A7 /* LoadDataCustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataCustomViewController.swift; sourceTree = "<group>"; };
 		195A9C5021E3322C0005B7A7 /* LoadDataCustomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataCustomListViewController.swift; sourceTree = "<group>"; };
 		195A9C5221E3383D0005B7A7 /* UIWindow+JXSafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+JXSafeArea.swift"; sourceTree = "<group>"; };
+		19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDotLineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				1904AA4421D3541800316F97 /* JXSegmentedIndicatorParamsModel.swift */,
 				1904AA4921D35F3100316F97 /* JXSegmentedIndicatorBaseView.swift */,
 				1904AA4721D35EF500316F97 /* JXSegmentedIndicatorLineView.swift */,
+				19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */,
 				1904AA5F21D5C84300316F97 /* JXSegmentedIndicatorRainbowLineView.swift */,
 				1904AA6121D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift */,
 				195A9BA421DC97DD0005B7A7 /* JXSegmentedIndicatorGradientView.swift */,
@@ -467,6 +470,7 @@
 				1904AA8421D75BA200316F97 /* TitleImageSettingViewController.swift in Sources */,
 				195A9BB821DDD7990005B7A7 /* JXPagingListContainerView.swift in Sources */,
 				195A9C4F21E332080005B7A7 /* LoadDataCustomViewController.swift in Sources */,
+				19B5D5CF21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift in Sources */,
 				1904AA5721D3732C00316F97 /* ListBaseViewController.swift in Sources */,
 				1904AA8221D754F500316F97 /* SpecialCustomizeViewController.swift in Sources */,
 				1904AA6721D6041600316F97 /* JXSegmentedBaseDataSource.swift in Sources */,
