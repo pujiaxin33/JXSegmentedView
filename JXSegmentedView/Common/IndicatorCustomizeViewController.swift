@@ -187,7 +187,7 @@ class IndicatorCustomizeViewController: UITableViewController {
             let indicator = JXSegmentedIndicatorBackgroundView()
             indicator.indicatorHeight = 30
             //相当于把JXSegmentedIndicatorBackgroundView当做视图容器，你可以在上面添加任何想要的效果
-            let gradientView = JXSegmentedIndicatorGradientView()
+            let gradientView = JXSegmentedComponetGradientView()
             gradientView.gradientLayer.endPoint = CGPoint(x: 1, y: 0)
             gradientView.gradientLayer.colors = [UIColor(red: 90/255, green: 215/255, blue: 202/255, alpha: 1).cgColor, UIColor(red: 122/255, green: 232/255, blue: 169/255, alpha: 1).cgColor]
             //设置gradientView布局和JXSegmentedIndicatorBackgroundView一样
@@ -248,6 +248,17 @@ class IndicatorCustomizeViewController: UITableViewController {
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorDotLineView()
+            vc.segmentedView.indicators = [indicator]
+        case "DoubleLine双线效果":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorDoubleLineView()
             vc.segmentedView.indicators = [indicator]
         default:
             break

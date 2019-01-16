@@ -29,6 +29,18 @@ class ContentBaseViewController: UIViewController {
         segmentedView.contentScrollView = listContainerView.scrollView
         view.addSubview(listContainerView)
 
+        for indicaotr in segmentedView.indicators {
+            if (indicaotr as? JXSegmentedIndicatorLineView) != nil ||
+                (indicaotr as? JXSegmentedIndicatorDotLineView) != nil ||
+                (indicaotr as? JXSegmentedIndicatorDoubleLineView) != nil ||
+                (indicaotr as? JXSegmentedIndicatorRainbowLineView) != nil ||
+                (indicaotr as? JXSegmentedIndicatorImageView) != nil ||
+                (indicaotr as? JXSegmentedIndicatorTriangleView) != nil {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "指示器位置切换", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didIndicatorPositionChanged))
+                break
+            }
+        }
+
         if (segmentedDataSource as? JXSegmentedTitleImageDataSource) != nil {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "设置", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didSetingsButtonClicked))
         }
@@ -51,6 +63,17 @@ class ContentBaseViewController: UIViewController {
             self?.segmentedView.reloadData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @objc func didIndicatorPositionChanged() {
+        for indicaotr in (segmentedView.indicators as! [JXSegmentedIndicatorBaseView]) {
+            if indicaotr.indicatorPosition == .bottom {
+                indicaotr.indicatorPosition = .top
+            }else {
+                indicaotr.indicatorPosition = .bottom
+            }
+        }
+        segmentedView.reloadData()
     }
 
 }

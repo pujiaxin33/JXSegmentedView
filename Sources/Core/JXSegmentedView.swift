@@ -295,6 +295,7 @@ open class JXSegmentedView: UIView {
                     if baseIndex + 1 < itemDataSource.count {
                         //右边的index不能越界
                         for indicator in indicators {
+                            //FIXME:是否可以不需要调用
                             indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
                         }
                     }

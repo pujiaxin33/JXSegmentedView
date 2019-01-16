@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class JXSegmentedIndicatorGradientView: UIView {
+open class JXSegmentedComponetGradientView: UIView {
     open class override var layerClass: AnyClass {
         return CAGradientLayer.self
     }
