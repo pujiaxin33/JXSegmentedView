@@ -38,6 +38,11 @@ class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
     open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
         super.contentScrollViewDidScroll(model: model)
 
+        if model.percent == 0 {
+            //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
+            return
+        }
+
         let rightItemFrame = model.rightItemFrame
         let leftItemFrame = model.leftItemFrame
         let percent = model.percent
@@ -45,23 +50,19 @@ class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
         let dotWidth = getIndicatorWidth(itemFrame: leftItemFrame)
         var targetWidth = dotWidth
 
-        if percent == 0 {
-            targetX = leftItemFrame.origin.x + (leftItemFrame.size.width - targetWidth)/2
-        }else {
-            let leftWidth = targetWidth
-            let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame)
-            let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - leftWidth)/2
-            let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - rightWidth)/2
-            let centerX = leftX + (rightX - leftX - lineMaxWidth)/2
+        let leftWidth = targetWidth
+        let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame)
+        let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - leftWidth)/2
+        let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - rightWidth)/2
+        let centerX = leftX + (rightX - leftX - lineMaxWidth)/2
 
-            //前50%，移动x，增加宽度；后50%，移动x并减小width
-            if percent <= 0.5 {
-                targetX = JXSegmentedViewTool.interpolate(from: leftX, to: centerX, percent: CGFloat(percent*2))
-                targetWidth = JXSegmentedViewTool.interpolate(from: dotWidth, to: lineMaxWidth, percent: CGFloat(percent*2))
-            }else {
-                targetX = JXSegmentedViewTool.interpolate(from: centerX, to: rightX, percent: CGFloat((percent - 0.5)*2))
-                targetWidth = JXSegmentedViewTool.interpolate(from: lineMaxWidth, to: dotWidth, percent: CGFloat((percent - 0.5)*2))
-            }
+        //前50%，移动x，增加宽度；后50%，移动x并减小width
+        if percent <= 0.5 {
+            targetX = JXSegmentedViewTool.interpolate(from: leftX, to: centerX, percent: CGFloat(percent*2))
+            targetWidth = JXSegmentedViewTool.interpolate(from: dotWidth, to: lineMaxWidth, percent: CGFloat(percent*2))
+        }else {
+            targetX = JXSegmentedViewTool.interpolate(from: centerX, to: rightX, percent: CGFloat((percent - 0.5)*2))
+            targetWidth = JXSegmentedViewTool.interpolate(from: lineMaxWidth, to: dotWidth, percent: CGFloat((percent - 0.5)*2))
         }
 
         //允许变动frame的情况：1、允许滚动；2、不允许滚动，但是已经通过手势滚动切换一页内容了；

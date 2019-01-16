@@ -89,7 +89,7 @@ open class JXSegmentedView: UIView {
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
+        //FIXME:滑动中点击
         commonInit()
     }
 
@@ -292,13 +292,6 @@ open class JXSegmentedView: UIView {
                     if !(lastContentOffset.x == contentOffset.x && selectedIndex == baseIndex) {
                         scrollSelectItemAt(index: baseIndex)
                     }
-                    if baseIndex + 1 < itemDataSource.count {
-                        //右边的index不能越界
-                        for indicator in indicators {
-                            //FIXME:是否可以不需要调用
-                            indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
-                        }
-                    }
                 }else {
                     //快速滑动翻页，当remainderRatio没有变成0，但是已经翻页了，需要通过下面的判断，触发选中
                     if abs(progress - Double(selectedIndex)) > 1 {
@@ -375,7 +368,7 @@ open class JXSegmentedView: UIView {
         willSelectedCell?.reloadData(itemModel: willSelectedItemModel, isClicked: isClicked)
 
         collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
-        if contentScrollView != nil {
+        if contentScrollView != nil && isClicked {
             contentScrollView!.setContentOffset(CGPoint(x: contentScrollView!.bounds.size.width*CGFloat(index), y: 0), animated: isContentScrollViewClickTransitionAnimateEnabled)
         }
 

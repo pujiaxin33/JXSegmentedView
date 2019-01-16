@@ -35,23 +35,24 @@ open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
     open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
         super.contentScrollViewDidScroll(model: model)
 
+        if model.percent == 0 {
+            //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
+            return
+        }
+
         let rightItemFrame = model.rightItemFrame
         let leftItemFrame = model.leftItemFrame
         let percent = model.percent
         var targetX: CGFloat = 0
         var targetWidth = getIndicatorWidth(itemFrame: leftItemFrame)
 
-        if model.percent == 0 {
-            targetX = leftItemFrame.origin.x + (leftItemFrame.size.width - targetWidth)/2
-        }else {
-            let leftWidth = targetWidth
-            let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame)
-            let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - leftWidth)/2
-            let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - rightWidth)/2
-            targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: CGFloat(percent))
-            if indicatorWidth == JXSegmentedViewAutomaticDimension {
-                targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: rightWidth, percent: CGFloat(percent))
-            }
+        let leftWidth = targetWidth
+        let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame)
+        let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - leftWidth)/2
+        let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - rightWidth)/2
+        targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: CGFloat(percent))
+        if indicatorWidth == JXSegmentedViewAutomaticDimension {
+            targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: rightWidth, percent: CGFloat(percent))
         }
 
         //允许变动frame的情况：1、允许滚动；2、不允许滚动，但是已经通过手势滚动切换一页内容了；

@@ -16,7 +16,7 @@ class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
     open override func commonInit() {
         super.commonInit()
 
-        indicatorHeight = 10
+        indicatorHeight = 3
 
         selectedLineView = UIView()
         addSubview(selectedLineView)
@@ -48,6 +48,11 @@ class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
     open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
         super.contentScrollViewDidScroll(model: model)
 
+        if model.percent == 0 {
+            //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
+            return
+        }
+
         let rightItemFrame = model.rightItemFrame
         let leftItemFrame = model.leftItemFrame
         let percent = model.percent
@@ -59,22 +64,10 @@ class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
         let leftMinWidth = leftMaxWidth*minLineWidthPercent
         let rightMinWidth = rightMaxWidth*minLineWidthPercent
 
-        var leftWidth: CGFloat = 0
-        var rightWidth: CGFloat = 0
-        var leftAlpha: CGFloat = 0
-        var rightAlpha: CGFloat = 0
-
-        guard percent != 0 else {
-            return
-        }
-        if percent == 0 {
-//            targetX = leftItemFrame.origin.x + (leftItemFrame.size.width - targetWidth)/2
-        }else {
-            leftWidth = JXSegmentedViewTool.interpolate(from: leftMaxWidth, to: leftMinWidth, percent: CGFloat(percent))
-            rightWidth = JXSegmentedViewTool.interpolate(from: rightMinWidth, to: rightMaxWidth, percent: CGFloat(percent))
-            leftAlpha = JXSegmentedViewTool.interpolate(from: 1, to: 0, percent: CGFloat(percent))
-            rightAlpha = JXSegmentedViewTool.interpolate(from: 0, to: 1, percent: CGFloat(percent))
-        }
+        let leftWidth: CGFloat = JXSegmentedViewTool.interpolate(from: leftMaxWidth, to: leftMinWidth, percent: CGFloat(percent))
+        let rightWidth: CGFloat = JXSegmentedViewTool.interpolate(from: rightMinWidth, to: rightMaxWidth, percent: CGFloat(percent))
+        let leftAlpha: CGFloat = JXSegmentedViewTool.interpolate(from: 1, to: 0, percent: CGFloat(percent))
+        let rightAlpha: CGFloat = JXSegmentedViewTool.interpolate(from: 0, to: 1, percent: CGFloat(percent))
 
         //允许变动frame的情况：1、允许滚动；2、不允许滚动，但是已经通过手势滚动切换一页内容了；
         //FIXME:isClicked是否可以去掉
