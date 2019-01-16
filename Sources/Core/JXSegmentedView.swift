@@ -76,6 +76,7 @@ open class JXSegmentedView: UIView {
     private var itemDataSource = [JXSegmentedBaseItemModel]()
     private var innerItemSpacing: CGFloat = 0
     private var lastContentOffset: CGPoint = CGPoint.zero
+    private var scrollingTargetIndex: Int = -1  //正在滚动中的目标index。用于处理正在滚动列表的时候，立即点击item，会导致界面显示异常。
 
     deinit {
         contentScrollView?.removeObserver(self, forKeyPath: "contentOffset")
@@ -89,7 +90,7 @@ open class JXSegmentedView: UIView {
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        //FIXME:滑动中点击
+        
         commonInit()
     }
 
@@ -301,6 +302,11 @@ open class JXSegmentedView: UIView {
                         }
                         scrollSelectItemAt(index: targetIndex)
                     }
+                    if selectedIndex == baseIndex {
+                        scrollingTargetIndex = baseIndex + 1
+                    }else {
+                        scrollingTargetIndex = baseIndex
+                    }
 
                     dataSource?.refreshItemModel(leftItemModel: itemDataSource[baseIndex], rightItemModel: itemDataSource[baseIndex + 1], percent: remainderProgress)
 
@@ -352,6 +358,7 @@ open class JXSegmentedView: UIView {
                 delegate?.segmentedView?(self, didScrollSelectedItemAt: index)
             }
             delegate?.segmentedView?(self, didSelectedItemAt: index)
+            scrollingTargetIndex = -1
             return
         }
 
@@ -367,6 +374,14 @@ open class JXSegmentedView: UIView {
         let willSelectedCell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? JXSegmentedBaseCell
         willSelectedCell?.reloadData(itemModel: willSelectedItemModel, isClicked: isClicked)
 
+        if scrollingTargetIndex != -1 && scrollingTargetIndex != index {
+            let scrollingTargetItemModel = itemDataSource[scrollingTargetIndex]
+            scrollingTargetItemModel.isSelected = false
+            dataSource?.refreshItemModel(currentSelectedItemModel: scrollingTargetItemModel, willSelectedItemModel: willSelectedItemModel)
+            let scrollingTargetCell = collectionView.cellForItem(at: IndexPath(item: scrollingTargetIndex, section: 0)) as? JXSegmentedBaseCell
+            scrollingTargetCell?.reloadData(itemModel: scrollingTargetItemModel, isClicked: false)
+        }
+
         collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
         if contentScrollView != nil && isClicked {
             contentScrollView!.setContentOffset(CGPoint(x: contentScrollView!.bounds.size.width*CGFloat(index), y: 0), animated: isContentScrollViewClickTransitionAnimateEnabled)
@@ -380,6 +395,7 @@ open class JXSegmentedView: UIView {
             delegate?.segmentedView?(self, didScrollSelectedItemAt: index)
         }
         delegate?.segmentedView?(self, didSelectedItemAt: index)
+        scrollingTargetIndex = -1
 
         let currentSelectedItemFrame = getItemFrameAt(index: selectedIndex)
         for (index, indicator) in indicators.enumerated() {
