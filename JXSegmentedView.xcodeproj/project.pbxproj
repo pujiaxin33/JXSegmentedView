@@ -69,6 +69,7 @@
 		195A9C5321E3383D0005B7A7 /* UIWindow+JXSafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9C5221E3383D0005B7A7 /* UIWindow+JXSafeArea.swift */; };
 		19B5D5CF21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */; };
 		19B5D5D121EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D021EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift */; };
+		19B5D5D321EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +137,7 @@
 		195A9C5221E3383D0005B7A7 /* UIWindow+JXSafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+JXSafeArea.swift"; sourceTree = "<group>"; };
 		19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDotLineView.swift; sourceTree = "<group>"; };
 		19B5D5D021EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDoubleLineView.swift; sourceTree = "<group>"; };
+		19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorGradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 				1904AA6121D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift */,
 				1904AA6321D5F4B400316F97 /* JXSegmentedIndicatorTriangleView.swift */,
 				195A9BA221DC8E2D0005B7A7 /* JXSegmentedIndicatorImageView.swift */,
+				19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */,
 			);
 			path = Indicator;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				195A9BB821DDD7990005B7A7 /* JXPagingListContainerView.swift in Sources */,
 				195A9C4F21E332080005B7A7 /* LoadDataCustomViewController.swift in Sources */,
 				19B5D5CF21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift in Sources */,
+				19B5D5D321EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift in Sources */,
 				1904AA5721D3732C00316F97 /* ListBaseViewController.swift in Sources */,
 				1904AA8221D754F500316F97 /* SpecialCustomizeViewController.swift in Sources */,
 				1904AA6721D6041600316F97 /* JXSegmentedBaseDataSource.swift in Sources */,

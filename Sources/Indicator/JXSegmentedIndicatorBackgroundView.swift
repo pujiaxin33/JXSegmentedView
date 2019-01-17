@@ -66,7 +66,7 @@ open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
         var toFrame = self.frame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
         toFrame.size.width = width
-        if isScrollEnabled {
+        if isScrollEnabled && model.isClicked {
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
                 self.frame = toFrame
             }) { (_) in
@@ -76,7 +76,7 @@ open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
         }
     }
 
-    public override func getIndicatorWidth(itemFrame: CGRect) -> CGFloat {
+    open override func getIndicatorWidth(itemFrame: CGRect) -> CGFloat {
         return super.getIndicatorWidth(itemFrame: itemFrame) + backgroundWidthIncrement
     }
 }

@@ -90,7 +90,7 @@ open class JXSegmentedView: UIView {
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         commonInit()
     }
 

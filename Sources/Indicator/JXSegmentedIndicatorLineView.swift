@@ -99,7 +99,7 @@ open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
         var toFrame = self.frame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - targetWidth)/2
         toFrame.size.width = targetWidth
-        if isScrollEnabled {
+        if isScrollEnabled && model.isClicked {
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
                 self.frame = toFrame
             }) { (_) in

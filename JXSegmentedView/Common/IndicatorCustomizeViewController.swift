@@ -260,6 +260,18 @@ class IndicatorCustomizeViewController: UITableViewController {
             //配置指示器
             let indicator = JXSegmentedIndicatorDoubleLineView()
             vc.segmentedView.indicators = [indicator]
+        case "GradientView渐变色":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorGradientView()
+
+            vc.segmentedView.indicators = [indicator]
         default:
             break
         }
