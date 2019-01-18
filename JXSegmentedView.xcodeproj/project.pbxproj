@@ -70,6 +70,7 @@
 		19B5D5CF21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */; };
 		19B5D5D121EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D021EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift */; };
 		19B5D5D321EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */; };
+		19B5D5D721F1BC7600A2171E /* JXSegmentedTextShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D621F1BC7600A2171E /* JXSegmentedTextShapeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDotLineView.swift; sourceTree = "<group>"; };
 		19B5D5D021EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDoubleLineView.swift; sourceTree = "<group>"; };
 		19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorGradientView.swift; sourceTree = "<group>"; };
+		19B5D5D621F1BC7600A2171E /* JXSegmentedTextShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTextShapeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 				1904AA4E21D3668E00316F97 /* JXSegmentedTitleDataSource.swift */,
 				1904AA5021D36A6E00316F97 /* JXSegmentedTitleItemModel.swift */,
 				1904AA5221D36A8700316F97 /* JXSegmentedTitleCell.swift */,
+				19B5D5D621F1BC7600A2171E /* JXSegmentedTextShapeView.swift */,
 			);
 			path = Title;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				1904AA5E21D38D1300316F97 /* TestListBaseView.swift in Sources */,
 				1904AA2721D31F6400316F97 /* AppDelegate.swift in Sources */,
 				1904AA6D21D612C000316F97 /* JXSegmentedNumberCell.swift in Sources */,
+				19B5D5D721F1BC7600A2171E /* JXSegmentedTextShapeView.swift in Sources */,
 				1904AA7721D70A7100316F97 /* JXSegmentedTitleImageDataSource.swift in Sources */,
 				1904AA6921D6090600316F97 /* JXSegmentedNumberDataSource.swift in Sources */,
 				1904AA4121D3241E00316F97 /* JXSegmentedCollectionView.swift in Sources */,
@@ -662,7 +666,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Y4565ARQY;
 				INFOPLIST_FILE = JXSegmentedView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -683,7 +687,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Y4565ARQY;
 				INFOPLIST_FILE = JXSegmentedView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

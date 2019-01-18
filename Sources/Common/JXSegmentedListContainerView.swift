@@ -69,7 +69,7 @@ open class JXSegmentedListContainerView: UIView {
             list.listView().removeFromSuperview()
         }
         validListDict.removeAll()
-
+        
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(delegate.numberOfLists(in: self)), height: scrollView.bounds.size.height)
 
         listDidAppear(at: currentIndex)

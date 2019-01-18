@@ -15,9 +15,9 @@ open class JXSegmentedTitleItemModel: JXSegmentedBaseItemModel {
     open var titleFont: UIFont = UIFont.systemFont(ofSize: 15)
     open var titleSelectedFont: UIFont = UIFont.systemFont(ofSize: 15)
     open var isTitleZoomEnabled: Bool = false
-    open var titleCurrentZoomScale: Double = 1.2    //字号当前的缩放值
-    open var titleMaxZoomScale: Double = 1.2    //字号的最大缩放值
-    open var isTitleStrokeWidthEnabled: Bool = false
-    open var titleSelectedStrokeWidth: Double = -2
+    open var titleCurrentZoomScale: CGFloat = 1.2    //字号当前的缩放值
+    open var titleMaxZoomScale: CGFloat = 1.2    //字号的最大缩放值
+    open var isTitleLineWidthEnabled: Bool = false
+    open var titleSelectedLineWidth: CGFloat = 0.5
     open var isTitleMaskEnabled: Bool = false
 }
