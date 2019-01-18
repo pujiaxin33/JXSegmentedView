@@ -12,7 +12,6 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
     open var titleLabel = UILabel()
     open var maskTitleLabel = UILabel()
     open var maskLayer = CALayer()
-    open var textLayer: CAShapeLayer!
     open var textView: JXSegmentedTextShapeView!
     open var maskTextView: JXSegmentedTextShapeView!
 
@@ -32,8 +31,12 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         super.layoutSubviews()
 
         //textView.shapeLayer内容有向下4个point的偏移，我也不知道为什么，先补偿回来。
-        textView.center = CGPoint(x: contentView.center.x, y: contentView.center.y - 4)
-        maskTextView.center = CGPoint(x: contentView.center.x, y: contentView.center.y - 4)
+        var textViewBounds = textView.bounds
+        textViewBounds.origin.y = -4
+        textView.bounds = textViewBounds
+        maskTextView.bounds = textViewBounds
+        textView.center = contentView.center
+        maskTextView.center = contentView.center
     }
 
     open override func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool) {
