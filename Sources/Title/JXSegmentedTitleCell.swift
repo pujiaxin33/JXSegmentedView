@@ -41,16 +41,14 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             return
         }
 
-        titleLabel.text = myItemModel.title
-        maskTitleLabel.text = myItemModel.title
         if myItemModel.isTitleZoomEnabled {
-            if myItemModel.isSelected {
-                titleLabel.font = UIFont(descriptor: myItemModel.titleSelectedFont.fontDescriptor, size: myItemModel.titleSelectedFont.pointSize*CGFloat(myItemModel.titleZoomScale))
-                maskTitleLabel.font = UIFont(descriptor: myItemModel.titleSelectedFont.fontDescriptor, size: myItemModel.titleSelectedFont.pointSize*CGFloat(myItemModel.titleZoomScale))
-            }else {
-                titleLabel.font = UIFont(descriptor: myItemModel.titleFont.fontDescriptor, size: myItemModel.titleFont.pointSize*CGFloat(myItemModel.titleZoomScale))
-                maskTitleLabel.font = UIFont(descriptor: myItemModel.titleFont.fontDescriptor, size: myItemModel.titleFont.pointSize*CGFloat(myItemModel.titleZoomScale))
-            }
+            //先把font设置为缩放的最大值，再缩小到最小值，最后根据当前的titleLabelZoomScale值，进行缩放更新。这样就能避免transform从小到大时字体模糊
+            let maxScaleFont = UIFont(descriptor: myItemModel.titleFont.fontDescriptor, size: myItemModel.titleFont.pointSize*CGFloat(myItemModel.titleMaxZoomScale))
+            let baseScale = myItemModel.titleFont.lineHeight/maxScaleFont.lineHeight
+            self.titleLabel.font = maxScaleFont
+            self.maskTitleLabel.font = maxScaleFont
+            self.titleLabel.transform = CGAffineTransform(scaleX: baseScale, y: baseScale)
+            self.titleLabel.transform = CGAffineTransform(scaleX: baseScale*CGFloat(myItemModel.titleCurrentZoomScale), y: baseScale*CGFloat(myItemModel.titleCurrentZoomScale))
         }else {
             if myItemModel.isSelected {
                 titleLabel.font = myItemModel.titleSelectedFont
