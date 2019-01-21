@@ -28,7 +28,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
     /// 内部默认通过UIImage(named:)加载图片。如果传递的是图片地址或者想自己处理图片加载逻辑，可以通过该闭包处理。
     open var loadImageClosure: LoadImageClosure?
     open var imageSize: CGSize = CGSize(width: 20, height: 20)
-    /// title和image之间的间隔。title和image的center默认水平对齐或者垂直对齐
+    /// title和image之间的间隔
     open var titleImageSpacing: CGFloat = 5
     open var isImageZoomEnabled: Bool = false
     open var imageZoomScale: CGFloat = 1.2
