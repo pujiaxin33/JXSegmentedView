@@ -10,6 +10,13 @@ import UIKit
 
 open class JXSegmentedTitleImageCell: JXSegmentedTitleCell {
     open var imageView = UIImageView()
+    private var currentImageInfo: String?
+
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+
+        currentImageInfo = nil
+    }
 
     open override func commonInit() {
         super.commonInit()
@@ -72,7 +79,9 @@ open class JXSegmentedTitleImageCell: JXSegmentedTitleCell {
             imageInfo = myItemModel.selectedImageInfo
         }
 
-        if imageInfo != nil {
+        //因为`func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool)`方法会回调多次，尤其是左右滚动的时候会调用无数次。如果每次都触发图片加载，会非常消耗性能。所以只会在图片发生了变化的时候，才进行图片加载。
+        if imageInfo != nil && imageInfo != currentImageInfo {
+            currentImageInfo = imageInfo
             if myItemModel.loadImageClosure != nil {
                 myItemModel.loadImageClosure!(imageView, imageInfo!)
             }else {
