@@ -43,33 +43,4 @@ class JXSegmentedViewTool {
         let a = interpolate(from: from.jx_alpha, to: to.jx_alpha, percent: CGFloat(percent))
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
-
-    static func convertTextPath(from string: String, font: UIFont) -> UIBezierPath {
-        let letters = CGMutablePath()
-        let fontRef = CTFontCreateWithName(font.fontName as CFString, font.pointSize, nil)
-        let attrs = [NSAttributedString.Key.font : fontRef]
-        let attrString = NSAttributedString(string: string, attributes: attrs)
-        let line = CTLineCreateWithAttributedString(attrString as CFAttributedString)
-        let runArray = CTLineGetGlyphRuns(line)
-        for runIndex in 0..<CFArrayGetCount(runArray) {
-            let run = unsafeBitCast(CFArrayGetValueAtIndex(runArray, runIndex), to: CTRun.self)
-            let runFont = unsafeBitCast(CFDictionaryGetValue(CTRunGetAttributes(run), unsafeBitCast(kCTFontAttributeName, to: UnsafeRawPointer.self)), to: CTFont.self)
-            for runGlyphIndex in 0..<CTRunGetGlyphCount(run) {
-                let thisGlyphRange = CFRangeMake(runGlyphIndex, 1)
-                var glyph = CGGlyph()
-                var position = CGPoint.zero
-                CTRunGetGlyphs(run, thisGlyphRange, &glyph)
-                CTRunGetPositions(run, thisGlyphRange, &position)
-
-                let letter = CTFontCreatePathForGlyph(runFont, glyph, nil)
-                let transform = CGAffineTransform.init(translationX: position.x, y: position.y)
-                letters.addPath(letter!, transform: transform)
-
-            }
-        }
-        let path = UIBezierPath(cgPath: letters)
-        path.move(to: CGPoint.zero)
-        path.append(UIBezierPath(cgPath: letters))
-        return path
-    }
 }
