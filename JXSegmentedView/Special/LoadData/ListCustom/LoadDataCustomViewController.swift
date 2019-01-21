@@ -74,8 +74,9 @@ class LoadDataCustomViewController: UIViewController {
         }
         listVCArray.removeAll()
 
-        for _ in 0..<segmentedDataSource.titles.count {
+        for index in 0..<segmentedDataSource.titles.count {
             let vc = LoadDataCustomListViewController.init(style: .plain)
+            vc.typeString = segmentedDataSource.titles[index]
             vc.naviController = self.navigationController
             contentScrollView.addSubview(vc.view)
             listVCArray.append(vc)
