@@ -76,7 +76,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         guard let leftModel = leftItemModel as? JXSegmentedTitleImageItemModel, let rightModel = rightItemModel as? JXSegmentedTitleImageItemModel else {
             return
         }
-        if isImageZoomEnabled {
+        if isImageZoomEnabled && isItemTransitionEnabled {
             leftModel.imageZoomScale = JXSegmentedViewTool.interpolate(from: imageZoomScale, to: 1, percent: CGFloat(percent))
             rightModel.imageZoomScale = JXSegmentedViewTool.interpolate(from: 1, to: imageZoomScale, percent: CGFloat(percent))
         }

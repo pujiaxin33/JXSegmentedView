@@ -9,9 +9,9 @@
 import UIKit
 
 open class JXSegmentedTitleCell: JXSegmentedBaseCell {
-    open var titleLabel = UILabel()
-    open var maskTitleLabel = UILabel()
-    open var maskLayer = CALayer()
+    public let titleLabel = UILabel()
+    public let maskTitleLabel = UILabel()
+    public let maskLayer = CALayer()
     open var animator: JXSegmentedAnimator?
 
     deinit {

@@ -70,17 +70,17 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
             return
         }
 
-        if isTitleZoomEnabled {
+        if isTitleZoomEnabled && isItemTransitionEnabled {
             leftModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: titleZoomScale, to: 1, percent: CGFloat(percent))
             rightModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: 1, to: titleZoomScale, percent: CGFloat(percent))
         }
 
-        if isTitleStrokeWidthEnabled {
+        if isTitleStrokeWidthEnabled && isItemTransitionEnabled {
             leftModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: titleSelectedStrokeWidth, to: 0, percent: CGFloat(percent))
             rightModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: 0, to: titleSelectedStrokeWidth, percent: CGFloat(percent))
         }
 
-        if isTitleColorGradientEnabled {
+        if isTitleColorGradientEnabled && isItemTransitionEnabled {
             if leftModel.isSelected {
                 leftModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: titleSelectedColor, to: titleColor, percent: percent)
             }else {

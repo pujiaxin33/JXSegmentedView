@@ -95,6 +95,19 @@ class CellCustomizeViewController: UITableViewController {
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
+        case "文字或者图片":
+            //配置数据源
+            let dataSource = JXSegmentedTitleOrImageDataSource()
+            dataSource.titles = titles
+            dataSource.selectedImageInfos = ["monkey", "", "dog", "", "sheep", "frog", "horse", "cow", "elephant", "dragon"]
+            dataSource.loadImageClosure = {(imageView, imageInfo) in
+                //如果imageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
+                //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
+                imageView.image = UIImage(named: imageInfo)
+            }
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
         case "多行富文本":
             //配置数据源
             let dataSource = JXSegmentedTitleAttributeDataSource()
