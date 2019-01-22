@@ -116,6 +116,10 @@ class CellCustomizeViewController: UITableViewController {
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
+        case "多种cell":
+            let dataSource = JXSegmentedMixcellDataSource()
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
         default:
             break
         }
