@@ -8,8 +8,7 @@
 
 import UIKit
 
-@objc
-public protocol JXSegmentedViewDataSource: NSObjectProtocol {
+public protocol JXSegmentedViewDataSource: AnyObject {
     /// 返回数据源数组，数组元素必须是JXSegmentedBaseItemModel及其子类
     ///
     /// - Parameter segmentedView: JXSegmentedView
@@ -62,29 +61,27 @@ public protocol JXSegmentedViewDataSource: NSObjectProtocol {
 }
 
 /// 为什么会把选中代理分为三个，因为有时候只关心点击选中的，有时候只关心滚动选中的，有时候只关心选中。所以具体情况，使用对应方法。
-@objc
-public protocol JXSegmentedViewDelegate: NSObjectProtocol {
-
+public protocol JXSegmentedViewDelegate: AnyObject {
     /// 点击选中或者滚动选中都会调用该方法。适用于只关心选中事件，而不关心具体是点击还是滚动选中的情况。
     ///
     /// - Parameters:
     ///   - segmentedView: JXSegmentedView
     ///   - index: 选中的index
-    @objc optional func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int)
+    func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int)
 
     /// 点击选中的情况才会调用该方法
     ///
     /// - Parameters:
     ///   - segmentedView: JXSegmentedView
     ///   - index: 选中的index
-    @objc optional func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int)
+    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int)
 
     /// 滚动选中的情况才会调用该方法
     ///
     /// - Parameters:
     ///   - segmentedView: JXSegmentedView
     ///   - index: 选中的index
-    @objc optional func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int)
+    func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int)
 
     /// 正在滚动中的回调
     ///
@@ -93,7 +90,15 @@ public protocol JXSegmentedViewDelegate: NSObjectProtocol {
     ///   - leftIndex: 正在滚动中，相对位置处于左边的index
     ///   - rightIndex: 正在滚动中，相对位置处于右边的index
     ///   - percent: 从左往右计算的百分比
-    @objc optional func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat)
+    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat)
+}
+
+/// 提供JXSegmentedViewDelegate的默认实现，这样对于遵从JXSegmentedViewDelegate的类来说，所有代理方法都是可选实现的。
+extension JXSegmentedViewDelegate {
+    func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) { }
+    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) { }
+    func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int) { }
+    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) { }
 }
 
 let JXSegmentedViewAutomaticDimension: CGFloat = -1
@@ -338,11 +343,11 @@ open class JXSegmentedView: UIView {
 
         if index == selectedIndex {
             if isClicked {
-                delegate?.segmentedView?(self, didClickSelectedItemAt: index)
+                delegate?.segmentedView(self, didClickSelectedItemAt: index)
             }else {
-                delegate?.segmentedView?(self, didScrollSelectedItemAt: index)
+                delegate?.segmentedView(self, didScrollSelectedItemAt: index)
             }
-            delegate?.segmentedView?(self, didSelectedItemAt: index)
+            delegate?.segmentedView(self, didSelectedItemAt: index)
             scrollingTargetIndex = -1
             return
         }
@@ -375,11 +380,11 @@ open class JXSegmentedView: UIView {
         let lastSelectedIndex = selectedIndex
         selectedIndex = index
         if isClicked {
-            delegate?.segmentedView?(self, didClickSelectedItemAt: index)
+            delegate?.segmentedView(self, didClickSelectedItemAt: index)
         }else {
-            delegate?.segmentedView?(self, didScrollSelectedItemAt: index)
+            delegate?.segmentedView(self, didScrollSelectedItemAt: index)
         }
-        delegate?.segmentedView?(self, didSelectedItemAt: index)
+        delegate?.segmentedView(self, didSelectedItemAt: index)
         scrollingTargetIndex = -1
 
         let currentSelectedItemFrame = getItemFrameAt(index: selectedIndex)
@@ -478,7 +483,7 @@ open class JXSegmentedView: UIView {
                     let rightCell = collectionView.cellForItem(at: IndexPath(item: baseIndex + 1, section: 0)) as? JXSegmentedBaseCell
                     rightCell?.reloadData(itemModel: itemDataSource[baseIndex + 1], isClicked: false)
 
-                    delegate?.segmentedView?(self, scrollingFrom: baseIndex, to: baseIndex + 1, percent: remainderProgress)
+                    delegate?.segmentedView(self, scrollingFrom: baseIndex, to: baseIndex + 1, percent: remainderProgress)
                 }
             }
             lastContentOffset = contentOffset

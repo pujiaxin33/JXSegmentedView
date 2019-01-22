@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-open class JXSegmentedBaseItemModel: NSObject {
+open class JXSegmentedBaseItemModel {
     open var index: Int = 0
     open var isSelected: Bool = false
     open var itemWidth: CGFloat = 0
