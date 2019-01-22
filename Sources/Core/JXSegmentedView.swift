@@ -135,12 +135,12 @@ open class JXSegmentedView: UIView {
     }
 
     open func reloadData() {
-        //FIXME:registerCellClass
         self.dataSource?.registerCellClass(in: self)
         if let itemSource = self.dataSource?.dataSource(in: self) {
             itemDataSource = itemSource
         }
         if selectedIndex < 0 || selectedIndex >= itemDataSource.count {
+            defaultSelectedIndex = 0
             selectedIndex = 0
         }
 

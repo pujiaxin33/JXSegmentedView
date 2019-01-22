@@ -185,6 +185,7 @@ class IndicatorCustomizeViewController: UITableViewController {
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
+            indicator.clipsToBounds = true
             indicator.indicatorHeight = 30
             //相当于把JXSegmentedIndicatorBackgroundView当做视图容器，你可以在上面添加任何想要的效果
             let gradientView = JXSegmentedComponetGradientView()
