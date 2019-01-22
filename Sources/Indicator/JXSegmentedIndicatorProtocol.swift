@@ -12,7 +12,7 @@ import UIKit
 public protocol JXSegmentedIndicatorProtocol {
     /// 是否需要将当前的indicator的frame转换到cell。辅助JXSegmentedTitleDataSourced的isTitleMaskEnabled属性使用。
     /// 如果添加了多个indicator，仅能有一个indicator的isIndicatorConvertToItemFrameEnabled为true。
-    /// 如果有多个indicator的isIndicatorConvertToItemFrameEnabled为true，则以最后一个indicator为准。
+    /// 如果有多个indicator的isIndicatorConvertToItemFrameEnabled为true，则以最后一个isIndicatorConvertToItemFrameEnabled为true的indicator为准。
     var isIndicatorConvertToItemFrameEnabled: Bool { get }
     
     /// 视图重置状态时调用，已当前选中的index更新状态

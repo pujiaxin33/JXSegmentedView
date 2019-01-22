@@ -11,7 +11,8 @@ import UIKit
 class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
     open var selectedLineView: UIView!
     open var otherLineView: UIView!
-    open var minLineWidthPercent: CGFloat = 0.2 //线收缩到最小的百分比
+    /// 线收缩到最小的百分比
+    open var minLineWidthPercent: CGFloat = 0.2
 
     open override func commonInit() {
         super.commonInit()

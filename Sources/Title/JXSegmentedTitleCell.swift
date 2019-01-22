@@ -12,7 +12,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
     open var titleLabel = UILabel()
     open var maskTitleLabel = UILabel()
     open var maskLayer = CALayer()
-    private var animator: JXSegmentedAnimator?
+    open var animator: JXSegmentedAnimator?
 
     deinit {
         animator?.stop()
@@ -145,10 +145,10 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
                 titleColorClosure = {[weak self] (percent) in
                     if myItemModel.isSelected {
                         //将要选中，textColor从titleColor到titleSelectedColor插值渐变
-                        myItemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: myItemModel.titleColor, to: myItemModel.titleSelectedColor, percent: Double(percent))
+                        myItemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: myItemModel.titleColor, to: myItemModel.titleSelectedColor, percent: percent)
                     }else {
                         //将要取消选中，textColor从titleSelectedColor到titleColor插值渐变
-                        myItemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: myItemModel.titleSelectedColor, to: myItemModel.titleColor, percent: Double(percent))
+                        myItemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: myItemModel.titleSelectedColor, to: myItemModel.titleColor, percent: percent)
                     }
                     self?.titleLabel.textColor = myItemModel.titleCurrentColor
                 }

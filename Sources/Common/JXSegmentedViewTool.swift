@@ -36,8 +36,8 @@ class JXSegmentedViewTool {
         return from + (to - from) * percent
     }
 
-    static func interpolateColor(from: UIColor, to: UIColor, percent: Double) -> UIColor {
-        let r = interpolate(from: from.jx_red, to: to.jx_red, percent: CGFloat(percent))
+    static func interpolateColor(from: UIColor, to: UIColor, percent: CGFloat) -> UIColor {
+        let r = interpolate(from: from.jx_red, to: to.jx_red, percent: percent)
         let g = interpolate(from: from.jx_green, to: to.jx_green, percent: CGFloat(percent))
         let b = interpolate(from: from.jx_blue, to: to.jx_blue, percent: CGFloat(percent))
         let a = interpolate(from: from.jx_alpha, to: to.jx_alpha, percent: CGFloat(percent))

@@ -9,10 +9,10 @@
 import UIKit
 
 open class JXSegmentedDotDataSource: JXSegmentedTitleDataSource {
-    ///数量需要和titles一致，控制红点是否显示
+    /// 数量需要和titles一致，控制红点是否显示
     open var dotStates = [Bool]()
     open var dotSize = CGSize(width: 10, height: 10)
-    //JXCategoryViewAutomaticDimension等于dotSize.height/2
+    /// JXSegmentedViewAutomaticDimension等于dotSize.height/2
     open var dotCornerRadius: CGFloat = JXSegmentedViewAutomaticDimension
     open var dotColor = UIColor.red
     /// dotView的默认位置是center在titleLabel的右上角，可以通过dotOffset控制X、Y轴的偏移

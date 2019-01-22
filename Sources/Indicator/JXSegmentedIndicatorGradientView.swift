@@ -10,7 +10,8 @@ import UIKit
 
 class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
     open var gradientColors = [CGColor]()
-    open var gradientViewWidthIncrement: CGFloat = 20     //宽度增量，背景指示器一般要比cell宽一些
+    /// 宽度增量，背景指示器一般要比cell宽一些
+    open var gradientViewWidthIncrement: CGFloat = 20
 
     open class override var layerClass: AnyClass {
         return CAGradientLayer.self

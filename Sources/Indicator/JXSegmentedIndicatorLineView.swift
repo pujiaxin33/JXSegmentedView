@@ -16,7 +16,8 @@ public enum JXSegmentedIndicatorLineStyle {
 
 open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
     open var lineStyle: JXSegmentedIndicatorLineStyle = .normal
-    open var lineScrollOffsetX: CGFloat = 10    //lineStyle为lengthenOffset使用，滚动时x的偏移量
+    /// lineStyle为lengthenOffset时使用，滚动时x的偏移量
+    open var lineScrollOffsetX: CGFloat = 10
 
     open override func commonInit() {
         super.commonInit()

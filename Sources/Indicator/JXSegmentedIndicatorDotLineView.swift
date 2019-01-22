@@ -9,7 +9,8 @@
 import UIKit
 
 class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
-    open var lineMaxWidth: CGFloat = 50    //线的最大宽度
+    /// 线的最大宽度
+    open var lineMaxWidth: CGFloat = 50
 
     open override func commonInit() {
         super.commonInit()

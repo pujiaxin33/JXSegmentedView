@@ -10,20 +10,25 @@ import UIKit
 
 open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open var titles = [String]()
+    /// title默认的textColor
     open var titleColor: UIColor = .black
+    /// title选中的textColor
     open var titleSelectedColor: UIColor = .red
+    /// title默认状态时的字体
     open var titleFont: UIFont = UIFont.systemFont(ofSize: 15)
+    /// title选中时的字体
     open var titleSelectedFont: UIFont = UIFont.systemFont(ofSize: 15)
     /// title的颜色是否渐变过渡
     open var isTitleColorGradientEnabled: Bool = false
-    /// title是否缩放。默认为false，为true时titleSelectedFont失效，以titleFont为准。
+    /// title是否缩放。使用该效果时，务必保证titleFont和titleSelectedFont值相同。
     open var isTitleZoomEnabled: Bool = false
     /// isTitleZoomEnabled为true才生效。是对字号的缩放，比如titleFont的pointSize为10，放大之后字号就是10*1.2=12。
     open var titleZoomScale: CGFloat = 1.2
+    /// title的线宽是否允许粗细。使用该效果时，务必保证titleFont和titleSelectedFont值相同。
     open var isTitleStrokeWidthEnabled: Bool = false
-    /// 用于控制字体的粗细（底层通过NSStrokeWidthAttributeName实现），负数越小字体越粗。使用该属性，务必让titleFont和titleSelectedFont设置为一样的！！！
+    /// 用于控制字体的粗细（底层通过NSStrokeWidthAttributeName实现），负数越小字体越粗。
     open var titleSelectedStrokeWidth: CGFloat = -2
-    /// titleLabel是否使用遮罩过渡
+    /// title是否使用遮罩过渡
     open var isTitleMaskEnabled: Bool = false
 
     open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
@@ -60,7 +65,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         return cell
     }
 
-    open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double) {
+    open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
         guard let leftModel = leftItemModel as? JXSegmentedTitleItemModel, let rightModel = rightItemModel as? JXSegmentedTitleItemModel else {
             return
         }

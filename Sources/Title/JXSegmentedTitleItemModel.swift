@@ -16,9 +16,12 @@ open class JXSegmentedTitleItemModel: JXSegmentedBaseItemModel {
     open var titleFont: UIFont = UIFont.systemFont(ofSize: 15)
     open var titleSelectedFont: UIFont = UIFont.systemFont(ofSize: 15)
     open var isTitleZoomEnabled: Bool = false
-    open var titleDefaultZoomScale: CGFloat = 1    //字号默认的缩放值
-    open var titleCurrentZoomScale: CGFloat = 1    //字号当前的缩放值
-    open var titleSelectedZoomScale: CGFloat = 1.2    //字号的最大缩放值
+    /// 字号默认的缩放值
+    open var titleDefaultZoomScale: CGFloat = 1
+    /// 字号当前的缩放值
+    open var titleCurrentZoomScale: CGFloat = 1
+    /// 字号的最大缩放值
+    open var titleSelectedZoomScale: CGFloat = 1.2
     open var isTitleStrokeWidthEnabled: Bool = false
     open var titleDefaultStrokeWidth: CGFloat = 0
     open var titleCurrentStrokeWidth: CGFloat = 0

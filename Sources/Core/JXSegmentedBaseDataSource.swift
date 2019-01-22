@@ -15,16 +15,19 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     /// 真实的item宽度 = itemContentWidth + itemWidthIncrement。
     open var itemWidthIncrement: CGFloat = 0
     open var dataSource = [JXSegmentedBaseItemModel]()
-    /// 点击的选中的时候，是否需要动画过渡。自定义的cell需要自己处理动画过渡逻辑，动画处理逻辑参考`JXSegmentedTitleCell`
+    /// 点击选中的时候，是否需要动画过渡。自定义的cell需要自己处理动画过渡逻辑，动画处理逻辑参考`JXSegmentedTitleCell`
     open var isClickedAnimable: Bool = false
 
     /// 配置完各种属性之后，需要手动调用该方法，更新数据源
     ///
-    /// - Parameter selectedIndex: 当前选中的item的index
+    /// - Parameter selectedIndex: 当前选中的index
     open func reloadData(selectedIndex: Int) {
         dataSource.removeAll()
     }
 
+    /// 子类需要重载该方法，用于返回自己定义的JXSegmentedBaseItemModel子类实例
+    ///
+    /// - Returns: JXSegmentedBaseItemModel子类实例
     open func preferredItemModelInstance() -> JXSegmentedBaseItemModel  {
         return JXSegmentedBaseItemModel()
     }
@@ -50,7 +53,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
 
     }
 
-    open func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double) {
+    open func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
 
     }
 

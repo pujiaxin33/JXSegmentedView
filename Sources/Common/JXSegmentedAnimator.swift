@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 open class JXSegmentedAnimator {
-    open var duration: CGFloat = 0.25
+    open var duration: CFTimeInterval = 0.25
     open var progressClosure: ((CGFloat)->())?
     open var completedClosure: (()->())?
     private var displayLink: CADisplayLink!
@@ -38,14 +38,13 @@ open class JXSegmentedAnimator {
         if firstTimestamp == nil {
             firstTimestamp = sender.timestamp
         }
-        let percent = CGFloat((sender.timestamp - firstTimestamp!))/duration
+        let percent = (sender.timestamp - firstTimestamp!)/duration
         if percent >= 1 {
             progressClosure?(1)
             displayLink.invalidate()
             completedClosure?()
-            return
+        }else {
+            progressClosure?(CGFloat(percent))
         }
-        progressClosure?(percent)
     }
-
 }

@@ -12,7 +12,7 @@ import UIKit
 open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
     /// 需要和titles数组数量一致，没有数字的item填0！！！
     open var numbers = [Int]()
-    /// numberLabel的宽度补偿，label真实的宽度是文字内容的宽度加上补偿的宽度
+    /// numberLabel的宽度补偿，numberLabel真实的宽度是文字内容的宽度加上补偿的宽度
     open var numberWidthIncrement: CGFloat = 10
     open var numberBackgroundColor: UIColor = .red
     open var numberTextColor: UIColor = .white

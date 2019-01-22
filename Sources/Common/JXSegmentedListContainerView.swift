@@ -10,14 +10,33 @@ import UIKit
 
 @objc
 public protocol JXSegmentedListContentViewDelegate {
+    /// 如果列表是VC，就返回VC.view
+    /// 如果列表是View，就返回View自己
+    ///
+    /// - Returns: 返回列表视图
     func listView() -> UIView
+    /// 可选实现，列表显示的时候调用
     @objc optional func listDidAppear()
+    /// 可选实现，列表消失的时候调用
     @objc optional func listDidDisappear()
 }
 
 @objc
 public protocol JXSegmentedListContainerViewDelegate {
+    /// 返回list的数量
+    ///
+    /// - Parameter listContainerView: JXSegmentedListContainerView
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int
+
+    /// 根据index初始化一个对应列表实例，需要是遵从`JXSegmentedListContentViewDelegate`协议的对象。
+    /// 如果列表是用自定义UIView封装的，就让自定义UIView遵从`JXSegmentedListContentViewDelegate`协议，该方法返回自定义UIView即可。
+    /// 如果列表是用自定义UIViewController封装的，就让自定义UIViewController遵从`JXSegmentedListContentViewDelegate`协议，该方法返回自定义UIViewController即可。
+    /// 注意：一定要是新生成的实例！！！
+    ///
+    /// - Parameters:
+    ///   - listContainerView: JXSegmentedListContainerView
+    ///   - index: 目标index
+    /// - Returns: 遵从JXSegmentedListContentViewDelegate协议的实例
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate
 }
 
@@ -26,8 +45,8 @@ open class JXSegmentedListContainerView: UIView {
     /// 已经加载过的列表字典。key是index，value是对应的列表
     open var validListDict = [Int:JXSegmentedListContentViewDelegate]()
     /// 滚动切换的时候，滚动距离超过一页的多少百分比，就认为切换了页面。默认0.5（即滚动超过了半屏，就认为翻页了）。范围0~1，开区间不包括0和1
-    open var didAppearPercent: Double = 0.5
-    /// 需要和categoryView.defaultSelectedIndex保持一致
+    open var didAppearPercent: CGFloat = 0.5
+    /// 需要和segmentedView.defaultSelectedIndex保持一致
     open var defaultSelectedIndex: Int = 0 {
         didSet {
             currentIndex = defaultSelectedIndex
@@ -65,6 +84,10 @@ open class JXSegmentedListContainerView: UIView {
     }
 
     open func reloadData() {
+        if currentIndex < 0 || currentIndex >= delegate.numberOfLists(in: self) {
+            defaultSelectedIndex = 0
+            currentIndex = 0
+        }
         for list in validListDict.values {
             list.listView().removeFromSuperview()
         }
@@ -80,12 +103,14 @@ open class JXSegmentedListContainerView: UIView {
 
         scrollView.frame = bounds
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(delegate.numberOfLists(in: self)), height: scrollView.bounds.size.height)
+        for (index, list) in validListDict.values.enumerated() {
+            list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
+        }
         if !isLayoutSubviewsed {
             isLayoutSubviewsed = true
             listDidAppear(at: currentIndex)
         }
     }
-
 
     /// 必须调用！在`func segmentedView(_ segmentedView: JXSegmentedBaseView, scrollingFrom leftIndex: Int, to rightIndex: Int, progress: CGFloat)`回调里面调用
     ///
@@ -94,7 +119,7 @@ open class JXSegmentedListContainerView: UIView {
     ///   - rightIndex: rightIndex description
     ///   - percent: percent description
     ///   - selectedIndex: selectedIndex description
-    open func categoryViewScrolling(from leftIndex: Int, to rightIndex: Int, percent: Double, selectedIndex: Int) {
+    open func segmentedViewScrolling(from leftIndex: Int, to rightIndex: Int, percent: CGFloat, selectedIndex: Int) {
         var targetIndex: Int = -1
         var disappearIndex: Int = -1
         if rightIndex == selectedIndex {

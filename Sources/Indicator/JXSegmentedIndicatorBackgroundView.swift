@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// 不支持indicatorPosition、verticalMargin，默认垂直居中
+/// 不支持indicatorPosition、verticalMargin。默认垂直居中。
 open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
     open var backgroundWidthIncrement: CGFloat = 20     //宽度增量，背景指示器一般要比cell宽一些
 

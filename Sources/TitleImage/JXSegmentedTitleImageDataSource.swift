@@ -70,7 +70,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         return cell
     }
 
-    open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: Double) {
+    open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
         super.refreshItemModel(leftItemModel: leftItemModel, rightItemModel: rightItemModel, percent: percent)
 
         guard let leftModel = leftItemModel as? JXSegmentedTitleImageItemModel, let rightModel = rightItemModel as? JXSegmentedTitleImageItemModel else {
