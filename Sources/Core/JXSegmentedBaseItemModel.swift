@@ -14,4 +14,7 @@ open class JXSegmentedBaseItemModel: NSObject {
     open var isSelected: Bool = false
     open var itemWidth: CGFloat = 0
     open var indicatorConvertToItemFrame: CGRect = CGRect.zero  //指示器视图Frame转换到cell
+    open var isClickedAnimable: Bool = false
+    //是否正在进行过渡动画
+    open var isTransitionAnimating: Bool = false
 }

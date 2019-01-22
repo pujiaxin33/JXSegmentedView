@@ -49,6 +49,8 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titleSelectedColor = UIColor.red
             dataSource.isTitleZoomEnabled = true
             dataSource.titleZoomScale = 1.3
+            dataSource.isTitleStrokeWidthEnabled = true
+            dataSource.isClickedAnimable = true
             dataSource.titles = titles
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)

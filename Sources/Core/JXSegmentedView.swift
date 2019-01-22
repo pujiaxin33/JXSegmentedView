@@ -464,7 +464,16 @@ extension JXSegmentedView: UICollectionViewDataSource {
 
 extension JXSegmentedView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        clickSelectItemAt(index: indexPath.item)
+        var isTransitionAnimating = false
+        for itemModel in itemDataSource {
+            if itemModel.isTransitionAnimating {
+                isTransitionAnimating = true
+                break
+            }
+        }
+        if !isTransitionAnimating {
+            clickSelectItemAt(index: indexPath.item)
+        }
     }
 }
 

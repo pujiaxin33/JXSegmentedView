@@ -70,6 +70,7 @@
 		19B5D5CF21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */; };
 		19B5D5D121EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D021EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift */; };
 		19B5D5D321EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */; };
+		19B5D5DC21F5A58F00A2171E /* JXSegmentedAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5DB21F5A58F00A2171E /* JXSegmentedAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDotLineView.swift; sourceTree = "<group>"; };
 		19B5D5D021EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDoubleLineView.swift; sourceTree = "<group>"; };
 		19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorGradientView.swift; sourceTree = "<group>"; };
+		19B5D5DB21F5A58F00A2171E /* JXSegmentedAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 			children = (
 				1904AA5921D37B8800316F97 /* JXSegmentedListContainerView.swift */,
 				1904AA4B21D3637300316F97 /* JXSegmentedViewTool.swift */,
+				19B5D5DB21F5A58F00A2171E /* JXSegmentedAnimator.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				1904AA6B21D6093600316F97 /* JXSegmentedNumberItemModel.swift in Sources */,
 				195A9C5121E3322C0005B7A7 /* LoadDataCustomListViewController.swift in Sources */,
 				1904AA7921D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift in Sources */,
+				19B5D5DC21F5A58F00A2171E /* JXSegmentedAnimator.swift in Sources */,
 				195A9BA821DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift in Sources */,
 				1904AA3D21D3212300316F97 /* JXSegmentedBaseItemModel.swift in Sources */,
 				1904AA4321D3533E00316F97 /* JXSegmentedIndicatorProtocol.swift in Sources */,

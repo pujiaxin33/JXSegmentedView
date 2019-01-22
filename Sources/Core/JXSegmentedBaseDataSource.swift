@@ -15,6 +15,8 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     /// 真实的item宽度 = itemContentWidth + itemWidthIncrement。
     open var itemWidthIncrement: CGFloat = 0
     open var dataSource = [JXSegmentedBaseItemModel]()
+    /// 点击的选中的时候，是否需要动画过渡。自定义的cell需要自己处理动画过渡逻辑，动画处理逻辑参考`JXSegmentedTitleCell`
+    open var isClickedAnimable: Bool = false
 
     /// 配置完各种属性之后，需要手动调用该方法，更新数据源
     ///
