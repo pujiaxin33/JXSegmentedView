@@ -12,17 +12,6 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
     public let titleLabel = UILabel()
     public let maskTitleLabel = UILabel()
     public let maskLayer = CALayer()
-    open var animator: JXSegmentedAnimator?
-
-    deinit {
-        animator?.stop()
-    }
-
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-
-        animator?.stop()
-    }
 
     open override func commonInit() {
         super.commonInit()
@@ -52,26 +41,6 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             return
         }
 
-        var isSelectedAnimateEnabled = false
-        if myItemModel.isSelectedAnimable {
-            if selectedType == .scroll {
-                //滚动选中且没有开启左右过渡，允许动画
-                if !myItemModel.isItemTransitionEnabled {
-                    isSelectedAnimateEnabled = true
-                }
-            }else if selectedType == .click || selectedType == .code {
-                //点击和代码选中，允许动画
-                isSelectedAnimateEnabled = true
-            }
-        }
-        if myItemModel.isSelectedAnimable {
-            if isSelectedAnimateEnabled {
-                animator = JXSegmentedAnimator()
-                animator?.duration = myItemModel.selectedAnimationDuration
-            }else {
-                animator?.stop()
-            }
-        }
         var titleZoomClosure: ((CGFloat)->())?
         var titleStrokeWidthClosure: ((CGFloat)->())?
         var titleColorClosure: ((CGFloat)->())?
@@ -81,7 +50,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             let maxScaleFont = UIFont(descriptor: myItemModel.titleFont.fontDescriptor, size: myItemModel.titleFont.pointSize*CGFloat(myItemModel.titleSelectedZoomScale))
             let baseScale = myItemModel.titleFont.lineHeight/maxScaleFont.lineHeight
 
-            if myItemModel.isSelectedAnimable && isSelectedAnimateEnabled {
+            if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
                 titleZoomClosure = preferredTitleZoomAnimateClosure(itemModel: myItemModel, baseScale: baseScale)
             }else {
@@ -104,7 +73,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         let title = myItemModel.title ?? ""
         let attriText = NSMutableAttributedString(string: title)
         if myItemModel.isTitleStrokeWidthEnabled {
-            if myItemModel.isSelectedAnimable && isSelectedAnimateEnabled {
+            if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
                 titleStrokeWidthClosure = preferredTitleStrokeWidthAnimateClosure(itemModel: myItemModel, attriText: attriText)
             }else {
@@ -132,7 +101,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             CATransaction.commit()
         }else {
             maskTitleLabel.isHidden = true
-            if myItemModel.isSelectedAnimable && isSelectedAnimateEnabled {
+            if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
                 titleColorClosure = preferredTitleColorAnimateClosure(itemModel: myItemModel)
             }else {
@@ -140,18 +109,10 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             }
         }
 
-        if myItemModel.isSelectedAnimable && isSelectedAnimateEnabled {
-            //需要更新isTransitionAnimating，用于处理在过滤时，禁止响应点击，避免界面异常。
-            myItemModel.isTransitionAnimating = true
-            animator?.progressClosure = {(percent) in
-                titleZoomClosure?(percent)
-                titleStrokeWidthClosure?(percent)
-                titleColorClosure?(percent)
-            }
-            animator?.completedClosure = {
-                myItemModel.isTransitionAnimating = false
-            }
-            animator?.start()
+        startSelectedAnimationIfNeeded(itemModel: itemModel, selectedType: selectedType) { (percent) in
+            titleZoomClosure?(percent)
+            titleStrokeWidthClosure?(percent)
+            titleColorClosure?(percent)
         }
 
         titleLabel.sizeToFit()

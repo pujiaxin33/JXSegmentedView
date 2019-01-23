@@ -10,6 +10,17 @@ import UIKit
 
 open class JXSegmentedBaseCell: UICollectionViewCell {
     open var itemModel: JXSegmentedBaseItemModel?
+    open var animator: JXSegmentedAnimator?
+
+    deinit {
+        animator?.stop()
+    }
+
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+
+        animator?.stop()
+    }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +38,46 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
         
     }
 
+    open func canStartSelectedAnimation(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) -> Bool {
+        var isSelectedAnimatable = false
+        if itemModel.isSelectedAnimable {
+            if selectedType == .scroll {
+                //滚动选中且没有开启左右过渡，允许动画
+                if !itemModel.isItemTransitionEnabled {
+                    isSelectedAnimatable = true
+                }
+            }else if selectedType == .click || selectedType == .code {
+                //点击和代码选中，允许动画
+                isSelectedAnimatable = true
+            }
+        }
+        return isSelectedAnimatable
+    }
+
+    open func startSelectedAnimationIfNeeded(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType, animationClosure: @escaping ((CGFloat)->())) {
+        if itemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
+            //需要更新isTransitionAnimating，用于处理在过滤时，禁止响应点击，避免界面异常。
+            itemModel.isTransitionAnimating = true
+            animator?.progressClosure = {(percent) in
+                animationClosure(percent)
+            }
+            animator?.completedClosure = {
+                itemModel.isTransitionAnimating = false
+            }
+            animator?.start()
+        }
+    }
+
     open func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
         self.itemModel = itemModel
+
+        if itemModel.isSelectedAnimable {
+            if canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
+                animator = JXSegmentedAnimator()
+                animator?.duration = itemModel.selectedAnimationDuration
+            }else {
+                animator?.stop()
+            }
+        }
     }
 }

@@ -8,6 +8,21 @@
 
 import UIKit
 
+let JXSegmentedViewAutomaticDimension: CGFloat = -1
+
+/// 选中item时的类型
+///
+/// - unknown: 不是选中
+/// - code: 通过代码调用方法`func selectItemAt(index: Int)`选中
+/// - click: 通过点击item选中
+/// - scroll: 通过滚动到item选中
+public enum JXSegmentedViewItemSelectedType {
+    case unknown
+    case code
+    case click
+    case scroll
+}
+
 public protocol JXSegmentedViewDataSource: AnyObject {
     var isItemWidthZoomEnabled: Bool { get }
     var selectedAnimationDuration: TimeInterval { get }
@@ -102,22 +117,6 @@ extension JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) { }
     func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int) { }
     func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) { }
-}
-
-let JXSegmentedViewAutomaticDimension: CGFloat = -1
-
-
-/// 选中item时的类型
-///
-/// - unknown: 不是选中
-/// - code: 通过代码调用方法`func selectItemAt(index: Int)`选中
-/// - click: 通过点击item选中
-/// - scroll: 通过滚动到item选中
-public enum JXSegmentedViewItemSelectedType {
-    case unknown
-    case code
-    case click
-    case scroll
 }
 
 open class JXSegmentedView: UIView {
