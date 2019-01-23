@@ -25,8 +25,8 @@ class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
         titleLabel.center = contentView.center
     }
 
-    override func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool) {
-        super.reloadData(itemModel: itemModel, isClicked: isClicked)
+    override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
+        super.reloadData(itemModel: itemModel, selectedType: selectedType )
 
         guard let myItemModel = itemModel as? JXSegmentedTitleAttributeItemModel else {
             return

@@ -103,6 +103,20 @@ extension JXSegmentedViewDelegate {
 
 let JXSegmentedViewAutomaticDimension: CGFloat = -1
 
+
+/// 选中item时的类型
+///
+/// - unknown: 不是选中
+/// - code: 通过代码调用方法`func selectItemAt(index: Int)`选中
+/// - click: 通过点击item选中
+/// - scroll: 通过滚动到item选中
+public enum JXSegmentedViewItemSelectedType {
+    case unknown
+    case code
+    case click
+    case scroll
+}
+
 open class JXSegmentedView: UIView {
     open weak var dataSource: JXSegmentedViewDataSource? {
         didSet {
@@ -322,87 +336,11 @@ open class JXSegmentedView: UIView {
 
         dataSource?.refreshItemModel(itemDataSource[index], at: index, selectedIndex: selectedIndex)
         let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? JXSegmentedBaseCell
-        cell?.reloadData(itemModel: itemDataSource[index], isClicked: false)
+        cell?.reloadData(itemModel: itemDataSource[index], selectedType: .unknown)
     }
 
     open func selectItemAt(index: Int) {
-        selectItemAt(index: index, isClicked: true)
-    }
-
-    /// 优先使用`func selectItemAt(index: Int)`方法。
-    /// 选中目标index的item，可以设置isClicked。
-    /// 暴露该方法仅适用于某些特殊情况使用。
-    ///
-    /// - Parameters:
-    ///   - index: 目标index
-    ///   - isClicked: isClicked为true，内部会处理contentScrollView的contentOffset、indicator的处理逻辑也会不一样。
-    open func selectItemAt(index: Int, isClicked: Bool) {
-        guard index >= 0 && index < itemDataSource.count else {
-            return
-        }
-
-        if index == selectedIndex {
-            if isClicked {
-                delegate?.segmentedView(self, didClickSelectedItemAt: index)
-            }else {
-                delegate?.segmentedView(self, didScrollSelectedItemAt: index)
-            }
-            delegate?.segmentedView(self, didSelectedItemAt: index)
-            scrollingTargetIndex = -1
-            return
-        }
-
-        let currentSelectedItemModel = itemDataSource[selectedIndex]
-        let willSelectedItemModel = itemDataSource[index]
-        currentSelectedItemModel.isSelected = false
-        willSelectedItemModel.isSelected = true
-        dataSource?.refreshItemModel(currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel)
-
-        let currentSelectedCell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 0)) as? JXSegmentedBaseCell
-        currentSelectedCell?.reloadData(itemModel: currentSelectedItemModel, isClicked: isClicked)
-
-        let willSelectedCell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? JXSegmentedBaseCell
-        willSelectedCell?.reloadData(itemModel: willSelectedItemModel, isClicked: isClicked)
-
-        if scrollingTargetIndex != -1 && scrollingTargetIndex != index {
-            let scrollingTargetItemModel = itemDataSource[scrollingTargetIndex]
-            scrollingTargetItemModel.isSelected = false
-            dataSource?.refreshItemModel(currentSelectedItemModel: scrollingTargetItemModel, willSelectedItemModel: willSelectedItemModel)
-            let scrollingTargetCell = collectionView.cellForItem(at: IndexPath(item: scrollingTargetIndex, section: 0)) as? JXSegmentedBaseCell
-            scrollingTargetCell?.reloadData(itemModel: scrollingTargetItemModel, isClicked: false)
-        }
-
-        collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
-        if contentScrollView != nil && isClicked {
-            contentScrollView!.setContentOffset(CGPoint(x: contentScrollView!.bounds.size.width*CGFloat(index), y: 0), animated: isContentScrollViewClickTransitionAnimateEnabled)
-        }
-
-        let lastSelectedIndex = selectedIndex
-        selectedIndex = index
-        if isClicked {
-            delegate?.segmentedView(self, didClickSelectedItemAt: index)
-        }else {
-            delegate?.segmentedView(self, didScrollSelectedItemAt: index)
-        }
-        delegate?.segmentedView(self, didSelectedItemAt: index)
-        scrollingTargetIndex = -1
-
-        let currentSelectedItemFrame = getItemFrameAt(index: selectedIndex)
-        for indicator in indicators {
-            let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
-            indicatorParamsModel.lastSelectedIndex = lastSelectedIndex
-            indicatorParamsModel.currentSelectedIndex = selectedIndex
-            indicatorParamsModel.currentSelectedItemFrame = currentSelectedItemFrame
-            indicatorParamsModel.isClicked = isClicked
-            indicator.selectItem(model: indicatorParamsModel)
-
-            if indicator.isIndicatorConvertToItemFrameEnabled {
-                var indicatorConvertToItemFrame = indicator.frame
-                indicatorConvertToItemFrame.origin.x -= currentSelectedItemFrame.origin.x
-                itemDataSource[selectedIndex].indicatorConvertToItemFrame = indicatorConvertToItemFrame
-                willSelectedCell?.reloadData(itemModel: willSelectedItemModel, isClicked: isClicked)
-            }
-        }
+        selectItemAt(index: index, selectedType: .code)
     }
 
     //MARK: - KVO
@@ -478,10 +416,10 @@ open class JXSegmentedView: UIView {
                     }
 
                     let leftCell = collectionView.cellForItem(at: IndexPath(item: baseIndex, section: 0)) as? JXSegmentedBaseCell
-                    leftCell?.reloadData(itemModel: itemDataSource[baseIndex], isClicked: false)
+                    leftCell?.reloadData(itemModel: itemDataSource[baseIndex], selectedType: .unknown)
 
                     let rightCell = collectionView.cellForItem(at: IndexPath(item: baseIndex + 1, section: 0)) as? JXSegmentedBaseCell
-                    rightCell?.reloadData(itemModel: itemDataSource[baseIndex + 1], isClicked: false)
+                    rightCell?.reloadData(itemModel: itemDataSource[baseIndex + 1], selectedType: .unknown)
 
                     delegate?.segmentedView(self, scrollingFrom: baseIndex, to: baseIndex + 1, percent: remainderProgress)
                 }
@@ -492,11 +430,81 @@ open class JXSegmentedView: UIView {
 
     //MARK: - Private
     private func clickSelectItemAt(index: Int) {
-        selectItemAt(index: index, isClicked: true)
+        selectItemAt(index: index, selectedType: .click)
     }
 
     private func scrollSelectItemAt(index: Int) {
-        selectItemAt(index: index, isClicked: false)
+        selectItemAt(index: index, selectedType: .scroll)
+    }
+
+    private func selectItemAt(index: Int, selectedType: JXSegmentedViewItemSelectedType) {
+        guard index >= 0 && index < itemDataSource.count else {
+            return
+        }
+
+        if index == selectedIndex {
+            if selectedType == .click {
+                delegate?.segmentedView(self, didClickSelectedItemAt: index)
+            }else if selectedType == .scroll {
+                delegate?.segmentedView(self, didScrollSelectedItemAt: index)
+            }
+            delegate?.segmentedView(self, didSelectedItemAt: index)
+            scrollingTargetIndex = -1
+            return
+        }
+
+        let currentSelectedItemModel = itemDataSource[selectedIndex]
+        let willSelectedItemModel = itemDataSource[index]
+        //FIXEME: isSelected赋值地方
+        currentSelectedItemModel.isSelected = false
+        willSelectedItemModel.isSelected = true
+        dataSource?.refreshItemModel(currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel)
+
+        let currentSelectedCell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 0)) as? JXSegmentedBaseCell
+        currentSelectedCell?.reloadData(itemModel: currentSelectedItemModel, selectedType: selectedType)
+
+        let willSelectedCell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? JXSegmentedBaseCell
+        willSelectedCell?.reloadData(itemModel: willSelectedItemModel, selectedType: selectedType)
+
+        if scrollingTargetIndex != -1 && scrollingTargetIndex != index {
+            let scrollingTargetItemModel = itemDataSource[scrollingTargetIndex]
+            scrollingTargetItemModel.isSelected = false
+            dataSource?.refreshItemModel(currentSelectedItemModel: scrollingTargetItemModel, willSelectedItemModel: willSelectedItemModel)
+            let scrollingTargetCell = collectionView.cellForItem(at: IndexPath(item: scrollingTargetIndex, section: 0)) as? JXSegmentedBaseCell
+            scrollingTargetCell?.reloadData(itemModel: scrollingTargetItemModel, selectedType: selectedType)
+        }
+
+        collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+        if contentScrollView != nil && (selectedType == .click || selectedType == .code) {
+            contentScrollView!.setContentOffset(CGPoint(x: contentScrollView!.bounds.size.width*CGFloat(index), y: 0), animated: isContentScrollViewClickTransitionAnimateEnabled)
+        }
+
+        let lastSelectedIndex = selectedIndex
+        selectedIndex = index
+        if selectedType == .click {
+            delegate?.segmentedView(self, didClickSelectedItemAt: index)
+        }else if selectedType == .scroll {
+            delegate?.segmentedView(self, didScrollSelectedItemAt: index)
+        }
+        delegate?.segmentedView(self, didSelectedItemAt: index)
+        scrollingTargetIndex = -1
+
+        let currentSelectedItemFrame = getItemFrameAt(index: selectedIndex)
+        for indicator in indicators {
+            let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
+            indicatorParamsModel.lastSelectedIndex = lastSelectedIndex
+            indicatorParamsModel.currentSelectedIndex = selectedIndex
+            indicatorParamsModel.currentSelectedItemFrame = currentSelectedItemFrame
+            indicatorParamsModel.selectedType = selectedType
+            indicator.selectItem(model: indicatorParamsModel)
+
+            if indicator.isIndicatorConvertToItemFrameEnabled {
+                var indicatorConvertToItemFrame = indicator.frame
+                indicatorConvertToItemFrame.origin.x -= currentSelectedItemFrame.origin.x
+                itemDataSource[selectedIndex].indicatorConvertToItemFrame = indicatorConvertToItemFrame
+                willSelectedCell?.reloadData(itemModel: willSelectedItemModel, selectedType: selectedType)
+            }
+        }
     }
 
     private func getItemFrameAt(index: Int) -> CGRect {
@@ -538,7 +546,7 @@ extension JXSegmentedView: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = self.dataSource?.segmentedView(self, cellForItemAt: indexPath.item) {
-            cell.reloadData(itemModel: itemDataSource[indexPath.item], isClicked: false)
+            cell.reloadData(itemModel: itemDataSource[indexPath.item], selectedType: .unknown)
             return cell
         }else {
             return UICollectionViewCell(frame: CGRect.zero)

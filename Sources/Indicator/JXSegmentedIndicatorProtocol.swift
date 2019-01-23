@@ -36,7 +36,7 @@ public protocol JXSegmentedIndicatorProtocol {
     /// param lastSelectedIndex 之前选中的index
     /// param selectedIndex 选中的index
     /// param selectedCellFrame 选中的cellFrame
-    /// param isClicked YES：点击选中；NO：滚动选中。
+    /// param selectedType 选中的类型
     /// - Parameter model: model description
     func selectItem(model: JXSegmentedIndicatorParamsModel)
 }

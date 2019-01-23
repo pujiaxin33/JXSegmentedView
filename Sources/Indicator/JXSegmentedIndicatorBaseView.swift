@@ -30,6 +30,7 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
     /// 如果添加了多个indicator，仅能有一个indicator的isIndicatorConvertToItemFrameEnabled为true。
     /// 如果有多个indicator的isIndicatorConvertToItemFrameEnabled为true，则以最后一个isIndicatorConvertToItemFrameEnabled为true的indicator为准。
     open var isIndicatorConvertToItemFrameEnabled: Bool = true
+    open var scrollAnimationDuration: TimeInterval = 0.25
 
     public override init(frame: CGRect) {
         super.init(frame: frame)

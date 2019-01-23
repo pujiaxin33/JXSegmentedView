@@ -50,7 +50,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleZoomEnabled = true
             dataSource.titleZoomScale = 1.3
             dataSource.isTitleStrokeWidthEnabled = true
-            dataSource.isClickedAnimable = true
+            dataSource.isSelectedAnimable = true
             dataSource.titles = titles
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
@@ -98,8 +98,15 @@ class CellCustomizeViewController: UITableViewController {
         case "文字或者图片":
             //配置数据源
             let dataSource = JXSegmentedTitleOrImageDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titleSelectedColor = UIColor.red
+            dataSource.isTitleZoomEnabled = true
+            dataSource.titleZoomScale = 1.3
+            dataSource.isTitleStrokeWidthEnabled = true
+            dataSource.isItemTransitionEnabled = false
+            dataSource.isSelectedAnimable = true
             dataSource.titles = titles
-            dataSource.selectedImageInfos = ["monkey", "", "dog", "", "sheep", "frog", "horse", "cow", "elephant", "dragon"]
+            dataSource.selectedImageInfos = ["monkey", nil, "dog", nil, "sheep", "frog", "horse", "cow", "elephant", "dragon"]
             dataSource.loadImageClosure = {(imageView, imageInfo) in
                 //如果imageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
                 //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。

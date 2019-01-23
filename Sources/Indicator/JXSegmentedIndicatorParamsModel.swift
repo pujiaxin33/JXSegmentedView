@@ -31,6 +31,6 @@ open class JXSegmentedIndicatorParamsModel {
     open var percent: CGFloat = 0
     /// 之前选中的index
     open var lastSelectedIndex: Int = 0
-    /// YES:通过点击选中；NO:通过滚动选中
-    open var isClicked: Bool = false
+    /// 选中的类型
+    open var selectedType: JXSegmentedViewItemSelectedType = .unknown
 }

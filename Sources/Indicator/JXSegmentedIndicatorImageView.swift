@@ -65,8 +65,9 @@ open class JXSegmentedIndicatorImageView: JXSegmentedIndicatorBaseView {
         let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
         var toFrame = self.frame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - targetWidth)/2
-        if isScrollEnabled && model.isClicked {
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
+        if isScrollEnabled && (model.selectedType == .click || model.selectedType == .code) {
+            //允许滚动且选中类型是点击或代码选中，才进行动画过渡
+            UIView.animate(withDuration: scrollAnimationDuration, delay: 0, options: .curveEaseOut, animations: {
                 self.frame = toFrame
             }) { (_) in
             }

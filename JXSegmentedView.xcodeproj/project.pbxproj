@@ -198,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				1904AA7521D70A1B00316F97 /* TitleImage */,
+				190C48D121F712FE008032C7 /* TitleOrImage */,
 				1904AA6E21D6224D00316F97 /* Dot */,
 				1904AA6521D6036F00316F97 /* Number */,
 				1904AA4D21D3667C00316F97 /* Title */,
@@ -334,7 +335,6 @@
 		195A9BA621DCC4B30005B7A7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				190C48D121F712FE008032C7 /* TitleOrImage */,
 				190C48C921F6F908008032C7 /* MixCell */,
 				190C48D021F712E9008032C7 /* Attribute */,
 			);

@@ -27,7 +27,7 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
         
     }
 
-    open func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool) {
+    open func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
         self.itemModel = itemModel
     }
 }

@@ -15,7 +15,9 @@ open class JXSegmentedBaseItemModel {
     open var itemWidth: CGFloat = 0
     /// 指示器视图Frame转换到cell
     open var indicatorConvertToItemFrame: CGRect = CGRect.zero
-    open var isClickedAnimable: Bool = false
+    open var isItemTransitionEnabled: Bool = true
+    open var isSelectedAnimable: Bool = false
+    open var selectedAnimationDuration: TimeInterval = 0.25
     /// 是否正在进行过渡动画
     open var isTransitionAnimating: Bool = false
 }

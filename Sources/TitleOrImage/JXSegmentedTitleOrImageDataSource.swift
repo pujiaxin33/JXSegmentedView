@@ -8,9 +8,9 @@
 
 import UIKit
 
-class JXSegmentedTitleOrImageDataSource: JXSegmentedTitleDataSource {
-    /// 数量需要和item的数量保持一致。可以是ImageName或者图片地址。选中时不显示图片就填""空字符串
-    open var selectedImageInfos: [String]?
+open class JXSegmentedTitleOrImageDataSource: JXSegmentedTitleDataSource {
+    /// 数量需要和item的数量保持一致。可以是ImageName或者图片地址。选中时不显示图片就填nil
+    open var selectedImageInfos: [String?]?
     /// 内部默认通过UIImage(named:)加载图片。如果传递的是图片地址或者想自己处理图片加载逻辑，可以通过该闭包处理。
     open var loadImageClosure: LoadImageClosure?
     open var imageSize: CGSize = CGSize(width: 30, height: 30)
@@ -20,6 +20,8 @@ class JXSegmentedTitleOrImageDataSource: JXSegmentedTitleDataSource {
     }
 
     open override func reloadData(selectedIndex: Int) {
+        selectedAnimationDuration = 0.1
+
         super.reloadData(selectedIndex: selectedIndex)
 
         for (index, itemModel) in (dataSource as! [JXSegmentedTitleOrImageItemModel]).enumerated() {

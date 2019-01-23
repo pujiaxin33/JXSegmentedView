@@ -17,8 +17,9 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     open var dataSource = [JXSegmentedBaseItemModel]()
     /// item左右滚动过渡时，是否允许渐变。比如JXSegmentedTitleDataSource的titleZoom、titleColor、titleStrokeWidth等渐变。
     open var isItemTransitionEnabled: Bool = true
-    /// 点击选中的时候，是否需要动画过渡。自定义的cell需要自己处理动画过渡逻辑，动画处理逻辑参考`JXSegmentedTitleCell`
-    open var isClickedAnimable: Bool = false
+    /// 选中的时候，是否需要动画过渡。自定义的cell需要自己处理动画过渡逻辑，动画处理逻辑参考`JXSegmentedTitleCell`
+    open var isSelectedAnimable: Bool = false
+    open var selectedAnimationDuration: TimeInterval = 0.25
 
     /// 配置完各种属性之后，需要手动调用该方法，更新数据源
     ///
@@ -52,7 +53,9 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     }
 
     open func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel) {
+        currentSelectedItemModel.isSelected = false
 
+        willSelectedItemModel.isSelected = true
     }
 
     open func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
@@ -60,6 +63,14 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     }
 
     open func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
-
+        itemModel.index = index
+        itemModel.isItemTransitionEnabled = isItemTransitionEnabled
+        itemModel.isSelectedAnimable = isSelectedAnimable
+        itemModel.selectedAnimationDuration = selectedAnimationDuration
+        if index == selectedIndex {
+            itemModel.isSelected = true
+        }else {
+            itemModel.isSelected = false
+        }
     }
 }

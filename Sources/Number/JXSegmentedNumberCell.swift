@@ -32,8 +32,8 @@ open class JXSegmentedNumberCell: JXSegmentedTitleCell {
         numberLabel.center = CGPoint(x: titleLabel.frame.maxX + myItemModel.numberOffset.x, y: titleLabel.frame.minY + myItemModel.numberOffset.y)
     }
 
-    open override func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool) {
-        super.reloadData(itemModel: itemModel, isClicked: isClicked)
+    open override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
+        super.reloadData(itemModel: itemModel, selectedType: selectedType )
 
         guard let myItemModel = itemModel as? JXSegmentedNumberItemModel else {
             return

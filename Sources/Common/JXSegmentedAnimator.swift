@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 open class JXSegmentedAnimator {
-    open var duration: CFTimeInterval = 0.25
+    open var duration: TimeInterval = 0.25
     open var progressClosure: ((CGFloat)->())?
     open var completedClosure: (()->())?
     private var displayLink: CADisplayLink!

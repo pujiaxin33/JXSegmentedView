@@ -93,12 +93,13 @@ class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
         toFrame.size.width = width
         let path = UIBezierPath(roundedRect: toFrame, cornerRadius: getIndicatorCornerRadius(itemFrame: model.currentSelectedItemFrame))
-        if isScrollEnabled && model.isClicked {
+        if isScrollEnabled && (model.selectedType == .click || model.selectedType == .code) {
+            //允许滚动且选中类型是点击或代码选中，才进行动画过渡
             maskLayer.removeAnimation(forKey: "path")
             let animation = CABasicAnimation(keyPath: "path")
             animation.fromValue = maskLayer.path
             animation.toValue = path.cgPath
-            animation.duration = 0.25
+            animation.duration = scrollAnimationDuration
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             maskLayer.add(animation, forKey: "path")
             maskLayer.path = path.cgPath

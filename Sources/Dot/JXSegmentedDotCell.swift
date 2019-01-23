@@ -27,8 +27,8 @@ open class JXSegmentedDotCell: JXSegmentedTitleCell {
         dotView.center = CGPoint(x: titleLabel.frame.maxX + myItemModel.dotOffset.x, y: titleLabel.frame.minY + myItemModel.dotOffset.y)
     }
 
-    open override func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool) {
-        super.reloadData(itemModel: itemModel, isClicked: isClicked)
+    open override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
+        super.reloadData(itemModel: itemModel, selectedType: selectedType )
 
         guard let myItemModel = itemModel as? JXSegmentedDotItemModel else {
             return

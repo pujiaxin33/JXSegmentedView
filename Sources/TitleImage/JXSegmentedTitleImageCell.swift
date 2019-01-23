@@ -57,8 +57,8 @@ open class JXSegmentedTitleImageCell: JXSegmentedTitleCell {
         }
     }
 
-    open override func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool) {
-        super.reloadData(itemModel: itemModel, isClicked: isClicked)
+    open override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
+        super.reloadData(itemModel: itemModel, selectedType: selectedType )
 
         guard let myItemModel = itemModel as? JXSegmentedTitleImageItemModel else {
             return
@@ -79,7 +79,7 @@ open class JXSegmentedTitleImageCell: JXSegmentedTitleCell {
             imageInfo = myItemModel.selectedImageInfo
         }
 
-        //因为`func reloadData(itemModel: JXSegmentedBaseItemModel, isClicked: Bool)`方法会回调多次，尤其是左右滚动的时候会调用无数次。如果每次都触发图片加载，会非常消耗性能。所以只会在图片发生了变化的时候，才进行图片加载。
+        //因为`func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType)`方法会回调多次，尤其是左右滚动的时候会调用无数次。如果每次都触发图片加载，会非常消耗性能。所以只会在图片发生了变化的时候，才进行图片加载。
         if imageInfo != nil && imageInfo != currentImageInfo {
             currentImageInfo = imageInfo
             if myItemModel.loadImageClosure != nil {

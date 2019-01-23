@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JXSegmentedTitleOrImageItemModel: JXSegmentedTitleItemModel {
+open class JXSegmentedTitleOrImageItemModel: JXSegmentedTitleItemModel {
     open var selectedImageInfo: String?
     open var loadImageClosure: LoadImageClosure?
     open var imageSize: CGSize = CGSize(width: 30, height: 30)

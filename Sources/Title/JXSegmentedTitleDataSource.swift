@@ -95,6 +95,8 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     }
 
     open override func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel) {
+        super.refreshItemModel(currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel)
+
         guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleItemModel else {
             return
         }
@@ -110,12 +112,14 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     }
 
     open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+
         guard let itemModel = itemModel as? JXSegmentedTitleItemModel else {
             return
         }
 
         itemModel.title = titles[index]
-        itemModel.isClickedAnimable = isClickedAnimable
+        itemModel.isSelectedAnimable = isSelectedAnimable
         itemModel.titleColor = titleColor
         itemModel.titleSelectedColor = titleSelectedColor
         itemModel.titleFont = titleFont
