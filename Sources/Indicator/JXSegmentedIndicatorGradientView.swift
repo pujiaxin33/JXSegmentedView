@@ -19,8 +19,8 @@ class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
     open var gradientLayer: CAGradientLayer {
         return layer as! CAGradientLayer
     }
-    open var maskLayer: CAShapeLayer!
-    private var maskLayerFrame = CGRect.zero
+    open var gradientMaskLayer: CAShapeLayer!
+    private var gradientMaskLayerFrame = CGRect.zero
 
     open override func commonInit() {
         super.commonInit()
@@ -31,8 +31,8 @@ class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
 
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0)
-        maskLayer = CAShapeLayer()
-        layer.mask = maskLayer
+        gradientMaskLayer = CAShapeLayer()
+        layer.mask = gradientMaskLayer
     }
 
     open override func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel) {
@@ -44,11 +44,11 @@ class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
         let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
         let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
         let y = (model.currentSelectedItemFrame.size.height - height)/2
-        maskLayerFrame = CGRect(x: x, y: y, width: width, height: height)
-        let path = UIBezierPath(roundedRect: maskLayerFrame, cornerRadius: getIndicatorCornerRadius(itemFrame: model.currentSelectedItemFrame))
+        gradientMaskLayerFrame = CGRect(x: x, y: y, width: width, height: height)
+        let path = UIBezierPath(roundedRect: gradientMaskLayerFrame, cornerRadius: getIndicatorCornerRadius(itemFrame: model.currentSelectedItemFrame))
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        maskLayer.path = path.cgPath
+        gradientMaskLayer.path = path.cgPath
         CATransaction.commit()
         frame = CGRect(x: 0, y: 0, width: model.contentSize.width, height: model.contentSize.height)
     }
@@ -76,12 +76,12 @@ class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
             targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: rightWidth, percent: CGFloat(percent))
         }
 
-        maskLayerFrame.origin.x = targetX
-        maskLayerFrame.size.width = targetWidth
-        let path = UIBezierPath(roundedRect: maskLayerFrame, cornerRadius: getIndicatorCornerRadius(itemFrame: leftItemFrame))
+        gradientMaskLayerFrame.origin.x = targetX
+        gradientMaskLayerFrame.size.width = targetWidth
+        let path = UIBezierPath(roundedRect: gradientMaskLayerFrame, cornerRadius: getIndicatorCornerRadius(itemFrame: leftItemFrame))
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        maskLayer.path = path.cgPath
+        gradientMaskLayer.path = path.cgPath
         CATransaction.commit()
     }
 
@@ -89,24 +89,24 @@ class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
         super.selectItem(model: model)
 
         let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
-        var toFrame = maskLayerFrame
+        var toFrame = gradientMaskLayerFrame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
         toFrame.size.width = width
         let path = UIBezierPath(roundedRect: toFrame, cornerRadius: getIndicatorCornerRadius(itemFrame: model.currentSelectedItemFrame))
         if isScrollEnabled && (model.selectedType == .click || model.selectedType == .code) {
             //允许滚动且选中类型是点击或代码选中，才进行动画过渡
-            maskLayer.removeAnimation(forKey: "path")
+            gradientMaskLayer.removeAnimation(forKey: "path")
             let animation = CABasicAnimation(keyPath: "path")
-            animation.fromValue = maskLayer.path
+            animation.fromValue = gradientMaskLayer.path
             animation.toValue = path.cgPath
             animation.duration = scrollAnimationDuration
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-            maskLayer.add(animation, forKey: "path")
-            maskLayer.path = path.cgPath
+            gradientMaskLayer.add(animation, forKey: "path")
+            gradientMaskLayer.path = path.cgPath
         }else {
             CATransaction.begin()
             CATransaction.setDisableActions(true)
-            maskLayer.path = path.cgPath
+            gradientMaskLayer.path = path.cgPath
             CATransaction.commit()
         }
     }

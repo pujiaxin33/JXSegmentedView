@@ -90,7 +90,7 @@ open class JXSegmentedTitleImageCell: JXSegmentedTitleCell {
         }
 
         if myItemModel.isImageZoomEnabled {
-            imageView.transform = CGAffineTransform(scaleX: myItemModel.imageZoomScale, y: myItemModel.imageZoomScale)
+            imageView.transform = CGAffineTransform(scaleX: myItemModel.imageCurrentZoomScale, y: myItemModel.imageCurrentZoomScale)
         }else {
             imageView.transform = .identity
         }

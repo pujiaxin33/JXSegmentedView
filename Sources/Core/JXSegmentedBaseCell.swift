@@ -8,9 +8,12 @@
 
 import UIKit
 
+public typealias JXSegmentedCellSelectedAnimationClosure = (CGFloat)->()
+
 open class JXSegmentedBaseCell: UICollectionViewCell {
     open var itemModel: JXSegmentedBaseItemModel?
     open var animator: JXSegmentedAnimator?
+    private var selectedAnimationClosureArray = [JXSegmentedCellSelectedAnimationClosure]()
 
     deinit {
         animator?.stop()
@@ -54,15 +57,25 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
         return isSelectedAnimatable
     }
 
-    open func startSelectedAnimationIfNeeded(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType, animationClosure: @escaping ((CGFloat)->())) {
+    open func appendSelectedAnimationClosure(closure: @escaping JXSegmentedCellSelectedAnimationClosure) {
+        selectedAnimationClosureArray.append(closure)
+    }
+
+    open func startSelectedAnimationIfNeeded(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
         if itemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
             //需要更新isTransitionAnimating，用于处理在过滤时，禁止响应点击，避免界面异常。
             itemModel.isTransitionAnimating = true
-            animator?.progressClosure = {(percent) in
-                animationClosure(percent)
+            animator?.progressClosure = {[weak self] (percent) in
+                guard self != nil else {
+                    return
+                }
+                for closure in self!.selectedAnimationClosureArray {
+                    closure(percent)
+                }
             }
-            animator?.completedClosure = {
+            animator?.completedClosure = {[weak self] in
                 itemModel.isTransitionAnimating = false
+                self?.selectedAnimationClosureArray.removeAll()
             }
             animator?.start()
         }
@@ -72,6 +85,7 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
         self.itemModel = itemModel
 
         if itemModel.isSelectedAnimable {
+            selectedAnimationClosureArray.removeAll()
             if canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 animator = JXSegmentedAnimator()
                 animator?.duration = itemModel.selectedAnimationDuration

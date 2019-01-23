@@ -94,7 +94,7 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
             return
         }
 
-        myCurrentSelectedItemModel.titleCurrentColor = myCurrentSelectedItemModel.titleColor
+        myCurrentSelectedItemModel.titleCurrentColor = myCurrentSelectedItemModel.titleDefaultColor
 
         myWilltSelectedItemModel.titleCurrentColor = myWilltSelectedItemModel.titleSelectedColor
     }

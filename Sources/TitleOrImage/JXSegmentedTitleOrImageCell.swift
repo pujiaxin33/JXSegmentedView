@@ -63,7 +63,7 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
         setNeedsLayout()
     }
 
-    open override func preferredTitleZoomAnimateClosure(itemModel: JXSegmentedTitleItemModel, baseScale: CGFloat) -> ((CGFloat)->()) {
+    open override func preferredTitleZoomAnimateClosure(itemModel: JXSegmentedTitleItemModel, baseScale: CGFloat) -> JXSegmentedCellSelectedAnimationClosure {
         guard let myItemModel = itemModel as? JXSegmentedTitleOrImageItemModel else {
             return super.preferredTitleZoomAnimateClosure(itemModel: itemModel, baseScale: baseScale)
         }
@@ -71,7 +71,7 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
             //当前item没有选中图片且是将要选中的时候才做动画
             return super.preferredTitleZoomAnimateClosure(itemModel: itemModel, baseScale: baseScale)
         }else {
-            let closure: ((CGFloat)->()) = {[weak self] (percent) in
+            let closure: JXSegmentedCellSelectedAnimationClosure = {[weak self] (percent) in
                 if itemModel.isSelected {
                     //将要选中
                     itemModel.titleCurrentZoomScale = itemModel.titleSelectedZoomScale
@@ -89,7 +89,7 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
         }
     }
 
-    open override func preferredTitleStrokeWidthAnimateClosure(itemModel: JXSegmentedTitleItemModel, attriText: NSMutableAttributedString) -> ((CGFloat)->()){
+    open override func preferredTitleStrokeWidthAnimateClosure(itemModel: JXSegmentedTitleItemModel, attriText: NSMutableAttributedString) -> JXSegmentedCellSelectedAnimationClosure {
         guard let myItemModel = itemModel as? JXSegmentedTitleOrImageItemModel else {
             return super.preferredTitleStrokeWidthAnimateClosure(itemModel: itemModel, attriText: attriText)
         }
@@ -97,7 +97,7 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
             //当前item没有选中图片且是将要选中的时候才做动画
             return super.preferredTitleStrokeWidthAnimateClosure(itemModel: itemModel, attriText: attriText)
         }else {
-            let closure: ((CGFloat)->()) = {[weak self] (percent) in
+            let closure: JXSegmentedCellSelectedAnimationClosure = {[weak self] (percent) in
                 if itemModel.isSelected {
                     //将要选中
                     itemModel.titleCurrentStrokeWidth = itemModel.titleSelectedStrokeWidth
@@ -114,7 +114,7 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
         }
     }
 
-    open override func preferredTitleColorAnimateClosure(itemModel: JXSegmentedTitleItemModel) -> ((CGFloat)->()) {
+    open override func preferredTitleColorAnimateClosure(itemModel: JXSegmentedTitleItemModel) -> JXSegmentedCellSelectedAnimationClosure {
         guard let myItemModel = itemModel as? JXSegmentedTitleOrImageItemModel else {
             return super.preferredTitleColorAnimateClosure(itemModel: itemModel)
         }
@@ -122,13 +122,13 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
             //当前item没有选中图片且是将要选中的时候才做动画
             return super.preferredTitleColorAnimateClosure(itemModel: itemModel)
         }else {
-            let closure: ((CGFloat)->()) = {[weak self] (percent) in
+            let closure: JXSegmentedCellSelectedAnimationClosure = {[weak self] (percent) in
                 if itemModel.isSelected {
                     //将要选中
                     itemModel.titleCurrentColor = itemModel.titleSelectedColor
                 }else {
                     //将要取消选中
-                    itemModel.titleCurrentColor = itemModel.titleColor
+                    itemModel.titleCurrentColor = itemModel.titleDefaultColor
                 }
                 self?.titleLabel.textColor = itemModel.titleCurrentColor
             }

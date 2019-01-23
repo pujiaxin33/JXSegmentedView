@@ -42,13 +42,24 @@ class CellCustomizeViewController: UITableViewController {
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
+        case "文字渐变":
+            //配置数据源
+            let dataSource = JXSegmentedTitleGradientDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titleSelectedColor = UIColor.red
+            dataSource.titles = titles
+            dataSource.isSelectedAnimable = true
+            dataSource.isTitleZoomEnabled = true
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
         case "大小缩放":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.isTitleZoomEnabled = true
-            dataSource.titleZoomScale = 1.3
+            dataSource.titleSelectedZoomScale = 1.3
             dataSource.isTitleStrokeWidthEnabled = true
             dataSource.titles = titles
             //reloadData(selectedIndex:)一定要调用
@@ -60,7 +71,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.isTitleZoomEnabled = true
-            dataSource.titleZoomScale = 1.3
+            dataSource.titleSelectedZoomScale = 1.3
             dataSource.isTitleStrokeWidthEnabled = true
             dataSource.isSelectedAnimable = true
             dataSource.titles = titles
@@ -74,7 +85,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.isTitleZoomEnabled = true
-            dataSource.titleZoomScale = 1.3
+            dataSource.titleSelectedZoomScale = 1.3
             dataSource.isTitleStrokeWidthEnabled = true
             dataSource.isSelectedAnimable = true
             dataSource.isItemWidthZoomEnabled = true
@@ -128,7 +139,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.isTitleZoomEnabled = true
-            dataSource.titleZoomScale = 1.3
+            dataSource.titleSelectedZoomScale = 1.3
             dataSource.isTitleStrokeWidthEnabled = true
             dataSource.isItemTransitionEnabled = false
             dataSource.isSelectedAnimable = true

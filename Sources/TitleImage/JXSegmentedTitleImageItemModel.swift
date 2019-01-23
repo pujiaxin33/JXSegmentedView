@@ -16,5 +16,7 @@ open class JXSegmentedTitleImageItemModel: JXSegmentedTitleItemModel {
     open var imageSize: CGSize = CGSize(width: 20, height: 20)
     open var titleImageSpacing: CGFloat = 5
     open var isImageZoomEnabled: Bool = false
-    open var imageZoomScale: CGFloat = 1.2
+    open var imageDefaultZoomScale: CGFloat = 1
+    open var imageCurrentZoomScale: CGFloat = 1
+    open var imageSelectedZoomScale: CGFloat = 1.2
 }

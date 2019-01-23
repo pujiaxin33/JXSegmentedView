@@ -11,7 +11,7 @@ import UIKit
 open class JXSegmentedTitleCell: JXSegmentedBaseCell {
     public let titleLabel = UILabel()
     public let maskTitleLabel = UILabel()
-    public let maskLayer = CALayer()
+    public let titleMaskLayer = CALayer()
 
     open override func commonInit() {
         super.commonInit()
@@ -23,8 +23,8 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         maskTitleLabel.isHidden = true
         contentView.addSubview(maskTitleLabel)
 
-        maskLayer.backgroundColor = UIColor.red.cgColor
-        maskTitleLabel.layer.mask = maskLayer
+        titleMaskLayer.backgroundColor = UIColor.red.cgColor
+        maskTitleLabel.layer.mask = titleMaskLayer
     }
 
     open override func layoutSubviews() {
@@ -41,10 +41,6 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             return
         }
 
-        var titleZoomClosure: ((CGFloat)->())?
-        var titleStrokeWidthClosure: ((CGFloat)->())?
-        var titleColorClosure: ((CGFloat)->())?
-
         if myItemModel.isTitleZoomEnabled {
             //先把font设置为缩放的最大值，再缩小到最小值，最后根据当前的titleCurrentZoomScale值，进行缩放更新。这样就能避免transform从小到大时字体模糊
             let maxScaleFont = UIFont(descriptor: myItemModel.titleFont.fontDescriptor, size: myItemModel.titleFont.pointSize*CGFloat(myItemModel.titleSelectedZoomScale))
@@ -52,7 +48,8 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
 
             if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
-                titleZoomClosure = preferredTitleZoomAnimateClosure(itemModel: myItemModel, baseScale: baseScale)
+                let titleZoomClosure = preferredTitleZoomAnimateClosure(itemModel: myItemModel, baseScale: baseScale)
+                appendSelectedAnimationClosure(closure: titleZoomClosure)
             }else {
                 self.titleLabel.font = maxScaleFont
                 self.maskTitleLabel.font = maxScaleFont
@@ -75,7 +72,8 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         if myItemModel.isTitleStrokeWidthEnabled {
             if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
-                titleStrokeWidthClosure = preferredTitleStrokeWidthAnimateClosure(itemModel: myItemModel, attriText: attriText)
+                let titleStrokeWidthClosure = preferredTitleStrokeWidthAnimateClosure(itemModel: myItemModel, attriText: attriText)
+                appendSelectedAnimationClosure(closure: titleStrokeWidthClosure)
             }else {
                 attriText.addAttributes([NSAttributedString.Key.strokeWidth: myItemModel.titleCurrentStrokeWidth], range: NSRange(location: 0, length: title.count))
                 titleLabel.attributedText = attriText
@@ -86,7 +84,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
 
         if myItemModel.isTitleMaskEnabled {
             //允许mask，maskTitleLabel在titleLabel上面，maskTitleLabel设置为titleSelectedColor。titleLabel设置为titleColor
-            titleLabel.textColor = myItemModel.titleColor
+            titleLabel.textColor = myItemModel.titleDefaultColor
             maskTitleLabel.isHidden = false
             maskTitleLabel.textColor = myItemModel.titleSelectedColor
             maskTitleLabel.attributedText = attriText
@@ -97,29 +95,26 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             frame.origin.y = 0
             CATransaction.begin()
             CATransaction.setDisableActions(true)
-            maskLayer.frame = frame
+            titleMaskLayer.frame = frame
             CATransaction.commit()
         }else {
             maskTitleLabel.isHidden = true
             if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
-                titleColorClosure = preferredTitleColorAnimateClosure(itemModel: myItemModel)
+                let titleColorClosure = preferredTitleColorAnimateClosure(itemModel: myItemModel)
+                appendSelectedAnimationClosure(closure: titleColorClosure)
             }else {
                 titleLabel.textColor = myItemModel.titleCurrentColor
             }
         }
 
-        startSelectedAnimationIfNeeded(itemModel: itemModel, selectedType: selectedType) { (percent) in
-            titleZoomClosure?(percent)
-            titleStrokeWidthClosure?(percent)
-            titleColorClosure?(percent)
-        }
+        startSelectedAnimationIfNeeded(itemModel: itemModel, selectedType: selectedType)
 
         titleLabel.sizeToFit()
         setNeedsLayout()
     }
 
-    open func preferredTitleZoomAnimateClosure(itemModel: JXSegmentedTitleItemModel, baseScale: CGFloat) -> ((CGFloat)->()) {
+    open func preferredTitleZoomAnimateClosure(itemModel: JXSegmentedTitleItemModel, baseScale: CGFloat) -> JXSegmentedCellSelectedAnimationClosure {
         return {[weak self] (percnet) in
             if itemModel.isSelected {
                 //将要选中，scale从小到大插值渐变
@@ -134,7 +129,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         }
     }
 
-    open func preferredTitleStrokeWidthAnimateClosure(itemModel: JXSegmentedTitleItemModel, attriText: NSMutableAttributedString) -> ((CGFloat)->()){
+    open func preferredTitleStrokeWidthAnimateClosure(itemModel: JXSegmentedTitleItemModel, attriText: NSMutableAttributedString) -> JXSegmentedCellSelectedAnimationClosure{
         return {[weak self] (percent) in
             if itemModel.isSelected {
                 //将要选中，StrokeWidth从小到大插值渐变
@@ -148,14 +143,14 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         }
     }
 
-    open func preferredTitleColorAnimateClosure(itemModel: JXSegmentedTitleItemModel) -> ((CGFloat)->()) {
+    open func preferredTitleColorAnimateClosure(itemModel: JXSegmentedTitleItemModel) -> JXSegmentedCellSelectedAnimationClosure {
         return {[weak self] (percent) in
             if itemModel.isSelected {
                 //将要选中，textColor从titleColor到titleSelectedColor插值渐变
-                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleColor, to: itemModel.titleSelectedColor, percent: percent)
+                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleDefaultColor, to: itemModel.titleSelectedColor, percent: percent)
             }else {
                 //将要取消选中，textColor从titleSelectedColor到titleColor插值渐变
-                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleSelectedColor, to: itemModel.titleColor, percent: percent)
+                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleSelectedColor, to: itemModel.titleDefaultColor, percent: percent)
             }
             self?.titleLabel.textColor = itemModel.titleCurrentColor
         }

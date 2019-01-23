@@ -31,7 +31,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
     /// title和image之间的间隔
     open var titleImageSpacing: CGFloat = 5
     open var isImageZoomEnabled: Bool = false
-    open var imageZoomScale: CGFloat = 1.2
+    open var imageSelectedZoomScale: CGFloat = 1.2
 
     open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
         return JXSegmentedTitleImageItemModel()
@@ -58,10 +58,12 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         itemModel.loadImageClosure = loadImageClosure
         itemModel.imageSize = imageSize
         itemModel.isImageZoomEnabled = isImageZoomEnabled
+        itemModel.imageDefaultZoomScale = 1
+        itemModel.imageSelectedZoomScale = imageSelectedZoomScale
         if index == selectedIndex {
-            itemModel.imageZoomScale = imageZoomScale
+            itemModel.imageCurrentZoomScale = itemModel.imageSelectedZoomScale
         }else {
-            itemModel.imageZoomScale = 1
+            itemModel.imageCurrentZoomScale = itemModel.imageDefaultZoomScale
         }
     }
 
@@ -97,8 +99,8 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
             return
         }
         if isImageZoomEnabled && isItemTransitionEnabled {
-            leftModel.imageZoomScale = JXSegmentedViewTool.interpolate(from: imageZoomScale, to: 1, percent: CGFloat(percent))
-            rightModel.imageZoomScale = JXSegmentedViewTool.interpolate(from: 1, to: imageZoomScale, percent: CGFloat(percent))
+            leftModel.imageCurrentZoomScale = JXSegmentedViewTool.interpolate(from: imageSelectedZoomScale, to: 1, percent: CGFloat(percent))
+            rightModel.imageCurrentZoomScale = JXSegmentedViewTool.interpolate(from: 1, to: imageSelectedZoomScale, percent: CGFloat(percent))
         }
     }
 
@@ -109,11 +111,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
             return
         }
 
-        myCurrentSelectedItemModel.imageZoomScale = 1
-        if isImageZoomEnabled {
-            myWilltSelectedItemModel.imageZoomScale = imageZoomScale
-        }else {
-            myWilltSelectedItemModel.imageZoomScale = 1
-        }
+        myCurrentSelectedItemModel.imageCurrentZoomScale = myCurrentSelectedItemModel.imageDefaultZoomScale
+        myWilltSelectedItemModel.imageCurrentZoomScale = myWilltSelectedItemModel.imageSelectedZoomScale
     }
 }

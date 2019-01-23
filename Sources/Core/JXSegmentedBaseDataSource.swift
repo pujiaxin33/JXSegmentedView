@@ -21,7 +21,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     open var isSelectedAnimable: Bool = false
     open var selectedAnimationDuration: TimeInterval = 0.25
     open var isItemWidthZoomEnabled: Bool = false
-    open var itemWidthZoomScale: CGFloat = 1.5
+    open var itemWidthSelectedZoomScale: CGFloat = 1.5
 
     private var animator: JXSegmentedAnimator?
 
@@ -54,7 +54,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         itemModel.selectedAnimationDuration = selectedAnimationDuration
         itemModel.isItemWidthZoomEnabled = isItemWidthZoomEnabled
         itemModel.itemWidthDefaultZoomScale = 1
-        itemModel.itemWidthSelectedZoomScale = itemWidthZoomScale
+        itemModel.itemWidthSelectedZoomScale = itemWidthSelectedZoomScale
         if index == selectedIndex {
             itemModel.isSelected = true
             itemModel.itemWidthCurrentZoomScale = itemModel.itemWidthSelectedZoomScale
