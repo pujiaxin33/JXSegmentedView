@@ -214,9 +214,9 @@
 			children = (
 				1904AA3A21D31FBE00316F97 /* JXSegmentedView.swift */,
 				1904AA4021D3241E00316F97 /* JXSegmentedCollectionView.swift */,
-				1904AA3E21D3215900316F97 /* JXSegmentedBaseCell.swift */,
-				1904AA3C21D3212300316F97 /* JXSegmentedBaseItemModel.swift */,
 				1904AA6621D6041500316F97 /* JXSegmentedBaseDataSource.swift */,
+				1904AA3C21D3212300316F97 /* JXSegmentedBaseItemModel.swift */,
+				1904AA3E21D3215900316F97 /* JXSegmentedBaseCell.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";

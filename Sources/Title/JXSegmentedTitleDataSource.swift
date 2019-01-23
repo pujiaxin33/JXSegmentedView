@@ -40,22 +40,56 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
         for (index, _) in titles.enumerated() {
             let itemModel = preferredItemModelInstance()
-            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
             dataSource.append(itemModel)
         }
     }
 
-    //MARK: - JXSegmentedViewDataSource
-    open override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
+    open override func preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+
+        guard let itemModel = itemModel as? JXSegmentedTitleItemModel else {
+            return
+        }
+
+        itemModel.title = titles[index]
+        itemModel.isSelectedAnimable = isSelectedAnimable
+        itemModel.titleColor = titleColor
+        itemModel.titleSelectedColor = titleSelectedColor
+        itemModel.titleFont = titleFont
+        itemModel.titleSelectedFont = titleSelectedFont
+        itemModel.isTitleZoomEnabled = isTitleZoomEnabled
+        itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
+        itemModel.isTitleMaskEnabled = isTitleMaskEnabled
+        itemModel.titleDefaultZoomScale = 1
+        itemModel.titleSelectedZoomScale = titleZoomScale
+        itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
+        itemModel.titleDefaultStrokeWidth = 0
+        if index == selectedIndex {
+            itemModel.titleCurrentColor = titleSelectedColor
+            itemModel.titleCurrentZoomScale = titleZoomScale
+            itemModel.titleCurrentStrokeWidth = titleSelectedStrokeWidth
+        }else {
+            itemModel.titleCurrentColor = titleColor
+            itemModel.titleCurrentZoomScale = 1
+            itemModel.titleCurrentStrokeWidth = 0
+        }
+    }
+
+    open override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
+        var itemWidth = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
         if itemContentWidth == JXSegmentedViewAutomaticDimension {
             if let title = (dataSource[index] as? JXSegmentedTitleItemModel)?.title {
                 let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleFont], context: nil).size.width
-                return CGFloat(ceilf(Float(textWidth))) + itemWidthIncrement
+                itemWidth += CGFloat(ceilf(Float(textWidth)))
             }
+        }else {
+            itemWidth += itemContentWidth
         }
-        return itemContentWidth + itemWidthIncrement
+        return itemWidth
     }
 
+    //MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "cell")
     }
@@ -65,7 +99,9 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         return cell
     }
 
-    open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
+    open override func refreshItemModel(_ segmentedView: JXSegmentedView, leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
+        super.refreshItemModel(segmentedView, leftItemModel: leftItemModel, rightItemModel: rightItemModel, percent: percent)
+        
         guard let leftModel = leftItemModel as? JXSegmentedTitleItemModel, let rightModel = rightItemModel as? JXSegmentedTitleItemModel else {
             return
         }
@@ -94,8 +130,8 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         }
     }
 
-    open override func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel) {
-        super.refreshItemModel(currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel)
+    open override func refreshItemModel(_ segmentedView: JXSegmentedView, currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
+        super.refreshItemModel(segmentedView, currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel, selectedType: selectedType)
 
         guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleItemModel else {
             return
@@ -109,36 +145,5 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         myWilltSelectedItemModel.titleCurrentColor = titleSelectedColor
         myWilltSelectedItemModel.titleCurrentZoomScale = titleZoomScale
         myWilltSelectedItemModel.titleCurrentStrokeWidth = titleSelectedStrokeWidth
-    }
-
-    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
-        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
-
-        guard let itemModel = itemModel as? JXSegmentedTitleItemModel else {
-            return
-        }
-
-        itemModel.title = titles[index]
-        itemModel.isSelectedAnimable = isSelectedAnimable
-        itemModel.titleColor = titleColor
-        itemModel.titleSelectedColor = titleSelectedColor
-        itemModel.titleFont = titleFont
-        itemModel.titleSelectedFont = titleSelectedFont
-        itemModel.isTitleZoomEnabled = isTitleZoomEnabled
-        itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
-        itemModel.isTitleMaskEnabled = isTitleMaskEnabled
-        itemModel.titleDefaultZoomScale = 1
-        itemModel.titleSelectedZoomScale = titleZoomScale
-        itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
-        itemModel.titleDefaultStrokeWidth = 0
-        if index == selectedIndex {
-            itemModel.titleCurrentColor = titleSelectedColor
-            itemModel.titleCurrentZoomScale = titleZoomScale
-            itemModel.titleCurrentStrokeWidth = titleSelectedStrokeWidth
-        }else {
-            itemModel.titleCurrentColor = titleColor
-            itemModel.titleCurrentZoomScale = 1
-            itemModel.titleCurrentStrokeWidth = 0
-        }
     }
 }

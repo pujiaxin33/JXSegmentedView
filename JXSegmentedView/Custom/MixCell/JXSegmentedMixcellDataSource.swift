@@ -39,8 +39,7 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
         dataSource.append(dotModel)
     }
 
-    //MARK: - JXSegmentedViewDataSource
-    override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
+    override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
         //根据不同的cell类型返回对应的cell宽度
         var otherWidth: CGFloat = 0
         var title: String?
@@ -61,9 +60,11 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
         }
 
         let textWidth = NSString(string: title!).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleFont!], context: nil).size.width
-        return CGFloat(ceilf(Float(textWidth))) + itemWidthIncrement + otherWidth
+        let itemWidth = CGFloat(ceilf(Float(textWidth))) + itemWidthIncrement + otherWidth
+        return itemWidth
     }
 
+    //MARK: - JXSegmentedViewDataSource
     override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "titleCell")
         segmentedView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "titleImageCell")
@@ -86,7 +87,9 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
     }
 
     //针对不同的cell处理选中态和未选中态的刷新
-    override func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel) {
+    override func refreshItemModel(_ segmentedView: JXSegmentedView, currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
+        super.refreshItemModel(segmentedView, currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel, selectedType: selectedType)
+
         guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleItemModel else {
             return
         }

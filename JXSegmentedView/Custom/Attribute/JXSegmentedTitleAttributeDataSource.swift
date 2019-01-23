@@ -27,6 +27,19 @@ class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
         }
     }
 
+    override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
+        var itemWidth: CGFloat = 0
+        if itemContentWidth == JXSegmentedViewAutomaticDimension {
+            if let title = (dataSource[index] as? JXSegmentedTitleAttributeItemModel)?.attributeTitle {
+                let textWidth = title.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), context: nil).size.width
+                itemWidth = CGFloat(ceilf(Float(textWidth))) + itemWidthIncrement
+            }
+        }else {
+            itemWidth = itemContentWidth + itemWidthIncrement
+        }
+        return itemWidth
+    }
+
     //MARK: - JXSegmentedViewDataSource
     override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.register(JXSegmentedTitleAttributeCell.self, forCellWithReuseIdentifier: "cell")
@@ -35,15 +48,5 @@ class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
     override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
         let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         return cell
-    }
-
-    override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
-        if itemContentWidth == JXSegmentedViewAutomaticDimension {
-            if let title = (dataSource[index] as? JXSegmentedTitleAttributeItemModel)?.attributeTitle {
-                let textWidth = title.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), context: nil).size.width
-                return CGFloat(ceilf(Float(textWidth))) + itemWidthIncrement
-            }
-        }
-        return itemContentWidth + itemWidthIncrement
     }
 }

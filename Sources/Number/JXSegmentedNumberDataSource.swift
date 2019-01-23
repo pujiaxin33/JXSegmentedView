@@ -34,22 +34,12 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
         super.reloadData(selectedIndex: selectedIndex)
 
         for (index, itemModel) in (dataSource as! [JXSegmentedNumberItemModel]).enumerated() {
-            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
         }
     }
 
-    //MARK: - JXSegmentedViewDataSource
-    open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedNumberCell.self, forCellWithReuseIdentifier: "cell")
-    }
-
-    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
-        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        return cell
-    }
-
-    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
-        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+    open override func preferredRefreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
 
         guard let itemModel = itemModel as? JXSegmentedNumberItemModel else {
             return
@@ -64,5 +54,15 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
         itemModel.numberTextColor = numberTextColor
         itemModel.numberBackgroundColor = numberBackgroundColor
         itemModel.numberOffset = numberOffset
+    }
+
+    //MARK: - JXSegmentedViewDataSource
+    open override func registerCellClass(in segmentedView: JXSegmentedView) {
+        segmentedView.register(JXSegmentedNumberCell.self, forCellWithReuseIdentifier: "cell")
+    }
+
+    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
+        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        return cell
     }
 }

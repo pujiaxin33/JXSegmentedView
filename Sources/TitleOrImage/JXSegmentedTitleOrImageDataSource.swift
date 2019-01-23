@@ -25,26 +25,12 @@ open class JXSegmentedTitleOrImageDataSource: JXSegmentedTitleDataSource {
         super.reloadData(selectedIndex: selectedIndex)
 
         for (index, itemModel) in (dataSource as! [JXSegmentedTitleOrImageItemModel]).enumerated() {
-            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
         }
     }
 
-    //MARK: - JXSegmentedViewDataSource
-    open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedTitleOrImageCell.self, forCellWithReuseIdentifier: "cell")
-    }
-
-    open override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
-        return super.segmentedView(segmentedView, widthForItemAt: index)
-    }
-
-    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
-        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        return cell
-    }
-
-    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
-        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+    open override func preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
 
         guard let itemModel = itemModel as? JXSegmentedTitleOrImageItemModel else {
             return
@@ -53,5 +39,15 @@ open class JXSegmentedTitleOrImageDataSource: JXSegmentedTitleDataSource {
         itemModel.selectedImageInfo = selectedImageInfos?[index]
         itemModel.loadImageClosure = loadImageClosure
         itemModel.imageSize = imageSize
+    }
+
+    //MARK: - JXSegmentedViewDataSource
+    open override func registerCellClass(in segmentedView: JXSegmentedView) {
+        segmentedView.register(JXSegmentedTitleOrImageCell.self, forCellWithReuseIdentifier: "cell")
+    }
+
+    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
+        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        return cell
     }
 }

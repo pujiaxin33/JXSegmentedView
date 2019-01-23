@@ -41,64 +41,12 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         super.reloadData(selectedIndex: selectedIndex)
 
         for (index, itemModel) in (dataSource as! [JXSegmentedTitleImageItemModel]).enumerated() {
-            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
         }
     }
 
-    //MARK: - JXSegmentedViewDataSource
-    open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "cell")
-    }
-
-    open override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
-        var itemWidth = super.segmentedView(segmentedView, widthForItemAt: index)
-        switch titleImageType {
-            case .leftImage, .rightImage:
-                itemWidth += titleImageSpacing + imageSize.width
-            case .topImage, .bottomImage:
-                itemWidth = max(itemWidth, imageSize.width)
-            case .onlyImage:
-                itemWidth = imageSize.width
-            case .onlyTitle:
-                itemWidth = itemWidth * 1
-        }
-        return itemWidth
-    }
-
-    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
-        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        return cell
-    }
-
-    open override func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
-        super.refreshItemModel(leftItemModel: leftItemModel, rightItemModel: rightItemModel, percent: percent)
-
-        guard let leftModel = leftItemModel as? JXSegmentedTitleImageItemModel, let rightModel = rightItemModel as? JXSegmentedTitleImageItemModel else {
-            return
-        }
-        if isImageZoomEnabled && isItemTransitionEnabled {
-            leftModel.imageZoomScale = JXSegmentedViewTool.interpolate(from: imageZoomScale, to: 1, percent: CGFloat(percent))
-            rightModel.imageZoomScale = JXSegmentedViewTool.interpolate(from: 1, to: imageZoomScale, percent: CGFloat(percent))
-        }
-    }
-
-    open override func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel) {
-        super.refreshItemModel(currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel)
-
-        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleImageItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleImageItemModel else {
-            return
-        }
-
-        myCurrentSelectedItemModel.imageZoomScale = 1
-        if isImageZoomEnabled {
-            myWilltSelectedItemModel.imageZoomScale = imageZoomScale
-        }else {
-            myWilltSelectedItemModel.imageZoomScale = 1
-        }
-    }
-
-    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
-        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+    open override func preferredRefreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
 
         guard let itemModel = itemModel as? JXSegmentedTitleImageItemModel else {
             return
@@ -114,6 +62,58 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
             itemModel.imageZoomScale = imageZoomScale
         }else {
             itemModel.imageZoomScale = 1
+        }
+    }
+
+    open override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
+        var itemWidth = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
+        switch titleImageType {
+        case .leftImage, .rightImage:
+            itemWidth += titleImageSpacing + imageSize.width
+        case .topImage, .bottomImage:
+            itemWidth = max(itemWidth, imageSize.width)
+        case .onlyImage:
+            itemWidth = imageSize.width
+        case .onlyTitle:
+            itemWidth = itemWidth * 1
+        }
+        return itemWidth
+    }
+
+    //MARK: - JXSegmentedViewDataSource
+    open override func registerCellClass(in segmentedView: JXSegmentedView) {
+        segmentedView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "cell")
+    }
+
+    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
+        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        return cell
+    }
+
+    open override func refreshItemModel(_ segmentedView: JXSegmentedView, leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
+        super.refreshItemModel(segmentedView, leftItemModel: leftItemModel, rightItemModel: rightItemModel, percent: percent)
+
+        guard let leftModel = leftItemModel as? JXSegmentedTitleImageItemModel, let rightModel = rightItemModel as? JXSegmentedTitleImageItemModel else {
+            return
+        }
+        if isImageZoomEnabled && isItemTransitionEnabled {
+            leftModel.imageZoomScale = JXSegmentedViewTool.interpolate(from: imageZoomScale, to: 1, percent: CGFloat(percent))
+            rightModel.imageZoomScale = JXSegmentedViewTool.interpolate(from: 1, to: imageZoomScale, percent: CGFloat(percent))
+        }
+    }
+
+    open override func refreshItemModel(_ segmentedView: JXSegmentedView, currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
+        super.refreshItemModel(segmentedView, currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel, selectedType: selectedType)
+
+        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleImageItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleImageItemModel else {
+            return
+        }
+
+        myCurrentSelectedItemModel.imageZoomScale = 1
+        if isImageZoomEnabled {
+            myWilltSelectedItemModel.imageZoomScale = imageZoomScale
+        }else {
+            myWilltSelectedItemModel.imageZoomScale = 1
         }
     }
 }

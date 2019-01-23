@@ -26,22 +26,12 @@ open class JXSegmentedDotDataSource: JXSegmentedTitleDataSource {
         super.reloadData(selectedIndex: selectedIndex)
 
         for (index, itemModel) in (dataSource as! [JXSegmentedDotItemModel]).enumerated() {
-            refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
         }
     }
 
-    //MARK: - JXSegmentedViewDataSource
-    open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedDotCell.self, forCellWithReuseIdentifier: "cell")
-    }
-
-    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
-        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        return cell
-    }
-
-    open override func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
-        super.refreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+    open override func preferredRefreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
+        super.preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
 
         guard let itemModel = itemModel as? JXSegmentedDotItemModel else {
             return
@@ -56,5 +46,15 @@ open class JXSegmentedDotDataSource: JXSegmentedTitleDataSource {
         }else {
             itemModel.dotCornerRadius = dotCornerRadius
         }
+    }
+
+    //MARK: - JXSegmentedViewDataSource
+    open override func registerCellClass(in segmentedView: JXSegmentedView) {
+        segmentedView.register(JXSegmentedDotCell.self, forCellWithReuseIdentifier: "cell")
+    }
+
+    open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
+        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        return cell
     }
 }

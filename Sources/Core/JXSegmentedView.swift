@@ -9,6 +9,9 @@
 import UIKit
 
 public protocol JXSegmentedViewDataSource: AnyObject {
+    var isItemWidthZoomEnabled: Bool { get }
+    var selectedAnimationDuration: TimeInterval { get }
+
     /// 返回数据源数组，数组元素必须是JXSegmentedBaseItemModel及其子类
     ///
     /// - Parameter segmentedView: JXSegmentedView
@@ -42,14 +45,14 @@ public protocol JXSegmentedViewDataSource: AnyObject {
     ///   - itemModel: JXSegmentedBaseItemModel
     ///   - index: 目标index
     ///   - selectedIndex: 当前选中的index
-    func refreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int)
+    func refreshItemModel(_ segmentedView: JXSegmentedView, _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int)
 
     /// item选中的时候调用。当前选中的currentSelectedItemModel状态需要更新为未选中；将要选中的willSelectedItemModel状态需要更新为选中。
     ///
     /// - Parameters:
     ///   - currentSelectedItemModel: 当前选中的itemModel
     ///   - willSelectedItemModel: 将要选中的itemModel
-    func refreshItemModel(currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel)
+    func refreshItemModel(_ segmentedView: JXSegmentedView, currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType)
 
     /// 左右滚动过渡时调用。根据当前的从左到右的百分比，刷新leftItemModel和rightItemModel
     ///
@@ -57,7 +60,7 @@ public protocol JXSegmentedViewDataSource: AnyObject {
     ///   - leftItemModel: 相对位置在左边的itemModel
     ///   - rightItemModel: 相对位置在右边的itemModel
     ///   - percent: 从左到右的百分比
-    func refreshItemModel(leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat)
+    func refreshItemModel(_ segmentedView: JXSegmentedView, leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat)
 }
 
 /// 为什么会把选中代理分为三个，因为有时候只关心点击选中的，有时候只关心滚动选中的，有时候只关心选中。所以具体情况，使用对应方法。
@@ -209,6 +212,10 @@ open class JXSegmentedView: UIView {
     }
 
     //MARK: - Public
+    public final func invalidateLayout() {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+
     public final func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
         collectionView.register(cellClass, forCellWithReuseIdentifier: identifier)
     }
@@ -326,6 +333,7 @@ open class JXSegmentedView: UIView {
                 }
             }
         }
+        collectionView.collectionViewLayout.invalidateLayout()
         collectionView.reloadData()
     }
 
@@ -334,7 +342,7 @@ open class JXSegmentedView: UIView {
             return
         }
 
-        dataSource?.refreshItemModel(itemDataSource[index], at: index, selectedIndex: selectedIndex)
+        dataSource?.refreshItemModel(self, itemDataSource[index], at: index, selectedIndex: selectedIndex)
         let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? JXSegmentedBaseCell
         cell?.reloadData(itemModel: itemDataSource[index], selectedType: .unknown)
     }
@@ -400,7 +408,10 @@ open class JXSegmentedView: UIView {
                         scrollingTargetIndex = baseIndex
                     }
 
-                    dataSource?.refreshItemModel(leftItemModel: itemDataSource[baseIndex], rightItemModel: itemDataSource[baseIndex + 1], percent: remainderProgress)
+                    dataSource?.refreshItemModel(self, leftItemModel: itemDataSource[baseIndex], rightItemModel: itemDataSource[baseIndex + 1], percent: remainderProgress)
+                    if dataSource?.isItemWidthZoomEnabled == true {
+                        collectionView.collectionViewLayout.invalidateLayout()
+                    }
 
                     for indicator in indicators {
                         indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
@@ -455,10 +466,7 @@ open class JXSegmentedView: UIView {
 
         let currentSelectedItemModel = itemDataSource[selectedIndex]
         let willSelectedItemModel = itemDataSource[index]
-        //FIXEME: isSelected赋值地方
-        currentSelectedItemModel.isSelected = false
-        willSelectedItemModel.isSelected = true
-        dataSource?.refreshItemModel(currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel)
+        dataSource?.refreshItemModel(self, currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel, selectedType: selectedType)
 
         let currentSelectedCell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 0)) as? JXSegmentedBaseCell
         currentSelectedCell?.reloadData(itemModel: currentSelectedItemModel, selectedType: selectedType)
@@ -469,12 +477,26 @@ open class JXSegmentedView: UIView {
         if scrollingTargetIndex != -1 && scrollingTargetIndex != index {
             let scrollingTargetItemModel = itemDataSource[scrollingTargetIndex]
             scrollingTargetItemModel.isSelected = false
-            dataSource?.refreshItemModel(currentSelectedItemModel: scrollingTargetItemModel, willSelectedItemModel: willSelectedItemModel)
+            dataSource?.refreshItemModel(self, currentSelectedItemModel: scrollingTargetItemModel, willSelectedItemModel: willSelectedItemModel, selectedType: selectedType)
             let scrollingTargetCell = collectionView.cellForItem(at: IndexPath(item: scrollingTargetIndex, section: 0)) as? JXSegmentedBaseCell
             scrollingTargetCell?.reloadData(itemModel: scrollingTargetItemModel, selectedType: selectedType)
         }
 
-        collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+        if dataSource?.isItemWidthZoomEnabled == true {
+            if selectedType == .click || selectedType == .code {
+                //延时为了解决cellwidth变化，点击最后几个cell，scrollToItem会出现位置偏移bu。需要等cellWidth动画渐变结束后再滚动到index的cell位置。
+                let selectedAnimationDurationInMilliseconds = Int((dataSource?.selectedAnimationDuration ?? 0)*1000)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(selectedAnimationDurationInMilliseconds)) {
+                    self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+                }
+            }else if selectedType == .scroll {
+                //滚动选中的直接处理
+                collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+            }
+        }else {
+            collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+        }
+
         if contentScrollView != nil && (selectedType == .click || selectedType == .code) {
             contentScrollView!.setContentOffset(CGPoint(x: contentScrollView!.bounds.size.width*CGFloat(index), y: 0), animated: isContentScrollViewClickTransitionAnimateEnabled)
         }

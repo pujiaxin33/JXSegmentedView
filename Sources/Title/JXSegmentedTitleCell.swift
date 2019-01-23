@@ -139,7 +139,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
                 titleLabel.textColor = myItemModel.titleCurrentColor
             }
         }
-        
+
         if myItemModel.isSelectedAnimable && isSelectedAnimateEnabled {
             //需要更新isTransitionAnimating，用于处理在过滤时，禁止响应点击，避免界面异常。
             myItemModel.isTransitionAnimating = true
