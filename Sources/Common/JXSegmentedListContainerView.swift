@@ -38,10 +38,18 @@ public protocol JXSegmentedListContainerViewDelegate {
     ///   - index: 目标index
     /// - Returns: 遵从JXSegmentedListContentViewDelegate协议的实例
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate
+
+
+    /// 返回自定义UIScrollView实例
+    /// 某些特殊情况需要自己处理UIScrollView内部逻辑。比如项目用了FDFullscreenPopGesture，需要处理手势相关代理。
+    ///
+    /// - Parameter listContainerView: JXSegmentedListContainerView
+    /// - Returns: 自定义UIScrollView实例
+    @objc optional func scrollView(in listContainerView: JXSegmentedListContainerView) -> UIScrollView
 }
 
 open class JXSegmentedListContainerView: UIView {
-    open var scrollView = UIScrollView()
+    open var scrollView: UIScrollView!
     /// 已经加载过的列表字典。key是index，value是对应的列表
     open var validListDict = [Int:JXSegmentedListContentViewDelegate]()
     /// 滚动切换的时候，滚动距离超过一页的多少百分比，就认为切换了页面。默认0.5（即滚动超过了半屏，就认为翻页了）。范围0~1，开区间不包括0和1
@@ -72,6 +80,11 @@ open class JXSegmentedListContainerView: UIView {
     }
 
     open func commonInit() {
+        if let customScrollView = self.delegate.scrollView?(in: self) {
+            self.scrollView = customScrollView
+        }else {
+            scrollView = UIScrollView()
+        }
         scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
