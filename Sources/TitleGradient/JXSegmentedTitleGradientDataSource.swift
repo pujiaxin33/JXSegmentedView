@@ -27,12 +27,12 @@ open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
 
         itemModel.titleGradientStartPoint = titleGradientStartPoint
         itemModel.titleGradientEndPoint = titleGradientEndPoint
-        itemModel.titleDefaultGradientColors = titleGradientColors
+        itemModel.titleNormalGradientColors = titleGradientColors
         itemModel.titleSelectedGradientColors = titleSelectedGradientColors
         if index == selectedIndex {
             itemModel.titleCurrentGradientColors = itemModel.titleSelectedGradientColors
         }else {
-            itemModel.titleCurrentGradientColors = itemModel.titleDefaultGradientColors
+            itemModel.titleCurrentGradientColors = itemModel.titleNormalGradientColors
         }
     }
 
@@ -54,8 +54,8 @@ open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
         }
 
         if isTitleColorGradientEnabled && isItemTransitionEnabled {
-            leftModel.titleCurrentGradientColors = JXSegmentedViewTool.interpolateColors(from: leftModel.titleSelectedGradientColors, to: leftModel.titleDefaultGradientColors, percent: percent)
-            rightModel.titleCurrentGradientColors = JXSegmentedViewTool.interpolateColors(from: rightModel.titleDefaultGradientColors, to: rightModel.titleSelectedGradientColors, percent: percent)
+            leftModel.titleCurrentGradientColors = JXSegmentedViewTool.interpolateColors(from: leftModel.titleSelectedGradientColors, to: leftModel.titleNormalGradientColors, percent: percent)
+            rightModel.titleCurrentGradientColors = JXSegmentedViewTool.interpolateColors(from: rightModel.titleNormalGradientColors, to: rightModel.titleSelectedGradientColors, percent: percent)
         }
     }
 
@@ -66,7 +66,7 @@ open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
             return
         }
 
-        myCurrentSelectedItemModel.titleCurrentGradientColors = myCurrentSelectedItemModel.titleDefaultGradientColors
+        myCurrentSelectedItemModel.titleCurrentGradientColors = myCurrentSelectedItemModel.titleNormalGradientColors
         myWilltSelectedItemModel.titleCurrentGradientColors = myWilltSelectedItemModel.titleSelectedGradientColors
     }
 }

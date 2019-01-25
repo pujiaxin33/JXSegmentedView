@@ -9,7 +9,7 @@
 import UIKit
 
 open class JXSegmentedTitleGradientItemModel: JXSegmentedTitleItemModel {
-    open var titleDefaultGradientColors: [CGColor] = [CGColor]()
+    open var titleNormalGradientColors: [CGColor] = [CGColor]()
     open var titleCurrentGradientColors: [CGColor] = [CGColor]()
     open var titleSelectedGradientColors: [CGColor] = [CGColor]()
     open var titleGradientStartPoint: CGPoint = CGPoint(x: 0, y: 0)

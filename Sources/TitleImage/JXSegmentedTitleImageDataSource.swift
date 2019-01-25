@@ -58,12 +58,12 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         itemModel.loadImageClosure = loadImageClosure
         itemModel.imageSize = imageSize
         itemModel.isImageZoomEnabled = isImageZoomEnabled
-        itemModel.imageDefaultZoomScale = 1
+        itemModel.imageNormalZoomScale = 1
         itemModel.imageSelectedZoomScale = imageSelectedZoomScale
         if index == selectedIndex {
             itemModel.imageCurrentZoomScale = itemModel.imageSelectedZoomScale
         }else {
-            itemModel.imageCurrentZoomScale = itemModel.imageDefaultZoomScale
+            itemModel.imageCurrentZoomScale = itemModel.imageNormalZoomScale
         }
     }
 
@@ -111,7 +111,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
             return
         }
 
-        myCurrentSelectedItemModel.imageCurrentZoomScale = myCurrentSelectedItemModel.imageDefaultZoomScale
+        myCurrentSelectedItemModel.imageCurrentZoomScale = myCurrentSelectedItemModel.imageNormalZoomScale
         myWilltSelectedItemModel.imageCurrentZoomScale = myWilltSelectedItemModel.imageSelectedZoomScale
     }
 }

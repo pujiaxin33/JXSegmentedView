@@ -21,7 +21,7 @@ open class JXSegmentedBaseItemModel {
     /// 是否正在进行过渡动画
     open var isTransitionAnimating: Bool = false
     open var isItemWidthZoomEnabled: Bool = false
-    open var itemWidthDefaultZoomScale: CGFloat = 1
+    open var itemWidthNormalZoomScale: CGFloat = 1
     open var itemWidthCurrentZoomScale: CGFloat = 1
     open var itemWidthSelectedZoomScale: CGFloat = 1.2
 }

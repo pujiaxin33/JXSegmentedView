@@ -53,14 +53,14 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         itemModel.isSelectedAnimable = isSelectedAnimable
         itemModel.selectedAnimationDuration = selectedAnimationDuration
         itemModel.isItemWidthZoomEnabled = isItemWidthZoomEnabled
-        itemModel.itemWidthDefaultZoomScale = 1
+        itemModel.itemWidthNormalZoomScale = 1
         itemModel.itemWidthSelectedZoomScale = itemWidthSelectedZoomScale
         if index == selectedIndex {
             itemModel.isSelected = true
             itemModel.itemWidthCurrentZoomScale = itemModel.itemWidthSelectedZoomScale
         }else {
             itemModel.isSelected = false
-            itemModel.itemWidthCurrentZoomScale = itemModel.itemWidthDefaultZoomScale
+            itemModel.itemWidthCurrentZoomScale = itemModel.itemWidthNormalZoomScale
         }
     }
 
@@ -98,16 +98,16 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
                 animator = JXSegmentedAnimator()
                 animator?.duration = selectedAnimationDuration
                 animator?.progressClosure = {[weak self] (percent) in
-                    currentSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: currentSelectedItemModel.itemWidthSelectedZoomScale, to: currentSelectedItemModel.itemWidthDefaultZoomScale, percent: percent)
+                    currentSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: currentSelectedItemModel.itemWidthSelectedZoomScale, to: currentSelectedItemModel.itemWidthNormalZoomScale, percent: percent)
                     currentSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: currentSelectedItemModel.index) ?? 0
-                    willSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: willSelectedItemModel.itemWidthDefaultZoomScale, to: willSelectedItemModel.itemWidthSelectedZoomScale, percent: percent)
+                    willSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: willSelectedItemModel.itemWidthNormalZoomScale, to: willSelectedItemModel.itemWidthSelectedZoomScale, percent: percent)
                     willSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: willSelectedItemModel.index) ?? 0
                     segmentedView.invalidateLayout()
                 }
                 animator?.start()
             }
         }else {
-            currentSelectedItemModel.itemWidthCurrentZoomScale = currentSelectedItemModel.itemWidthDefaultZoomScale
+            currentSelectedItemModel.itemWidthCurrentZoomScale = currentSelectedItemModel.itemWidthNormalZoomScale
             willSelectedItemModel.itemWidthCurrentZoomScale = willSelectedItemModel.itemWidthSelectedZoomScale
         }
     }
@@ -116,9 +116,9 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         //如果正在进行itemWidth缩放动画，用户又立马滚动了contentScrollView，需要停止动画。
         animator?.stop()
         if isItemWidthZoomEnabled && isItemTransitionEnabled {
-            leftItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: leftItemModel.itemWidthSelectedZoomScale, to: leftItemModel.itemWidthDefaultZoomScale, percent: percent)
+            leftItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: leftItemModel.itemWidthSelectedZoomScale, to: leftItemModel.itemWidthNormalZoomScale, percent: percent)
             leftItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: leftItemModel.index)
-            rightItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: rightItemModel.itemWidthDefaultZoomScale, to: rightItemModel.itemWidthSelectedZoomScale, percent: percent)
+            rightItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: rightItemModel.itemWidthNormalZoomScale, to: rightItemModel.itemWidthSelectedZoomScale, percent: percent)
             rightItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: rightItemModel.index)
         }
     }

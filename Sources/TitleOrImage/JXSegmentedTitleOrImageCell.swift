@@ -77,7 +77,7 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
                     itemModel.titleCurrentZoomScale = itemModel.titleSelectedZoomScale
                 }else {
                     //将要取消选中
-                    itemModel.titleCurrentZoomScale = itemModel.titleDefaultZoomScale
+                    itemModel.titleCurrentZoomScale = itemModel.titleNormalZoomScale
                 }
                 let currentTransform = CGAffineTransform(scaleX: baseScale*itemModel.titleCurrentZoomScale, y: baseScale*itemModel.titleCurrentZoomScale)
                 self?.titleLabel.transform = currentTransform
@@ -103,7 +103,7 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
                     itemModel.titleCurrentStrokeWidth = itemModel.titleSelectedStrokeWidth
                 }else {
                     //将要取消选中
-                    itemModel.titleCurrentStrokeWidth = itemModel.titleDefaultStrokeWidth
+                    itemModel.titleCurrentStrokeWidth = itemModel.titleNormalStrokeWidth
                 }
                 attriText.addAttributes([NSAttributedString.Key.strokeWidth: itemModel.titleCurrentStrokeWidth], range: NSRange(location: 0, length: attriText.string.count))
                 self?.titleLabel.attributedText = attriText
@@ -128,7 +128,7 @@ open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
                     itemModel.titleCurrentColor = itemModel.titleSelectedColor
                 }else {
                     //将要取消选中
-                    itemModel.titleCurrentColor = itemModel.titleDefaultColor
+                    itemModel.titleCurrentColor = itemModel.titleNormalColor
                 }
                 self?.titleLabel.textColor = itemModel.titleCurrentColor
             }

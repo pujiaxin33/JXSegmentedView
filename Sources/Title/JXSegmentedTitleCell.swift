@@ -84,7 +84,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
 
         if myItemModel.isTitleMaskEnabled {
             //允许mask，maskTitleLabel在titleLabel上面，maskTitleLabel设置为titleSelectedColor。titleLabel设置为titleColor
-            titleLabel.textColor = myItemModel.titleDefaultColor
+            titleLabel.textColor = myItemModel.titleNormalColor
             maskTitleLabel.isHidden = false
             maskTitleLabel.textColor = myItemModel.titleSelectedColor
             maskTitleLabel.attributedText = attriText
@@ -118,10 +118,10 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         return {[weak self] (percnet) in
             if itemModel.isSelected {
                 //将要选中，scale从小到大插值渐变
-                itemModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: itemModel.titleDefaultZoomScale, to: itemModel.titleSelectedZoomScale, percent: percnet)
+                itemModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: itemModel.titleNormalZoomScale, to: itemModel.titleSelectedZoomScale, percent: percnet)
             }else {
                 //将要取消选中，scale从大到小插值渐变
-                itemModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: itemModel.titleSelectedZoomScale, to:itemModel.titleDefaultZoomScale , percent: percnet)
+                itemModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: itemModel.titleSelectedZoomScale, to:itemModel.titleNormalZoomScale , percent: percnet)
             }
             let currentTransform = CGAffineTransform(scaleX: baseScale*itemModel.titleCurrentZoomScale, y: baseScale*itemModel.titleCurrentZoomScale)
             self?.titleLabel.transform = currentTransform
@@ -133,10 +133,10 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         return {[weak self] (percent) in
             if itemModel.isSelected {
                 //将要选中，StrokeWidth从小到大插值渐变
-                itemModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: itemModel.titleDefaultStrokeWidth, to: itemModel.titleSelectedStrokeWidth, percent: percent)
+                itemModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: itemModel.titleNormalStrokeWidth, to: itemModel.titleSelectedStrokeWidth, percent: percent)
             }else {
                 //将要取消选中，StrokeWidth从大到小插值渐变
-                itemModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: itemModel.titleSelectedStrokeWidth, to:itemModel.titleDefaultStrokeWidth , percent: percent)
+                itemModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: itemModel.titleSelectedStrokeWidth, to:itemModel.titleNormalStrokeWidth , percent: percent)
             }
             attriText.addAttributes([NSAttributedString.Key.strokeWidth: itemModel.titleCurrentStrokeWidth], range: NSRange(location: 0, length: attriText.string.count))
             self?.titleLabel.attributedText = attriText
@@ -147,10 +147,10 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         return {[weak self] (percent) in
             if itemModel.isSelected {
                 //将要选中，textColor从titleColor到titleSelectedColor插值渐变
-                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleDefaultColor, to: itemModel.titleSelectedColor, percent: percent)
+                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleNormalColor, to: itemModel.titleSelectedColor, percent: percent)
             }else {
                 //将要取消选中，textColor从titleSelectedColor到titleColor插值渐变
-                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleSelectedColor, to: itemModel.titleDefaultColor, percent: percent)
+                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleSelectedColor, to: itemModel.titleNormalColor, percent: percent)
             }
             self?.titleLabel.textColor = itemModel.titleCurrentColor
         }

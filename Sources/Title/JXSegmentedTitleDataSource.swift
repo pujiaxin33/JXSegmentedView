@@ -54,17 +54,17 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
         itemModel.title = titles[index]
         itemModel.isSelectedAnimable = isSelectedAnimable
-        itemModel.titleDefaultColor = titleColor
+        itemModel.titleNormalColor = titleColor
         itemModel.titleSelectedColor = titleSelectedColor
         itemModel.titleFont = titleFont
         itemModel.titleSelectedFont = titleSelectedFont
         itemModel.isTitleZoomEnabled = isTitleZoomEnabled
         itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
         itemModel.isTitleMaskEnabled = isTitleMaskEnabled
-        itemModel.titleDefaultZoomScale = 1
+        itemModel.titleNormalZoomScale = 1
         itemModel.titleSelectedZoomScale = titleSelectedZoomScale
         itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
-        itemModel.titleDefaultStrokeWidth = 0
+        itemModel.titleNormalStrokeWidth = 0
         if index == selectedIndex {
             itemModel.titleCurrentColor = titleSelectedColor
             itemModel.titleCurrentZoomScale = titleSelectedZoomScale
@@ -107,18 +107,18 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         }
 
         if isTitleZoomEnabled && isItemTransitionEnabled {
-            leftModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: leftModel.titleSelectedZoomScale, to: leftModel.titleDefaultZoomScale, percent: CGFloat(percent))
-            rightModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: rightModel.titleDefaultZoomScale, to: rightModel.titleSelectedZoomScale, percent: CGFloat(percent))
+            leftModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: leftModel.titleSelectedZoomScale, to: leftModel.titleNormalZoomScale, percent: CGFloat(percent))
+            rightModel.titleCurrentZoomScale = JXSegmentedViewTool.interpolate(from: rightModel.titleNormalZoomScale, to: rightModel.titleSelectedZoomScale, percent: CGFloat(percent))
         }
 
         if isTitleStrokeWidthEnabled && isItemTransitionEnabled {
-            leftModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: leftModel.titleSelectedStrokeWidth, to: leftModel.titleDefaultStrokeWidth, percent: CGFloat(percent))
-            rightModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: rightModel.titleDefaultStrokeWidth, to: rightModel.titleSelectedStrokeWidth, percent: CGFloat(percent))
+            leftModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: leftModel.titleSelectedStrokeWidth, to: leftModel.titleNormalStrokeWidth, percent: CGFloat(percent))
+            rightModel.titleCurrentStrokeWidth = JXSegmentedViewTool.interpolate(from: rightModel.titleNormalStrokeWidth, to: rightModel.titleSelectedStrokeWidth, percent: CGFloat(percent))
         }
 
         if isTitleColorGradientEnabled && isItemTransitionEnabled {
-            leftModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: leftModel.titleSelectedColor, to: leftModel.titleDefaultColor, percent: percent)
-            rightModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from:rightModel.titleDefaultColor , to:rightModel.titleSelectedColor, percent: percent)
+            leftModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: leftModel.titleSelectedColor, to: leftModel.titleNormalColor, percent: percent)
+            rightModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from:rightModel.titleNormalColor , to:rightModel.titleSelectedColor, percent: percent)
         }
     }
 
@@ -129,9 +129,9 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
             return
         }
 
-        myCurrentSelectedItemModel.titleCurrentColor = myCurrentSelectedItemModel.titleDefaultColor
-        myCurrentSelectedItemModel.titleCurrentZoomScale = myCurrentSelectedItemModel.titleDefaultZoomScale
-        myCurrentSelectedItemModel.titleCurrentStrokeWidth = myCurrentSelectedItemModel.titleDefaultStrokeWidth
+        myCurrentSelectedItemModel.titleCurrentColor = myCurrentSelectedItemModel.titleNormalColor
+        myCurrentSelectedItemModel.titleCurrentZoomScale = myCurrentSelectedItemModel.titleNormalZoomScale
+        myCurrentSelectedItemModel.titleCurrentStrokeWidth = myCurrentSelectedItemModel.titleNormalStrokeWidth
         myCurrentSelectedItemModel.indicatorConvertToItemFrame = CGRect.zero
 
         myWilltSelectedItemModel.titleCurrentColor = myWilltSelectedItemModel.titleSelectedColor
