@@ -13,7 +13,7 @@ open class JXSegmentedTitleItemModel: JXSegmentedBaseItemModel {
     open var titleNormalColor: UIColor = .black
     open var titleCurrentColor: UIColor = .black
     open var titleSelectedColor: UIColor = .red
-    open var titleFont: UIFont = UIFont.systemFont(ofSize: 15)
+    open var titleNormalFont: UIFont = UIFont.systemFont(ofSize: 15)
     open var titleSelectedFont: UIFont = UIFont.systemFont(ofSize: 15)
     open var isTitleZoomEnabled: Bool = false
     /// 字号默认的缩放值

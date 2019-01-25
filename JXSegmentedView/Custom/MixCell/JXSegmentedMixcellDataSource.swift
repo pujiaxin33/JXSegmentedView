@@ -24,7 +24,7 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
 
         let titleImageModel = JXSegmentedTitleImageItemModel()
         titleImageModel.title = "图片"
-        titleImageModel.imageInfo = "dog"
+        titleImageModel.normalImageInfo = "dog"
         dataSource.append(titleImageModel)
 
         let numberModel = JXSegmentedNumberItemModel()
@@ -43,23 +43,23 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
         //根据不同的cell类型返回对应的cell宽度
         var otherWidth: CGFloat = 0
         var title: String?
-        var titleFont: UIFont?
+        var titleNormalFont: UIFont?
         if let itemModel = dataSource[index] as? JXSegmentedTitleItemModel {
             title = itemModel.title
-            titleFont = itemModel.titleFont
+            titleNormalFont = itemModel.titleNormalFont
         }else if let itemModel = dataSource[index] as? JXSegmentedTitleImageItemModel {
             title = itemModel.title
-            titleFont = itemModel.titleFont
+            titleNormalFont = itemModel.titleNormalFont
             otherWidth += itemModel.titleImageSpacing + itemModel.imageSize.width
         }else if let itemModel = dataSource[index] as? JXSegmentedNumberItemModel {
             title = itemModel.title
-            titleFont = itemModel.titleFont
+            titleNormalFont = itemModel.titleNormalFont
         }else if let itemModel = dataSource[index] as? JXSegmentedDotItemModel {
             title = itemModel.title
-            titleFont = itemModel.titleFont
+            titleNormalFont = itemModel.titleNormalFont
         }
 
-        let textWidth = NSString(string: title!).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleFont!], context: nil).size.width
+        let textWidth = NSString(string: title!).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleNormalFont!], context: nil).size.width
         let itemWidth = CGFloat(ceilf(Float(textWidth))) + itemWidthIncrement + otherWidth
         return itemWidth
     }

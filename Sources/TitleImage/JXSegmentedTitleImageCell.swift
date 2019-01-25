@@ -74,18 +74,18 @@ open class JXSegmentedTitleImageCell: JXSegmentedTitleCell {
 
         imageView.bounds = CGRect(x: 0, y: 0, width: myItemModel.imageSize.width, height: myItemModel.imageSize.height)
 
-        var imageInfo = myItemModel.imageInfo
+        var normalImageInfo = myItemModel.normalImageInfo
         if myItemModel.isSelected && myItemModel.selectedImageInfo != nil {
-            imageInfo = myItemModel.selectedImageInfo
+            normalImageInfo = myItemModel.selectedImageInfo
         }
 
         //因为`func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType)`方法会回调多次，尤其是左右滚动的时候会调用无数次。如果每次都触发图片加载，会非常消耗性能。所以只会在图片发生了变化的时候，才进行图片加载。
-        if imageInfo != nil && imageInfo != currentImageInfo {
-            currentImageInfo = imageInfo
+        if normalImageInfo != nil && normalImageInfo != currentImageInfo {
+            currentImageInfo = normalImageInfo
             if myItemModel.loadImageClosure != nil {
-                myItemModel.loadImageClosure!(imageView, imageInfo!)
+                myItemModel.loadImageClosure!(imageView, normalImageInfo!)
             }else {
-                imageView.image = UIImage(named: imageInfo!)
+                imageView.image = UIImage(named: normalImageInfo!)
             }
         }
 

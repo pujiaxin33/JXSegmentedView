@@ -22,7 +22,7 @@ public typealias LoadImageClosure = ((UIImageView, String) -> Void)
 open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
     open var titleImageType: JXSegmentedTitleImageType = .rightImage
     /// 数量需要和item的数量保持一致。可以是ImageName或者图片地址
-    open var imageInfos: [String]?
+    open var normalImageInfos: [String]?
     /// 数量需要和item的数量保持一致。可以是ImageName或者图片地址。如果不赋值，选中时就不会处理图片切换。
     open var selectedImageInfos: [String]?
     /// 内部默认通过UIImage(named:)加载图片。如果传递的是图片地址或者想自己处理图片加载逻辑，可以通过该闭包处理。
@@ -53,7 +53,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         }
 
         itemModel.titleImageType = titleImageType
-        itemModel.imageInfo = imageInfos?[index]
+        itemModel.normalImageInfo = normalImageInfos?[index]
         itemModel.selectedImageInfo = selectedImageInfos?[index]
         itemModel.loadImageClosure = loadImageClosure
         itemModel.imageSize = imageSize

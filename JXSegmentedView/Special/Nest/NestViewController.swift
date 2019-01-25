@@ -26,7 +26,7 @@ class NestViewController: UIViewController {
         segmentedDataSource.itemContentWidth = totalItemWidth/CGFloat(titles.count)
         segmentedDataSource.titles = titles
         segmentedDataSource.isTitleMaskEnabled = true
-        segmentedDataSource.titleColor = UIColor.red
+        segmentedDataSource.titleNormalColor = UIColor.red
         segmentedDataSource.titleSelectedColor = UIColor.white
         segmentedDataSource.reloadData(selectedIndex: 0)
 

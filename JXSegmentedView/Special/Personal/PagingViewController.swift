@@ -32,7 +32,7 @@ class PagingViewController: UIViewController {
         segmentedViewDataSource = JXSegmentedTitleDataSource()
         segmentedViewDataSource.titles = titles
         segmentedViewDataSource.titleSelectedColor = UIColor(red: 105/255, green: 144/255, blue: 239/255, alpha: 1)
-        segmentedViewDataSource.titleColor = UIColor.black
+        segmentedViewDataSource.titleNormalColor = UIColor.black
         segmentedViewDataSource.isTitleColorGradientEnabled = true
         segmentedViewDataSource.isTitleZoomEnabled = true
         segmentedViewDataSource.reloadData(selectedIndex: 0)

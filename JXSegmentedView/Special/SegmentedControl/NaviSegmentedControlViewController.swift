@@ -19,7 +19,7 @@ class NaviSegmentedControlViewController: ContentBaseViewController {
         titleDataSource.itemContentWidth = totalItemWidth/CGFloat(titles.count)
         titleDataSource.titles = titles
         titleDataSource.isTitleMaskEnabled = true
-        titleDataSource.titleColor = UIColor.red
+        titleDataSource.titleNormalColor = UIColor.red
         titleDataSource.titleSelectedColor = UIColor.white
         titleDataSource.reloadData(selectedIndex: 0)
         segmentedDataSource = titleDataSource

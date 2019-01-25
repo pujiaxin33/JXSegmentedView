@@ -9,7 +9,7 @@
 import UIKit
 
 open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
-    open var titleGradientColors: [CGColor] = [UIColor.black.cgColor, UIColor.black.cgColor, UIColor.black.cgColor]
+    open var titleNormalGradientColors: [CGColor] = [UIColor.black.cgColor, UIColor.black.cgColor, UIColor.black.cgColor]
     open var titleSelectedGradientColors: [CGColor] = [UIColor(red: 18/255.0, green: 194/255.0, blue: 233/255.0, alpha: 1).cgColor, UIColor(red: 196/255.0, green: 113/255.0, blue: 237/255.0, alpha: 1).cgColor, UIColor(red: 246/255.0, green: 79/255.0, blue: 89/255.0, alpha: 1).cgColor]
     open var titleGradientStartPoint: CGPoint = CGPoint(x: 0, y: 0)
     open var titleGradientEndPoint: CGPoint = CGPoint(x: 1, y: 0)
@@ -27,7 +27,7 @@ open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
 
         itemModel.titleGradientStartPoint = titleGradientStartPoint
         itemModel.titleGradientEndPoint = titleGradientEndPoint
-        itemModel.titleNormalGradientColors = titleGradientColors
+        itemModel.titleNormalGradientColors = titleNormalGradientColors
         itemModel.titleSelectedGradientColors = titleSelectedGradientColors
         if index == selectedIndex {
             itemModel.titleCurrentGradientColors = itemModel.titleSelectedGradientColors

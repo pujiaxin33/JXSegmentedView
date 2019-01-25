@@ -43,8 +43,8 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
 
         if myItemModel.isTitleZoomEnabled {
             //先把font设置为缩放的最大值，再缩小到最小值，最后根据当前的titleCurrentZoomScale值，进行缩放更新。这样就能避免transform从小到大时字体模糊
-            let maxScaleFont = UIFont(descriptor: myItemModel.titleFont.fontDescriptor, size: myItemModel.titleFont.pointSize*CGFloat(myItemModel.titleSelectedZoomScale))
-            let baseScale = myItemModel.titleFont.lineHeight/maxScaleFont.lineHeight
+            let maxScaleFont = UIFont(descriptor: myItemModel.titleNormalFont.fontDescriptor, size: myItemModel.titleNormalFont.pointSize*CGFloat(myItemModel.titleSelectedZoomScale))
+            let baseScale = myItemModel.titleNormalFont.lineHeight/maxScaleFont.lineHeight
 
             if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
@@ -62,8 +62,8 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
                 titleLabel.font = myItemModel.titleSelectedFont
                 maskTitleLabel.font = myItemModel.titleSelectedFont
             }else {
-                titleLabel.font = myItemModel.titleFont
-                maskTitleLabel.font = myItemModel.titleFont
+                titleLabel.font = myItemModel.titleNormalFont
+                maskTitleLabel.font = myItemModel.titleNormalFont
             }
         }
 
@@ -83,7 +83,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         }
 
         if myItemModel.isTitleMaskEnabled {
-            //允许mask，maskTitleLabel在titleLabel上面，maskTitleLabel设置为titleSelectedColor。titleLabel设置为titleColor
+            //允许mask，maskTitleLabel在titleLabel上面，maskTitleLabel设置为titleSelectedColor。titleLabel设置为titleNormalColor
             titleLabel.textColor = myItemModel.titleNormalColor
             maskTitleLabel.isHidden = false
             maskTitleLabel.textColor = myItemModel.titleSelectedColor
@@ -146,10 +146,10 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
     open func preferredTitleColorAnimateClosure(itemModel: JXSegmentedTitleItemModel) -> JXSegmentedCellSelectedAnimationClosure {
         return {[weak self] (percent) in
             if itemModel.isSelected {
-                //将要选中，textColor从titleColor到titleSelectedColor插值渐变
+                //将要选中，textColor从titleNormalColor到titleSelectedColor插值渐变
                 itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleNormalColor, to: itemModel.titleSelectedColor, percent: percent)
             }else {
-                //将要取消选中，textColor从titleSelectedColor到titleColor插值渐变
+                //将要取消选中，textColor从titleSelectedColor到titleNormalColor插值渐变
                 itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleSelectedColor, to: itemModel.titleNormalColor, percent: percent)
             }
             self?.titleLabel.textColor = itemModel.titleCurrentColor

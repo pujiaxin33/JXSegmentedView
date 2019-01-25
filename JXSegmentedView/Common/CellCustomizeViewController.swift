@@ -124,11 +124,11 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titles = titles
             dataSource.titleImageType = .rightImage
             dataSource.isImageZoomEnabled = true
-            dataSource.imageInfos = ["monkey", "chicken", "dog", "pig", "sheep", "frog", "horse", "cow", "elephant", "dragon"]
-            dataSource.loadImageClosure = {(imageView, imageInfo) in
-                //如果imageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
+            dataSource.normalImageInfos = ["monkey", "chicken", "dog", "pig", "sheep", "frog", "horse", "cow", "elephant", "dragon"]
+            dataSource.loadImageClosure = {(imageView, normalImageInfo) in
+                //如果normalImageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
                 //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
-                imageView.image = UIImage(named: imageInfo)
+                imageView.image = UIImage(named: normalImageInfo)
             }
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
@@ -145,10 +145,10 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isSelectedAnimable = true
             dataSource.titles = titles
             dataSource.selectedImageInfos = ["monkey", nil, "dog", nil, "sheep", "frog", "horse", nil, nil, "dragon"]
-            dataSource.loadImageClosure = {(imageView, imageInfo) in
-                //如果imageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
+            dataSource.loadImageClosure = {(imageView, normalImageInfo) in
+                //如果normalImageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
                 //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
-                imageView.image = UIImage(named: imageInfo)
+                imageView.image = UIImage(named: normalImageInfo)
             }
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)

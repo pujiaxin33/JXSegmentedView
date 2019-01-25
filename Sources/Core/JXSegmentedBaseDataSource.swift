@@ -15,7 +15,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     /// 真实的item宽度 = itemContentWidth + itemWidthIncrement。
     open var itemWidthIncrement: CGFloat = 0
     open var dataSource = [JXSegmentedBaseItemModel]()
-    /// item左右滚动过渡时，是否允许渐变。比如JXSegmentedTitleDataSource的titleZoom、titleColor、titleStrokeWidth等渐变。
+    /// item左右滚动过渡时，是否允许渐变。比如JXSegmentedTitleDataSource的titleZoom、titleNormalColor、titleStrokeWidth等渐变。
     open var isItemTransitionEnabled: Bool = true
     /// 选中的时候，是否需要动画过渡。自定义的cell需要自己处理动画过渡逻辑，动画处理逻辑参考`JXSegmentedTitleCell`
     open var isSelectedAnimable: Bool = false

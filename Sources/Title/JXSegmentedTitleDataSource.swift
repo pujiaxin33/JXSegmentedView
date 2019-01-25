@@ -10,21 +10,21 @@ import UIKit
 
 open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open var titles = [String]()
-    /// title默认的textColor
-    open var titleColor: UIColor = .black
-    /// title选中的textColor
+    /// title普通状态的textColor
+    open var titleNormalColor: UIColor = .black
+    /// title选中状态的textColor
     open var titleSelectedColor: UIColor = .red
-    /// title默认状态时的字体
-    open var titleFont: UIFont = UIFont.systemFont(ofSize: 15)
+    /// title普通状态时的字体
+    open var titleNormalFont: UIFont = UIFont.systemFont(ofSize: 15)
     /// title选中时的字体
     open var titleSelectedFont: UIFont = UIFont.systemFont(ofSize: 15)
     /// title的颜色是否渐变过渡
     open var isTitleColorGradientEnabled: Bool = false
-    /// title是否缩放。使用该效果时，务必保证titleFont和titleSelectedFont值相同。
+    /// title是否缩放。使用该效果时，务必保证titleNormalFont和titleSelectedFont值相同。
     open var isTitleZoomEnabled: Bool = false
-    /// isTitleZoomEnabled为true才生效。是对字号的缩放，比如titleFont的pointSize为10，放大之后字号就是10*1.2=12。
+    /// isTitleZoomEnabled为true才生效。是对字号的缩放，比如titleNormalFont的pointSize为10，放大之后字号就是10*1.2=12。
     open var titleSelectedZoomScale: CGFloat = 1.2
-    /// title的线宽是否允许粗细。使用该效果时，务必保证titleFont和titleSelectedFont值相同。
+    /// title的线宽是否允许粗细。使用该效果时，务必保证titleNormalFont和titleSelectedFont值相同。
     open var isTitleStrokeWidthEnabled: Bool = false
     /// 用于控制字体的粗细（底层通过NSStrokeWidthAttributeName实现），负数越小字体越粗。
     open var titleSelectedStrokeWidth: CGFloat = -2
@@ -54,9 +54,9 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
         itemModel.title = titles[index]
         itemModel.isSelectedAnimable = isSelectedAnimable
-        itemModel.titleNormalColor = titleColor
+        itemModel.titleNormalColor = titleNormalColor
         itemModel.titleSelectedColor = titleSelectedColor
-        itemModel.titleFont = titleFont
+        itemModel.titleNormalFont = titleNormalFont
         itemModel.titleSelectedFont = titleSelectedFont
         itemModel.isTitleZoomEnabled = isTitleZoomEnabled
         itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
@@ -70,7 +70,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
             itemModel.titleCurrentZoomScale = titleSelectedZoomScale
             itemModel.titleCurrentStrokeWidth = titleSelectedStrokeWidth
         }else {
-            itemModel.titleCurrentColor = titleColor
+            itemModel.titleCurrentColor = titleNormalColor
             itemModel.titleCurrentZoomScale = 1
             itemModel.titleCurrentStrokeWidth = 0
         }
@@ -80,7 +80,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         var itemWidth = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
         if itemContentWidth == JXSegmentedViewAutomaticDimension {
             if let title = (dataSource[index] as? JXSegmentedTitleItemModel)?.title {
-                let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleFont], context: nil).size.width
+                let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleNormalFont], context: nil).size.width
                 itemWidth += CGFloat(ceilf(Float(textWidth)))
             }
         }else {
