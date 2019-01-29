@@ -16,7 +16,7 @@ open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
         super.commonInit()
 
         indicatorHeight = 26
-        indicatorColor = .gray
+        indicatorColor = .lightGray
     }
 
     open override func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel) {

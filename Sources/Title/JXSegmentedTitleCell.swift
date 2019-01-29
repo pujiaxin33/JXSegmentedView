@@ -12,6 +12,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
     public let titleLabel = UILabel()
     public let maskTitleLabel = UILabel()
     public let titleMaskLayer = CALayer()
+    public let maskTitleMaskLayer = CALayer()
 
     open override func commonInit() {
         super.commonInit()
@@ -24,7 +25,9 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         contentView.addSubview(maskTitleLabel)
 
         titleMaskLayer.backgroundColor = UIColor.red.cgColor
-        maskTitleLabel.layer.mask = titleMaskLayer
+
+        maskTitleMaskLayer.backgroundColor = UIColor.red.cgColor
+        maskTitleLabel.layer.mask = maskTitleMaskLayer
     }
 
     open override func layoutSubviews() {
@@ -77,28 +80,55 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             }else {
                 attriText.addAttributes([NSAttributedString.Key.strokeWidth: myItemModel.titleCurrentStrokeWidth], range: NSRange(location: 0, length: title.count))
                 titleLabel.attributedText = attriText
+                maskTitleLabel.attributedText = attriText
             }
         }else {
             titleLabel.attributedText = attriText
+            maskTitleLabel.attributedText = attriText
         }
 
         if myItemModel.isTitleMaskEnabled {
             //允许mask，maskTitleLabel在titleLabel上面，maskTitleLabel设置为titleSelectedColor。titleLabel设置为titleNormalColor
-            titleLabel.textColor = myItemModel.titleNormalColor
+            //为了显示效果，使用了双遮罩。即titleMaskLayer遮罩titleLabel，maskTitleMaskLayer遮罩maskTitleLabel
             maskTitleLabel.isHidden = false
+            titleLabel.textColor = myItemModel.titleNormalColor
             maskTitleLabel.textColor = myItemModel.titleSelectedColor
-            maskTitleLabel.attributedText = attriText
             maskTitleLabel.sizeToFit()
 
-            var frame = myItemModel.indicatorConvertToItemFrame
-            frame.origin.x -= (contentView.bounds.size.width - maskTitleLabel.bounds.size.width)/2
-            frame.origin.y = 0
+            var topMaskFrame = myItemModel.indicatorConvertToItemFrame
+            topMaskFrame.origin.y = 0
+            var bottomMaskFrame = topMaskFrame
+            var maskStartX: CGFloat = 0
+            if maskTitleLabel.bounds.size.width >= bounds.size.width {
+                topMaskFrame.origin.x -= (maskTitleLabel.bounds.size.width - bounds.size.width)/2
+                bottomMaskFrame.size.width = maskTitleLabel.bounds.size.width
+                maskStartX = -(maskTitleLabel.bounds.size.width - bounds.size.width)/2
+            }else {
+                topMaskFrame.origin.x -= (bounds.size.width - maskTitleLabel.bounds.size.width)/2
+                bottomMaskFrame.size.width = bounds.size.width
+                maskStartX = 0
+            }
+            bottomMaskFrame.origin.x = topMaskFrame.origin.x
+            if topMaskFrame.origin.x > maskStartX {
+                bottomMaskFrame.origin.x = topMaskFrame.origin.x - bottomMaskFrame.size.width
+            }else {
+                bottomMaskFrame.origin.x = topMaskFrame.maxX
+            }
+
             CATransaction.begin()
             CATransaction.setDisableActions(true)
-            titleMaskLayer.frame = frame
+            if topMaskFrame.size.width > 0 && topMaskFrame.intersects(maskTitleLabel.frame) {
+                titleLabel.layer.mask = titleMaskLayer
+                titleMaskLayer.frame = bottomMaskFrame
+                maskTitleMaskLayer.frame = topMaskFrame
+            }else {
+                titleLabel.layer.mask = nil
+                maskTitleMaskLayer.frame = topMaskFrame
+            }
             CATransaction.commit()
         }else {
             maskTitleLabel.isHidden = true
+            titleLabel.layer.mask = nil
             if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
                 let titleColorClosure = preferredTitleColorAnimateClosure(itemModel: myItemModel)
@@ -140,6 +170,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             }
             attriText.addAttributes([NSAttributedString.Key.strokeWidth: itemModel.titleCurrentStrokeWidth], range: NSRange(location: 0, length: attriText.string.count))
             self?.titleLabel.attributedText = attriText
+            self?.maskTitleLabel.attributedText = attriText
         }
     }
 
