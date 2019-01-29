@@ -16,13 +16,13 @@ class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
 
         titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)
-    }
 
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-
-        titleLabel.center = contentView.center
+        let centerX = NSLayoutConstraint(item: titleLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0)
+        contentView.addConstraint(centerX)
+        let centerY = NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0)
+        contentView.addConstraint(centerY)
     }
 
     override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
@@ -37,8 +37,5 @@ class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
         }else {
             titleLabel.attributedText = myItemModel.attributeTitle
         }
-
-        titleLabel.sizeToFit()
-        setNeedsLayout()
     }
 }

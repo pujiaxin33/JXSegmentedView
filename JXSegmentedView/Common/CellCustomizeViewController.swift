@@ -156,24 +156,34 @@ class CellCustomizeViewController: UITableViewController {
         case "多行富文本":
             //配置数据源
             let dataSource = JXSegmentedTitleAttributeDataSource()
-            let mondayAttriText = NSMutableAttributedString(string: "周一\n1月7号", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13)])
-            mondayAttriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.blue, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
-
-            let tuesdayAttriText = NSMutableAttributedString(string: "周二\n1月8号", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13)])
-            tuesdayAttriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.blue, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
-
-            let wednesdayAttriText = NSMutableAttributedString(string: "周三\n1月9号", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13)])
-            wednesdayAttriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.blue, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
+            func formatNormal(attriText: NSMutableAttributedString) {
+                attriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.blue, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
+                attriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13)], range: NSRange(location: 2, length: attriText.string.count - 2))
+            }
+            func formatSelected(attriText: NSMutableAttributedString) {
+                attriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.red, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], range: NSRange(location: 0, length: 2))
+                attriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)], range: NSRange(location: 2, length: attriText.string.count - 2))
+            }
+            let mondayAttriText = NSMutableAttributedString(string: "周一\n1月7号")
+            formatNormal(attriText: mondayAttriText)
+            let tuesdayAttriText = NSMutableAttributedString(string: "周二\n1月8号")
+            formatNormal(attriText: tuesdayAttriText)
+            let wednesdayAttriText = NSMutableAttributedString(string: "周三\n1月9号")
+            formatNormal(attriText: wednesdayAttriText)
             dataSource.attributeTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as! [NSAttributedString]
 
-            mondayAttriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.red, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
-            tuesdayAttriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.red, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
-            wednesdayAttriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.red, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
-
-            dataSource.selectedAttributeTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as! [NSAttributedString]
+            formatSelected(attriText: mondayAttriText)
+            formatSelected(attriText: tuesdayAttriText)
+            formatSelected(attriText: wednesdayAttriText)
+            dataSource.selectedAttributeTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as? [NSAttributedString]
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorBackgroundView()
+            indicator.indicatorHeight = 40
+            indicator.indicatorCornerRadius = 5
+            vc.segmentedView.indicators = [indicator]
         case "多种cell":
             let dataSource = JXSegmentedMixcellDataSource()
             dataSource.reloadData(selectedIndex: 0)
