@@ -57,10 +57,6 @@
 		195A9BA821DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BA721DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift */; };
 		195A9BAA21DD9CB30005B7A7 /* JXSegmentedTitleAttributeItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BA921DD9CB30005B7A7 /* JXSegmentedTitleAttributeItemModel.swift */; };
 		195A9BAC21DD9CC10005B7A7 /* JXSegmentedTitleAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BAB21DD9CC10005B7A7 /* JXSegmentedTitleAttributeCell.swift */; };
-		195A9BB521DDD7990005B7A7 /* JXPagingMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BB121DDD7990005B7A7 /* JXPagingMainTableView.swift */; };
-		195A9BB621DDD7990005B7A7 /* JXPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BB221DDD7990005B7A7 /* JXPagingView.swift */; };
-		195A9BB721DDD7990005B7A7 /* JXPagingListRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BB321DDD7990005B7A7 /* JXPagingListRefreshView.swift */; };
-		195A9BB821DDD7990005B7A7 /* JXPagingListContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BB421DDD7990005B7A7 /* JXPagingListContainerView.swift */; };
 		195A9BBA21DDD7BB0005B7A7 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BB921DDD7BB0005B7A7 /* PagingViewController.swift */; };
 		195A9BBF21DDD7F90005B7A7 /* PagingViewTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BBC21DDD7F80005B7A7 /* PagingViewTableHeaderView.swift */; };
 		195A9BC221DDDC8B0005B7A7 /* PagingListBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BC121DDDC8B0005B7A7 /* PagingListBaseView.swift */; };
@@ -74,6 +70,10 @@
 		195A9C4F21E332080005B7A7 /* LoadDataCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9C4E21E332080005B7A7 /* LoadDataCustomViewController.swift */; };
 		195A9C5121E3322C0005B7A7 /* LoadDataCustomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9C5021E3322C0005B7A7 /* LoadDataCustomListViewController.swift */; };
 		195A9C5321E3383D0005B7A7 /* UIWindow+JXSafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9C5221E3383D0005B7A7 /* UIWindow+JXSafeArea.swift */; };
+		1979C2042200307100DA40E7 /* JXPagingMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1979C2002200307000DA40E7 /* JXPagingMainTableView.swift */; };
+		1979C2052200307100DA40E7 /* JXPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1979C2012200307000DA40E7 /* JXPagingView.swift */; };
+		1979C2062200307100DA40E7 /* JXPagingListRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1979C2022200307000DA40E7 /* JXPagingListRefreshView.swift */; };
+		1979C2072200307100DA40E7 /* JXPagingListContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1979C2032200307000DA40E7 /* JXPagingListContainerView.swift */; };
 		19B5D5CF21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */; };
 		19B5D5D121EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D021EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift */; };
 		19B5D5D321EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */; };
@@ -133,10 +133,6 @@
 		195A9BA721DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeDataSource.swift; sourceTree = "<group>"; };
 		195A9BA921DD9CB30005B7A7 /* JXSegmentedTitleAttributeItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeItemModel.swift; sourceTree = "<group>"; };
 		195A9BAB21DD9CC10005B7A7 /* JXSegmentedTitleAttributeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeCell.swift; sourceTree = "<group>"; };
-		195A9BB121DDD7990005B7A7 /* JXPagingMainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingMainTableView.swift; sourceTree = "<group>"; };
-		195A9BB221DDD7990005B7A7 /* JXPagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingView.swift; sourceTree = "<group>"; };
-		195A9BB321DDD7990005B7A7 /* JXPagingListRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListRefreshView.swift; sourceTree = "<group>"; };
-		195A9BB421DDD7990005B7A7 /* JXPagingListContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListContainerView.swift; sourceTree = "<group>"; };
 		195A9BB921DDD7BB0005B7A7 /* PagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		195A9BBC21DDD7F80005B7A7 /* PagingViewTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewTableHeaderView.swift; sourceTree = "<group>"; };
 		195A9BC121DDDC8B0005B7A7 /* PagingListBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingListBaseView.swift; sourceTree = "<group>"; };
@@ -150,6 +146,10 @@
 		195A9C4E21E332080005B7A7 /* LoadDataCustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataCustomViewController.swift; sourceTree = "<group>"; };
 		195A9C5021E3322C0005B7A7 /* LoadDataCustomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataCustomListViewController.swift; sourceTree = "<group>"; };
 		195A9C5221E3383D0005B7A7 /* UIWindow+JXSafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+JXSafeArea.swift"; sourceTree = "<group>"; };
+		1979C2002200307000DA40E7 /* JXPagingMainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingMainTableView.swift; sourceTree = "<group>"; };
+		1979C2012200307000DA40E7 /* JXPagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingView.swift; sourceTree = "<group>"; };
+		1979C2022200307000DA40E7 /* JXPagingListRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListRefreshView.swift; sourceTree = "<group>"; };
+		1979C2032200307000DA40E7 /* JXPagingListContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListContainerView.swift; sourceTree = "<group>"; };
 		19B5D5CE21EEF66E00A2171E /* JXSegmentedIndicatorDotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDotLineView.swift; sourceTree = "<group>"; };
 		19B5D5D021EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDoubleLineView.swift; sourceTree = "<group>"; };
 		19B5D5D221EF25E600A2171E /* JXSegmentedIndicatorGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorGradientView.swift; sourceTree = "<group>"; };
@@ -372,23 +372,12 @@
 		195A9BAF21DDD7560005B7A7 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
-				195A9BB021DDD7990005B7A7 /* JXPagingView-Swift */,
+				1979C1FF2200307000DA40E7 /* JXPagingView-Swift */,
 				195A9BBC21DDD7F80005B7A7 /* PagingViewTableHeaderView.swift */,
 				195A9BB921DDD7BB0005B7A7 /* PagingViewController.swift */,
 				195A9BC121DDDC8B0005B7A7 /* PagingListBaseView.swift */,
 			);
 			path = Personal;
-			sourceTree = "<group>";
-		};
-		195A9BB021DDD7990005B7A7 /* JXPagingView-Swift */ = {
-			isa = PBXGroup;
-			children = (
-				195A9BB121DDD7990005B7A7 /* JXPagingMainTableView.swift */,
-				195A9BB221DDD7990005B7A7 /* JXPagingView.swift */,
-				195A9BB321DDD7990005B7A7 /* JXPagingListRefreshView.swift */,
-				195A9BB421DDD7990005B7A7 /* JXPagingListContainerView.swift */,
-			);
-			path = "JXPagingView-Swift";
 			sourceTree = "<group>";
 		};
 		195A9BC321DDEB640005B7A7 /* SegmentedControl */ = {
@@ -436,6 +425,17 @@
 				195A9C5221E3383D0005B7A7 /* UIWindow+JXSafeArea.swift */,
 			);
 			path = ListCustom;
+			sourceTree = "<group>";
+		};
+		1979C1FF2200307000DA40E7 /* JXPagingView-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				1979C2002200307000DA40E7 /* JXPagingMainTableView.swift */,
+				1979C2012200307000DA40E7 /* JXPagingView.swift */,
+				1979C2022200307000DA40E7 /* JXPagingListRefreshView.swift */,
+				1979C2032200307000DA40E7 /* JXPagingListContainerView.swift */,
+			);
+			path = "JXPagingView-Swift";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,6 +512,7 @@
 				190C48DA21F855B0008032C7 /* JXSegmentedTitleGradientDataSource.swift in Sources */,
 				195A9C4721E321BF0005B7A7 /* LoadDataViewController.swift in Sources */,
 				195A9BCA21DDF6410005B7A7 /* NestViewController.swift in Sources */,
+				1979C2042200307100DA40E7 /* JXPagingMainTableView.swift in Sources */,
 				1904AA7E21D7549600316F97 /* IndicatorCustomizeViewController.swift in Sources */,
 				1904AA6021D5C84300316F97 /* JXSegmentedIndicatorRainbowLineView.swift in Sources */,
 				1904AA6221D5D2E700316F97 /* JXSegmentedIndicatorBackgroundView.swift in Sources */,
@@ -522,18 +523,17 @@
 				1904AA5321D36A8700316F97 /* JXSegmentedTitleCell.swift in Sources */,
 				1904AA2921D31F6400316F97 /* ViewController.swift in Sources */,
 				1904AA4C21D3637300316F97 /* JXSegmentedViewTool.swift in Sources */,
-				195A9BB521DDD7990005B7A7 /* JXPagingMainTableView.swift in Sources */,
 				195A9BC521DDEB8E0005B7A7 /* SegmentedControlViewController.swift in Sources */,
 				1904AA7421D624BC00316F97 /* JXSegmentedDotCell.swift in Sources */,
 				195A9BAA21DD9CB30005B7A7 /* JXSegmentedTitleAttributeItemModel.swift in Sources */,
 				19B5D5D121EEFBAD00A2171E /* JXSegmentedIndicatorDoubleLineView.swift in Sources */,
 				1904AA3B21D31FBE00316F97 /* JXSegmentedView.swift in Sources */,
 				190C48DE21F855D1008032C7 /* JXSegmentedTitleGradientCell.swift in Sources */,
+				1979C2052200307100DA40E7 /* JXPagingView.swift in Sources */,
 				195A9C4921E321CD0005B7A7 /* LoadDataListViewController.swift in Sources */,
 				1904AA8021D754C400316F97 /* CellCustomizeViewController.swift in Sources */,
 				1904AA6421D5F4B400316F97 /* JXSegmentedIndicatorTriangleView.swift in Sources */,
 				1904AA8421D75BA200316F97 /* TitleImageSettingViewController.swift in Sources */,
-				195A9BB821DDD7990005B7A7 /* JXPagingListContainerView.swift in Sources */,
 				190C48D321F7134C008032C7 /* JXSegmentedTitleOrImageDataSource.swift in Sources */,
 				190C48D721F7137B008032C7 /* JXSegmentedTitleOrImageCell.swift in Sources */,
 				195A9C4F21E332080005B7A7 /* LoadDataCustomViewController.swift in Sources */,
@@ -544,12 +544,12 @@
 				1904AA6721D6041600316F97 /* JXSegmentedBaseDataSource.swift in Sources */,
 				195A9BBF21DDD7F90005B7A7 /* PagingViewTableHeaderView.swift in Sources */,
 				195A9BAC21DD9CC10005B7A7 /* JXSegmentedTitleAttributeCell.swift in Sources */,
-				195A9BB621DDD7990005B7A7 /* JXPagingView.swift in Sources */,
 				195A9BC721DDEF060005B7A7 /* NaviSegmentedControlViewController.swift in Sources */,
 				1904AA7021D6226D00316F97 /* JXSegmentedDotDataSource.swift in Sources */,
 				195A9C5321E3383D0005B7A7 /* UIWindow+JXSafeArea.swift in Sources */,
 				1904AA4F21D3668E00316F97 /* JXSegmentedTitleDataSource.swift in Sources */,
 				190C48D521F71368008032C7 /* JXSegmentedTitleOrImageItemModel.swift in Sources */,
+				1979C2062200307100DA40E7 /* JXPagingListRefreshView.swift in Sources */,
 				1904AA6B21D6093600316F97 /* JXSegmentedNumberItemModel.swift in Sources */,
 				195A9C5121E3322C0005B7A7 /* LoadDataCustomListViewController.swift in Sources */,
 				1904AA7921D70A8800316F97 /* JXSegmentedTitleImageItemModel.swift in Sources */,
@@ -559,9 +559,9 @@
 				1904AA4321D3533E00316F97 /* JXSegmentedIndicatorProtocol.swift in Sources */,
 				1904AA5A21D37B8800316F97 /* JXSegmentedListContainerView.swift in Sources */,
 				195A9BCC21DDF7720005B7A7 /* NestChildViewController.swift in Sources */,
-				195A9BB721DDD7990005B7A7 /* JXPagingListRefreshView.swift in Sources */,
 				1904AA3F21D3215900316F97 /* JXSegmentedBaseCell.swift in Sources */,
 				1904AA7B21D70A9B00316F97 /* JXSegmentedTitleImageCell.swift in Sources */,
+				1979C2072200307100DA40E7 /* JXPagingListContainerView.swift in Sources */,
 				1904AA5121D36A6E00316F97 /* JXSegmentedTitleItemModel.swift in Sources */,
 				1904AA4A21D35F3100316F97 /* JXSegmentedIndicatorBaseView.swift in Sources */,
 				1904AA4821D35EF500316F97 /* JXSegmentedIndicatorLineView.swift in Sources */,
