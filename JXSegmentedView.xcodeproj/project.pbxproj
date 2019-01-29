@@ -203,6 +203,7 @@
 		1904AA3821D31F9700316F97 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				190C48D021F712E9008032C7 /* AttributeTitle */,
 				190C48D821F85584008032C7 /* TitleGradient */,
 				1904AA7521D70A1B00316F97 /* TitleImage */,
 				190C48D121F712FE008032C7 /* TitleOrImage */,
@@ -319,14 +320,14 @@
 			path = MixCell;
 			sourceTree = "<group>";
 		};
-		190C48D021F712E9008032C7 /* Attribute */ = {
+		190C48D021F712E9008032C7 /* AttributeTitle */ = {
 			isa = PBXGroup;
 			children = (
 				195A9BA721DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift */,
 				195A9BA921DD9CB30005B7A7 /* JXSegmentedTitleAttributeItemModel.swift */,
 				195A9BAB21DD9CC10005B7A7 /* JXSegmentedTitleAttributeCell.swift */,
 			);
-			path = Attribute;
+			path = AttributeTitle;
 			sourceTree = "<group>";
 		};
 		190C48D121F712FE008032C7 /* TitleOrImage */ = {
@@ -353,7 +354,6 @@
 			isa = PBXGroup;
 			children = (
 				190C48C921F6F908008032C7 /* MixCell */,
-				190C48D021F712E9008032C7 /* Attribute */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
