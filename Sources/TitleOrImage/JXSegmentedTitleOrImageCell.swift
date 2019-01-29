@@ -9,7 +9,7 @@
 import UIKit
 
 open class JXSegmentedTitleOrImageCell: JXSegmentedTitleCell {
-    open var imageView = UIImageView()
+    public let imageView = UIImageView()
     private var currentImageInfo: String?
 
     open override func prepareForReuse() {

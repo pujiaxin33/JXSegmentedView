@@ -9,7 +9,7 @@
 import UIKit
 
 open class JXSegmentedNumberCell: JXSegmentedTitleCell {
-    open var numberLabel = UILabel()
+    public let numberLabel = UILabel()
 
     open override func commonInit() {
         super.commonInit()

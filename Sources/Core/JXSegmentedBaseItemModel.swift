@@ -17,11 +17,11 @@ open class JXSegmentedBaseItemModel {
     open var indicatorConvertToItemFrame: CGRect = CGRect.zero
     open var isItemTransitionEnabled: Bool = true
     open var isSelectedAnimable: Bool = false
-    open var selectedAnimationDuration: TimeInterval = 0.25
+    open var selectedAnimationDuration: TimeInterval = 0
     /// 是否正在进行过渡动画
     open var isTransitionAnimating: Bool = false
     open var isItemWidthZoomEnabled: Bool = false
-    open var itemWidthNormalZoomScale: CGFloat = 1
-    open var itemWidthCurrentZoomScale: CGFloat = 1
-    open var itemWidthSelectedZoomScale: CGFloat = 1.2
+    open var itemWidthNormalZoomScale: CGFloat = 0
+    open var itemWidthCurrentZoomScale: CGFloat = 0
+    open var itemWidthSelectedZoomScale: CGFloat = 0
 }

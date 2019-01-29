@@ -9,7 +9,7 @@
 import UIKit
 
 open class JXSegmentedTitleGradientCell: JXSegmentedTitleCell {
-    open var gradientLayer = CAGradientLayer()
+    public let gradientLayer = CAGradientLayer()
     private var canStartSelectedAnimation: Bool = false
 
     open override func commonInit() {

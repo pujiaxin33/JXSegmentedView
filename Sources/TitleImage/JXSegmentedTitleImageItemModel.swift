@@ -13,10 +13,10 @@ open class JXSegmentedTitleImageItemModel: JXSegmentedTitleItemModel {
     open var normalImageInfo: String?
     open var selectedImageInfo: String?
     open var loadImageClosure: LoadImageClosure?
-    open var imageSize: CGSize = CGSize(width: 20, height: 20)
-    open var titleImageSpacing: CGFloat = 5
+    open var imageSize: CGSize = CGSize.zero
+    open var titleImageSpacing: CGFloat = 0
     open var isImageZoomEnabled: Bool = false
-    open var imageNormalZoomScale: CGFloat = 1
-    open var imageCurrentZoomScale: CGFloat = 1
-    open var imageSelectedZoomScale: CGFloat = 1.2
+    open var imageNormalZoomScale: CGFloat = 0
+    open var imageCurrentZoomScale: CGFloat = 0
+    open var imageSelectedZoomScale: CGFloat = 0
 }

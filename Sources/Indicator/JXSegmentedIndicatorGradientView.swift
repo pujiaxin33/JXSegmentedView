@@ -12,14 +12,14 @@ class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
     open var gradientColors = [CGColor]()
     /// 宽度增量，背景指示器一般要比cell宽一些
     open var gradientViewWidthIncrement: CGFloat = 20
-
+    public let gradientMaskLayer: CAShapeLayer = CAShapeLayer()
     open class override var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     open var gradientLayer: CAGradientLayer {
         return layer as! CAGradientLayer
     }
-    open var gradientMaskLayer: CAShapeLayer!
+    
     private var gradientMaskLayerFrame = CGRect.zero
 
     open override func commonInit() {
@@ -31,7 +31,6 @@ class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
 
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0)
-        gradientMaskLayer = CAShapeLayer()
         layer.mask = gradientMaskLayer
     }
 
