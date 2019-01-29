@@ -25,17 +25,21 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
         let titleImageModel = JXSegmentedTitleImageItemModel()
         titleImageModel.title = "图片"
         titleImageModel.normalImageInfo = "dog"
+        titleImageModel.imageSize = CGSize(width: 20, height: 20)
         dataSource.append(titleImageModel)
 
         let numberModel = JXSegmentedNumberItemModel()
         numberModel.title = "数字"
         numberModel.number = 33
         numberModel.numberString = "33"
+        numberModel.numberWidthIncrement = 10
         dataSource.append(numberModel)
 
         let dotModel = JXSegmentedDotItemModel()
         dotModel.title = "红点"
         dotModel.dotState = true
+        dotModel.dotSize = CGSize(width: 10, height: 10)
+        dotModel.dotCornerRadius = 5
         dataSource.append(dotModel)
     }
 

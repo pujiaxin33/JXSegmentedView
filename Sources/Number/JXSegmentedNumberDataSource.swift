@@ -54,6 +54,7 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
         itemModel.numberTextColor = numberTextColor
         itemModel.numberBackgroundColor = numberBackgroundColor
         itemModel.numberOffset = numberOffset
+        itemModel.numberWidthIncrement = numberWidthIncrement
     }
 
     //MARK: - JXSegmentedViewDataSource
