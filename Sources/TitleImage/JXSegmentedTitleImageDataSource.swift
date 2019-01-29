@@ -37,14 +37,6 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         return JXSegmentedTitleImageItemModel()
     }
 
-    open override func reloadData(selectedIndex: Int) {
-        super.reloadData(selectedIndex: selectedIndex)
-
-        for (index, itemModel) in (dataSource as! [JXSegmentedTitleImageItemModel]).enumerated() {
-            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
-        }
-    }
-
     open override func preferredRefreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
         super.preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
 
@@ -60,6 +52,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         itemModel.isImageZoomEnabled = isImageZoomEnabled
         itemModel.imageNormalZoomScale = 1
         itemModel.imageSelectedZoomScale = imageSelectedZoomScale
+        itemModel.titleImageSpacing = titleImageSpacing
         if index == selectedIndex {
             itemModel.imageCurrentZoomScale = itemModel.imageSelectedZoomScale
         }else {

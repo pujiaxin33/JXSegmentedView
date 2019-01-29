@@ -37,7 +37,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
     open override func reloadData(selectedIndex: Int) {
         super.reloadData(selectedIndex: selectedIndex)
-
+        
         for (index, _) in titles.enumerated() {
             let itemModel = preferredItemModelInstance()
             preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)

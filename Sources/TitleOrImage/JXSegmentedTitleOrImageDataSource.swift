@@ -23,10 +23,6 @@ open class JXSegmentedTitleOrImageDataSource: JXSegmentedTitleDataSource {
         selectedAnimationDuration = 0.1
 
         super.reloadData(selectedIndex: selectedIndex)
-
-        for (index, itemModel) in (dataSource as! [JXSegmentedTitleOrImageItemModel]).enumerated() {
-            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
-        }
     }
 
     open override func preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {

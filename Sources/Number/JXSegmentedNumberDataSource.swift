@@ -30,14 +30,6 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
         return JXSegmentedNumberItemModel()
     }
 
-    open override func reloadData(selectedIndex: Int) {
-        super.reloadData(selectedIndex: selectedIndex)
-
-        for (index, itemModel) in (dataSource as! [JXSegmentedNumberItemModel]).enumerated() {
-            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
-        }
-    }
-
     open override func preferredRefreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
         super.preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
 
