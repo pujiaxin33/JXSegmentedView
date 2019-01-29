@@ -15,8 +15,8 @@ class LoadDataDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "测试详情页面"
-        self.view.backgroundColor = UIColor.white
+        title = "测试详情页面"
+        view.backgroundColor = UIColor.white
 
         textLabel.textAlignment = .center
         textLabel.textColor = UIColor.black

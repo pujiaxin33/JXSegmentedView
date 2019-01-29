@@ -12,21 +12,21 @@ import UIKit
 extension UIColor {
     var jx_red: CGFloat {
         var r: CGFloat = 0
-        self.getRed(&r, green: nil, blue: nil, alpha: nil)
+        getRed(&r, green: nil, blue: nil, alpha: nil)
         return r
     }
     var jx_green: CGFloat {
         var g: CGFloat = 0
-        self.getRed(nil, green: &g, blue: nil, alpha: nil)
+        getRed(nil, green: &g, blue: nil, alpha: nil)
         return g
     }
     var jx_blue: CGFloat {
         var b: CGFloat = 0
-        self.getRed(nil, green: nil, blue: &b, alpha: nil)
+        getRed(nil, green: nil, blue: &b, alpha: nil)
         return b
     }
     var jx_alpha: CGFloat {
-        return self.cgColor.alpha
+        return cgColor.alpha
     }
 }
 

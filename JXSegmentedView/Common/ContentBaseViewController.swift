@@ -18,7 +18,7 @@ class ContentBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        view.backgroundColor = .white
 
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedView.dataSource = segmentedDataSource
@@ -36,13 +36,13 @@ class ContentBaseViewController: UIViewController {
                 (indicaotr as? JXSegmentedIndicatorRainbowLineView) != nil ||
                 (indicaotr as? JXSegmentedIndicatorImageView) != nil ||
                 (indicaotr as? JXSegmentedIndicatorTriangleView) != nil {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "指示器位置切换", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didIndicatorPositionChanged))
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "指示器位置切换", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didIndicatorPositionChanged))
                 break
             }
         }
 
         if (segmentedDataSource as? JXSegmentedTitleImageDataSource) != nil {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "设置", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didSetingsButtonClicked))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "设置", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didSetingsButtonClicked))
         }
     }
     
@@ -62,7 +62,7 @@ class ContentBaseViewController: UIViewController {
             //再更新segmentedView
             self?.segmentedView.reloadData()
         }
-        self.navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc func didIndicatorPositionChanged() {

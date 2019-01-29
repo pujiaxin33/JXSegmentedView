@@ -19,7 +19,7 @@ class NestChildViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        view.backgroundColor = .white
         
         //配置数据源
         segmentedDataSource.isTitleColorGradientEnabled = true
@@ -52,7 +52,7 @@ class NestChildViewController: UIViewController {
 
 extension NestChildViewController: JXSegmentedListContentViewDelegate {
     func listView() -> UIView {
-        return self.view
+        return view
     }
 }
 

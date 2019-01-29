@@ -16,7 +16,7 @@ class LoadDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        view.backgroundColor = .white
 
         //1、初始化JXSegmentedView
         segmentedView = JXSegmentedView()
@@ -45,7 +45,7 @@ class LoadDataViewController: UIViewController {
         //6、将listContainerView.scrollView和segmentedView.contentScrollView进行关联
         segmentedView.contentScrollView = listContainerView.scrollView
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刷新数据", style: UIBarButtonItem.Style.plain, target: self, action: #selector(reloadData))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刷新数据", style: UIBarButtonItem.Style.plain, target: self, action: #selector(reloadData))
 
         reloadData()
     }
@@ -104,7 +104,7 @@ extension LoadDataViewController: JXSegmentedListContainerViewDelegate {
 
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate {
         let vc = LoadDataListViewController()
-        vc.naviController = self.navigationController
+        vc.naviController = navigationController
         vc.typeString = segmentedDataSource.titles[index]
         return vc
     }

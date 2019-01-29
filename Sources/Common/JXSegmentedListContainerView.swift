@@ -80,8 +80,8 @@ open class JXSegmentedListContainerView: UIView {
     }
 
     open func commonInit() {
-        if let customScrollView = self.delegate.scrollView?(in: self) {
-            self.scrollView = customScrollView
+        if let customScrollView = delegate.scrollView?(in: self) {
+            scrollView = customScrollView
         }else {
             scrollView = UIScrollView()
         }
@@ -170,7 +170,7 @@ open class JXSegmentedListContainerView: UIView {
         if count <= 0 || index >= count {
             return
         }
-        self.currentIndex = index
+        currentIndex = index
 
         var list = validListDict[index]
         if list == nil {

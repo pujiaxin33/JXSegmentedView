@@ -181,7 +181,7 @@ class CellCustomizeViewController: UITableViewController {
         default:
             break
         }
-        self.navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 

@@ -17,16 +17,16 @@ class LoadDataListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "Loading...", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
-        self.refreshControl?.addTarget(self, action: #selector(headerRefresh), for: .valueChanged)
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Loading...", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+        refreshControl?.addTarget(self, action: #selector(headerRefresh), for: .valueChanged)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         headerRefresh()
     }
 
     @objc func headerRefresh() {
-        self.refreshControl?.beginRefreshing()
+        refreshControl?.beginRefreshing()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(1)) {
             self.refreshControl?.endRefreshing()
             self.dataSource.removeAll()
@@ -55,13 +55,13 @@ class LoadDataListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = LoadDataDetailViewController()
         vc.detailText = dataSource[indexPath.row]
-        self.naviController?.pushViewController(vc, animated: true)
+        naviController?.pushViewController(vc, animated: true)
     }
 }
 
 extension LoadDataListViewController: JXSegmentedListContentViewDelegate {
     func listView() -> UIView {
-        return self.view
+        return view
     }
 
     func listDidAppear() {

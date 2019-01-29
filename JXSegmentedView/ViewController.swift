@@ -13,7 +13,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = false
         tableView.rowHeight = 44
         title = "JXSegmentedView Example"
     }
@@ -32,15 +32,15 @@ class ViewController: UITableViewController {
         case 0:
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IndicatorCustomizeViewController")
             vc.title = title
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellCustomizeViewController")
             vc.title = title
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SpecialCustomizeViewController")
             vc.title = title
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }

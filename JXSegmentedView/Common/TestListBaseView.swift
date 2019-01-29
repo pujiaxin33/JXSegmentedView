@@ -29,7 +29,7 @@ class TestListBaseView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        tableView.frame = self.bounds
+        tableView.frame = bounds
     }
 
 }

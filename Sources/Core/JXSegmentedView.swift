@@ -233,8 +233,8 @@ open class JXSegmentedView: UIView {
     }
 
     open func reloadData() {
-        self.dataSource?.registerCellClass(in: self)
-        if let itemSource = self.dataSource?.dataSource(in: self) {
+        dataSource?.registerCellClass(in: self)
+        if let itemSource = dataSource?.dataSource(in: self) {
             itemDataSource = itemSource
         }
         if selectedIndex < 0 || selectedIndex >= itemDataSource.count {
@@ -247,19 +247,19 @@ open class JXSegmentedView: UIView {
         var totalContentWidth: CGFloat = getContentEdgeInsetLeft()
         for (index, itemModel) in itemDataSource.enumerated() {
             itemModel.index = index
-            itemModel.itemWidth = (self.dataSource?.segmentedView(self, widthForItemAt: index) ?? 0)
+            itemModel.itemWidth = (dataSource?.segmentedView(self, widthForItemAt: index) ?? 0)
             itemModel.isSelected = (index == selectedIndex)
             totalItemWidth += itemModel.itemWidth
             if index == itemDataSource.count - 1 {
                 totalContentWidth += itemModel.itemWidth + getContentEdgeInsetRight()
             }else {
-                totalContentWidth += itemModel.itemWidth + self.innerItemSpacing
+                totalContentWidth += itemModel.itemWidth + innerItemSpacing
             }
         }
 
-        if isItemSpacingAverageEnabled && totalContentWidth < self.bounds.size.width {
+        if isItemSpacingAverageEnabled && totalContentWidth < bounds.size.width {
             var itemSpacingCount = itemDataSource.count - 1
-            var totalItemSpacingWidth = self.bounds.size.width - totalItemWidth
+            var totalItemSpacingWidth = bounds.size.width - totalItemWidth
             if contentEdgeInsetLeft == JXSegmentedViewAutomaticDimension {
                 itemSpacingCount += 1
             }else {
@@ -292,8 +292,8 @@ open class JXSegmentedView: UIView {
         }
 
         let minX: CGFloat = 0
-        let maxX = totalContentWidth - self.bounds.size.width
-        let targetX = selectedItemFrameX - self.bounds.size.width/2 + selectedItemWidth/2
+        let maxX = totalContentWidth - bounds.size.width
+        let targetX = selectedItemFrameX - bounds.size.width/2 + selectedItemWidth/2
         collectionView.setContentOffset(CGPoint(x: max(min(maxX, targetX), minX), y: 0), animated: false)
 
         if contentScrollView != nil {
@@ -319,7 +319,7 @@ open class JXSegmentedView: UIView {
             }else {
                 indicator.isHidden = false
                 let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
-                indicatorParamsModel.contentSize = CGSize(width: totalContentWidth, height: self.bounds.size.height)
+                indicatorParamsModel.contentSize = CGSize(width: totalContentWidth, height: bounds.size.height)
                 indicatorParamsModel.currentSelectedIndex = selectedIndex
                 let selectedItemFrame = getItemFrameAt(index: selectedIndex)
                 indicatorParamsModel.currentSelectedItemFrame = selectedItemFrame
@@ -536,7 +536,7 @@ open class JXSegmentedView: UIView {
         for i in 0..<index {
             x += itemDataSource[i].itemWidth + innerItemSpacing
         }
-        return CGRect(x: x, y: 0, width: itemDataSource[index].itemWidth, height: self.bounds.size.height)
+        return CGRect(x: x, y: 0, width: itemDataSource[index].itemWidth, height: bounds.size.height)
     }
 
     private func getContentEdgeInsetLeft() -> CGFloat {
@@ -566,7 +566,7 @@ extension JXSegmentedView: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = self.dataSource?.segmentedView(self, cellForItemAt: indexPath.item) {
+        if let cell = dataSource?.segmentedView(self, cellForItemAt: indexPath.item) {
             cell.reloadData(itemModel: itemDataSource[indexPath.item], selectedType: .unknown)
             return cell
         }else {
@@ -597,7 +597,7 @@ extension JXSegmentedView: UICollectionViewDelegateFlowLayout {
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDataSource[indexPath.item].itemWidth, height: self.bounds.size.height)
+        return CGSize(width: itemDataSource[indexPath.item].itemWidth, height: bounds.size.height)
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return innerItemSpacing

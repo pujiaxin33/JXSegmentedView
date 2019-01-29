@@ -51,11 +51,11 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
                 let titleZoomClosure = preferredTitleZoomAnimateClosure(itemModel: myItemModel, baseScale: baseScale)
                 appendSelectedAnimationClosure(closure: titleZoomClosure)
             }else {
-                self.titleLabel.font = maxScaleFont
-                self.maskTitleLabel.font = maxScaleFont
+                titleLabel.font = maxScaleFont
+                maskTitleLabel.font = maxScaleFont
                 let currentTransform = CGAffineTransform(scaleX: baseScale*CGFloat(myItemModel.titleCurrentZoomScale), y: baseScale*CGFloat(myItemModel.titleCurrentZoomScale))
-                self.titleLabel.transform = currentTransform
-                self.maskTitleLabel.transform = currentTransform
+                titleLabel.transform = currentTransform
+                maskTitleLabel.transform = currentTransform
             }
         }else {
             if myItemModel.isSelected {

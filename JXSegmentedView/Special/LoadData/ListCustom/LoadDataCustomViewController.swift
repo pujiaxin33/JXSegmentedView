@@ -17,7 +17,7 @@ class LoadDataCustomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        view.backgroundColor = .white
 
         //1、初始化JXSegmentedView
         segmentedView = JXSegmentedView()
@@ -46,7 +46,7 @@ class LoadDataCustomViewController: UIViewController {
         contentScrollView.scrollsToTop = false
         contentScrollView.bounces = false
         //禁用automaticallyInset
-        self.automaticallyAdjustsScrollViewInsets = false
+        automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             contentScrollView.contentInsetAdjustmentBehavior = .never
         }
@@ -55,7 +55,7 @@ class LoadDataCustomViewController: UIViewController {
         //6、将contentScrollView和segmentedView.contentScrollView进行关联
         segmentedView.contentScrollView = contentScrollView
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刷新数据", style: UIBarButtonItem.Style.plain, target: self, action: #selector(reloadData))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刷新数据", style: UIBarButtonItem.Style.plain, target: self, action: #selector(reloadData))
 
         reloadData()
     }
@@ -77,13 +77,13 @@ class LoadDataCustomViewController: UIViewController {
         for index in 0..<segmentedDataSource.titles.count {
             let vc = LoadDataCustomListViewController.init(style: .plain)
             vc.typeString = segmentedDataSource.titles[index]
-            vc.naviController = self.navigationController
+            vc.naviController = navigationController
             contentScrollView.addSubview(vc.view)
             listVCArray.append(vc)
         }
 
-        self.view.setNeedsLayout()
-        self.view.layoutIfNeeded()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
 
         listVCArray.first?.loadDataForFirst()
     }

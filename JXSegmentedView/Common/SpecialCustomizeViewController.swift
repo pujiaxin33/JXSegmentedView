@@ -30,27 +30,27 @@ class SpecialCustomizeViewController: UITableViewController {
         case "个人主页":
             let vc = PagingViewController()
             vc.title = itemTitle
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         case "SegmentedControl":
             let vc = SegmentedControlViewController()
             vc.title = itemTitle
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         case "导航栏使用":
             let vc = NaviSegmentedControlViewController()
             vc.title = itemTitle
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         case "嵌套使用":
             let vc = NestViewController()
             vc.title = itemTitle
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         case "刷新数据+JXSegmentedListContainerView":
             let vc = LoadDataViewController()
             vc.title = itemTitle
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         case "刷新数据+列表自定义":
             let vc = LoadDataCustomViewController()
             vc.title = itemTitle
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         default: break
         }
     }
