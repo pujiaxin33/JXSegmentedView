@@ -70,10 +70,10 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
 
     //MARK: - JXSegmentedViewDataSource
     override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "titleCell")
-        segmentedView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "titleImageCell")
-        segmentedView.register(JXSegmentedNumberCell.self, forCellWithReuseIdentifier: "numberCell")
-        segmentedView.register(JXSegmentedDotCell.self, forCellWithReuseIdentifier: "dotCell")
+        segmentedView.collectionView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "titleCell")
+        segmentedView.collectionView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "titleImageCell")
+        segmentedView.collectionView.register(JXSegmentedNumberCell.self, forCellWithReuseIdentifier: "numberCell")
+        segmentedView.collectionView.register(JXSegmentedDotCell.self, forCellWithReuseIdentifier: "dotCell")
     }
 
     override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {

@@ -12,6 +12,7 @@ class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
     var attributeTitles = [NSAttributedString]()
     /// 选中时的富文本，可选。如果要使用确保count与attributeTitles一致。
     var selectedAttributeTitles: [NSAttributedString]?
+    var titleNumberOfLines: Int = 2
 
     override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
         return JXSegmentedTitleAttributeItemModel()
@@ -36,6 +37,7 @@ class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
 
         myItemModel.attributeTitle = attributeTitles[index]
         myItemModel.selectedAttributeTitle = selectedAttributeTitles?[index]
+        myItemModel.titleNumberOfLines = titleNumberOfLines
     }
 
     override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
@@ -55,7 +57,7 @@ class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
 
     //MARK: - JXSegmentedViewDataSource
     override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedTitleAttributeCell.self, forCellWithReuseIdentifier: "cell")
+        segmentedView.collectionView.register(JXSegmentedTitleAttributeCell.self, forCellWithReuseIdentifier: "cell")
     }
 
     override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {

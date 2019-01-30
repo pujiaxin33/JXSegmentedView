@@ -102,7 +102,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
                     currentSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: currentSelectedItemModel.index) ?? 0
                     willSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: willSelectedItemModel.itemWidthNormalZoomScale, to: willSelectedItemModel.itemWidthSelectedZoomScale, percent: percent)
                     willSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: willSelectedItemModel.index) ?? 0
-                    segmentedView.invalidateLayout()
+                    segmentedView.collectionView.collectionViewLayout.invalidateLayout()
                 }
                 animator?.start()
             }

@@ -38,7 +38,7 @@ open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
 
     //MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedTitleGradientCell.self, forCellWithReuseIdentifier: "cell")
+        segmentedView.collectionView.register(JXSegmentedTitleGradientCell.self, forCellWithReuseIdentifier: "cell")
     }
 
     open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
@@ -62,11 +62,11 @@ open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
     open override func refreshItemModel(_ segmentedView: JXSegmentedView, currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
         super.refreshItemModel(segmentedView, currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel, selectedType: selectedType)
 
-        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleGradientItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleGradientItemModel else {
+        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleGradientItemModel, let myWillSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleGradientItemModel else {
             return
         }
 
         myCurrentSelectedItemModel.titleCurrentGradientColors = myCurrentSelectedItemModel.titleNormalGradientColors
-        myWilltSelectedItemModel.titleCurrentGradientColors = myWilltSelectedItemModel.titleSelectedGradientColors
+        myWillSelectedItemModel.titleCurrentGradientColors = myWillSelectedItemModel.titleSelectedGradientColors
     }
 }

@@ -77,7 +77,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
 
     //MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "cell")
+        segmentedView.collectionView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "cell")
     }
 
     open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
@@ -100,11 +100,11 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
     open override func refreshItemModel(_ segmentedView: JXSegmentedView, currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
         super.refreshItemModel(segmentedView, currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel, selectedType: selectedType)
 
-        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleImageItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleImageItemModel else {
+        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleImageItemModel, let myWillSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleImageItemModel else {
             return
         }
 
         myCurrentSelectedItemModel.imageCurrentZoomScale = myCurrentSelectedItemModel.imageNormalZoomScale
-        myWilltSelectedItemModel.imageCurrentZoomScale = myWilltSelectedItemModel.imageSelectedZoomScale
+        myWillSelectedItemModel.imageCurrentZoomScale = myWillSelectedItemModel.imageSelectedZoomScale
     }
 }

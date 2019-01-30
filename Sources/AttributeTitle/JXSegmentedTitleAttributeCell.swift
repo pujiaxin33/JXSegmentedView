@@ -14,7 +14,6 @@ class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
     override func commonInit() {
         super.commonInit()
 
-        titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)
@@ -32,6 +31,7 @@ class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
             return
         }
 
+        titleLabel.numberOfLines = myItemModel.titleNumberOfLines
         if myItemModel.isSelected && myItemModel.selectedAttributeTitle != nil {
             titleLabel.attributedText = myItemModel.selectedAttributeTitle
         }else {

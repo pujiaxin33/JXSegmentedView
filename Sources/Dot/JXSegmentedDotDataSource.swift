@@ -42,7 +42,7 @@ open class JXSegmentedDotDataSource: JXSegmentedTitleDataSource {
 
     //MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedDotCell.self, forCellWithReuseIdentifier: "cell")
+        segmentedView.collectionView.register(JXSegmentedDotCell.self, forCellWithReuseIdentifier: "cell")
     }
 
     open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {

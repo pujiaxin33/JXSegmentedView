@@ -234,7 +234,7 @@ class IndicatorCustomizeViewController: UITableViewController {
             //配置指示器
             let lineIndicator = JXSegmentedIndicatorLineView()
             lineIndicator.indicatorWidth = JXSegmentedViewAutomaticDimension
-            lineIndicator.lineStyle = .lengthenOffset
+            lineIndicator.lineStyle = .normal
 
             let bgIndicator = JXSegmentedIndicatorBackgroundView()
             bgIndicator.indicatorHeight = 30

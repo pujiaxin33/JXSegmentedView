@@ -116,7 +116,7 @@ open class JXSegmentedListContainerView: UIView {
 
         scrollView.frame = bounds
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(delegate.numberOfLists(in: self)), height: scrollView.bounds.size.height)
-        for (index, list) in validListDict.values.enumerated() {
+        for (index, list) in validListDict {
             list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
         }
         if !isLayoutSubviewsed {
@@ -143,7 +143,7 @@ open class JXSegmentedListContainerView: UIView {
             }
         }else {
             //当前选中的在左边，用户正在从左边往右边滑动
-            if percent > (1 - didAppearPercent) {
+            if percent > didAppearPercent {
                 targetIndex = rightIndex
                 disappearIndex = leftIndex
             }

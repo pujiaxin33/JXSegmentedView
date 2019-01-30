@@ -10,6 +10,7 @@ import UIKit
 
 open class JXSegmentedTitleItemModel: JXSegmentedBaseItemModel {
     open var title: String?
+    var titleNumberOfLines: Int = 0
     open var titleNormalColor: UIColor = .black
     open var titleCurrentColor: UIColor = .black
     open var titleSelectedColor: UIColor = .red

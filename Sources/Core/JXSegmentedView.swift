@@ -126,6 +126,7 @@ open class JXSegmentedView: UIView {
         }
     }
     open weak var delegate: JXSegmentedViewDelegate?
+    open private(set) var collectionView: JXSegmentedCollectionView!
     open var contentScrollView: UIScrollView? {
         willSet {
             contentScrollView?.removeObserver(self, forKeyPath: "contentOffset")
@@ -159,7 +160,6 @@ open class JXSegmentedView: UIView {
     /// 点击切换的时候，contentScrollView的切换是否需要动画
     open var isContentScrollViewClickTransitionAnimateEnabled: Bool = true
 
-    private var collectionView: JXSegmentedCollectionView!
     private var itemDataSource = [JXSegmentedBaseItemModel]()
     private var innerItemSpacing: CGFloat = 0
     private var lastContentOffset: CGPoint = CGPoint.zero
@@ -211,18 +211,6 @@ open class JXSegmentedView: UIView {
     }
 
     //MARK: - Public
-    public final func invalidateLayout() {
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
-
-    public final func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
-        collectionView.register(cellClass, forCellWithReuseIdentifier: identifier)
-    }
-
-    public final func register(_ nib: UINib?, forCellWithReuseIdentifier identifier: String) {
-        collectionView.register(nib, forCellWithReuseIdentifier: identifier)
-    }
-
     public final func dequeueReusableCell(withReuseIdentifier identifier: String, at index: Int) -> JXSegmentedBaseCell {
         let indexPath = IndexPath(item: index, section: 0)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)

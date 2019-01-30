@@ -11,4 +11,5 @@ import UIKit
 class JXSegmentedTitleAttributeItemModel: JXSegmentedBaseItemModel {
     var attributeTitle: NSAttributedString?
     var selectedAttributeTitle: NSAttributedString?
+    var titleNumberOfLines: Int = 0
 }

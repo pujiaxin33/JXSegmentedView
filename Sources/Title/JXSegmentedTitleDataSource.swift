@@ -10,14 +10,15 @@ import UIKit
 
 open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open var titles = [String]()
+    var titleNumberOfLines: Int = 1
     /// title普通状态的textColor
     open var titleNormalColor: UIColor = .black
     /// title选中状态的textColor
     open var titleSelectedColor: UIColor = .red
     /// title普通状态时的字体
     open var titleNormalFont: UIFont = UIFont.systemFont(ofSize: 15)
-    /// title选中时的字体
-    open var titleSelectedFont: UIFont = UIFont.systemFont(ofSize: 15)
+    /// title选中时的字体。如果不赋值，就默认与titleNormalFont一样
+    open var titleSelectedFont: UIFont?
     /// title的颜色是否渐变过渡
     open var isTitleColorGradientEnabled: Bool = false
     /// title是否缩放。使用该效果时，务必保证titleNormalFont和titleSelectedFont值相同。
@@ -48,31 +49,32 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open override func preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
         super.preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
 
-        guard let itemModel = itemModel as? JXSegmentedTitleItemModel else {
+        guard let myItemModel = itemModel as? JXSegmentedTitleItemModel else {
             return
         }
 
-        itemModel.title = titles[index]
-        itemModel.isSelectedAnimable = isSelectedAnimable
-        itemModel.titleNormalColor = titleNormalColor
-        itemModel.titleSelectedColor = titleSelectedColor
-        itemModel.titleNormalFont = titleNormalFont
-        itemModel.titleSelectedFont = titleSelectedFont
-        itemModel.isTitleZoomEnabled = isTitleZoomEnabled
-        itemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
-        itemModel.isTitleMaskEnabled = isTitleMaskEnabled
-        itemModel.titleNormalZoomScale = 1
-        itemModel.titleSelectedZoomScale = titleSelectedZoomScale
-        itemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
-        itemModel.titleNormalStrokeWidth = 0
+        myItemModel.title = titles[index]
+        myItemModel.titleNumberOfLines = titleNumberOfLines
+        myItemModel.isSelectedAnimable = isSelectedAnimable
+        myItemModel.titleNormalColor = titleNormalColor
+        myItemModel.titleSelectedColor = titleSelectedColor
+        myItemModel.titleNormalFont = titleNormalFont
+        myItemModel.titleSelectedFont = titleSelectedFont != nil ? titleSelectedFont! : titleNormalFont
+        myItemModel.isTitleZoomEnabled = isTitleZoomEnabled
+        myItemModel.isTitleStrokeWidthEnabled = isTitleStrokeWidthEnabled
+        myItemModel.isTitleMaskEnabled = isTitleMaskEnabled
+        myItemModel.titleNormalZoomScale = 1
+        myItemModel.titleSelectedZoomScale = titleSelectedZoomScale
+        myItemModel.titleSelectedStrokeWidth = titleSelectedStrokeWidth
+        myItemModel.titleNormalStrokeWidth = 0
         if index == selectedIndex {
-            itemModel.titleCurrentColor = titleSelectedColor
-            itemModel.titleCurrentZoomScale = titleSelectedZoomScale
-            itemModel.titleCurrentStrokeWidth = titleSelectedStrokeWidth
+            myItemModel.titleCurrentColor = titleSelectedColor
+            myItemModel.titleCurrentZoomScale = titleSelectedZoomScale
+            myItemModel.titleCurrentStrokeWidth = titleSelectedStrokeWidth
         }else {
-            itemModel.titleCurrentColor = titleNormalColor
-            itemModel.titleCurrentZoomScale = 1
-            itemModel.titleCurrentStrokeWidth = 0
+            myItemModel.titleCurrentColor = titleNormalColor
+            myItemModel.titleCurrentZoomScale = 1
+            myItemModel.titleCurrentStrokeWidth = 0
         }
     }
 
@@ -80,7 +82,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         var itemWidth = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
         if itemContentWidth == JXSegmentedViewAutomaticDimension {
             if let title = (dataSource[index] as? JXSegmentedTitleItemModel)?.title {
-                let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), attributes: [NSAttributedString.Key.font : titleNormalFont], context: nil).size.width
+                let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: [.usesFontLeading, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font : titleNormalFont], context: nil).size.width
                 itemWidth += CGFloat(ceilf(Float(textWidth)))
             }
         }else {
@@ -91,7 +93,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
     //MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "cell")
+        segmentedView.collectionView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "cell")
     }
 
     open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
@@ -125,7 +127,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open override func refreshItemModel(_ segmentedView: JXSegmentedView, currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
         super.refreshItemModel(segmentedView, currentSelectedItemModel: currentSelectedItemModel, willSelectedItemModel: willSelectedItemModel, selectedType: selectedType)
 
-        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleItemModel, let myWilltSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleItemModel else {
+        guard let myCurrentSelectedItemModel = currentSelectedItemModel as? JXSegmentedTitleItemModel, let myWillSelectedItemModel = willSelectedItemModel as? JXSegmentedTitleItemModel else {
             return
         }
 
@@ -134,8 +136,8 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         myCurrentSelectedItemModel.titleCurrentStrokeWidth = myCurrentSelectedItemModel.titleNormalStrokeWidth
         myCurrentSelectedItemModel.indicatorConvertToItemFrame = CGRect.zero
 
-        myWilltSelectedItemModel.titleCurrentColor = myWilltSelectedItemModel.titleSelectedColor
-        myWilltSelectedItemModel.titleCurrentZoomScale = myWilltSelectedItemModel.titleSelectedZoomScale
-        myWilltSelectedItemModel.titleCurrentStrokeWidth = myWilltSelectedItemModel.titleSelectedStrokeWidth
+        myWillSelectedItemModel.titleCurrentColor = myWillSelectedItemModel.titleSelectedColor
+        myWillSelectedItemModel.titleCurrentZoomScale = myWillSelectedItemModel.titleSelectedZoomScale
+        myWillSelectedItemModel.titleCurrentStrokeWidth = myWillSelectedItemModel.titleSelectedStrokeWidth
     }
 }

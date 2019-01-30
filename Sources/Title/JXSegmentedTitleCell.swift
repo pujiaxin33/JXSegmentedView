@@ -33,7 +33,9 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
     open override func layoutSubviews() {
         super.layoutSubviews()
 
+        titleLabel.sizeToFit()
         titleLabel.center = contentView.center
+        maskTitleLabel.sizeToFit()
         maskTitleLabel.center = contentView.center
     }
 
@@ -43,6 +45,9 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         guard let myItemModel = itemModel as? JXSegmentedTitleItemModel else {
             return
         }
+
+        titleLabel.numberOfLines = myItemModel.titleNumberOfLines
+        maskTitleLabel.numberOfLines = myItemModel.titleNumberOfLines
 
         if myItemModel.isTitleZoomEnabled {
             //先把font设置为缩放的最大值，再缩小到最小值，最后根据当前的titleCurrentZoomScale值，进行缩放更新。这样就能避免transform从小到大时字体模糊
@@ -140,7 +145,6 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
 
         startSelectedAnimationIfNeeded(itemModel: itemModel, selectedType: selectedType)
 
-        titleLabel.sizeToFit()
         setNeedsLayout()
     }
 
