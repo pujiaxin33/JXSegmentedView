@@ -26,7 +26,7 @@ class IndicatorCustomizeViewController: UITableViewController {
             }
         }
 
-        let titles = ["猴哥", "黄焖鸡", "旺财", "粉红猪", "喜羊羊", "青蛙王子", "小马哥", "牛魔王", "大象先生", "神龙"]
+        let titles = ["猴哥", "青蛙王子", "旺财", "粉红猪", "喜羊羊", "黄焖鸡", "小马哥", "牛魔王", "大象先生", "神龙"]
         let vc = ContentBaseViewController()
         vc.title = itemTitle
 
@@ -93,7 +93,7 @@ class IndicatorCustomizeViewController: UITableViewController {
             let indicator = JXSegmentedIndicatorRainbowLineView()
             indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
             indicator.lineStyle = .lengthenOffset
-            indicator.indicatorColors = [.red, .yellow, .blue, .orange, .purple, .cyan, .gray, .red, .yellow, .blue]
+            indicator.indicatorColors = [.red, .green, .blue, .orange, .purple, .cyan, .gray, .red, .yellow, .blue]
             vc.segmentedView.indicators = [indicator]
         case "TriangleView三角形":
             //配置数据源

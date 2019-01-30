@@ -26,7 +26,7 @@ class CellCustomizeViewController: UITableViewController {
             }
         }
 
-        let titles = ["猴哥", "黄焖鸡", "旺财", "粉红猪", "喜羊羊", "青蛙王子", "小马哥", "牛魔王", "大象先生", "神龙"]
+        let titles = ["猴哥", "青蛙王子", "旺财", "粉红猪", "喜羊羊", "黄焖鸡", "小马哥", "牛魔王", "大象先生", "神龙"]
         let numbers = [1, 22, 333, 44444, 0, 66, 777, 0, 99999, 10]
         let dotStates = [false, true, true, true, false, false, true, true, false, true]
         let vc = ContentBaseViewController()
@@ -48,12 +48,21 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.titles = titles
-            dataSource.isSelectedAnimable = true
-            dataSource.isTitleZoomEnabled = true
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "大小缩放":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titleSelectedColor = UIColor.red
+            dataSource.isTitleZoomEnabled = true
+            dataSource.titleSelectedZoomScale = 1.3
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+        case "大小缩放+字体粗细":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
@@ -124,7 +133,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titles = titles
             dataSource.titleImageType = .rightImage
             dataSource.isImageZoomEnabled = true
-            dataSource.normalImageInfos = ["monkey", "chicken", "dog", "pig", "sheep", "frog", "horse", "cow", "elephant", "dragon"]
+            dataSource.normalImageInfos = ["monkey", "frog", "dog", "pig", "sheep", "chicken", "horse", "cow", "elephant", "dragon"]
             dataSource.loadImageClosure = {(imageView, normalImageInfo) in
                 //如果normalImageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
                 //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
@@ -144,7 +153,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isItemTransitionEnabled = false
             dataSource.isSelectedAnimable = true
             dataSource.titles = titles
-            dataSource.selectedImageInfos = ["monkey", nil, "dog", nil, "sheep", "frog", "horse", nil, nil, "dragon"]
+            dataSource.selectedImageInfos = ["monkey", nil, "dog", nil, "sheep", "chicken", "horse", nil, nil, "dragon"]
             dataSource.loadImageClosure = {(imageView, normalImageInfo) in
                 //如果normalImageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
                 //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。

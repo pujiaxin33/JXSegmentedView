@@ -16,3 +16,9 @@ class ListBaseViewController: UIViewController {
         view.backgroundColor = UIColor(red: CGFloat(arc4random()%255)/255, green: CGFloat(arc4random()%255)/255, blue: CGFloat(arc4random()%255)/255, alpha: 1)
     }
 }
+
+extension ListBaseViewController: JXSegmentedListContentViewDelegate {
+    func listView() -> UIView {
+        return view
+    }
+}

@@ -71,7 +71,7 @@ class LoadDataViewController: UIViewController {
     }
 
     func getRandomTitles() -> [String] {
-        let titles = ["猴哥", "黄焖鸡", "旺财", "粉红猪", "喜羊羊", "青蛙王子", "小马哥", "牛魔王", "大象先生", "神龙"]
+        let titles = ["猴哥", "青蛙王子", "旺财", "粉红猪", "喜羊羊", "黄焖鸡", "小马哥", "牛魔王", "大象先生", "神龙"]
         //随机title数量，4~n
         let randomCount = Int(arc4random()%7 + 4)
         var tempTitles = titles

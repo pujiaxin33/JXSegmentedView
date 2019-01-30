@@ -27,6 +27,7 @@ class ContentBaseViewController: UIViewController {
         view.addSubview(segmentedView)
 
         segmentedView.contentScrollView = listContainerView.scrollView
+        listContainerView.didAppearPercent = 0.01
         view.addSubview(listContainerView)
 
         for indicaotr in segmentedView.indicators {
@@ -108,7 +109,7 @@ extension ContentBaseViewController: JXSegmentedListContainerViewDelegate {
     }
 
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate {
-        return TestListBaseView()
+        return ListBaseViewController()
     }
 }
 
