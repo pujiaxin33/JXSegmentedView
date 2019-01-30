@@ -39,7 +39,7 @@ class LoadDataViewController: UIViewController {
         view.addSubview(segmentedView)
 
         //5、初始化JXSegmentedListContainerView
-        listContainerView = JXSegmentedListContainerView(parentVC: self, delegate: self)
+        listContainerView = JXSegmentedListContainerView(parentVC: self, dataSource: self)
         view.addSubview(listContainerView)
 
         //6、将listContainerView.scrollView和segmentedView.contentScrollView进行关联
@@ -97,12 +97,12 @@ extension LoadDataViewController: JXSegmentedViewDelegate {
     }
 }
 
-extension LoadDataViewController: JXSegmentedListContainerViewDelegate {
+extension LoadDataViewController: JXSegmentedListContainerViewDataSource {
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
         return segmentedDataSource.dataSource.count
     }
 
-    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate {
+    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         let vc = LoadDataListViewController()
         vc.naviController = navigationController
         vc.typeString = segmentedDataSource.titles[index]

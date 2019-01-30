@@ -12,7 +12,7 @@ class NestViewController: UIViewController {
     let segmentedDataSource = JXSegmentedTitleDataSource()
     let segmentedView = JXSegmentedView()
     lazy var listContainerView: JXSegmentedListContainerView! = {
-        return JXSegmentedListContainerView(parentVC: self, delegate: self)
+        return JXSegmentedListContainerView(parentVC: self, dataSource: self)
     }()
 
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ extension NestViewController: JXSegmentedViewDelegate {
     }
 }
 
-extension NestViewController: JXSegmentedListContainerViewDelegate {
+extension NestViewController: JXSegmentedListContainerViewDataSource {
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
         if let titleDataSource = segmentedView.dataSource as? JXSegmentedBaseDataSource {
             return titleDataSource.dataSource.count
@@ -75,7 +75,7 @@ extension NestViewController: JXSegmentedListContainerViewDelegate {
         return 0
     }
 
-    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate {
+    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         let vc = NestChildViewController()
         if index == 0 {
            vc.titles = ["吃鸡🍗", "吃西瓜🍉", "吃热狗🌭"]

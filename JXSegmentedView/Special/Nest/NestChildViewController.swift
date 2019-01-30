@@ -13,7 +13,7 @@ class NestChildViewController: UIViewController {
     let segmentedDataSource = JXSegmentedTitleDataSource()
     let segmentedView = JXSegmentedView()
     lazy var listContainerView: JXSegmentedListContainerView! = {
-        return JXSegmentedListContainerView(parentVC: self, delegate: self)
+        return JXSegmentedListContainerView(parentVC: self, dataSource: self)
     }()
 
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class NestChildViewController: UIViewController {
     }
 }
 
-extension NestChildViewController: JXSegmentedListContentViewDelegate {
+extension NestChildViewController: JXSegmentedListContainerViewListDelegate {
     func listView() -> UIView {
         return view
     }
@@ -66,7 +66,7 @@ extension NestChildViewController: JXSegmentedViewDelegate {
     }
 }
 
-extension NestChildViewController: JXSegmentedListContainerViewDelegate {
+extension NestChildViewController: JXSegmentedListContainerViewDataSource {
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
         if let titleDataSource = segmentedView.dataSource as? JXSegmentedBaseDataSource {
             return titleDataSource.dataSource.count
@@ -74,7 +74,7 @@ extension NestChildViewController: JXSegmentedListContainerViewDelegate {
         return 0
     }
 
-    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate {
+    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         return TestListBaseView()
     }
 }

@@ -51,7 +51,7 @@ extension TestListBaseView: UITableViewDataSource, UITableViewDelegate {
 
 }
 
-extension TestListBaseView: JXSegmentedListContentViewDelegate {
+extension TestListBaseView: JXSegmentedListContainerViewListDelegate {
     func listView() -> UIView {
         return self
     }

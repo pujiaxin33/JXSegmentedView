@@ -17,7 +17,7 @@ class ListBaseViewController: UIViewController {
     }
 }
 
-extension ListBaseViewController: JXSegmentedListContentViewDelegate {
+extension ListBaseViewController: JXSegmentedListContainerViewListDelegate {
     func listView() -> UIView {
         return view
     }

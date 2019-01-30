@@ -9,7 +9,7 @@
 import UIKit
 
 @objc
-public protocol JXSegmentedListContentViewDelegate {
+public protocol JXSegmentedListContainerViewListDelegate {
     /// 如果列表是VC，就返回VC.view
     /// 如果列表是View，就返回View自己
     ///
@@ -22,22 +22,22 @@ public protocol JXSegmentedListContentViewDelegate {
 }
 
 @objc
-public protocol JXSegmentedListContainerViewDelegate {
+public protocol JXSegmentedListContainerViewDataSource {
     /// 返回list的数量
     ///
     /// - Parameter listContainerView: JXSegmentedListContainerView
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int
 
-    /// 根据index初始化一个对应列表实例，需要是遵从`JXSegmentedListContentViewDelegate`协议的对象。
-    /// 如果列表是用自定义UIView封装的，就让自定义UIView遵从`JXSegmentedListContentViewDelegate`协议，该方法返回自定义UIView即可。
-    /// 如果列表是用自定义UIViewController封装的，就让自定义UIViewController遵从`JXSegmentedListContentViewDelegate`协议，该方法返回自定义UIViewController即可。
+    /// 根据index初始化一个对应列表实例，需要是遵从`JXSegmentedListContainerViewListDelegate`协议的对象。
+    /// 如果列表是用自定义UIView封装的，就让自定义UIView遵从`JXSegmentedListContainerViewListDelegate`协议，该方法返回自定义UIView即可。
+    /// 如果列表是用自定义UIViewController封装的，就让自定义UIViewController遵从`JXSegmentedListContainerViewListDelegate`协议，该方法返回自定义UIViewController即可。
     /// 注意：一定要是新生成的实例！！！
     ///
     /// - Parameters:
     ///   - listContainerView: JXSegmentedListContainerView
     ///   - index: 目标index
-    /// - Returns: 遵从JXSegmentedListContentViewDelegate协议的实例
-    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContentViewDelegate
+    /// - Returns: 遵从JXSegmentedListContainerViewListDelegate协议的实例
+    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate
 
 
     /// 返回自定义UIScrollView实例
@@ -51,7 +51,7 @@ public protocol JXSegmentedListContainerViewDelegate {
 open class JXSegmentedListContainerView: UIView {
     open var scrollView: UIScrollView!
     /// 已经加载过的列表字典。key是index，value是对应的列表
-    open var validListDict = [Int:JXSegmentedListContentViewDelegate]()
+    open var validListDict = [Int:JXSegmentedListContainerViewListDelegate]()
     /// 滚动切换的时候，滚动距离超过一页的多少百分比，就认为切换了页面。默认0.5（即滚动超过了半屏，就认为翻页了）。范围0~1，开区间不包括0和1
     open var didAppearPercent: CGFloat = 0.5
     /// 需要和segmentedView.defaultSelectedIndex保持一致
@@ -60,15 +60,18 @@ open class JXSegmentedListContainerView: UIView {
             currentIndex = defaultSelectedIndex
         }
     }
-    private weak var delegate: JXSegmentedListContainerViewDelegate!
-    private weak var parentVC: UIViewController!
+    private weak var dataSource: JXSegmentedListContainerViewDataSource!
     private var currentIndex: Int = 0
     private var isLayoutSubviewsed: Bool = false
 
-    init(parentVC: UIViewController, delegate: JXSegmentedListContainerViewDelegate) {
-        self.parentVC = parentVC
-        self.parentVC.automaticallyAdjustsScrollViewInsets = false
-        self.delegate = delegate
+    /// 指定初始化器
+    ///
+    /// - Parameters:
+    ///   - parentVC: 可选值，主要用于将其automaticallyAdjustsScrollViewInsets设置false。如果外部已经设置了，或者视图层级复杂，不好访问parentVC等情况可以不用传。
+    ///   - dataSource: JXSegmentedListContainerViewDataSource代理
+    init(parentVC: UIViewController?, dataSource: JXSegmentedListContainerViewDataSource) {
+        parentVC?.automaticallyAdjustsScrollViewInsets = false
+        self.dataSource = dataSource
 
         super.init(frame: CGRect.zero)
 
@@ -80,7 +83,7 @@ open class JXSegmentedListContainerView: UIView {
     }
 
     open func commonInit() {
-        if let customScrollView = delegate.scrollView?(in: self) {
+        if let customScrollView = dataSource.scrollView?(in: self) {
             scrollView = customScrollView
         }else {
             scrollView = UIScrollView()
@@ -97,7 +100,7 @@ open class JXSegmentedListContainerView: UIView {
     }
 
     open func reloadData() {
-        if currentIndex < 0 || currentIndex >= delegate.numberOfLists(in: self) {
+        if currentIndex < 0 || currentIndex >= dataSource.numberOfLists(in: self) {
             defaultSelectedIndex = 0
             currentIndex = 0
         }
@@ -106,7 +109,7 @@ open class JXSegmentedListContainerView: UIView {
         }
         validListDict.removeAll()
 
-        scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(delegate.numberOfLists(in: self)), height: scrollView.bounds.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(dataSource.numberOfLists(in: self)), height: scrollView.bounds.size.height)
 
         listDidAppear(at: currentIndex)
     }
@@ -115,7 +118,7 @@ open class JXSegmentedListContainerView: UIView {
         super.layoutSubviews()
 
         scrollView.frame = bounds
-        scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(delegate.numberOfLists(in: self)), height: scrollView.bounds.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(dataSource.numberOfLists(in: self)), height: scrollView.bounds.size.height)
         for (index, list) in validListDict {
             list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
         }
@@ -166,7 +169,7 @@ open class JXSegmentedListContainerView: UIView {
 
     //MARK: - Private
     private func listDidAppear(at index: Int) {
-        let count = delegate.numberOfLists(in: self)
+        let count = dataSource.numberOfLists(in: self)
         if count <= 0 || index >= count {
             return
         }
@@ -174,7 +177,7 @@ open class JXSegmentedListContainerView: UIView {
 
         var list = validListDict[index]
         if list == nil {
-            list = delegate.listContainerView(self, initListAt: index)
+            list = dataSource.listContainerView(self, initListAt: index)
         }
         if list?.listView().superview == nil {
             list?.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
@@ -185,7 +188,7 @@ open class JXSegmentedListContainerView: UIView {
     }
 
     private func listDidDisappear(at index: Int) {
-        let count = delegate.numberOfLists(in: self)
+        let count = dataSource.numberOfLists(in: self)
         if count <= 0 || index >= count {
             return
         }

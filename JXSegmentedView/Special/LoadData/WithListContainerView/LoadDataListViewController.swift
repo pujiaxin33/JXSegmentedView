@@ -59,7 +59,7 @@ class LoadDataListViewController: UITableViewController {
     }
 }
 
-extension LoadDataListViewController: JXSegmentedListContentViewDelegate {
+extension LoadDataListViewController: JXSegmentedListContainerViewListDelegate {
     func listView() -> UIView {
         return view
     }
