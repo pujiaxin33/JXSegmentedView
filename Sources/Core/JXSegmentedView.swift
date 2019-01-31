@@ -26,12 +26,14 @@ public enum JXSegmentedViewItemSelectedType {
 public protocol JXSegmentedViewDataSource: AnyObject {
     var isItemWidthZoomEnabled: Bool { get }
     var selectedAnimationDuration: TimeInterval { get }
+    var itemSpacing: CGFloat { get }
+    var isItemSpacingAverageEnabled: Bool { get }
 
     /// 返回数据源数组，数组元素必须是JXSegmentedBaseItemModel及其子类
     ///
     /// - Parameter segmentedView: JXSegmentedView
     /// - Returns: 数据源数组
-    func dataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel]
+    func itemDataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel]
 
     /// 返回index对应item的宽度。
     ///
@@ -67,6 +69,7 @@ public protocol JXSegmentedViewDataSource: AnyObject {
     /// - Parameters:
     ///   - currentSelectedItemModel: 当前选中的itemModel
     ///   - willSelectedItemModel: 将要选中的itemModel
+    ///   - selectedType: 选中的类型
     func refreshItemModel(_ segmentedView: JXSegmentedView, currentSelectedItemModel: JXSegmentedBaseItemModel, willSelectedItemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType)
 
     /// 左右滚动过渡时调用。根据当前的从左到右的百分比，刷新leftItemModel和rightItemModel
@@ -121,11 +124,7 @@ extension JXSegmentedViewDelegate {
 
 /// 内部会自己找到父UIViewController，然后将其automaticallyAdjustsScrollViewInsets设置为false，这一点请知晓。
 open class JXSegmentedView: UIView {
-    open weak var dataSource: JXSegmentedViewDataSource? {
-        didSet {
-            setNeedsLayout()
-        }
-    }
+    open weak var dataSource: JXSegmentedViewDataSource?
     open weak var delegate: JXSegmentedViewDelegate?
     open private(set) var collectionView: JXSegmentedCollectionView!
     open var contentScrollView: UIScrollView? {
@@ -138,28 +137,24 @@ open class JXSegmentedView: UIView {
         }
     }
     /// indicators的元素必须是遵从JXSegmentedIndicatorProtocol协议的UIView及其子类
-    public var indicators = [JXSegmentedIndicatorProtocol & UIView]() {
+    open var indicators = [JXSegmentedIndicatorProtocol & UIView]() {
         didSet {
             collectionView.indicators = indicators
         }
     }
     /// 初始化或者reloadData之前设置，用于指定默认的index
-    public var defaultSelectedIndex: Int = 0 {
+    open var defaultSelectedIndex: Int = 0 {
         didSet {
             selectedIndex = defaultSelectedIndex
         }
     }
     open private(set) var selectedIndex: Int = 0
-    /// 整体内容的左边距，默认JXSegmentedViewAutomaticDimension（等于cellSpacing）
+    /// 整体内容的左边距，默认JXSegmentedViewAutomaticDimension（等于itemSpacing）
     open var contentEdgeInsetLeft: CGFloat = JXSegmentedViewAutomaticDimension
-    /// 整体内容的右边距，默认JXSegmentedViewAutomaticDimension（等于cellSpacing）
+    /// 整体内容的右边距，默认JXSegmentedViewAutomaticDimension（等于itemSpacing）
     open var contentEdgeInsetRight: CGFloat = JXSegmentedViewAutomaticDimension
-    /// item之前的间距
-    open var itemSpacing: CGFloat = 20
-    /// 当collectionView.contentSize.width小于JXSegmentedView的宽度时，是否将itemSpacing均分。
-    open var isItemSpacingAverageEnabled: Bool = true
     /// 点击切换的时候，contentScrollView的切换是否需要动画
-    open var isContentScrollViewClickTransitionAnimateEnabled: Bool = true
+    open var isContentScrollViewClickTransitionAnimationEnabled: Bool = true
 
     private var itemDataSource = [JXSegmentedBaseItemModel]()
     private var innerItemSpacing: CGFloat = 0
@@ -236,7 +231,7 @@ open class JXSegmentedView: UIView {
 
     open func reloadData() {
         dataSource?.registerCellClass(in: self)
-        if let itemSource = dataSource?.dataSource(in: self) {
+        if let itemSource = dataSource?.itemDataSource(in: self) {
             itemDataSource = itemSource
         }
         if selectedIndex < 0 || selectedIndex >= itemDataSource.count {
@@ -244,7 +239,7 @@ open class JXSegmentedView: UIView {
             selectedIndex = 0
         }
 
-        innerItemSpacing = itemSpacing
+        innerItemSpacing = dataSource?.itemSpacing ?? 0
         var totalItemWidth: CGFloat = 0
         var totalContentWidth: CGFloat = getContentEdgeInsetLeft()
         for (index, itemModel) in itemDataSource.enumerated() {
@@ -259,7 +254,7 @@ open class JXSegmentedView: UIView {
             }
         }
 
-        if isItemSpacingAverageEnabled && totalContentWidth < bounds.size.width {
+        if dataSource?.isItemSpacingAverageEnabled == true && totalContentWidth < bounds.size.width {
             var itemSpacingCount = itemDataSource.count - 1
             var totalItemSpacingWidth = bounds.size.width - totalItemWidth
             if contentEdgeInsetLeft == JXSegmentedViewAutomaticDimension {
@@ -410,9 +405,6 @@ open class JXSegmentedView: UIView {
                     }
 
                     dataSource?.refreshItemModel(self, leftItemModel: itemDataSource[baseIndex], rightItemModel: itemDataSource[baseIndex + 1], percent: remainderProgress)
-                    if dataSource?.isItemWidthZoomEnabled == true {
-                        collectionView.collectionViewLayout.invalidateLayout()
-                    }
 
                     for indicator in indicators {
                         indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
@@ -499,7 +491,7 @@ open class JXSegmentedView: UIView {
         }
 
         if contentScrollView != nil && (selectedType == .click || selectedType == .code) {
-            contentScrollView!.setContentOffset(CGPoint(x: contentScrollView!.bounds.size.width*CGFloat(index), y: 0), animated: isContentScrollViewClickTransitionAnimateEnabled)
+            contentScrollView!.setContentOffset(CGPoint(x: contentScrollView!.bounds.size.width*CGFloat(index), y: 0), animated: isContentScrollViewClickTransitionAnimationEnabled)
         }
 
         let lastSelectedIndex = selectedIndex

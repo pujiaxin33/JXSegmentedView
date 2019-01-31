@@ -10,17 +10,24 @@ import Foundation
 import  UIKit
 
 open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
+    open var dataSource = [JXSegmentedBaseItemModel]()
     /// cell的内容宽度，为JXSegmentedViewAutomaticDimension时就以内容计算的宽度为准，否则以itemContentWidth的具体值为准。
     open var itemContentWidth: CGFloat = JXSegmentedViewAutomaticDimension
     /// 真实的item宽度 = itemContentWidth + itemWidthIncrement。
     open var itemWidthIncrement: CGFloat = 0
-    open var dataSource = [JXSegmentedBaseItemModel]()
+    /// item之前的间距
+    open var itemSpacing: CGFloat = 20
+    /// 当collectionView.contentSize.width小于JXSegmentedView的宽度时，是否将itemSpacing均分。
+    open var isItemSpacingAverageEnabled: Bool = true
     /// item左右滚动过渡时，是否允许渐变。比如JXSegmentedTitleDataSource的titleZoom、titleNormalColor、titleStrokeWidth等渐变。
     open var isItemTransitionEnabled: Bool = true
     /// 选中的时候，是否需要动画过渡。自定义的cell需要自己处理动画过渡逻辑，动画处理逻辑参考`JXSegmentedTitleCell`
     open var isSelectedAnimable: Bool = false
+    /// 选中动画的市场
     open var selectedAnimationDuration: TimeInterval = 0.25
+    /// 是否允许item宽度缩放
     open var isItemWidthZoomEnabled: Bool = false
+    /// item宽度选中时的scale
     open var itemWidthSelectedZoomScale: CGFloat = 1.5
 
     private var animator: JXSegmentedAnimator?
@@ -65,7 +72,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     }
 
     //MARK: - JXSegmentedViewDataSource
-    open func dataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel] {
+    open func itemDataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel] {
         return dataSource
     }
 
@@ -116,10 +123,12 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         //如果正在进行itemWidth缩放动画，用户又立马滚动了contentScrollView，需要停止动画。
         animator?.stop()
         if isItemWidthZoomEnabled && isItemTransitionEnabled {
+            //允许itemWidth缩放动画且允许item渐变过渡
             leftItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: leftItemModel.itemWidthSelectedZoomScale, to: leftItemModel.itemWidthNormalZoomScale, percent: percent)
             leftItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: leftItemModel.index)
             rightItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: rightItemModel.itemWidthNormalZoomScale, to: rightItemModel.itemWidthSelectedZoomScale, percent: percent)
             rightItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: rightItemModel.index)
+            segmentedView.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
 

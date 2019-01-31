@@ -21,6 +21,7 @@ class NaviSegmentedControlViewController: ContentBaseViewController {
         titleDataSource.isTitleMaskEnabled = true
         titleDataSource.titleNormalColor = UIColor.red
         titleDataSource.titleSelectedColor = UIColor.white
+        titleDataSource.itemSpacing = 0
         titleDataSource.reloadData(selectedIndex: 0)
         segmentedDataSource = titleDataSource
 
@@ -30,7 +31,6 @@ class NaviSegmentedControlViewController: ContentBaseViewController {
         segmentedView.layer.cornerRadius = 15
         segmentedView.layer.borderColor = UIColor.red.cgColor
         segmentedView.layer.borderWidth = 1/UIScreen.main.scale
-        segmentedView.itemSpacing = 0
         navigationItem.titleView = segmentedView
 
         let indicator = JXSegmentedIndicatorBackgroundView()

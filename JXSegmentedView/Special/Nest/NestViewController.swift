@@ -28,6 +28,7 @@ class NestViewController: UIViewController {
         segmentedDataSource.isTitleMaskEnabled = true
         segmentedDataSource.titleNormalColor = UIColor.red
         segmentedDataSource.titleSelectedColor = UIColor.white
+        segmentedDataSource.itemSpacing = 0
         segmentedDataSource.reloadData(selectedIndex: 0)
 
         let indicator = JXSegmentedIndicatorBackgroundView()
@@ -42,7 +43,6 @@ class NestViewController: UIViewController {
         segmentedView.layer.borderWidth = 1/UIScreen.main.scale
         segmentedView.dataSource = segmentedDataSource
         segmentedView.indicators = [indicator]
-        segmentedView.itemSpacing = 0
         segmentedView.delegate = self
         navigationItem.titleView = segmentedView
 

@@ -34,7 +34,7 @@ class LoadDataViewController: UIViewController {
         segmentedView.indicators = [indicator]
 
         //4、配置JXSegmentedView的属性
-        segmentedView.isContentScrollViewClickTransitionAnimateEnabled = false
+        segmentedView.isContentScrollViewClickTransitionAnimationEnabled = false
         segmentedView.delegate = self
         view.addSubview(segmentedView)
 

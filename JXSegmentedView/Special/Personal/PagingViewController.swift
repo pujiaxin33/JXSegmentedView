@@ -40,7 +40,7 @@ class PagingViewController: UIViewController {
         segmentedView = JXSegmentedView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: CGFloat(JXheightForHeaderInSection)))
         segmentedView.backgroundColor = UIColor.white
         segmentedView.dataSource = segmentedViewDataSource
-        segmentedView.isContentScrollViewClickTransitionAnimateEnabled = false
+        segmentedView.isContentScrollViewClickTransitionAnimationEnabled = false
 
         let lineView = JXSegmentedIndicatorLineView()
         lineView.indicatorColor = UIColor(red: 105/255, green: 144/255, blue: 239/255, alpha: 1)
