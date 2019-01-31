@@ -12,7 +12,7 @@ class NestViewController: UIViewController {
     let segmentedDataSource = JXSegmentedTitleDataSource()
     let segmentedView = JXSegmentedView()
     lazy var listContainerView: JXSegmentedListContainerView! = {
-        return JXSegmentedListContainerView(parentVC: self, dataSource: self)
+        return JXSegmentedListContainerView(dataSource: self)
     }()
 
     override func viewDidLoad() {

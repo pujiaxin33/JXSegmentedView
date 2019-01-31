@@ -39,7 +39,7 @@ class LoadDataViewController: UIViewController {
         view.addSubview(segmentedView)
 
         //5、初始化JXSegmentedListContainerView
-        listContainerView = JXSegmentedListContainerView(parentVC: self, dataSource: self)
+        listContainerView = JXSegmentedListContainerView(dataSource: self)
         view.addSubview(listContainerView)
 
         //6、将listContainerView.scrollView和segmentedView.contentScrollView进行关联

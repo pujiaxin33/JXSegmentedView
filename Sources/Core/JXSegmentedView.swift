@@ -119,6 +119,7 @@ extension JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) { }
 }
 
+/// 内部会自己找到父UIViewController，然后将其automaticallyAdjustsScrollViewInsets设置为false，这一点请知晓。
 open class JXSegmentedView: UIView {
     open weak var dataSource: JXSegmentedViewDataSource? {
         didSet {
@@ -199,6 +200,19 @@ open class JXSegmentedView: UIView {
             collectionView.contentInsetAdjustmentBehavior = .never
         }
         addSubview(collectionView)
+    }
+
+    open override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+
+        var nextResponder: UIResponder? = newSuperview
+        while nextResponder != nil {
+            if let parentVC = nextResponder as? UIViewController  {
+                parentVC.automaticallyAdjustsScrollViewInsets = false
+                break
+            }
+            nextResponder = nextResponder?.next
+        }
     }
 
     open override func layoutSubviews() {

@@ -49,30 +49,23 @@ public protocol JXSegmentedListContainerViewDataSource {
 }
 
 open class JXSegmentedListContainerView: UIView {
-    open var scrollView: UIScrollView!
+    public private(set) weak var dataSource: JXSegmentedListContainerViewDataSource!
+    public private(set) var scrollView: UIScrollView!
     /// 已经加载过的列表字典。key是index，value是对应的列表
     open var validListDict = [Int:JXSegmentedListContainerViewListDelegate]()
     /// 滚动切换的时候，滚动距离超过一页的多少百分比，就认为切换了页面。默认0.5（即滚动超过了半屏，就认为翻页了）。范围0~1，开区间不包括0和1
     open var didAppearPercent: CGFloat = 0.5
-    /// 需要和segmentedView.defaultSelectedIndex保持一致
+    /// 需要和segmentedView.defaultSelectedIndex保持一致，用于触发默认index列表的加载
     open var defaultSelectedIndex: Int = 0 {
         didSet {
             currentIndex = defaultSelectedIndex
         }
     }
-    private weak var dataSource: JXSegmentedListContainerViewDataSource!
     private var currentIndex: Int = 0
-    private var isLayoutSubviewsed: Bool = false
+    private var isLayoutedSubviews: Bool = false
 
-    /// 指定初始化器
-    ///
-    /// - Parameters:
-    ///   - parentVC: 可选值，主要用于将其automaticallyAdjustsScrollViewInsets设置false。如果外部已经设置了，或者视图层级复杂，不好访问parentVC等情况可以不用传。
-    ///   - dataSource: JXSegmentedListContainerViewDataSource代理
-    init(parentVC: UIViewController?, dataSource: JXSegmentedListContainerViewDataSource) {
-        parentVC?.automaticallyAdjustsScrollViewInsets = false
+    public init(dataSource: JXSegmentedListContainerViewDataSource) {
         self.dataSource = dataSource
-
         super.init(frame: CGRect.zero)
 
         commonInit()
@@ -122,8 +115,8 @@ open class JXSegmentedListContainerView: UIView {
         for (index, list) in validListDict {
             list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
         }
-        if !isLayoutSubviewsed {
-            isLayoutSubviewsed = true
+        if !isLayoutedSubviews {
+            isLayoutedSubviews = true
             listDidAppear(at: currentIndex)
         }
     }
