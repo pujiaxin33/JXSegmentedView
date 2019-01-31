@@ -77,9 +77,9 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     }
 
     /// 自定义子类请继承方法`func preferredWidthForItem(at index: Int) -> CGFloat`
-    public final func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
+    public final func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int, isItemWidthZoomValid: Bool) -> CGFloat {
         let itemWidth = preferredSegmentedView(segmentedView, widthForItemAt: index)
-        if isItemWidthZoomEnabled {
+        if isItemWidthZoomEnabled && isItemWidthZoomValid {
             return itemWidth * dataSource[index].itemWidthCurrentZoomScale
         }else {
             return itemWidth
@@ -106,9 +106,9 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
                 animator?.duration = selectedAnimationDuration
                 animator?.progressClosure = {[weak self] (percent) in
                     currentSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: currentSelectedItemModel.itemWidthSelectedZoomScale, to: currentSelectedItemModel.itemWidthNormalZoomScale, percent: percent)
-                    currentSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: currentSelectedItemModel.index) ?? 0
+                    currentSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: currentSelectedItemModel.index, isItemWidthZoomValid: true) ?? 0
                     willSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: willSelectedItemModel.itemWidthNormalZoomScale, to: willSelectedItemModel.itemWidthSelectedZoomScale, percent: percent)
-                    willSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: willSelectedItemModel.index) ?? 0
+                    willSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: willSelectedItemModel.index, isItemWidthZoomValid: true) ?? 0
                     segmentedView.collectionView.collectionViewLayout.invalidateLayout()
                 }
                 animator?.start()
@@ -125,9 +125,9 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         if isItemWidthZoomEnabled && isItemTransitionEnabled {
             //允许itemWidth缩放动画且允许item渐变过渡
             leftItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: leftItemModel.itemWidthSelectedZoomScale, to: leftItemModel.itemWidthNormalZoomScale, percent: percent)
-            leftItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: leftItemModel.index)
+            leftItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: leftItemModel.index, isItemWidthZoomValid: true)
             rightItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: rightItemModel.itemWidthNormalZoomScale, to: rightItemModel.itemWidthSelectedZoomScale, percent: percent)
-            rightItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: rightItemModel.index)
+            rightItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: rightItemModel.index, isItemWidthZoomValid: true)
             segmentedView.collectionView.collectionViewLayout.invalidateLayout()
         }
     }

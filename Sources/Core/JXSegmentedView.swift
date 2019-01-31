@@ -40,8 +40,9 @@ public protocol JXSegmentedViewDataSource: AnyObject {
     /// - Parameters:
     ///   - segmentedView: JXSegmentedView
     ///   - index: 目标index
+    ///   - isItemWidthZoomValid: 计算的宽度是否需要受isItemWidthZoomEnabled影响
     /// - Returns: item的宽度
-    func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat
+    func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int, isItemWidthZoomValid: Bool) -> CGFloat
 
     /// 注册cell class
     ///
@@ -244,7 +245,7 @@ open class JXSegmentedView: UIView {
         var totalContentWidth: CGFloat = getContentEdgeInsetLeft()
         for (index, itemModel) in itemDataSource.enumerated() {
             itemModel.index = index
-            itemModel.itemWidth = (dataSource?.segmentedView(self, widthForItemAt: index) ?? 0)
+            itemModel.itemWidth = (dataSource?.segmentedView(self, widthForItemAt: index, isItemWidthZoomValid: true) ?? 0)
             itemModel.isSelected = (index == selectedIndex)
             totalItemWidth += itemModel.itemWidth
             if index == itemDataSource.count - 1 {
@@ -528,9 +529,28 @@ open class JXSegmentedView: UIView {
         }
         var x = getContentEdgeInsetLeft()
         for i in 0..<index {
-            x += itemDataSource[i].itemWidth + innerItemSpacing
+            let itemModel = itemDataSource[i]
+            var itemWidth: CGFloat = 0
+            if itemModel.isTransitionAnimating && itemModel.isItemWidthZoomEnabled {
+                //正在进行动画的时候，itemWidthCurrentZoomScale是随着动画渐变的，而没有立即更新到目标值
+                if itemModel.isSelected {
+                    itemWidth = (dataSource?.segmentedView(self, widthForItemAt: itemModel.index, isItemWidthZoomValid: false) ?? 0) * itemModel.itemWidthSelectedZoomScale
+                }else {
+                    itemWidth = (dataSource?.segmentedView(self, widthForItemAt: itemModel.index, isItemWidthZoomValid: false) ?? 0) * itemModel.itemWidthNormalZoomScale
+                }
+            }else {
+                itemWidth = itemModel.itemWidth
+            }
+            x += itemWidth + innerItemSpacing
         }
-        return CGRect(x: x, y: 0, width: itemDataSource[index].itemWidth, height: bounds.size.height)
+        var width: CGFloat = 0
+        let selectedItemModel = itemDataSource[index]
+        if selectedItemModel.isTransitionAnimating && selectedItemModel.isItemWidthZoomEnabled {
+            width = (dataSource?.segmentedView(self, widthForItemAt: selectedItemModel.index, isItemWidthZoomValid: false) ?? 0) * selectedItemModel.itemWidthSelectedZoomScale
+        }else {
+            width = selectedItemModel.itemWidth
+        }
+        return CGRect(x: x, y: 0, width: width, height: bounds.size.height)
     }
 
     private func getContentEdgeInsetLeft() -> CGFloat {
