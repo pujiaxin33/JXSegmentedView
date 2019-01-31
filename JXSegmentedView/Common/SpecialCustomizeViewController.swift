@@ -51,6 +51,34 @@ class SpecialCustomizeViewController: UITableViewController {
             let vc = LoadDataCustomViewController()
             vc.title = itemTitle
             navigationController?.pushViewController(vc, animated: true)
+        case "isItemSpacingAverageEnabled为true":
+            let titles = ["猴哥", "青蛙王子", "旺财"]
+            let vc = ContentBaseViewController()
+            vc.title = itemTitle
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isItemSpacingAverageEnabled = true
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorLineView()
+            vc.segmentedView.indicators = [indicator]
+            navigationController?.pushViewController(vc, animated: true)
+        case "isItemSpacingAverageEnabled为false":
+            let titles = ["猴哥", "青蛙王子", "旺财"]
+            let vc = ContentBaseViewController()
+            vc.title = itemTitle
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isItemSpacingAverageEnabled = false
+            dataSource.titles = titles
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorLineView()
+            vc.segmentedView.indicators = [indicator]
+            navigationController?.pushViewController(vc, animated: true)
         default: break
         }
     }

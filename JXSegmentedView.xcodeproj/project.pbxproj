@@ -90,6 +90,9 @@
 		19213A9E2201AADA00A057C8 /* TitleImageTop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213A782201AADA00A057C8 /* TitleImageTop.gif */; };
 		19213A9F2201AADA00A057C8 /* TitleAttributed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213A792201AADA00A057C8 /* TitleAttributed.gif */; };
 		19213AA02201AADA00A057C8 /* CellDot.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213A7A2201AADA00A057C8 /* CellDot.gif */; };
+		19213AA52202E65800A057C8 /* TriangleTop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213AA42202E65800A057C8 /* TriangleTop.gif */; };
+		19213AA82202E66300A057C8 /* ItemAveTrue.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213AA62202E66300A057C8 /* ItemAveTrue.gif */; };
+		19213AA92202E66300A057C8 /* ItemAveFalse.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213AA72202E66300A057C8 /* ItemAveFalse.gif */; };
 		195A9BA321DC8E2D0005B7A7 /* JXSegmentedIndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BA221DC8E2D0005B7A7 /* JXSegmentedIndicatorImageView.swift */; };
 		195A9BA521DC97DD0005B7A7 /* JXSegmentedComponetGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BA421DC97DD0005B7A7 /* JXSegmentedComponetGradientView.swift */; };
 		195A9BA821DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BA721DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift */; };
@@ -204,6 +207,9 @@
 		19213A782201AADA00A057C8 /* TitleImageTop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleImageTop.gif; sourceTree = "<group>"; };
 		19213A792201AADA00A057C8 /* TitleAttributed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleAttributed.gif; sourceTree = "<group>"; };
 		19213A7A2201AADA00A057C8 /* CellDot.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CellDot.gif; sourceTree = "<group>"; };
+		19213AA42202E65800A057C8 /* TriangleTop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TriangleTop.gif; sourceTree = "<group>"; };
+		19213AA62202E66300A057C8 /* ItemAveTrue.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ItemAveTrue.gif; sourceTree = "<group>"; };
+		19213AA72202E66300A057C8 /* ItemAveFalse.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ItemAveFalse.gif; sourceTree = "<group>"; };
 		195A9BA221DC8E2D0005B7A7 /* JXSegmentedIndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorImageView.swift; sourceTree = "<group>"; };
 		195A9BA421DC97DD0005B7A7 /* JXSegmentedComponetGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedComponetGradientView.swift; sourceTree = "<group>"; };
 		195A9BA721DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeDataSource.swift; sourceTree = "<group>"; };
@@ -440,6 +446,7 @@
 		19213A522201AADA00A057C8 /* Indicator */ = {
 			isa = PBXGroup;
 			children = (
+				19213AA42202E65800A057C8 /* TriangleTop.gif */,
 				19213A532201AADA00A057C8 /* IndicatorBackground.gif */,
 				19213A542201AADA00A057C8 /* IndicatorImageBottom.gif */,
 				19213A552201AADA00A057C8 /* IndicatorBackgroundMaskPure.gif */,
@@ -464,6 +471,8 @@
 		19213A642201AADA00A057C8 /* Special */ = {
 			isa = PBXGroup;
 			children = (
+				19213AA72202E66300A057C8 /* ItemAveFalse.gif */,
+				19213AA62202E66300A057C8 /* ItemAveTrue.gif */,
 				19213A652201AADA00A057C8 /* Nest.gif */,
 				19213A662201AADA00A057C8 /* SegmentedControl.gif */,
 				19213A672201AADA00A057C8 /* NavigationBar.gif */,
@@ -648,6 +657,7 @@
 				19213A852201AADA00A057C8 /* LineRainbow.gif in Resources */,
 				19213A7B2201AADA00A057C8 /* IndicatorBackground.gif in Resources */,
 				19213A8D2201AADA00A057C8 /* SegmentedControl.gif in Resources */,
+				19213AA92202E66300A057C8 /* ItemAveFalse.gif in Resources */,
 				19213A972201AADA00A057C8 /* TitleImageLeft.gif in Resources */,
 				19213A912201AADA00A057C8 /* ColorGradient.gif in Resources */,
 				1904AA3121D31F6700316F97 /* LaunchScreen.storyboard in Resources */,
@@ -670,8 +680,10 @@
 				19213A8E2201AADA00A057C8 /* NavigationBar.gif in Resources */,
 				19213A962201AADA00A057C8 /* CellMixed.gif in Resources */,
 				19213A922201AADA00A057C8 /* ZoomStrokeWidth.gif in Resources */,
+				19213AA52202E65800A057C8 /* TriangleTop.gif in Resources */,
 				19213A7F2201AADA00A057C8 /* LineLengthenOffset.gif in Resources */,
 				19213A8C2201AADA00A057C8 /* Nest.gif in Resources */,
+				19213AA82202E66300A057C8 /* ItemAveTrue.gif in Resources */,
 				19213A952201AADA00A057C8 /* ZoomAnimation.gif in Resources */,
 				19213A802201AADA00A057C8 /* LineDot.gif in Resources */,
 				19213A932201AADA00A057C8 /* ZoomCellWidth.gif in Resources */,
