@@ -46,6 +46,20 @@ class ContentBaseViewController: UIViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "设置", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didSetingsButtonClicked))
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        //处于第一个item的时候，才允许屏幕边缘手势返回
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = (segmentedView.selectedIndex == 0)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        //离开页面的时候，需要恢复屏幕边缘手势，不能影响其他页面
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -87,6 +101,8 @@ extension ContentBaseViewController: JXSegmentedViewDelegate {
             //再调用reloadItem(at: index)
             segmentedView.reloadItem(at: index)
         }
+
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = (segmentedView.selectedIndex == 0)
     }
 
     func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
