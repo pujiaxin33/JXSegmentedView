@@ -32,10 +32,10 @@ class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
         }
 
         titleLabel.numberOfLines = myItemModel.titleNumberOfLines
-        if myItemModel.isSelected && myItemModel.selectedAttributeTitle != nil {
-            titleLabel.attributedText = myItemModel.selectedAttributeTitle
+        if myItemModel.isSelected && myItemModel.selectedAttributedTitle != nil {
+            titleLabel.attributedText = myItemModel.selectedAttributedTitle
         }else {
-            titleLabel.attributedText = myItemModel.attributeTitle
+            titleLabel.attributedText = myItemModel.attributedTitle
         }
     }
 }

@@ -21,16 +21,19 @@ public typealias LoadImageClosure = ((UIImageView, String) -> Void)
 
 open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
     open var titleImageType: JXSegmentedTitleImageType = .rightImage
-    /// 数量需要和item的数量保持一致。可以是ImageName或者图片地址
+    /// 数量需要和item的数量保持一致。可以是ImageName或者图片网络地址
     open var normalImageInfos: [String]?
-    /// 数量需要和item的数量保持一致。可以是ImageName或者图片地址。如果不赋值，选中时就不会处理图片切换。
+    /// 数量需要和item的数量保持一致。可以是ImageName或者图片网络地址。如果不赋值，选中时就不会处理图片切换。
     open var selectedImageInfos: [String]?
-    /// 内部默认通过UIImage(named:)加载图片。如果传递的是图片地址或者想自己处理图片加载逻辑，可以通过该闭包处理。
+    /// 内部默认通过UIImage(named:)加载图片。如果传递的是图片网络地址或者想自己处理图片加载逻辑，可以通过该闭包处理。
     open var loadImageClosure: LoadImageClosure?
+    /// 图片尺寸
     open var imageSize: CGSize = CGSize(width: 20, height: 20)
     /// title和image之间的间隔
     open var titleImageSpacing: CGFloat = 5
+    /// 是否开启图片缩放
     open var isImageZoomEnabled: Bool = false
+    /// 图片缩放选中时的scale
     open var imageSelectedZoomScale: CGFloat = 1.2
 
     open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {

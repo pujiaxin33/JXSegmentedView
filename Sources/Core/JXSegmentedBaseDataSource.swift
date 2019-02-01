@@ -10,6 +10,7 @@ import Foundation
 import  UIKit
 
 open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
+    /// 最终传递给JXSegmentedView的数据源数组
     open var dataSource = [JXSegmentedBaseItemModel]()
     /// cell的内容宽度，为JXSegmentedViewAutomaticDimension时就以内容计算的宽度为准，否则以itemContentWidth的具体值为准。
     open var itemContentWidth: CGFloat = JXSegmentedViewAutomaticDimension
@@ -23,7 +24,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     open var isItemTransitionEnabled: Bool = true
     /// 选中的时候，是否需要动画过渡。自定义的cell需要自己处理动画过渡逻辑，动画处理逻辑参考`JXSegmentedTitleCell`
     open var isSelectedAnimable: Bool = false
-    /// 选中动画的市场
+    /// 选中动画的时长
     open var selectedAnimationDuration: TimeInterval = 0.25
     /// 是否允许item宽度缩放
     open var isItemWidthZoomEnabled: Bool = false

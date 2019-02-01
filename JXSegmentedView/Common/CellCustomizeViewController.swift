@@ -179,12 +179,12 @@ class CellCustomizeViewController: UITableViewController {
             formatNormal(attriText: tuesdayAttriText)
             let wednesdayAttriText = NSMutableAttributedString(string: "周三\n1月9号")
             formatNormal(attriText: wednesdayAttriText)
-            dataSource.attributeTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as! [NSAttributedString]
+            dataSource.attributedTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as! [NSAttributedString]
 
             formatSelected(attriText: mondayAttriText)
             formatSelected(attriText: tuesdayAttriText)
             formatSelected(attriText: wednesdayAttriText)
-            dataSource.selectedAttributeTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as? [NSAttributedString]
+            dataSource.selectedAttributedTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as? [NSAttributedString]
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource

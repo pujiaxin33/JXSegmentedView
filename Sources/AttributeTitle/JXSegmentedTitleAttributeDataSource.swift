@@ -9,9 +9,11 @@
 import UIKit
 
 class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
-    var attributeTitles = [NSAttributedString]()
-    /// 选中时的富文本，可选。如果要使用确保count与attributeTitles一致。
-    var selectedAttributeTitles: [NSAttributedString]?
+    /// 富文本title数组
+    var attributedTitles = [NSAttributedString]()
+    /// 选中时的富文本，可选。如果要使用确保count与attributedTitles一致。
+    var selectedAttributedTitles: [NSAttributedString]?
+    /// title的numberOfLines
     var titleNumberOfLines: Int = 2
 
     override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
@@ -21,7 +23,7 @@ class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
     override func reloadData(selectedIndex: Int) {
         super.reloadData(selectedIndex: selectedIndex)
 
-        for index in 0..<attributeTitles.count {
+        for index in 0..<attributedTitles.count {
             let itemModel = preferredItemModelInstance() as! JXSegmentedTitleAttributeItemModel
             preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
             dataSource.append(itemModel)
@@ -35,8 +37,8 @@ class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
             return
         }
 
-        myItemModel.attributeTitle = attributeTitles[index]
-        myItemModel.selectedAttributeTitle = selectedAttributeTitles?[index]
+        myItemModel.attributedTitle = attributedTitles[index]
+        myItemModel.selectedAttributedTitle = selectedAttributedTitles?[index]
         myItemModel.titleNumberOfLines = titleNumberOfLines
     }
 
@@ -44,7 +46,7 @@ class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
         var itemWidth: CGFloat = 0
         if itemContentWidth == JXSegmentedViewAutomaticDimension {
             let myItemModel = dataSource[index] as? JXSegmentedTitleAttributeItemModel
-            let attriText = myItemModel?.selectedAttributeTitle != nil ? myItemModel?.selectedAttributeTitle : myItemModel?.attributeTitle
+            let attriText = myItemModel?.selectedAttributedTitle != nil ? myItemModel?.selectedAttributedTitle : myItemModel?.attributedTitle
             if let title = attriText {
                 let textWidth = title.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: NSStringDrawingOptions.init(rawValue: NSStringDrawingOptions.usesLineFragmentOrigin.rawValue | NSStringDrawingOptions.usesFontLeading.rawValue), context: nil).size.width
                 itemWidth = CGFloat(ceilf(Float(textWidth))) + itemWidthIncrement

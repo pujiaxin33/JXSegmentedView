@@ -9,10 +9,10 @@
 import UIKit
 
 class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
-    public let selectedLineView: UIView = UIView()
-    public let otherLineView: UIView = UIView()
     /// 线收缩到最小的百分比
     open var minLineWidthPercent: CGFloat = 0.2
+    public let selectedLineView: UIView = UIView()
+    public let otherLineView: UIView = UIView()
 
     open override func commonInit() {
         super.commonInit()
@@ -36,9 +36,9 @@ class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
         let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
         let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
         let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
-        var y = model.currentSelectedItemFrame.size.height - height - verticalMargin
+        var y = model.currentSelectedItemFrame.size.height - height - verticalOffset
         if indicatorPosition == .top {
-            y = verticalMargin
+            y = verticalOffset
         }
         selectedLineView.frame = CGRect(x: x, y: y, width: width, height: height)
         otherLineView.frame = selectedLineView.frame

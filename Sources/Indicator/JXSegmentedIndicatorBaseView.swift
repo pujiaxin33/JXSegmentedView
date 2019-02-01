@@ -20,16 +20,19 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
     open var indicatorHeight: CGFloat = JXSegmentedViewAutomaticDimension
     /// 默认JXSegmentedViewAutomaticDimension （等于indicatorHeight/2）。内部通过getIndicatorCornerRadius方法获取实际的值
     open var indicatorCornerRadius: CGFloat = JXSegmentedViewAutomaticDimension
+    /// 指示器的颜色
     open var indicatorColor: UIColor = .red
+    /// 指示器的位置，top或者bottom
     open var indicatorPosition: JXSegmentedIndicatorPosition = .bottom
-    /// 垂直方向边距；
-    open var verticalMargin: CGFloat = 0
-    //手势滚动、点击切换的时候，是否允许滚动。
+    /// 垂直方向偏移，指示器默认贴着底部或者顶部，verticalOffset越大越靠近中心。
+    open var verticalOffset: CGFloat = 0
+    /// 手势滚动、点击切换的时候，是否允许滚动。
     open var isScrollEnabled: Bool = true
     /// 是否需要将当前的indicator的frame转换到cell。辅助JXSegmentedTitleDataSourced的isTitleMaskEnabled属性使用。
     /// 如果添加了多个indicator，仅能有一个indicator的isIndicatorConvertToItemFrameEnabled为true。
     /// 如果有多个indicator的isIndicatorConvertToItemFrameEnabled为true，则以最后一个isIndicatorConvertToItemFrameEnabled为true的indicator为准。
     open var isIndicatorConvertToItemFrameEnabled: Bool = true
+    /// 点击选中时的滚动动画时长
     open var scrollAnimationDuration: TimeInterval = 0.25
 
     public override init(frame: CGRect) {

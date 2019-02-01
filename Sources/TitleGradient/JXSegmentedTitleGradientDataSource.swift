@@ -9,9 +9,13 @@
 import UIKit
 
 open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
+    /// title普通状态下的渐变colors
     open var titleNormalGradientColors: [CGColor] = [UIColor.black.cgColor, UIColor.black.cgColor, UIColor.black.cgColor]
+    /// title选中状态下的渐变colors
     open var titleSelectedGradientColors: [CGColor] = [UIColor(red: 18/255.0, green: 194/255.0, blue: 233/255.0, alpha: 1).cgColor, UIColor(red: 196/255.0, green: 113/255.0, blue: 237/255.0, alpha: 1).cgColor, UIColor(red: 246/255.0, green: 79/255.0, blue: 89/255.0, alpha: 1).cgColor]
+    /// title渐变的StartPoint
     open var titleGradientStartPoint: CGPoint = CGPoint(x: 0, y: 0)
+    /// title渐变的EndPoint
     open var titleGradientEndPoint: CGPoint = CGPoint(x: 1, y: 0)
 
     open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {

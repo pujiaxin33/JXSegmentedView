@@ -9,15 +9,18 @@
 import UIKit
 
 class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
+    /// 渐变colors
     open var gradientColors = [CGColor]()
     /// 宽度增量，背景指示器一般要比cell宽一些
     open var gradientViewWidthIncrement: CGFloat = 20
+    /// 渐变CAGradientLayer，通过它设置startPoint、endPoint等其他属性
+    open var gradientLayer: CAGradientLayer {
+        return layer as! CAGradientLayer
+    }
+
     public let gradientMaskLayer: CAShapeLayer = CAShapeLayer()
     open class override var layerClass: AnyClass {
         return CAGradientLayer.self
-    }
-    open var gradientLayer: CAGradientLayer {
-        return layer as! CAGradientLayer
     }
     
     private var gradientMaskLayerFrame = CGRect.zero

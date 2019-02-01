@@ -32,9 +32,9 @@ open class JXSegmentedIndicatorTriangleView: JXSegmentedIndicatorBaseView {
         let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
         let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
         let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
-        var y = model.currentSelectedItemFrame.size.height - height - verticalMargin
+        var y = model.currentSelectedItemFrame.size.height - height - verticalOffset
         if indicatorPosition == .top {
-            y = verticalMargin
+            y = verticalOffset
         }
         frame = CGRect(x: x, y: y, width: width, height: height)
 
