@@ -79,6 +79,10 @@ class SpecialCustomizeViewController: UITableViewController {
             let indicator = JXSegmentedIndicatorLineView()
             vc.segmentedView.indicators = [indicator]
             navigationController?.pushViewController(vc, animated: true)
+        case "导航栏自定义返回item手势处理":
+            let vc = NaviItemCustomViewController()
+            vc.title = title
+            navigationController?.pushViewController(vc, animated: true)
         default: break
         }
     }

@@ -93,6 +93,7 @@
 		19213AA52202E65800A057C8 /* TriangleTop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213AA42202E65800A057C8 /* TriangleTop.gif */; };
 		19213AA82202E66300A057C8 /* ItemAveTrue.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213AA62202E66300A057C8 /* ItemAveTrue.gif */; };
 		19213AA92202E66300A057C8 /* ItemAveFalse.gif in Resources */ = {isa = PBXBuildFile; fileRef = 19213AA72202E66300A057C8 /* ItemAveFalse.gif */; };
+		19213AAC2203D86D00A057C8 /* NaviItemCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19213AAB2203D86D00A057C8 /* NaviItemCustomViewController.swift */; };
 		195A9BA321DC8E2D0005B7A7 /* JXSegmentedIndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BA221DC8E2D0005B7A7 /* JXSegmentedIndicatorImageView.swift */; };
 		195A9BA521DC97DD0005B7A7 /* JXSegmentedComponetGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BA421DC97DD0005B7A7 /* JXSegmentedComponetGradientView.swift */; };
 		195A9BA821DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A9BA721DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift */; };
@@ -210,6 +211,7 @@
 		19213AA42202E65800A057C8 /* TriangleTop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TriangleTop.gif; sourceTree = "<group>"; };
 		19213AA62202E66300A057C8 /* ItemAveTrue.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ItemAveTrue.gif; sourceTree = "<group>"; };
 		19213AA72202E66300A057C8 /* ItemAveFalse.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ItemAveFalse.gif; sourceTree = "<group>"; };
+		19213AAB2203D86D00A057C8 /* NaviItemCustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviItemCustomViewController.swift; sourceTree = "<group>"; };
 		195A9BA221DC8E2D0005B7A7 /* JXSegmentedIndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorImageView.swift; sourceTree = "<group>"; };
 		195A9BA421DC97DD0005B7A7 /* JXSegmentedComponetGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedComponetGradientView.swift; sourceTree = "<group>"; };
 		195A9BA721DCC4EA0005B7A7 /* JXSegmentedTitleAttributeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeDataSource.swift; sourceTree = "<group>"; };
@@ -505,6 +507,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		19213AAA2203D83700A057C8 /* NaviItemGesture */ = {
+			isa = PBXGroup;
+			children = (
+				19213AAB2203D86D00A057C8 /* NaviItemCustomViewController.swift */,
+			);
+			path = NaviItemGesture;
+			sourceTree = "<group>";
+		};
 		195A9BA621DCC4B30005B7A7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +526,7 @@
 		195A9BAD21DDD7400005B7A7 /* Special */ = {
 			isa = PBXGroup;
 			children = (
+				19213AAA2203D83700A057C8 /* NaviItemGesture */,
 				195A9C4521E321510005B7A7 /* LoadData */,
 				195A9BC821DDF6310005B7A7 /* Nest */,
 				195A9BC321DDEB640005B7A7 /* SegmentedControl */,
@@ -716,6 +727,7 @@
 				1904AA5C21D38A8600316F97 /* ContentBaseViewController.swift in Sources */,
 				195A9BBA21DDD7BB0005B7A7 /* PagingViewController.swift in Sources */,
 				1904AA7221D624AC00316F97 /* JXSegmentedDotItemModel.swift in Sources */,
+				19213AAC2203D86D00A057C8 /* NaviItemCustomViewController.swift in Sources */,
 				1904AA5321D36A8700316F97 /* JXSegmentedTitleCell.swift in Sources */,
 				1904AA2921D31F6400316F97 /* ViewController.swift in Sources */,
 				1904AA4C21D3637300316F97 /* JXSegmentedViewTool.swift in Sources */,
