@@ -147,15 +147,16 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 
 #### 直接使用`UIScrollView`自定义使用示例
 
-首先，不推荐使用该方法。因为代码比较分散，而且代码量也比较多。要正确使用需要注意的地方比较多，尤其对于刚接触iOS的同学来说不太友好。
+因为代码比较分散，而且代码量也比较多，所有不推荐使用该方法。要正确使用需要注意的地方比较多，尤其对于刚接触iOS的同学来说不太友好。
 
-就不直接贴代码了。具体点击[LoadDataCustomViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/ListCustom/LoadDataCustomViewController.swift)查看源代码了解。
-作为替代，官方使用&强烈推荐搭配`JXSegmentedListContainerView`类使用。
+不直接贴代码了，具体点击[LoadDataCustomViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/ListCustom/LoadDataCustomViewController.swift)查看源代码了解。
+
+作为替代，官方使用&强烈推荐使用下面这种方式👇👇👇。
 
 #### 配合`JXSegmentedListContainerView`封装类使用示例
 
 `JXSegmentedListContainerView`是对列表视图高度封装的类，具有以下优点：
-- 相对于直接使用`UIScrollView`自定义，封装度高、代码集中、使用更简单；
+- 相对于直接使用`UIScrollView`自定义，封装度高、代码集中、使用简单；
 - 列表懒加载：当显示某个列表的时候，才进行列表初始化。而不是一次性加载全部列表，性能更优；
 
 1.初始化`JXSegmentedListContainerView`
@@ -198,7 +199,7 @@ func listDidDisappear() {}
 
 4.将关键事件告知`JXSegmentedListContainerView`
 
-在下面两个`JXSegmentedViewDelegate`代理方法里面调用对应的代码，这一条不要忘记了！！！
+在下面两个`JXSegmentedViewDelegate`代理方法里面调用对应的代码，一定不要忘记这一条❗️❗️❗️
 ```Swift
 func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
     //传递didClickSelectedItemAt事件给listContainerView，必须调用！！！
