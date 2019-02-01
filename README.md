@@ -64,6 +64,7 @@ TitleOrImage(高仿腾讯视频) |  <img src="JXSegmentedView/Gif/Cell/TitleOrIm
 数字 |  <img src="JXSegmentedView/Gif/Cell/Number.gif" width="350" height="80"> |
 红点 |  <img src="JXSegmentedView/Gif/Cell/CellDot.gif" width="350" height="80"> |
 多行富文本 |  <img src="JXSegmentedView/Gif/Cell/TitleAttributed.gif" width="350" height="80"> |
+多种cell混用 |  <img src="JXSegmentedView/Gif/Cell/MixedCell.gif" width="350" height="80"> |
 
 ### 特殊效果预览
 
