@@ -145,7 +145,7 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 
 ### `contentScrollView`列表容器使用示例
 
-#### 直接使用`UIScrollView`自定义
+#### 直接使用`UIScrollView`自定义使用示例
 
 首先，不推荐使用该方法。因为代码比较分散，而且代码量也比较多。要正确使用需要注意的地方比较多，尤其对于刚接触iOS的同学来说不太友好。
 
@@ -179,6 +179,7 @@ func listContainerView(_ listContainerView: JXSegmentedListContainerView, initLi
 ```
 
 3.列表实现`JXSegmentedListContainerViewListDelegate`代理方法
+
 不管列表是UIView还是UIViewController都可以，提高使用灵活性，更便于现有的业务接入。
 ```Swift
 /// 如果列表是VC，就返回VC.view
@@ -196,6 +197,7 @@ func listDidDisappear() {}
 ```
 
 4.将关键事件告知`JXSegmentedListContainerView`
+
 在下面两个`JXSegmentedViewDelegate`代理方法里面调用对应的代码，这一条不要忘记了！！！
 ```Swift
 func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
@@ -223,16 +225,16 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 ### 指示器样式自定义
 
 - 需要继承`JXSegmentedIndicatorProtocol`协议，点击参看[JXSegmentedIndicatorProtocol](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Indicator/JXSegmentedIndicatorProtocol.swift)
-- 提供了继承`JXSegmentedIndicatorProtocol`协议的基类`JXSegmentedIndicatorBaseView`，里面提供了许多基础属性。指示器子类化都是通过该类。点击参看[JXSegmentedIndicatorBaseView](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Indicator/JXSegmentedIndicatorBaseView.swift)
-- 自定义指示器，请多参考已实现的指示器视图，多尝试、多思考，再有问题请提Issue或加入反馈QQ群
+- 提供了继承`JXSegmentedIndicatorProtocol`协议的基类`JXSegmentedIndicatorBaseView`，里面提供了许多基础属性。点击参看[JXSegmentedIndicatorBaseView](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Indicator/JXSegmentedIndicatorBaseView.swift)
+- 自定义指示器，请参考已实现的指示器视图，多尝试、多思考，再有问题请提Issue或加入反馈QQ群
 
 
 ### dataSource和Cell自定义
 
 - 需要继承`JXSegmentedViewDataSource`协议，点击参看[JXSegmentedViewDataSource](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Core/JXSegmentedView.swift)
 - 提供了继承`JXSegmentedViewDataSource`协议的基类`JXSegmentedBaseDataSource`，里面提供了许多基础属性。点击参看[JXSegmentedBaseDataSource](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Core/JXSegmentedBaseDataSource.swift)
-- 任何子类化需求，dataSource、cell、itemModel三个都要子类化。即使某个子类cell什么事情都不做。用于维护继承链，以免以后子类化都不知道要继承谁了；
-- dataSource和Cell自定义，请多参考已实现的dataSource，多尝试、多思考，再有问题请提Issue或加入反馈QQ群
+- 任何自定义需求，dataSource、cell、itemModel三个都要子类化。即使某个子类cell什么事情都不做。用于维护继承链，以免以后子类化都不知道要继承谁了；
+- dataSource和Cell自定义，请参考已实现的dataSource，多尝试、多思考，再有问题请提Issue或加入反馈QQ群
 
 ## 常用属性说明
 
