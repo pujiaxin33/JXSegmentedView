@@ -1,11 +1,9 @@
-<div align=center><img src="JXSegmentedView/Gif/JXCategoryView.png" width="405" height="63" /></div>
+<div align=center><img src="JXSegmentedView/Image/JXSegmentedViewSmall.png" width="467" height="84" /></div>
 
 [![platform](https://img.shields.io/badge/platform-iOS-blue.svg?style=plastic)](#)
-[![languages](https://img.shields.io/badge/language-objective--c-blue.svg)](#) 
-[![cocoapods](https://img.shields.io/badge/cocoapods-supported-4BC51D.svg?style=plastic)](https://cocoapods.org/pods/JXCategoryView)
+[![languages](https://img.shields.io/badge/language-swift-blue.svg)](#) 
+[![cocoapods](https://img.shields.io/badge/cocoapods-supported-4BC51D.svg?style=plastic)](https://cocoapods.org/pods/JXSegmentedView)
 [![support](https://img.shields.io/badge/support-ios%208%2B-orange.svg)](#) 
-
-[There is an English version of README here. just click it！](https://github.com/pujiaxin33/JXCategoryView/blob/master/README-English.md)
 
 A powerful and easy to use segmented view (segmentedcontrol, pagingview, pagerview, pagecontrol, categoryview) (腾讯新闻、今日头条、QQ音乐、网易云音乐、京东、爱奇艺、腾讯视频、淘宝、天猫、简书、微博等所有主流APP分类切换滚动视图)
 
@@ -33,9 +31,9 @@ Background椭圆形  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgro
 Background椭圆形+阴影  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundShadow.gif" width="350" height="80"> |
 Background遮罩有背景  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundMask.gif" width="350" height="80"> |
 Background遮罩无背景  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundMaskPure.gif" width="350" height="80"> |
-Background渐变色<br>渐变是固定的  |  <img src="JXSegmentedView/Gif/Indicator/GradientBGIndicatorView.gif" width="350" height="80"> |
-Gradient渐变色<br>渐变随着位置变动  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorGradient.gif" width="350" height="80"> |
-Image底部  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorImageBottom.gif" width="350" height="137"> |
+Background渐变色<br>(渐变是固定的)  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundGradient.gif" width="350" height="80"> |
+Gradient渐变色<br>(渐变随着位置变动)  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorGradient.gif" width="350" height="80"> |
+Image底部  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorImageBottom.gif" width="350" height="80"> |
 Image背景  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorImageBG.gif" width="350" height="80"> |
 混合使用 |  <img src="JXSegmentedView/Gif/Indicator/IndicatorMixed.gif" width="350" height="80"> |
 
@@ -109,12 +107,13 @@ self.view.addSubview(self.segmentedView)
 ```
 
 2.初始化dataSource
+
 `dataSouce`类型为`JXSegmentedViewDataSource`协议。使用单独的类实现`JXSegmentedViewDataSource`协议，实现代码隔离。选择不同的类赋值给`dataSource`，就可以控制`JXSegmentedView`显示效果，实现插件化。
 ```Swift
 //segmentedDataSource一定要通过属性强持有，不然会被释放掉
 self.segmentedDataSource = JXSegmentedTitleDataSource()
-self.segmentedDataSource.titles = ["猴哥", "青蛙王子", "旺财"]
 //配置数据源相关配置属性
+self.segmentedDataSource.titles = ["猴哥", "青蛙王子", "旺财"]
 self.segmentedDataSource.isTitleColorGradientEnabled = true
 //reloadData(selectedIndex:)方法一定要调用，方法内部会刷新数据源数组
 self.segmentedDataSource.reloadData(selectedIndex: 0)
@@ -126,7 +125,6 @@ self.segmentedView.dataSource = self.segmentedDataSource
 ```Swift
 let indicator = JXSegmentedIndicatorLineView()
 indicator.indicatorWidth = 20
-//可以赋值多个indicator
 self.segmentedView.indicators = [indicator]
 ```
 
@@ -159,8 +157,6 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 `JXSegmentedListContainerView`是对列表视图高度封装的类，具有以下优点：
 - 相对于直接使用`UIScrollView`自定义，封装度高、代码集中、使用更简单；
 - 列表懒加载：当显示某个列表的时候，才进行列表初始化。而不是一次性加载全部列表，性能更优；
-
-具体点击[LoadDataViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/WithListContainerView/LoadDataViewController.swift)查看源代码了解
 
 1.初始化`JXSegmentedListContainerView`
 ```Swift
@@ -213,13 +209,16 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 }
 ```
 
+具体点击[LoadDataViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/WithListContainerView/LoadDataViewController.swift)查看源代码了解
+
 ### 使用总结
 
 因为`JXSegmentedView`本身支持许多特性：指示器、cell样式、列表容器等，如何有序管理好代码成了一个难题。借助于协议、继承、封装类极大的简化了使用难度，而且提高了灵活性，扩展相当容易。
-核心主类：`JXSegmentedView`
-数据源&cell样式定制类：遵从`JXSegmentedViewDataSource`协议的类
-指示器类：遵从`JXSegmentedIndicatorProtocol`协议的`UIView`类
-列表容器：官方推荐`JXSegmentedListContainerView`类，特殊情况可以使用`UIScrollView`自定义
+
+- 核心主类：`JXSegmentedView`
+- 数据源&cell样式定制类：遵从`JXSegmentedViewDataSource`协议的类
+- 指示器类：遵从`JXSegmentedIndicatorProtocol`协议的`UIView`类
+- 列表容器：官方推荐`JXSegmentedListContainerView`类，特殊情况可以使用`UIScrollView`自定义
 
 ### 指示器样式自定义
 
@@ -228,24 +227,26 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 - 自定义指示器，请多参考已实现的指示器视图，多尝试、多思考，再有问题请提Issue或加入反馈QQ群
 
 
-### dataSource和Cell子类化自定义
+### dataSource和Cell自定义
 
 - 需要继承`JXSegmentedViewDataSource`协议，点击参看[JXSegmentedViewDataSource](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Core/JXSegmentedView.swift)
-- 提供了继承`JXSegmentedViewDataSource`协议的基类`JXSegmentedBaseDataSource`，里面提供了许多基础属性。dataSource和Cell子类化都是通过该类。点击参看[JXSegmentedBaseDataSource](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Core/JXSegmentedBaseDataSource.swift)
+- 提供了继承`JXSegmentedViewDataSource`协议的基类`JXSegmentedBaseDataSource`，里面提供了许多基础属性。点击参看[JXSegmentedBaseDataSource](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Core/JXSegmentedBaseDataSource.swift)
 - 任何子类化需求，dataSource、cell、itemModel三个都要子类化。即使某个子类cell什么事情都不做。用于维护继承链，以免以后子类化都不知道要继承谁了；
-- dataSource和Cell子类化自定义，请多参考已实现的dataSource，多尝试、多思考，再有问题请提Issue或加入反馈QQ群
+- dataSource和Cell自定义，请多参考已实现的dataSource，多尝试、多思考，再有问题请提Issue或加入反馈QQ群
 
 ## 常用属性说明
 
-[常用属性说明文档地址](https://github.com/pujiaxin33/JXCategoryView/blob/master/Document/%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E8%AF%B4%E6%98%8E.md)
+[常用属性说明文档地址](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E8%AF%B4%E6%98%8E.md)
 
 ## 其他使用注意事项
 
-[其他使用注意事项文档地址](https://github.com/pujiaxin33/JXCategoryView/blob/master/Document/%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E8%AF%B4%E6%98%8E.md)
+[其他使用注意事项文档地址](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.md)
 
 ## 补充
 
-该仓库保持随时更新，对于主流新的分类选择效果会第一时间支持。使用过程中，有任何建议或问题，可以通过以下方式联系我：</br>
+如果刚开始使用`JXSegmentedView`，当开发过程中需要支持某种特性时，请务必先搜索使用文档或者源代码。确认是否已经实现支持了想要的特性。请别不要文档和源代码都没有看，就直接提问，这对于大家都是一种时间浪费。如果没有支持想要的特性，欢迎提Issue讨论，或者自己实现提一个PullRequest。
+
+该仓库保持及时更新，对于主流新的分类选择效果会第一时间支持。使用过程中，有任何建议或问题，可以通过以下方式联系我：</br>
 邮箱：317437084@qq.com </br>
 QQ群： 112440276
 
