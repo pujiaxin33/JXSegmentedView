@@ -12,6 +12,11 @@ A powerful and easy to use segmented view (segmentedcontrol, pagingview, pagervi
 - 提供更加全面丰富效果，几乎支持所有主流APP效果；
 - 使用子类化管理cell样式，逻辑更清晰，扩展更简单；
 
+## Objective-C版本
+
+如果你在找Objective-C版本，请点击查看
+[JXCategoryView](https://github.com/pujiaxin33/JXCategoryView)
+
 ## 效果预览
 
 ### 指示器效果预览
