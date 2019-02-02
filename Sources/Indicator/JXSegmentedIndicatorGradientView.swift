@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
+open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
     /// 渐变colors
     open var gradientColors = [CGColor]()
     /// 宽度增量，背景指示器一般要比cell宽一些

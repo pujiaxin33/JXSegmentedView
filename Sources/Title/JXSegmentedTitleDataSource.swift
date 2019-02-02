@@ -12,7 +12,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     /// title数组
     open var titles = [String]()
     /// label的numberOfLines
-    var titleNumberOfLines: Int = 1
+    open var titleNumberOfLines: Int = 1
     /// title普通状态的textColor
     open var titleNormalColor: UIColor = .black
     /// title选中状态的textColor

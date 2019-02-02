@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UIColor {
+public extension UIColor {
     var jx_red: CGFloat {
         var r: CGFloat = 0
         getRed(&r, green: nil, blue: nil, alpha: nil)
@@ -30,13 +30,13 @@ extension UIColor {
     }
 }
 
-class JXSegmentedViewTool {
-    static func interpolate<T: SignedNumeric & Comparable>(from: T, to:  T, percent:  T) ->  T {
+public class JXSegmentedViewTool {
+    public static func interpolate<T: SignedNumeric & Comparable>(from: T, to:  T, percent:  T) ->  T {
         let percent = max(0, min(1, percent))
         return from + (to - from) * percent
     }
 
-    static func interpolateColor(from: UIColor, to: UIColor, percent: CGFloat) -> UIColor {
+    public static func interpolateColor(from: UIColor, to: UIColor, percent: CGFloat) -> UIColor {
         let r = interpolate(from: from.jx_red, to: to.jx_red, percent: percent)
         let g = interpolate(from: from.jx_green, to: to.jx_green, percent: CGFloat(percent))
         let b = interpolate(from: from.jx_blue, to: to.jx_blue, percent: CGFloat(percent))
@@ -44,7 +44,7 @@ class JXSegmentedViewTool {
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
 
-    static func interpolateColors(from: [CGColor], to: [CGColor], percent: CGFloat) -> [CGColor] {
+    public static func interpolateColors(from: [CGColor], to: [CGColor], percent: CGFloat) -> [CGColor] {
         var resultColors = [CGColor]()
         for index in 0..<from.count {
             let fromColor = UIColor(cgColor: from[index])

@@ -8,7 +8,7 @@
 
 import UIKit
 
-let JXSegmentedViewAutomaticDimension: CGFloat = -1
+public let JXSegmentedViewAutomaticDimension: CGFloat = -1
 
 /// 选中item时的类型
 ///

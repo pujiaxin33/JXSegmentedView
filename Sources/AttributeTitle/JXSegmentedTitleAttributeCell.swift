@@ -8,10 +8,10 @@
 
 import UIKit
 
-class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
-    var titleLabel = UILabel()
+open class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
+    open var titleLabel = UILabel()
 
-    override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
 
         titleLabel.textAlignment = .center
@@ -24,7 +24,7 @@ class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
         contentView.addConstraint(centerY)
     }
 
-    override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
+    open override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
         super.reloadData(itemModel: itemModel, selectedType: selectedType )
 
         guard let myItemModel = itemModel as? JXSegmentedTitleAttributeItemModel else {

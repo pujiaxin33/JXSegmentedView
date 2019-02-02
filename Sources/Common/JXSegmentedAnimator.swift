@@ -21,7 +21,7 @@ open class JXSegmentedAnimator {
         completedClosure = nil
     }
 
-    init() {
+    public init() {
         displayLink = CADisplayLink(target: self, selector: #selector(processDisplayLink(sender:)))
     }
 
