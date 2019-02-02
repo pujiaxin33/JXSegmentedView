@@ -2,7 +2,7 @@
 
 ## Screen Edge Guesture Process
 
-[Screen Edge Guesture Process document address](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/%E4%BE%A7%E6%BB%91%E6%89%8B%E5%8A%BF%E5%A4%84%E7%90%86%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3.md)
+[Screen Edge Guesture Process document address](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/English/gesture.md)
 
 ## JXSegmentedView ReloadData
 

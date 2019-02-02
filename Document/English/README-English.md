@@ -156,7 +156,7 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 
 Because the code is scattered and the amount of code is large, it is not recommended. There are many places to pay attention to when using it properly, especially for students who are new to iOS.
 
-Do not directly paste the code, click [LoadDataCustomViewController] (https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/ListCustom/LoadDataCustomViewController.swift) to view the source code.
+Do not directly paste the code, click [LoadDataCustomViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/ListCustom/LoadDataCustomViewController.swift) to view the source code.
 
 As an alternative, the official use & is highly recommended to use the following in this way 👇👇👇.
 
@@ -219,7 +219,7 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 }
 ```
 
-Click [LoadDataViewController] (https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/WithListContainerView/LoadDataViewController.swift) to see the source code.
+Click [LoadDataViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/WithListContainerView/LoadDataViewController.swift) to see the source code.
 
 ### Usage Summary
 
@@ -232,14 +232,14 @@ Because `JXSegmentedView`  supports many features: indicators, cell styles, list
 
 ### Indicator style customization
 
-- To inherit the `JXSegmentedIndicatorProtocol` protocol, click on [JXSegmentedIndicatorProtocol] (https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Indicator/JXSegmentedIndicatorProtocol.swift)
-- The base class `JXSegmentedIndicatorBaseView` inheriting the `JXSegmentedIndicatorProtocol` protocol is provided, which provides many basic properties. Click to see [JXSegmentedIndicatorBaseView] (https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Indicator/JXSegmentedIndicatorBaseView.swift)
+- To inherit the `JXSegmentedIndicatorProtocol` protocol, click on [JXSegmentedIndicatorProtocol](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Indicator/JXSegmentedIndicatorProtocol.swift)
+- The base class `JXSegmentedIndicatorBaseView` inheriting the `JXSegmentedIndicatorProtocol` protocol is provided, which provides many basic properties. Click to see [JXSegmentedIndicatorBaseView](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Indicator/JXSegmentedIndicatorBaseView.swift)
 - Custom indicator, please refer to the implemented indicator view, try more, think more, please ask Issue or join feedback QQ group if you have any questions.
 
 
 ### dataSource and Cell customization
 
-- Need to inherit the `JXSegmentedViewDataSource` protocol, click on [JXSegmentedViewDataSource] (https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Core/JXSegmentedView.swift)
+- Need to inherit the `JXSegmentedViewDataSource` protocol, click on [JXSegmentedViewDataSource](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Core/JXSegmentedView.swift)
 - Provides the base class `JXSegmentedBaseDataSource` that inherits the `JXSegmentedViewDataSource` protocol, which provides many basic properties. Click to see [JXSegmentedBaseDataSource](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Sources/Core/JXSegmentedBaseDataSource.swift)
 - Any custom requirements, dataSource, cell, itemModel must be subclassed. Even if a subclass cell does nothing. Used to maintain the inheritance chain, so as not to know who to inherit after subclassing;
 - dataSource and Cell customization, please refer to the implemented dataSource, try more, think more, please ask Issue or join feedback QQ group if you have any questions.
