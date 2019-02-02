@@ -5,7 +5,7 @@
 [![cocoapods](https://img.shields.io/badge/cocoapods-supported-4BC51D.svg?style=plastic)](https://cocoapods.org/pods/JXSegmentedView)
 [![support](https://img.shields.io/badge/support-ios%208%2B-orange.svg)](#) 
 
-[There is an English document here, click to view](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/English/README-English.md)
+[There is an English document here, click to view](https://github.com/pujiaxin33/JXSegmentedView/blob/master/README-English.md)
 
 A powerful and easy to use segmented view (segmentedcontrol, pagingview, pagerview, pagecontrol, categoryview) (腾讯新闻、今日头条、QQ音乐、网易云音乐、京东、爱奇艺、腾讯视频、淘宝、天猫、简书、微博等所有主流APP分类切换滚动视图)
 
