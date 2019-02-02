@@ -37,6 +37,9 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         animator?.stop()
     }
 
+    public init() {
+    }
+
     /// 配置完各种属性之后，需要手动调用该方法，更新数据源
     ///
     /// - Parameter selectedIndex: 当前选中的index

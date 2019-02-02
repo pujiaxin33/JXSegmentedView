@@ -116,7 +116,7 @@ public protocol JXSegmentedViewDelegate: AnyObject {
 }
 
 /// 提供JXSegmentedViewDelegate的默认实现，这样对于遵从JXSegmentedViewDelegate的类来说，所有代理方法都是可选实现的。
-extension JXSegmentedViewDelegate {
+public extension JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) { }
     func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) { }
     func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int) { }
