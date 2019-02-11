@@ -136,12 +136,20 @@ open class JXSegmentedListContainerView: UIView {
             if percent < (1 - didAppearPercent) {
                 targetIndex = leftIndex
                 disappearIndex = rightIndex
+            }else if selectedIndex != currentIndex {
+                //处理快速滑动的时候，percent值比较跳跃
+                targetIndex = selectedIndex
+                disappearIndex = currentIndex
             }
         }else {
             //当前选中的在左边，用户正在从左边往右边滑动
             if percent > didAppearPercent {
                 targetIndex = rightIndex
                 disappearIndex = leftIndex
+            }else if selectedIndex != currentIndex {
+                //处理快速滑动的时候，percent值比较跳跃
+                targetIndex = selectedIndex
+                disappearIndex = currentIndex
             }
         }
 
@@ -167,7 +175,6 @@ open class JXSegmentedListContainerView: UIView {
             return
         }
         currentIndex = index
-
         var list = validListDict[index]
         if list == nil {
             list = dataSource.listContainerView(self, initListAt: index)

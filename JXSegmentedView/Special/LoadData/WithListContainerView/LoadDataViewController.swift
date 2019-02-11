@@ -40,6 +40,7 @@ class LoadDataViewController: UIViewController {
 
         //5、初始化JXSegmentedListContainerView
         listContainerView = JXSegmentedListContainerView(dataSource: self)
+        listContainerView.didAppearPercent = 0.9
         view.addSubview(listContainerView)
 
         //6、将listContainerView.scrollView和segmentedView.contentScrollView进行关联

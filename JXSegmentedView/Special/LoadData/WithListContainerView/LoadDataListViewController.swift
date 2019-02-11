@@ -69,6 +69,6 @@ extension LoadDataListViewController: JXSegmentedListContainerViewListDelegate {
     }
 
     func listDidDisappear() {
-        print("listDidAppear")
+        print("listDidDisappear")
     }
 }
