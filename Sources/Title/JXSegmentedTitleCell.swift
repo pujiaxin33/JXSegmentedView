@@ -33,9 +33,13 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
     open override func layoutSubviews() {
         super.layoutSubviews()
 
-        titleLabel.sizeToFit()
+        //为什么使用`sizeThatFits`，而不用`sizeToFit`呢？在numberOfLines大于0的时候，cell进行重用的时候通过`sizeToFit`，label设置成错误的size。至于原因我用尽毕生所学，没有找到为什么。但是用`sizeThatFits`可以规避掉这个问题。
+        let labelSize = titleLabel.sizeThatFits(self.contentView.bounds.size)
+        let labelBounds = CGRect(x: 0, y: 0, width: labelSize.width, height: labelSize.height)
+        titleLabel.bounds = labelBounds
         titleLabel.center = contentView.center
-        maskTitleLabel.sizeToFit()
+
+        maskTitleLabel.bounds = labelBounds
         maskTitleLabel.center = contentView.center
     }
 
@@ -98,7 +102,9 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             maskTitleLabel.isHidden = false
             titleLabel.textColor = myItemModel.titleNormalColor
             maskTitleLabel.textColor = myItemModel.titleSelectedColor
-            maskTitleLabel.sizeToFit()
+            let labelSize = maskTitleLabel.sizeThatFits(self.contentView.bounds.size)
+            let labelBounds = CGRect(x: 0, y: 0, width: labelSize.width, height: labelSize.height)
+            maskTitleLabel.bounds = labelBounds
 
             var topMaskFrame = myItemModel.indicatorConvertToItemFrame
             topMaskFrame.origin.y = 0
