@@ -24,4 +24,7 @@ open class JXSegmentedBaseItemModel {
     open var itemWidthNormalZoomScale: CGFloat = 0
     open var itemWidthCurrentZoomScale: CGFloat = 0
     open var itemWidthSelectedZoomScale: CGFloat = 0
+
+    public init() {
+    }
 }

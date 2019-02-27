@@ -33,4 +33,7 @@ open class JXSegmentedIndicatorParamsModel {
     open var lastSelectedIndex: Int = 0
     /// 选中的类型
     open var selectedType: JXSegmentedViewItemSelectedType = .unknown
+
+    public init() {
+    }
 }
