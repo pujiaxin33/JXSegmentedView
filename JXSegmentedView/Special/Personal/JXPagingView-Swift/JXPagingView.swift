@@ -29,6 +29,12 @@ import UIKit
 
     /// 将要重置listScrollView的contentOffset
     @objc optional func listScrollViewWillResetContentOffset()
+
+    /// 列表显示的时候调用
+    @objc optional func listDidAppear()
+
+    /// 列表消失的时候调用
+    @objc optional func listDidDisappear()
 }
 
 @objc public protocol JXPagingViewDelegate: NSObjectProtocol {
@@ -88,13 +94,20 @@ open class JXPagingView: UIView {
     open var mainTableView: JXPagingMainTableView!
     open var listContainerView: JXPagingListContainerView!
     public var validListDict = [Int:JXPagingViewListViewDelegate]() //当前已经加载过可用的列表字典，key就是index值，value是对应的列表。
+    open var pinSectionHeaderVerticalOffset: CGFloat = 0  //顶部固定sectionHeader的垂直偏移量。数值越大越往下沉。
     public var isListHorizontalScrollEnabled = true {
         didSet {
             refreshListHorizontalScrollEnabledState()
         }
     }
-    var currentScrollingListView: UIScrollView?
-    var currentList: JXPagingViewListViewDelegate?
+    open var automaticallyDisplayListVerticalScrollIndicator = true //是否允许当前列表自动显示或隐藏列表是垂直滚动指示器。true：悬浮的headerView滚动到顶部开始滚动列表时，就会显示，反之隐藏。false：内部不会处理列表的垂直滚动指示器。默认为：true。
+    public var currentScrollingListView: UIScrollView?
+    public var currentList: JXPagingViewListViewDelegate?
+    private var currentDeviceOrientation: UIDeviceOrientation?
+    private var currentIndex: Int = 0
+    private var retainedSelf: JXPagingView?
+    private var isWillRemoveFromWindow: Bool = false
+    private var isFirstMoveToWindow: Bool = true
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -133,7 +146,31 @@ open class JXPagingView: UIView {
 
         refreshListHorizontalScrollEnabledState()
 
+        self.currentDeviceOrientation = UIDevice.current.orientation
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange(notification:)), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+
+    open override func willMove(toWindow newWindow: UIWindow?) {
+        if self.isFirstMoveToWindow {
+            //第一次调用过滤，因为第一次列表显示通知会从willDisplayCell方法通知
+            self.isFirstMoveToWindow = false
+            return
+        }
+        //当前页面push到一个新的页面时，willMoveToWindow会调用三次。第一次调用的newWindow为nil，第二次调用间隔1ms左右newWindow有值，第三次调用间隔400ms左右newWindow为nil。
+        //根据上述事实，第一次和第二次为无效调用，可以根据其间隔1ms左右过滤掉
+        if newWindow == nil {
+            self.isWillRemoveFromWindow = true
+            //当前页面被pop的时候，willMoveToWindow只会调用一次，而且整个页面会被销毁掉，所以需要循环引用自己，确保能延迟执行currentListDidDisappear方法，触发列表消失事件。由此可见，循环引用也不一定是个坏事。是天使还是魔鬼，就看你如何对待它了。
+            self.retainedSelf = self
+            self.perform(#selector(currentListDidDisappear), with: nil, afterDelay: 0.02)
+        }else {
+            if self.isWillRemoveFromWindow {
+                self.isWillRemoveFromWindow = false
+                NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(currentListDidDisappear), object: nil)
+            }else {
+                self.currentListDidAppear()
+            }
+        }
     }
 
     override open func layoutSubviews() {
@@ -157,25 +194,29 @@ open class JXPagingView: UIView {
     }
 
     open func preferredProcessListViewDidScroll(scrollView: UIScrollView) {
-        if (self.mainTableView.contentOffset.y < getTableHeaderViewHeight()) {
+        if (self.mainTableView.contentOffset.y < getMainTableViewMaxContentOffsetY()) {
             //mainTableView的header还没有消失，让listScrollView一直为0
             self.currentList?.listScrollViewWillResetContentOffset?()
-            currentScrollingListView!.contentOffset = CGPoint.zero;
-            currentScrollingListView!.showsVerticalScrollIndicator = false;
+            currentScrollingListView!.contentOffset = CGPoint.zero
+            if automaticallyDisplayListVerticalScrollIndicator {
+                currentScrollingListView!.showsVerticalScrollIndicator = false
+            }
         } else {
             //mainTableView的header刚好消失，固定mainTableView的位置，显示listScrollView的滚动条
-            self.mainTableView.contentOffset = CGPoint(x: 0, y: self.delegate.tableHeaderViewHeight(in: self));
-            currentScrollingListView!.showsVerticalScrollIndicator = true;
+            self.mainTableView.contentOffset = CGPoint(x: 0, y: getMainTableViewMaxContentOffsetY())
+            if automaticallyDisplayListVerticalScrollIndicator {
+                currentScrollingListView!.showsVerticalScrollIndicator = true
+            }
         }
     }
 
     open func preferredProcessMainTableViewDidScroll(_ scrollView: UIScrollView) {
         if (self.currentScrollingListView != nil && self.currentScrollingListView!.contentOffset.y > 0) {
             //mainTableView的header已经滚动不见，开始滚动某一个listView，那么固定mainTableView的contentOffset，让其不动
-            self.mainTableView.contentOffset = CGPoint(x: 0, y: self.delegate.tableHeaderViewHeight(in: self))
+            self.mainTableView.contentOffset = CGPoint(x: 0, y: getMainTableViewMaxContentOffsetY())
         }
 
-        if (mainTableView.contentOffset.y < getTableHeaderViewHeight()) {
+        if (self.mainTableView.contentOffset.y < getMainTableViewMaxContentOffsetY()) {
             //mainTableView已经显示了header，listView的contentOffset需要重置
             for list in self.validListDict.values {
                 list.listScrollViewWillResetContentOffset?()
@@ -183,20 +224,20 @@ open class JXPagingView: UIView {
             }
         }
 
-        if scrollView.contentOffset.y > getTableHeaderViewHeight() && self.currentScrollingListView?.contentOffset.y == 0 {
+        if scrollView.contentOffset.y > getMainTableViewMaxContentOffsetY() && self.currentScrollingListView?.contentOffset.y == 0 {
             //当往上滚动mainTableView的headerView时，滚动到底时，修复listView往上小幅度滚动
-            self.mainTableView.contentOffset = CGPoint(x: 0, y: self.delegate.tableHeaderViewHeight(in: self))
+            self.mainTableView.contentOffset = CGPoint(x: 0, y: getMainTableViewMaxContentOffsetY())
         }
     }
 
     //MARK: - Private
 
     func refreshListHorizontalScrollEnabledState() {
-        listContainerView.collectionView.isScrollEnabled = isListHorizontalScrollEnabled;
+        listContainerView.collectionView.isScrollEnabled = isListHorizontalScrollEnabled
     }
 
-    func getTableHeaderViewHeight() -> CGFloat {
-        return CGFloat(self.delegate.tableHeaderViewHeight(in: self))
+    func getMainTableViewMaxContentOffsetY() -> CGFloat {
+        return CGFloat(self.delegate.tableHeaderViewHeight(in: self)) - pinSectionHeaderVerticalOffset
     }
 
     func getPinSectionHeaderHeight() -> CGFloat {
@@ -211,9 +252,44 @@ open class JXPagingView: UIView {
     }
 
     @objc func deviceOrientationDidChange(notification: Notification) {
-        mainTableView.reloadData()
-        listContainerView.deviceOrientationDidChanged()
-        listContainerView.reloadData()
+        if self.currentDeviceOrientation != UIDevice.current.orientation {
+            self.currentDeviceOrientation = UIDevice.current.orientation
+            //前后台切换也会触发该通知，所以不相同的时候才处理
+            mainTableView.reloadData()
+            listContainerView.deviceOrientationDidChanged()
+            listContainerView.reloadData()
+        }
+    }
+
+    @objc func currentListDidDisappear() {
+        let list = self.validListDict[self.currentIndex]
+        list?.listDidDisappear?()
+        self.isWillRemoveFromWindow = false
+        self.retainedSelf = nil
+    }
+
+    func currentListDidAppear() {
+        self.listDidAppear(index: self.currentIndex)
+    }
+
+    func listDidAppear(index: Int) {
+        let count = self.delegate.numberOfLists(in: self)
+        if count <= 0 || index >= count {
+            return
+        }
+        self.currentIndex = index
+        let list = self.validListDict[index]
+        list?.listDidAppear?()
+    }
+
+    func listDidDisappear(index: Int) {
+        let count = self.delegate.numberOfLists(in: self)
+        if count <= 0 || index >= count {
+            return
+        }
+        self.currentIndex = index
+        let list = self.validListDict[index]
+        list?.listDidDisappear?()
     }
 }
 
@@ -224,7 +300,7 @@ extension JXPagingView: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.bounds.height - getPinSectionHeaderHeight()
+        return self.bounds.height - getPinSectionHeaderHeight() - pinSectionHeaderVerticalOffset
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -257,13 +333,22 @@ extension JXPagingView: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.delegate.mainTableViewDidScroll?(scrollView)
         //用户正在上下滚动的时候，就不允许左右滚动
         if scrollView.isTracking && isListHorizontalScrollEnabled {
             self.listContainerView.collectionView.isScrollEnabled = false
         }
 
+        if scrollView.contentOffset.y < pinSectionHeaderVerticalOffset && scrollView.contentOffset.y >= 0 {
+            //因为设置了contentInset.top，所以顶部会有对应高度的空白区间，所以需要设置负数抵消掉
+            scrollView.contentInset = UIEdgeInsets(top: -scrollView.contentOffset.y, left: 0, bottom: 0, right: 0)
+        }else if scrollView.contentOffset.y > pinSectionHeaderVerticalOffset {
+            //固定的位置就是contentInset.top
+            scrollView.contentInset = UIEdgeInsets(top: pinSectionHeaderVerticalOffset, left: 0, bottom: 0, right: 0)
+        }
+
         preferredProcessMainTableViewDidScroll(scrollView)
+
+        self.delegate.mainTableViewDidScroll?(scrollView)
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -310,7 +395,12 @@ extension JXPagingView: JXPagingListContainerViewDelegate {
     }
 
     public func listContainerView(_ listContainerView: JXPagingListContainerView, willDisplayCellAt row: Int) {
+        self.listDidAppear(index: row)
         self.currentScrollingListView = validListDict[row]?.listScrollView()
+    }
+
+    public func listContainerView(_ listContainerView: JXPagingListContainerView, didEndDisplayingCellAt row: Int) {
+        self.listDidDisappear(index: row)
     }
 }
 

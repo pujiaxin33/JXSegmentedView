@@ -15,19 +15,23 @@ import UIKit
     func listContainerView(_ listContainerView: JXPagingListContainerView, viewForListInRow row: Int) -> UIView
 
     func listContainerView(_ listContainerView: JXPagingListContainerView, willDisplayCellAt row: Int)
+
+    func listContainerView(_ listContainerView: JXPagingListContainerView, didEndDisplayingCellAt row: Int)
 }
 
 @objc public protocol JXPagingListContainerCollectionViewGestureDelegate {
-    func pagingListContainerCollectionViewGestureRecognizerShouldBegin(collectionView: JXPagingListContainerCollectionView, gestureRecognizer: UIGestureRecognizer) -> Bool
+    @objc optional func pagingListContainerCollectionViewGestureRecognizerShouldBegin(collectionView: JXPagingListContainerCollectionView, gestureRecognizer: UIGestureRecognizer) -> Bool
+    @objc optional func pagingListContainerCollectionViewGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
 }
 
-public class JXPagingListContainerCollectionView: UICollectionView {
+public class JXPagingListContainerCollectionView: UICollectionView, UIGestureRecognizerDelegate {
     public var isNestEnabled = false
     public weak var gestureDelegate: JXPagingListContainerCollectionViewGestureDelegate?
+
     public override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         //如果有代理，就以代理的处理为准
-        if gestureDelegate != nil {
-            return self.gestureDelegate!.pagingListContainerCollectionViewGestureRecognizerShouldBegin(collectionView: self, gestureRecognizer: gestureRecognizer)
+        if let result = self.gestureDelegate?.pagingListContainerCollectionViewGestureRecognizerShouldBegin?(collectionView: self, gestureRecognizer: gestureRecognizer) {
+            return result
         }else {
             if isNestEnabled {
                 //没有代理，但是isNestEnabled为true
@@ -50,6 +54,13 @@ public class JXPagingListContainerCollectionView: UICollectionView {
             }
         }
         return true
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let result = gestureDelegate?.pagingListContainerCollectionViewGestureRecognizer?(gestureRecognizer, shouldRecognizeSimultaneouslyWith: otherGestureRecognizer) {
+            return result
+        }
+        return false;
     }
 }
 
@@ -101,7 +112,7 @@ open class JXPagingListContainerView: UIView {
         super.layoutSubviews()
 
         collectionView.frame = self.bounds
-        if selectedIndexPath != nil {
+        if selectedIndexPath != nil && self.delegate.numberOfRows(in: self) >= 1 + selectedIndexPath!.item {
             collectionView.scrollToItem(at: selectedIndexPath!, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
         }
     }
@@ -134,6 +145,10 @@ extension JXPagingListContainerView: UICollectionViewDataSource, UICollectionVie
 
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.delegate.listContainerView(self, willDisplayCellAt: indexPath.item)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.delegate.listContainerView(self, didEndDisplayingCellAt: indexPath.item)
     }
 
     public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
