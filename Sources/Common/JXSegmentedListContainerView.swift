@@ -62,7 +62,8 @@ open class JXSegmentedListContainerView: UIView {
         }
     }
     private var currentIndex: Int = 0
-    private var isLayoutedSubviews: Bool = false
+    private var willRemoveFromWindow: Bool = false
+    private var retainedSelf: JXSegmentedListContainerView?
 
     public init(dataSource: JXSegmentedListContainerViewDataSource) {
         self.dataSource = dataSource
@@ -92,6 +93,25 @@ open class JXSegmentedListContainerView: UIView {
         addSubview(scrollView)
     }
 
+    open override func willMove(toWindow newWindow: UIWindow?) {
+        //当前页面push到一个新的页面时，willMoveToWindow会调用三次。第一次调用的newWindow为nil，第二次调用间隔1ms左右newWindow有值，第三次调用间隔400ms左右newWindow为nil。
+        //根据上述事实，第一次和第二次为无效调用，可以根据其间隔1ms左右过滤掉
+        if newWindow == nil {
+            willRemoveFromWindow = true
+            //当前页面被pop的时候，willMoveToWindow只会调用一次，而且整个页面会被销毁掉，所以需要循环引用自己，确保能延迟执行currentListDidDisappear方法，触发列表消失事件。由此可见，循环引用也不一定是个坏事。是天使还是魔鬼，就看你如何对待它了。
+            retainedSelf = self
+            perform(#selector(currentListDidDisappear), with: nil, afterDelay: 0.02)
+        }else {
+            if willRemoveFromWindow {
+                willRemoveFromWindow = false
+                retainedSelf = nil
+                NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(currentListDidDisappear), object: nil)
+            }else {
+                currentListDidAppear()
+            }
+        }
+    }
+
     open func reloadData() {
         if currentIndex < 0 || currentIndex >= dataSource.numberOfLists(in: self) {
             defaultSelectedIndex = 0
@@ -114,10 +134,6 @@ open class JXSegmentedListContainerView: UIView {
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(dataSource.numberOfLists(in: self)), height: scrollView.bounds.size.height)
         for (index, list) in validListDict {
             list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
-        }
-        if !isLayoutedSubviews {
-            isLayoutedSubviews = true
-            listDidAppear(at: currentIndex)
         }
     }
 
@@ -169,6 +185,17 @@ open class JXSegmentedListContainerView: UIView {
     }
 
     //MARK: - Private
+    private func currentListDidAppear() {
+        listDidAppear(at: currentIndex)
+    }
+
+    @objc private func currentListDidDisappear() {
+        let list = validListDict[currentIndex]
+        list?.listDidDisappear?()
+        willRemoveFromWindow = false
+        retainedSelf = nil
+    }
+
     private func listDidAppear(at index: Int) {
         let count = dataSource.numberOfLists(in: self)
         if count <= 0 || index >= count {

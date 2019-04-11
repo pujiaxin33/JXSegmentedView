@@ -24,7 +24,9 @@ class LoadDataViewController: UIViewController {
         //2、配置数据源
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedDataSource = JXSegmentedTitleDataSource()
+        segmentedDataSource.titles = getRandomTitles()
         segmentedDataSource.isTitleColorGradientEnabled = true
+        segmentedDataSource.reloadData(selectedIndex: 0)
         segmentedView.dataSource = segmentedDataSource
         
         //3、配置指示器
@@ -47,8 +49,6 @@ class LoadDataViewController: UIViewController {
         segmentedView.contentScrollView = listContainerView.scrollView
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刷新数据", style: UIBarButtonItem.Style.plain, target: self, action: #selector(reloadData))
-
-        reloadData()
     }
 
     @objc func reloadData() {
