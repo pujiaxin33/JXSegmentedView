@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
+open class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
     /// 线收缩到最小的百分比
     open var minLineWidthPercent: CGFloat = 0.2
     public let selectedLineView: UIView = UIView()
