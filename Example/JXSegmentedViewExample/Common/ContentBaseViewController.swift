@@ -101,22 +101,10 @@ class ContentBaseViewController: UIViewController {
     @objc func hanldeNumberRefresh()
     {
         if let _segDataSource = segmentedDataSource as? JXSegmentedNumberDataSource {
-            var orignNumbers = [1, 22, 333, 44444, 0, 66, 777, 0, 99999, 10]
-            for i in 0 ..< orignNumbers.count {
-                if i < 5 {
-                    orignNumbers[i] = Int(arc4random()%100)
-                }else {
-                    orignNumbers[i] = 100 + Int(arc4random()%901)
-                }
-                
-            }
-            
-            let x = CGFloat(10-Int(arc4random()%20))
-            let y = CGFloat(5-Int(arc4random()%10))
-            
-            _segDataSource.numberHeight = CGFloat(10 + Int(arc4random()%10))
-            _segDataSource.numberOffset = CGPoint(x: x, y: y)
-            _segDataSource.numbers = orignNumbers
+            let newNumbers = [223, 12, 435, 332, 0, 32, 98, 0, 99999, 112]
+            _segDataSource.numberHeight = 18
+            _segDataSource.numberOffset = CGPoint(x: -5, y: 5)
+            _segDataSource.numbers = newNumbers
             _segDataSource.reloadData(selectedIndex: 0)
             segmentedView.reloadData()
         }

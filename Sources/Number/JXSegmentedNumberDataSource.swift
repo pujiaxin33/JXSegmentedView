@@ -25,7 +25,7 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
     /// 如果业务需要处理超过999就像是999+，就可以通过这个闭包实现。默认显示不会对number进行处理
     open var numberStringFormatterClosure: ((Int) -> String)?
     /// numberLabel的高度，默认：14
-    open var numberHeight = CGFloat(14)
+    open var numberHeight: CGFloat = 14
     
     deinit {
         numberStringFormatterClosure = nil
