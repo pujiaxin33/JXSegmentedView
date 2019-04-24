@@ -163,7 +163,7 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 
 因为代码比较分散，而且代码量也比较多，所有不推荐使用该方法。要正确使用需要注意的地方比较多，尤其对于刚接触iOS的同学来说不太友好。
 
-不直接贴代码了，具体点击[LoadDataCustomViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/ListCustom/LoadDataCustomViewController.swift)查看源代码了解。
+不直接贴代码了，具体点击[LoadDataCustomViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/LoadData/ListCustom/LoadDataCustomViewController.swift)查看源代码了解。
 
 作为替代，官方使用&强烈推荐使用下面这种方式👇👇👇。
 
