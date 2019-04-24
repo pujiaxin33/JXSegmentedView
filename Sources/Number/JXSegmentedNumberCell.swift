@@ -32,8 +32,6 @@ open class JXSegmentedNumberCell: JXSegmentedTitleCell {
         numberLabel.layer.cornerRadius = height/2
         numberLabel.bounds.size = CGSize(width: numberLabel.bounds.size.width + myItemModel.numberWidthIncrement, height: height)
         numberLabel.center = CGPoint(x: titleLabel.frame.maxX + myItemModel.numberOffset.x, y: titleLabel.frame.minY + myItemModel.numberOffset.y)
-        
-        print(numberLabel.frame)
     }
 
     open override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
