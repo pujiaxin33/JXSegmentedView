@@ -28,8 +28,9 @@ open class JXSegmentedNumberCell: JXSegmentedTitleCell {
         }
 
         numberLabel.sizeToFit()
-        numberLabel.layer.cornerRadius = numberLabel.bounds.size.height/2
-        numberLabel.bounds.size = CGSize(width: numberLabel.bounds.size.width + myItemModel.numberWidthIncrement, height: numberLabel.bounds.size.height)
+        let height = myItemModel.numberHeight
+        numberLabel.layer.cornerRadius = height/2
+        numberLabel.bounds.size = CGSize(width: numberLabel.bounds.size.width + myItemModel.numberWidthIncrement, height: height)
         numberLabel.center = CGPoint(x: titleLabel.frame.maxX + myItemModel.numberOffset.x, y: titleLabel.frame.minY + myItemModel.numberOffset.y)
     }
 

@@ -45,6 +45,11 @@ class ContentBaseViewController: UIViewController {
         if (segmentedDataSource as? JXSegmentedTitleImageDataSource) != nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "设置", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didSetingsButtonClicked))
         }
+        
+        
+        if let _ = segmentedDataSource as? JXSegmentedNumberDataSource {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刷新", style: UIBarButtonItem.Style.plain, target: self, action: #selector(hanldeNumberRefresh))
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +95,19 @@ class ContentBaseViewController: UIViewController {
             }
         }
         segmentedView.reloadData()
+    }
+    
+    //MARK: 数字刷新demo
+    @objc func hanldeNumberRefresh()
+    {
+        if let _segDataSource = segmentedDataSource as? JXSegmentedNumberDataSource {
+            let newNumbers = [223, 12, 435, 332, 0, 32, 98, 0, 99999, 112]
+            _segDataSource.numberHeight = 18
+            _segDataSource.numberOffset = CGPoint(x: -5, y: 5)
+            _segDataSource.numbers = newNumbers
+            _segDataSource.reloadData(selectedIndex: 0)
+            segmentedView.reloadData()
+        }
     }
 
 }
