@@ -27,6 +27,7 @@ open class JXSegmentedNumberCell: JXSegmentedTitleCell {
             return
         }
 
+        numberLabel.sizeToFit()
         numberLabel.layer.cornerRadius = numberLabel.bounds.size.height/2
         numberLabel.bounds.size = CGSize(width: numberLabel.bounds.size.width + myItemModel.numberWidthIncrement, height: numberLabel.bounds.size.height)
         numberLabel.center = CGPoint(x: titleLabel.frame.maxX + myItemModel.numberOffset.x, y: titleLabel.frame.minY + myItemModel.numberOffset.y)
@@ -43,7 +44,6 @@ open class JXSegmentedNumberCell: JXSegmentedTitleCell {
         numberLabel.textColor = myItemModel.numberTextColor
         numberLabel.text = myItemModel.numberString
         numberLabel.font = myItemModel.numberFont
-        numberLabel.sizeToFit()
         numberLabel.isHidden = myItemModel.number == 0
 
         setNeedsLayout()
