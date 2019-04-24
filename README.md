@@ -1,4 +1,4 @@
-<div align=center><img src="JXSegmentedView/Image/JXSegmentedViewSmall.png" width="467" height="84" /></div>
+<div align=center><img src="Example/JXSegmentedViewExample/Image/JXSegmentedViewSmall.png" width="467" height="84" /></div>
 
 [![platform](https://img.shields.io/badge/platform-iOS-blue.svg?style=plastic)](#)
 [![languages](https://img.shields.io/badge/language-swift-blue.svg)](#) 
@@ -25,24 +25,24 @@ A powerful and easy to use segmented view (segmentedcontrol, pagingview, pagervi
 
 说明 | Gif |
 ----|------|
-Line固定宽度  |  <img src="JXSegmentedView/Gif/Indicator/LineFixedWidth.gif" width="350" height="80"> |
-Line与cell等宽  |  <img src="JXSegmentedView/Gif/Indicator/LineFlexibleWidth.gif" width="350" height="80"> |
-Line延长  |  <img src="JXSegmentedView/Gif/Indicator/LineLengthen.gif" width="350" height="80"> |
-Line延长+偏移  |  <img src="JXSegmentedView/Gif/Indicator/LineLengthenOffset.gif" width="350" height="80"> |
-RainbowLine🌈彩虹  |  <img src="JXSegmentedView/Gif/Indicator/LineRainbow.gif" width="350" height="80"> |
-DotLine点线 |  <img src="JXSegmentedView/Gif/Indicator/LineDot.gif" width="334" height="80"> |
-DoubleLine双线  |  <img src="JXSegmentedView/Gif/Indicator/LineDouble.gif" width="350" height="80"> |
-Triangle三角形底部  |  <img src="JXSegmentedView/Gif/Indicator/Triangle.gif" width="350" height="80"> |
-Triangle三角形顶部  |  <img src="JXSegmentedView/Gif/Indicator/TriangleTop.gif" width="350" height="80"> |
-Background椭圆形  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackground.gif" width="350" height="80"> |
-Background椭圆形+阴影  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundShadow.gif" width="350" height="80"> |
-Background遮罩有背景  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundMask.gif" width="350" height="80"> |
-Background遮罩无背景  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundMaskPure.gif" width="350" height="80"> |
-Background渐变色<br>(渐变是固定的)  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundGradient.gif" width="350" height="80"> |
-Gradient渐变色<br>(渐变随着位置变动)  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorGradient.gif" width="350" height="80"> |
-Image底部  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorImageBottom.gif" width="350" height="80"> |
-Image背景  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorImageBG.gif" width="350" height="80"> |
-混合使用 |  <img src="JXSegmentedView/Gif/Indicator/IndicatorMixed.gif" width="350" height="80"> |
+Line固定宽度  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/LineFixedWidth.gif" width="350" height="80"> |
+Line与cell等宽  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/LineFlexibleWidth.gif" width="350" height="80"> |
+Line延长  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/LineLengthen.gif" width="350" height="80"> |
+Line延长+偏移  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/LineLengthenOffset.gif" width="350" height="80"> |
+RainbowLine🌈彩虹  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/LineRainbow.gif" width="350" height="80"> |
+DotLine点线 |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/LineDot.gif" width="334" height="80"> |
+DoubleLine双线  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/LineDouble.gif" width="350" height="80"> |
+Triangle三角形底部  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/Triangle.gif" width="350" height="80"> |
+Triangle三角形顶部  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/TriangleTop.gif" width="350" height="80"> |
+Background椭圆形  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorBackground.gif" width="350" height="80"> |
+Background椭圆形+阴影  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorBackgroundShadow.gif" width="350" height="80"> |
+Background遮罩有背景  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorBackgroundMask.gif" width="350" height="80"> |
+Background遮罩无背景  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorBackgroundMaskPure.gif" width="350" height="80"> |
+Background渐变色<br>(渐变是固定的)  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorBackgroundGradient.gif" width="350" height="80"> |
+Gradient渐变色<br>(渐变随着位置变动)  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorGradient.gif" width="350" height="80"> |
+Image底部  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorImageBottom.gif" width="350" height="80"> |
+Image背景  |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorImageBG.gif" width="350" height="80"> |
+混合使用 |  <img src="Example/JXSegmentedViewExample/Gif/Indicator/IndicatorMixed.gif" width="350" height="80"> |
 
 以下指示器支持上下位置切换：
 `JXSegmentedIndicatorLineView`、`JXSegmentedIndicatorRainbowLineView`、`JXSegmentedIndicatorDotLineView`、`JXSegmentedIndicatorDoubleLineView`、`JXSegmentedIndicatorTriangleView`、`JXSegmentedIndicatorImageView`
@@ -51,34 +51,34 @@ Image背景  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorImageBG.gif" wi
 
 说明 | Gif |
 ----|------|
-颜色渐变  |  <img src="JXSegmentedView/Gif/Cell/ColorGradient.gif" width="350" height="80"> |
-文字渐变  |  <img src="JXSegmentedView/Gif/Cell/TextGradient.gif" width="350" height="80"> |
-大小缩放  |  <img src="JXSegmentedView/Gif/Cell/ZoomOnly.gif" width="350" height="80"> |
-大小缩放+字体粗细  |  <img src="JXSegmentedView/Gif/Cell/ZoomStrokeWidth.gif" width="350" height="80"> |
-大小缩放+点击动画  |  <img src="JXSegmentedView/Gif/Cell/ZoomAnimation.gif" width="350" height="80"> |
-大小缩放+cell宽度缩放  |  <img src="JXSegmentedView/Gif/Cell/ZoomCellWidth.gif" width="350" height="80"> |
-TitleImage_Top |  <img src="JXSegmentedView/Gif/Cell/TitleImageTop.gif" width="350" height="80"> |
-TitleImage_Left |  <img src="JXSegmentedView/Gif/Cell/TitleImageLeft.gif" width="350" height="80"> |
-TitleImage_Bottom |  <img src="JXSegmentedView/Gif/Cell/TitleImageBottom.gif" width="350" height="80"> |
-TitleImage_Right |  <img src="JXSegmentedView/Gif/Cell/TitleImageRight.gif" width="350" height="80"> |
-TitleImage_只有图片 |  <img src="JXSegmentedView/Gif/Cell/TitleImageOnlyImage.gif" width="350" height="80"> |
-TitleOrImage(高仿腾讯视频) |  <img src="JXSegmentedView/Gif/Cell/TitleOrImage.gif" width="350" height="80"> |
-数字 |  <img src="JXSegmentedView/Gif/Cell/Number.gif" width="350" height="80"> |
-红点 |  <img src="JXSegmentedView/Gif/Cell/CellDot.gif" width="350" height="80"> |
-多行富文本 |  <img src="JXSegmentedView/Gif/Cell/TitleAttributed.gif" width="350" height="80"> |
-多种cell混用 |  <img src="JXSegmentedView/Gif/Cell/MixedCell.gif" width="350" height="80"> |
+颜色渐变  |  <img src="Example/JXSegmentedViewExample/Gif/Cell/ColorGradient.gif" width="350" height="80"> |
+文字渐变  |  <img src="Example/JXSegmentedViewExample/Gif/Cell/TextGradient.gif" width="350" height="80"> |
+大小缩放  |  <img src="Example/JXSegmentedViewExample/Gif/Cell/ZoomOnly.gif" width="350" height="80"> |
+大小缩放+字体粗细  |  <img src="Example/JXSegmentedViewExample/Gif/Cell/ZoomStrokeWidth.gif" width="350" height="80"> |
+大小缩放+点击动画  |  <img src="Example/JXSegmentedViewExample/Gif/Cell/ZoomAnimation.gif" width="350" height="80"> |
+大小缩放+cell宽度缩放  |  <img src="Example/JXSegmentedViewExample/Gif/Cell/ZoomCellWidth.gif" width="350" height="80"> |
+TitleImage_Top |  <img src="Example/JXSegmentedViewExample/Gif/Cell/TitleImageTop.gif" width="350" height="80"> |
+TitleImage_Left |  <img src="Example/JXSegmentedViewExample/Gif/Cell/TitleImageLeft.gif" width="350" height="80"> |
+TitleImage_Bottom |  <img src="Example/JXSegmentedViewExample/Gif/Cell/TitleImageBottom.gif" width="350" height="80"> |
+TitleImage_Right |  <img src="Example/JXSegmentedViewExample/Gif/Cell/TitleImageRight.gif" width="350" height="80"> |
+TitleImage_只有图片 |  <img src="Example/JXSegmentedViewExample/Gif/Cell/TitleImageOnlyImage.gif" width="350" height="80"> |
+TitleOrImage(高仿腾讯视频) |  <img src="Example/JXSegmentedViewExample/Gif/Cell/TitleOrImage.gif" width="350" height="80"> |
+数字 |  <img src="Example/JXSegmentedViewExample/Gif/Cell/Number.gif" width="350" height="80"> |
+红点 |  <img src="Example/JXSegmentedViewExample/Gif/Cell/CellDot.gif" width="350" height="80"> |
+多行富文本 |  <img src="Example/JXSegmentedViewExample/Gif/Cell/TitleAttributed.gif" width="350" height="80"> |
+多种cell混用 |  <img src="Example/JXSegmentedViewExample/Gif/Cell/MixedCell.gif" width="350" height="80"> |
 
 ### 特殊效果预览
 
 说明 | Gif |
 ----|------|
-数据源过少<br/> isItemSpacingAverageEnabled为true |  <img src="JXSegmentedView/Gif/Special/ItemAveTrue.gif" width="350" height="80"> |
-数据源过少<br/> isItemSpacingAverageEnabled为false |  <img src="JXSegmentedView/Gif/Special/ItemAveFalse.gif" width="350" height="80"> |
-SegmentedControl<br/>参考[`SegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/SegmentedControl/SegmentedControlViewController.swift)类 |  <img src="JXSegmentedView/Gif/Special/SegmentedControl.gif" width="350" height="80"> |
-导航栏使用<br/>参考[`NaviSegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/SegmentedControl/NaviSegmentedControlViewController.swift)类 |  <img src="JXSegmentedView/Gif/Special/NavigationBar.gif" width="350" height="80"> |
-嵌套使用<br/>参考[`NestViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/Nest/NestViewController.swift)类 |  <img src="JXSegmentedView/Gif/Special/Nest.gif" width="350" height="200"> |
-个人主页(上下左右滚动、header悬浮)<br/>参考[`PagingViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/Personal/PagingViewController.swift)类<br/> 更多样式请点击查看[JXPagingView库](https://github.com/pujiaxin33/JXPagingView) |  <img src="JXSegmentedView/Gif/Special/Personal.gif" width="350" height="567"> |
-数据加载&刷新<br/>参考[`LoadDataViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/WithListContainerView/LoadDataViewController.swift)类 |  <img src="JXSegmentedView/Gif/Special/LoadData.gif" width="350" height="200"> |
+数据源过少<br/> isItemSpacingAverageEnabled为true |  <img src="Example/JXSegmentedViewExample/Gif/Special/ItemAveTrue.gif" width="350" height="80"> |
+数据源过少<br/> isItemSpacingAverageEnabled为false |  <img src="Example/JXSegmentedViewExample/Gif/Special/ItemAveFalse.gif" width="350" height="80"> |
+SegmentedControl<br/>参考[`SegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/SegmentedControl/SegmentedControlViewController.swift)类 |  <img src="Example/JXSegmentedViewExample/Gif/Special/SegmentedControl.gif" width="350" height="80"> |
+导航栏使用<br/>参考[`NaviSegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/SegmentedControl/NaviSegmentedControlViewController.swift)类 |  <img src="Example/JXSegmentedViewExample/Gif/Special/NavigationBar.gif" width="350" height="80"> |
+嵌套使用<br/>参考[`NestViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/Nest/NestViewController.swift)类 |  <img src="Example/JXSegmentedViewExample/Gif/Special/Nest.gif" width="350" height="200"> |
+个人主页(上下左右滚动、header悬浮)<br/>参考[`PagingViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/Personal/PagingViewController.swift)类<br/> 更多样式请点击查看[JXPagingView库](https://github.com/pujiaxin33/JXPagingView) |  <img src="Example/JXSegmentedViewExample/Gif/Special/Personal.gif" width="350" height="567"> |
+数据加载&刷新<br/>参考[`LoadDataViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/LoadData/WithListContainerView/LoadDataViewController.swift)类 |  <img src="Example/JXSegmentedViewExample/Gif/Special/LoadData.gif" width="350" height="200"> |
 
 
 ## 要求
@@ -226,7 +226,7 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 }
 ```
 
-具体点击[LoadDataViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/WithListContainerView/LoadDataViewController.swift)查看源代码了解
+具体点击[LoadDataViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/LoadData/WithListContainerView/LoadDataViewController.swift)查看源代码了解
 
 ### 使用总结
 
