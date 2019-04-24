@@ -11,7 +11,6 @@
 		1908EEB0226F05BA00E03FD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE52226F05BA00E03FD5 /* Assets.xcassets */; };
 		1908EEB1226F05BA00E03FD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE53226F05BA00E03FD5 /* LaunchScreen.storyboard */; };
 		1908EEB2226F05BA00E03FD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE55226F05BA00E03FD5 /* Main.storyboard */; };
-		1908EEB3226F05BA00E03FD5 /* JXSegmentedViewSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE58226F05BA00E03FD5 /* JXSegmentedViewSmall.png */; };
 		1908EEB4226F05BA00E03FD5 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE5B226F05BA00E03FD5 /* PagingViewController.swift */; };
 		1908EEB5226F05BA00E03FD5 /* PagingListBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE5C226F05BA00E03FD5 /* PagingListBaseView.swift */; };
 		1908EEB6226F05BA00E03FD5 /* JXPagingMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE5E226F05BA00E03FD5 /* JXPagingMainTableView.swift */; };
@@ -39,48 +38,6 @@
 		1908EECC226F05BA00E03FD5 /* SpecialCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7B226F05BA00E03FD5 /* SpecialCustomizeViewController.swift */; };
 		1908EECD226F05BA00E03FD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7C226F05BA00E03FD5 /* AppDelegate.swift */; };
 		1908EECE226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7F226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift */; };
-		1908EED0226F05BA00E03FD5 /* IndicatorBackground.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE83226F05BA00E03FD5 /* IndicatorBackground.gif */; };
-		1908EED1226F05BA00E03FD5 /* IndicatorImageBottom.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE84226F05BA00E03FD5 /* IndicatorImageBottom.gif */; };
-		1908EED2226F05BA00E03FD5 /* TriangleTop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE85226F05BA00E03FD5 /* TriangleTop.gif */; };
-		1908EED3226F05BA00E03FD5 /* IndicatorBackgroundMaskPure.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE86226F05BA00E03FD5 /* IndicatorBackgroundMaskPure.gif */; };
-		1908EED4226F05BA00E03FD5 /* IndicatorBackgroundGradient.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE87226F05BA00E03FD5 /* IndicatorBackgroundGradient.gif */; };
-		1908EED5226F05BA00E03FD5 /* LineLengthenOffset.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE88226F05BA00E03FD5 /* LineLengthenOffset.gif */; };
-		1908EED6226F05BA00E03FD5 /* LineDot.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE89226F05BA00E03FD5 /* LineDot.gif */; };
-		1908EED7226F05BA00E03FD5 /* LineFixedWidth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE8A226F05BA00E03FD5 /* LineFixedWidth.gif */; };
-		1908EED8226F05BA00E03FD5 /* IndicatorMixed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE8B226F05BA00E03FD5 /* IndicatorMixed.gif */; };
-		1908EED9226F05BA00E03FD5 /* LineFlexibleWidth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE8C226F05BA00E03FD5 /* LineFlexibleWidth.gif */; };
-		1908EEDA226F05BA00E03FD5 /* LineDouble.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE8D226F05BA00E03FD5 /* LineDouble.gif */; };
-		1908EEDB226F05BA00E03FD5 /* LineRainbow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE8E226F05BA00E03FD5 /* LineRainbow.gif */; };
-		1908EEDC226F05BA00E03FD5 /* LineLengthen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE8F226F05BA00E03FD5 /* LineLengthen.gif */; };
-		1908EEDD226F05BA00E03FD5 /* IndicatorBackgroundShadow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE90226F05BA00E03FD5 /* IndicatorBackgroundShadow.gif */; };
-		1908EEDE226F05BA00E03FD5 /* IndicatorGradient.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE91226F05BA00E03FD5 /* IndicatorGradient.gif */; };
-		1908EEDF226F05BA00E03FD5 /* IndicatorImageBG.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE92226F05BA00E03FD5 /* IndicatorImageBG.gif */; };
-		1908EEE0226F05BA00E03FD5 /* IndicatorBackgroundMask.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE93226F05BA00E03FD5 /* IndicatorBackgroundMask.gif */; };
-		1908EEE1226F05BA00E03FD5 /* Triangle.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE94226F05BA00E03FD5 /* Triangle.gif */; };
-		1908EEE2226F05BA00E03FD5 /* ItemAveTrue.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE96226F05BA00E03FD5 /* ItemAveTrue.gif */; };
-		1908EEE3226F05BA00E03FD5 /* Nest.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE97226F05BA00E03FD5 /* Nest.gif */; };
-		1908EEE4226F05BA00E03FD5 /* SegmentedControl.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE98226F05BA00E03FD5 /* SegmentedControl.gif */; };
-		1908EEE5226F05BA00E03FD5 /* ItemAveFalse.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE99226F05BA00E03FD5 /* ItemAveFalse.gif */; };
-		1908EEE6226F05BA00E03FD5 /* NavigationBar.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE9A226F05BA00E03FD5 /* NavigationBar.gif */; };
-		1908EEE7226F05BA00E03FD5 /* Personal.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE9B226F05BA00E03FD5 /* Personal.gif */; };
-		1908EEE8226F05BA00E03FD5 /* LoadData.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE9C226F05BA00E03FD5 /* LoadData.gif */; };
-		1908EEE9226F05BA00E03FD5 /* ColorGradient.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE9E226F05BA00E03FD5 /* ColorGradient.gif */; };
-		1908EEEA226F05BA00E03FD5 /* ZoomStrokeWidth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE9F226F05BA00E03FD5 /* ZoomStrokeWidth.gif */; };
-		1908EEEB226F05BA00E03FD5 /* ZoomCellWidth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA0226F05BA00E03FD5 /* ZoomCellWidth.gif */; };
-		1908EEEC226F05BA00E03FD5 /* TitleOrImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA1226F05BA00E03FD5 /* TitleOrImage.gif */; };
-		1908EEED226F05BA00E03FD5 /* ZoomAnimation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA2226F05BA00E03FD5 /* ZoomAnimation.gif */; };
-		1908EEEE226F05BA00E03FD5 /* CellMixed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA3226F05BA00E03FD5 /* CellMixed.gif */; };
-		1908EEEF226F05BA00E03FD5 /* TitleImageLeft.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA4226F05BA00E03FD5 /* TitleImageLeft.gif */; };
-		1908EEF0226F05BA00E03FD5 /* TitleImageBottom.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA5226F05BA00E03FD5 /* TitleImageBottom.gif */; };
-		1908EEF1226F05BA00E03FD5 /* TitleImageOnlyImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA6226F05BA00E03FD5 /* TitleImageOnlyImage.gif */; };
-		1908EEF2226F05BA00E03FD5 /* ZoomOnly.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA7226F05BA00E03FD5 /* ZoomOnly.gif */; };
-		1908EEF3226F05BA00E03FD5 /* TextGradient.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA8226F05BA00E03FD5 /* TextGradient.gif */; };
-		1908EEF4226F05BA00E03FD5 /* Number.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEA9226F05BA00E03FD5 /* Number.gif */; };
-		1908EEF5226F05BA00E03FD5 /* TitleImageRight.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEAA226F05BA00E03FD5 /* TitleImageRight.gif */; };
-		1908EEF6226F05BA00E03FD5 /* MixedCell.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEAB226F05BA00E03FD5 /* MixedCell.gif */; };
-		1908EEF7226F05BA00E03FD5 /* TitleImageTop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEAC226F05BA00E03FD5 /* TitleImageTop.gif */; };
-		1908EEF8226F05BA00E03FD5 /* TitleAttributed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEAD226F05BA00E03FD5 /* TitleAttributed.gif */; };
-		1908EEF9226F05BA00E03FD5 /* CellDot.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1908EEAE226F05BA00E03FD5 /* CellDot.gif */; };
 		1908F031226F14E000E03FD5 /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +60,6 @@
 		1908EE52226F05BA00E03FD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1908EE54226F05BA00E03FD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1908EE56226F05BA00E03FD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1908EE58226F05BA00E03FD5 /* JXSegmentedViewSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JXSegmentedViewSmall.png; sourceTree = "<group>"; };
 		1908EE5B226F05BA00E03FD5 /* PagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		1908EE5C226F05BA00E03FD5 /* PagingListBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingListBaseView.swift; sourceTree = "<group>"; };
 		1908EE5E226F05BA00E03FD5 /* JXPagingMainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingMainTableView.swift; sourceTree = "<group>"; };
@@ -132,48 +88,6 @@
 		1908EE7C226F05BA00E03FD5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1908EE7F226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedMixcellDataSource.swift; sourceTree = "<group>"; };
 		1908EE80226F05BA00E03FD5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1908EE83226F05BA00E03FD5 /* IndicatorBackground.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorBackground.gif; sourceTree = "<group>"; };
-		1908EE84226F05BA00E03FD5 /* IndicatorImageBottom.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorImageBottom.gif; sourceTree = "<group>"; };
-		1908EE85226F05BA00E03FD5 /* TriangleTop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TriangleTop.gif; sourceTree = "<group>"; };
-		1908EE86226F05BA00E03FD5 /* IndicatorBackgroundMaskPure.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorBackgroundMaskPure.gif; sourceTree = "<group>"; };
-		1908EE87226F05BA00E03FD5 /* IndicatorBackgroundGradient.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorBackgroundGradient.gif; sourceTree = "<group>"; };
-		1908EE88226F05BA00E03FD5 /* LineLengthenOffset.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LineLengthenOffset.gif; sourceTree = "<group>"; };
-		1908EE89226F05BA00E03FD5 /* LineDot.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LineDot.gif; sourceTree = "<group>"; };
-		1908EE8A226F05BA00E03FD5 /* LineFixedWidth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LineFixedWidth.gif; sourceTree = "<group>"; };
-		1908EE8B226F05BA00E03FD5 /* IndicatorMixed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorMixed.gif; sourceTree = "<group>"; };
-		1908EE8C226F05BA00E03FD5 /* LineFlexibleWidth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LineFlexibleWidth.gif; sourceTree = "<group>"; };
-		1908EE8D226F05BA00E03FD5 /* LineDouble.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LineDouble.gif; sourceTree = "<group>"; };
-		1908EE8E226F05BA00E03FD5 /* LineRainbow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LineRainbow.gif; sourceTree = "<group>"; };
-		1908EE8F226F05BA00E03FD5 /* LineLengthen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LineLengthen.gif; sourceTree = "<group>"; };
-		1908EE90226F05BA00E03FD5 /* IndicatorBackgroundShadow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorBackgroundShadow.gif; sourceTree = "<group>"; };
-		1908EE91226F05BA00E03FD5 /* IndicatorGradient.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorGradient.gif; sourceTree = "<group>"; };
-		1908EE92226F05BA00E03FD5 /* IndicatorImageBG.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorImageBG.gif; sourceTree = "<group>"; };
-		1908EE93226F05BA00E03FD5 /* IndicatorBackgroundMask.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = IndicatorBackgroundMask.gif; sourceTree = "<group>"; };
-		1908EE94226F05BA00E03FD5 /* Triangle.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Triangle.gif; sourceTree = "<group>"; };
-		1908EE96226F05BA00E03FD5 /* ItemAveTrue.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ItemAveTrue.gif; sourceTree = "<group>"; };
-		1908EE97226F05BA00E03FD5 /* Nest.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Nest.gif; sourceTree = "<group>"; };
-		1908EE98226F05BA00E03FD5 /* SegmentedControl.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SegmentedControl.gif; sourceTree = "<group>"; };
-		1908EE99226F05BA00E03FD5 /* ItemAveFalse.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ItemAveFalse.gif; sourceTree = "<group>"; };
-		1908EE9A226F05BA00E03FD5 /* NavigationBar.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = NavigationBar.gif; sourceTree = "<group>"; };
-		1908EE9B226F05BA00E03FD5 /* Personal.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Personal.gif; sourceTree = "<group>"; };
-		1908EE9C226F05BA00E03FD5 /* LoadData.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LoadData.gif; sourceTree = "<group>"; };
-		1908EE9E226F05BA00E03FD5 /* ColorGradient.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ColorGradient.gif; sourceTree = "<group>"; };
-		1908EE9F226F05BA00E03FD5 /* ZoomStrokeWidth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZoomStrokeWidth.gif; sourceTree = "<group>"; };
-		1908EEA0226F05BA00E03FD5 /* ZoomCellWidth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZoomCellWidth.gif; sourceTree = "<group>"; };
-		1908EEA1226F05BA00E03FD5 /* TitleOrImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleOrImage.gif; sourceTree = "<group>"; };
-		1908EEA2226F05BA00E03FD5 /* ZoomAnimation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZoomAnimation.gif; sourceTree = "<group>"; };
-		1908EEA3226F05BA00E03FD5 /* CellMixed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CellMixed.gif; sourceTree = "<group>"; };
-		1908EEA4226F05BA00E03FD5 /* TitleImageLeft.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleImageLeft.gif; sourceTree = "<group>"; };
-		1908EEA5226F05BA00E03FD5 /* TitleImageBottom.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleImageBottom.gif; sourceTree = "<group>"; };
-		1908EEA6226F05BA00E03FD5 /* TitleImageOnlyImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleImageOnlyImage.gif; sourceTree = "<group>"; };
-		1908EEA7226F05BA00E03FD5 /* ZoomOnly.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZoomOnly.gif; sourceTree = "<group>"; };
-		1908EEA8226F05BA00E03FD5 /* TextGradient.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TextGradient.gif; sourceTree = "<group>"; };
-		1908EEA9226F05BA00E03FD5 /* Number.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Number.gif; sourceTree = "<group>"; };
-		1908EEAA226F05BA00E03FD5 /* TitleImageRight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleImageRight.gif; sourceTree = "<group>"; };
-		1908EEAB226F05BA00E03FD5 /* MixedCell.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = MixedCell.gif; sourceTree = "<group>"; };
-		1908EEAC226F05BA00E03FD5 /* TitleImageTop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleImageTop.gif; sourceTree = "<group>"; };
-		1908EEAD226F05BA00E03FD5 /* TitleAttributed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TitleAttributed.gif; sourceTree = "<group>"; };
-		1908EEAE226F05BA00E03FD5 /* CellDot.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CellDot.gif; sourceTree = "<group>"; };
 		1908F030226F14E000E03FD5 /* JXSegmentedView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JXSegmentedView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -213,23 +127,13 @@
 				1908EE52226F05BA00E03FD5 /* Assets.xcassets */,
 				1908EE53226F05BA00E03FD5 /* LaunchScreen.storyboard */,
 				1908EE55226F05BA00E03FD5 /* Main.storyboard */,
-				1908EE57226F05BA00E03FD5 /* Image */,
 				1908EE59226F05BA00E03FD5 /* Special */,
 				1908EE74226F05BA00E03FD5 /* Common */,
 				1908EE7C226F05BA00E03FD5 /* AppDelegate.swift */,
 				1908EE7D226F05BA00E03FD5 /* Custom */,
 				1908EE80226F05BA00E03FD5 /* Info.plist */,
-				1908EE81226F05BA00E03FD5 /* Gif */,
 			);
 			path = JXSegmentedViewExample;
-			sourceTree = "<group>";
-		};
-		1908EE57226F05BA00E03FD5 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				1908EE58226F05BA00E03FD5 /* JXSegmentedViewSmall.png */,
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		1908EE59226F05BA00E03FD5 /* Special */ = {
@@ -351,79 +255,6 @@
 			path = MixCell;
 			sourceTree = "<group>";
 		};
-		1908EE81226F05BA00E03FD5 /* Gif */ = {
-			isa = PBXGroup;
-			children = (
-				1908EE82226F05BA00E03FD5 /* Indicator */,
-				1908EE95226F05BA00E03FD5 /* Special */,
-				1908EE9D226F05BA00E03FD5 /* Cell */,
-			);
-			path = Gif;
-			sourceTree = "<group>";
-		};
-		1908EE82226F05BA00E03FD5 /* Indicator */ = {
-			isa = PBXGroup;
-			children = (
-				1908EE83226F05BA00E03FD5 /* IndicatorBackground.gif */,
-				1908EE84226F05BA00E03FD5 /* IndicatorImageBottom.gif */,
-				1908EE85226F05BA00E03FD5 /* TriangleTop.gif */,
-				1908EE86226F05BA00E03FD5 /* IndicatorBackgroundMaskPure.gif */,
-				1908EE87226F05BA00E03FD5 /* IndicatorBackgroundGradient.gif */,
-				1908EE88226F05BA00E03FD5 /* LineLengthenOffset.gif */,
-				1908EE89226F05BA00E03FD5 /* LineDot.gif */,
-				1908EE8A226F05BA00E03FD5 /* LineFixedWidth.gif */,
-				1908EE8B226F05BA00E03FD5 /* IndicatorMixed.gif */,
-				1908EE8C226F05BA00E03FD5 /* LineFlexibleWidth.gif */,
-				1908EE8D226F05BA00E03FD5 /* LineDouble.gif */,
-				1908EE8E226F05BA00E03FD5 /* LineRainbow.gif */,
-				1908EE8F226F05BA00E03FD5 /* LineLengthen.gif */,
-				1908EE90226F05BA00E03FD5 /* IndicatorBackgroundShadow.gif */,
-				1908EE91226F05BA00E03FD5 /* IndicatorGradient.gif */,
-				1908EE92226F05BA00E03FD5 /* IndicatorImageBG.gif */,
-				1908EE93226F05BA00E03FD5 /* IndicatorBackgroundMask.gif */,
-				1908EE94226F05BA00E03FD5 /* Triangle.gif */,
-			);
-			path = Indicator;
-			sourceTree = "<group>";
-		};
-		1908EE95226F05BA00E03FD5 /* Special */ = {
-			isa = PBXGroup;
-			children = (
-				1908EE96226F05BA00E03FD5 /* ItemAveTrue.gif */,
-				1908EE97226F05BA00E03FD5 /* Nest.gif */,
-				1908EE98226F05BA00E03FD5 /* SegmentedControl.gif */,
-				1908EE99226F05BA00E03FD5 /* ItemAveFalse.gif */,
-				1908EE9A226F05BA00E03FD5 /* NavigationBar.gif */,
-				1908EE9B226F05BA00E03FD5 /* Personal.gif */,
-				1908EE9C226F05BA00E03FD5 /* LoadData.gif */,
-			);
-			path = Special;
-			sourceTree = "<group>";
-		};
-		1908EE9D226F05BA00E03FD5 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				1908EE9E226F05BA00E03FD5 /* ColorGradient.gif */,
-				1908EE9F226F05BA00E03FD5 /* ZoomStrokeWidth.gif */,
-				1908EEA0226F05BA00E03FD5 /* ZoomCellWidth.gif */,
-				1908EEA1226F05BA00E03FD5 /* TitleOrImage.gif */,
-				1908EEA2226F05BA00E03FD5 /* ZoomAnimation.gif */,
-				1908EEA3226F05BA00E03FD5 /* CellMixed.gif */,
-				1908EEA4226F05BA00E03FD5 /* TitleImageLeft.gif */,
-				1908EEA5226F05BA00E03FD5 /* TitleImageBottom.gif */,
-				1908EEA6226F05BA00E03FD5 /* TitleImageOnlyImage.gif */,
-				1908EEA7226F05BA00E03FD5 /* ZoomOnly.gif */,
-				1908EEA8226F05BA00E03FD5 /* TextGradient.gif */,
-				1908EEA9226F05BA00E03FD5 /* Number.gif */,
-				1908EEAA226F05BA00E03FD5 /* TitleImageRight.gif */,
-				1908EEAB226F05BA00E03FD5 /* MixedCell.gif */,
-				1908EEAC226F05BA00E03FD5 /* TitleImageTop.gif */,
-				1908EEAD226F05BA00E03FD5 /* TitleAttributed.gif */,
-				1908EEAE226F05BA00E03FD5 /* CellDot.gif */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		1908F02C226F0EA200E03FD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,52 +322,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1908EEF3226F05BA00E03FD5 /* TextGradient.gif in Resources */,
-				1908EEDE226F05BA00E03FD5 /* IndicatorGradient.gif in Resources */,
-				1908EEDB226F05BA00E03FD5 /* LineRainbow.gif in Resources */,
-				1908EED5226F05BA00E03FD5 /* LineLengthenOffset.gif in Resources */,
-				1908EED7226F05BA00E03FD5 /* LineFixedWidth.gif in Resources */,
-				1908EEEE226F05BA00E03FD5 /* CellMixed.gif in Resources */,
-				1908EEF5226F05BA00E03FD5 /* TitleImageRight.gif in Resources */,
-				1908EED4226F05BA00E03FD5 /* IndicatorBackgroundGradient.gif in Resources */,
 				1908EEB2226F05BA00E03FD5 /* Main.storyboard in Resources */,
-				1908EEE2226F05BA00E03FD5 /* ItemAveTrue.gif in Resources */,
-				1908EEED226F05BA00E03FD5 /* ZoomAnimation.gif in Resources */,
-				1908EEDF226F05BA00E03FD5 /* IndicatorImageBG.gif in Resources */,
-				1908EEE3226F05BA00E03FD5 /* Nest.gif in Resources */,
-				1908EED1226F05BA00E03FD5 /* IndicatorImageBottom.gif in Resources */,
-				1908EEDD226F05BA00E03FD5 /* IndicatorBackgroundShadow.gif in Resources */,
-				1908EEF8226F05BA00E03FD5 /* TitleAttributed.gif in Resources */,
-				1908EEE9226F05BA00E03FD5 /* ColorGradient.gif in Resources */,
-				1908EEDA226F05BA00E03FD5 /* LineDouble.gif in Resources */,
-				1908EEB3226F05BA00E03FD5 /* JXSegmentedViewSmall.png in Resources */,
-				1908EEF4226F05BA00E03FD5 /* Number.gif in Resources */,
-				1908EEE1226F05BA00E03FD5 /* Triangle.gif in Resources */,
-				1908EEF6226F05BA00E03FD5 /* MixedCell.gif in Resources */,
-				1908EEE7226F05BA00E03FD5 /* Personal.gif in Resources */,
-				1908EEF0226F05BA00E03FD5 /* TitleImageBottom.gif in Resources */,
-				1908EEF9226F05BA00E03FD5 /* CellDot.gif in Resources */,
-				1908EED9226F05BA00E03FD5 /* LineFlexibleWidth.gif in Resources */,
-				1908EEF7226F05BA00E03FD5 /* TitleImageTop.gif in Resources */,
-				1908EED0226F05BA00E03FD5 /* IndicatorBackground.gif in Resources */,
-				1908EEEB226F05BA00E03FD5 /* ZoomCellWidth.gif in Resources */,
-				1908EED2226F05BA00E03FD5 /* TriangleTop.gif in Resources */,
-				1908EEDC226F05BA00E03FD5 /* LineLengthen.gif in Resources */,
-				1908EEEA226F05BA00E03FD5 /* ZoomStrokeWidth.gif in Resources */,
-				1908EED3226F05BA00E03FD5 /* IndicatorBackgroundMaskPure.gif in Resources */,
-				1908EEE0226F05BA00E03FD5 /* IndicatorBackgroundMask.gif in Resources */,
-				1908EEEF226F05BA00E03FD5 /* TitleImageLeft.gif in Resources */,
 				1908EEB0226F05BA00E03FD5 /* Assets.xcassets in Resources */,
-				1908EEE8226F05BA00E03FD5 /* LoadData.gif in Resources */,
-				1908EED6226F05BA00E03FD5 /* LineDot.gif in Resources */,
-				1908EEEC226F05BA00E03FD5 /* TitleOrImage.gif in Resources */,
-				1908EED8226F05BA00E03FD5 /* IndicatorMixed.gif in Resources */,
-				1908EEF1226F05BA00E03FD5 /* TitleImageOnlyImage.gif in Resources */,
 				1908EEB1226F05BA00E03FD5 /* LaunchScreen.storyboard in Resources */,
-				1908EEE5226F05BA00E03FD5 /* ItemAveFalse.gif in Resources */,
-				1908EEE6226F05BA00E03FD5 /* NavigationBar.gif in Resources */,
-				1908EEE4226F05BA00E03FD5 /* SegmentedControl.gif in Resources */,
-				1908EEF2226F05BA00E03FD5 /* ZoomOnly.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
