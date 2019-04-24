@@ -102,6 +102,12 @@ end
 ```
 先执行`pod repo update`，再执行`pod install`
 
+### Carthage
+在cartfile文件添加：
+```
+github "pujiaxin33/JXSegmentedView"
+```
+然后执行`carthage update --platform iOS` 即可
 
 ## 使用
 
