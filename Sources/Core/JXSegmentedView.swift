@@ -113,6 +113,14 @@ public protocol JXSegmentedViewDelegate: AnyObject {
     ///   - rightIndex: 正在滚动中，相对位置处于右边的index
     ///   - percent: 从左往右计算的百分比
     func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat)
+
+
+    /// 是否允许点击选中目标index的item
+    ///
+    /// - Parameters:
+    ///   - segmentedView: JXSegmentedView
+    ///   - index: 目标index
+    func segmentedView(_ segmentedView: JXSegmentedView, canClickItemAt index: Int) -> Bool
 }
 
 /// 提供JXSegmentedViewDelegate的默认实现，这样对于遵从JXSegmentedViewDelegate的类来说，所有代理方法都是可选实现的。
@@ -121,6 +129,7 @@ public extension JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) { }
     func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int) { }
     func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) { }
+    func segmentedView(_ segmentedView: JXSegmentedView, canClickItemAt index: Int) -> Bool { return true }
 }
 
 /// 内部会自己找到父UIViewController，然后将其automaticallyAdjustsScrollViewInsets设置为false，这一点请知晓。
@@ -435,6 +444,9 @@ open class JXSegmentedView: UIView {
 
     //MARK: - Private
     private func clickSelectItemAt(index: Int) {
+        guard delegate?.segmentedView(self, canClickItemAt: index) == true else {
+            return
+        }
         selectItemAt(index: index, selectedType: .click)
     }
 
