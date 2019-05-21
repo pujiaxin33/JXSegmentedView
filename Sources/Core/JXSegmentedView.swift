@@ -339,8 +339,8 @@ open class JXSegmentedView: UIView {
                 }
             }
         }
-        collectionView.collectionViewLayout.invalidateLayout()
         collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 
     open func reloadItem(at index: Int) {
