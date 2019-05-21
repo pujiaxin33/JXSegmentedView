@@ -25,4 +25,5 @@ open class JXSegmentedTitleItemModel: JXSegmentedBaseItemModel {
     open var titleCurrentStrokeWidth: CGFloat = 0
     open var titleSelectedStrokeWidth: CGFloat = 0
     open var isTitleMaskEnabled: Bool = false
+    open var textWidth: CGFloat = 0
 }

@@ -56,6 +56,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         }
 
         myItemModel.title = titles[index]
+        myItemModel.textWidth = widthForItem(title: myItemModel.title ?? "")
         myItemModel.titleNumberOfLines = titleNumberOfLines
         myItemModel.isSelectedAnimable = isSelectedAnimable
         myItemModel.titleNormalColor = titleNormalColor
@@ -80,13 +81,16 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         }
     }
 
+    open func widthForItem(title: String) -> CGFloat {
+        let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat.infinity, height: CGFloat.infinity), options: [.usesFontLeading, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font : titleNormalFont], context: nil).size.width
+        return CGFloat(ceilf(Float(textWidth)))
+    }
+
+    /// 因为该方法会被频繁调用，所以应该在`preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int)`方法里面，根据数据源计算好文字宽度，然后缓存起来。该方法直接使用已经计算好的文字宽度即可。
     open override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
         var itemWidth = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
         if itemContentWidth == JXSegmentedViewAutomaticDimension {
-            if let title = (dataSource[index] as? JXSegmentedTitleItemModel)?.title {
-                let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: segmentedView.bounds.size.height), options: [.usesFontLeading, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font : titleNormalFont], context: nil).size.width
-                itemWidth += CGFloat(ceilf(Float(textWidth)))
-            }
+            itemWidth += (dataSource[index] as! JXSegmentedTitleItemModel).textWidth
         }else {
             itemWidth += itemContentWidth
         }
