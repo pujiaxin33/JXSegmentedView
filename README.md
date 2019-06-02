@@ -85,7 +85,7 @@ SegmentedControl<br/>参考[`SegmentedControlViewController`](https://github.com
 
 - iOS 8.0+
 - Xcode 9+
-- Swift 4.2
+- Swift 5.0
 
 ## 安装
 
