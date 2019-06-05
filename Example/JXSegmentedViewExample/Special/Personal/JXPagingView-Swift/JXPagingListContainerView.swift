@@ -160,7 +160,9 @@ extension JXPagingListContainerView: UICollectionViewDataSource, UICollectionVie
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        self.mainTableView?.isScrollEnabled = true
+        if decelerate == false {
+            self.mainTableView?.isScrollEnabled = true
+        }
     }
 
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
