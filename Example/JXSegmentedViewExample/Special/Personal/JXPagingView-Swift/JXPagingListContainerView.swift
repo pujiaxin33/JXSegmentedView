@@ -165,6 +165,10 @@ extension JXPagingListContainerView: UICollectionViewDataSource, UICollectionVie
         }
     }
 
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.mainTableView?.isScrollEnabled = false
+    }
+    
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         self.mainTableView?.isScrollEnabled = true
     }
