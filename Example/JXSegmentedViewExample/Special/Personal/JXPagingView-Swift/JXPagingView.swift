@@ -358,7 +358,7 @@ extension JXPagingView: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if isListHorizontalScrollEnabled {
+        if isListHorizontalScrollEnabled && decelerate == false {
             self.listContainerView.collectionView.isScrollEnabled = true
         }
     }
