@@ -30,6 +30,7 @@ open class JXSegmentedAnimator {
     }
 
     open func stop() {
+        progressClosure?(1)
         displayLink.invalidate()
         completedClosure?()
     }
