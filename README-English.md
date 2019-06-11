@@ -1,4 +1,4 @@
-<div align=center><img src="JXSegmentedView/Image/JXSegmentedViewSmall.png" width="467" height="84" /></div>
+<div align=center><img src="Example/JXSegmentedViewExample/Image/JXSegmentedViewSmall.png" width="467" height="84" /></div>
 
 [![platform](https://img.shields.io/badge/platform-iOS-blue.svg?style=plastic)](#)
 [![languages](https://img.shields.io/badge/language-swift-blue.svg)](#) 
