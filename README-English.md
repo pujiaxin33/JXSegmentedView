@@ -23,24 +23,24 @@ If you are looking for the Objective-C version, please click to view
 
 Description | Gif |
 ----|------|
-Line fixed width  |  <img src="JXSegmentedView/Gif/Indicator/LineFixedWidth.gif" width="350" height="80"> |
-Line flexible width  |  <img src="JXSegmentedView/Gif/Indicator/LineFlexibleWidth.gif" width="350" height="80"> |
-Line lengthen  |  <img src="JXSegmentedView/Gif/Indicator/LineLengthen.gif" width="350" height="80"> |
-Line lengthen and offset  |  <img src="JXSegmentedView/Gif/Indicator/LineLengthenOffset.gif" width="350" height="80"> |
-RainbowLine  |  <img src="JXSegmentedView/Gif/Indicator/LineRainbow.gif" width="350" height="80"> |
-DotLine |  <img src="JXSegmentedView/Gif/Indicator/LineDot.gif" width="334" height="80"> |
-DoubleLine  |  <img src="JXSegmentedView/Gif/Indicator/LineDouble.gif" width="350" height="80"> |
-Triangle bottom  |  <img src="JXSegmentedView/Gif/Indicator/Triangle.gif" width="350" height="80"> |
-Triangle top  |  <img src="JXSegmentedView/Gif/Indicator/TriangleTop.gif" width="350" height="80"> |
-Background  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackground.gif" width="350" height="80"> |
-Background with shadow  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundShadow.gif" width="350" height="80"> |
-Background mask  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundMask.gif" width="350" height="80"> |
-Background mask without bottom view |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundMaskPure.gif" width="350" height="80"> |
-Background gradient<br>(fixed)  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorBackgroundGradient.gif" width="350" height="80"> |
-Gradient<br>(change with position)  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorGradient.gif" width="350" height="80"> |
-Image bottom  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorImageBottom.gif" width="350" height="80"> |
-Image background  |  <img src="JXSegmentedView/Gif/Indicator/IndicatorImageBG.gif" width="350" height="80"> |
-mixed indicators |  <img src="JXSegmentedView/Gif/Indicator/IndicatorMixed.gif" width="350" height="80"> |
+Line fixed width  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/LineFixedWidth.gif" width="350" height="80"> |
+Line flexible width  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/LineFlexibleWidth.gif" width="350" height="80"> |
+Line lengthen  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/LineLengthen.gif" width="350" height="80"> |
+Line lengthen and offset  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/LineLengthenOffset.gif" width="350" height="80"> |
+RainbowLine  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/LineRainbow.gif" width="350" height="80"> |
+DotLine |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/LineDot.gif" width="334" height="80"> |
+DoubleLine  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/LineDouble.gif" width="350" height="80"> |
+Triangle bottom  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/Triangle.gif" width="350" height="80"> |
+Triangle top  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/TriangleTop.gif" width="350" height="80"> |
+Background  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorBackground.gif" width="350" height="80"> |
+Background with shadow  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorBackgroundShadow.gif" width="350" height="80"> |
+Background mask  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorBackgroundMask.gif" width="350" height="80"> |
+Background mask without bottom view |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorBackgroundMaskPure.gif" width="350" height="80"> |
+Background gradient<br>(fixed)  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorBackgroundGradient.gif" width="350" height="80"> |
+Gradient<br>(change with position)  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorGradient.gif" width="350" height="80"> |
+Image bottom  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorImageBottom.gif" width="350" height="80"> |
+Image background  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorImageBG.gif" width="350" height="80"> |
+mixed indicators |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Indicator/IndicatorMixed.gif" width="350" height="80"> |
 
 The following indicators support up and down position switching：
 `JXSegmentedIndicatorLineView`、`JXSegmentedIndicatorRainbowLineView`、`JXSegmentedIndicatorDotLineView`、`JXSegmentedIndicatorDoubleLineView`、`JXSegmentedIndicatorTriangleView`、`JXSegmentedIndicatorImageView`
@@ -49,35 +49,35 @@ The following indicators support up and down position switching：
 
 Description | Gif |
 ----|------|
-title color gradient  |  <img src="JXSegmentedView/Gif/Cell/ColorGradient.gif" width="350" height="80"> |
-text color gradient  |  <img src="JXSegmentedView/Gif/Cell/TextGradient.gif" width="350" height="80"> |
-transform zoom  |  <img src="JXSegmentedView/Gif/Cell/ZoomOnly.gif" width="350" height="80"> |
-transform zoom + stroke width  |  <img src="JXSegmentedView/Gif/Cell/ZoomStrokeWidth.gif" width="350" height="80"> |
-transform zoom + selected animation  |  <img src="JXSegmentedView/Gif/Cell/ZoomAnimation.gif" width="350" height="80"> |
-transform zoom + cell width zoom  |  <img src="JXSegmentedView/Gif/Cell/ZoomCellWidth.gif" width="350" height="80"> |
-TitleImage_Top |  <img src="JXSegmentedView/Gif/Cell/TitleImageTop.gif" width="350" height="80"> |
-TitleImage_Left |  <img src="JXSegmentedView/Gif/Cell/TitleImageLeft.gif" width="350" height="80"> |
-TitleImage_Bottom |  <img src="JXSegmentedView/Gif/Cell/TitleImageBottom.gif" width="350" height="80"> |
-TitleImage_Right |  <img src="JXSegmentedView/Gif/Cell/TitleImageRight.gif" width="350" height="80"> |
-TitleImage_OnlyImage |  <img src="JXSegmentedView/Gif/Cell/TitleImageOnlyImage.gif" width="350" height="80"> |
-TitleOrImage |  <img src="JXSegmentedView/Gif/Cell/TitleOrImage.gif" width="350" height="80"> |
-number |  <img src="JXSegmentedView/Gif/Cell/Number.gif" width="350" height="80"> |
-dot |  <img src="JXSegmentedView/Gif/Cell/CellDot.gif" width="350" height="80"> |
-attributed text |  <img src="JXSegmentedView/Gif/Cell/TitleAttributed.gif" width="350" height="80"> |
-mixed cells |  <img src="JXSegmentedView/Gif/Cell/MixedCell.gif" width="350" height="80"> |
+title color gradient  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/ColorGradient.gif" width="350" height="80"> |
+text color gradient  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/TextGradient.gif" width="350" height="80"> |
+transform zoom  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/ZoomOnly.gif" width="350" height="80"> |
+transform zoom + stroke width  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/ZoomStrokeWidth.gif" width="350" height="80"> |
+transform zoom + selected animation  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/ZoomAnimation.gif" width="350" height="80"> |
+transform zoom + cell width zoom  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/ZoomCellWidth.gif" width="350" height="80"> |
+TitleImage_Top |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/TitleImageTop.gif" width="350" height="80"> |
+TitleImage_Left |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/TitleImageLeft.gif" width="350" height="80"> |
+TitleImage_Bottom |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/TitleImageBottom.gif" width="350" height="80"> |
+TitleImage_Right |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/TitleImageRight.gif" width="350" height="80"> |
+TitleImage_OnlyImage |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/TitleImageOnlyImage.gif" width="350" height="80"> |
+TitleOrImage |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/TitleOrImage.gif" width="350" height="80"> |
+number |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/Number.gif" width="350" height="80"> |
+dot |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/CellDot.gif" width="350" height="80"> |
+attributed text |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/TitleAttributed.gif" width="350" height="80"> |
+mixed cells |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Cell/MixedCell.gif" width="350" height="80"> |
 
 ### Special Preview
 
 Description | Gif |
 ----|------|
-less data<br/> isItemSpacingAverageEnabled is true |  <img src="JXSegmentedView/Gif/Special/ItemAveTrue.gif" width="350" height="80"> |
-less data<br/> isItemSpacingAverageEnabled is false |  <img src="JXSegmentedView/Gif/Special/ItemAveFalse.gif" width="350" height="80"> |
-SegmentedControl<br/>reference[`SegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/SegmentedControl/SegmentedControlViewController.swift) |  <img src="JXSegmentedView/Gif/Special/SegmentedControl.gif" width="350" height="80"> |
-SegmentedControl<br/>reference[`SegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/SegmentedControl/SegmentedControlViewController.swift) |  <img src="JXSegmentedView/Gif/Special/SegmentedControl.gif" width="350" height="80"> |
-use in navigation bar <br/>reference[`NaviSegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/SegmentedControl/NaviSegmentedControlViewController.swift) |  <img src="JXSegmentedView/Gif/Special/NavigationBar.gif" width="350" height="80"> |
-nestable<br/>reference[`NestViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/Nest/NestViewController.swift) |  <img src="JXSegmentedView/Gif/Special/Nest.gif" width="350" height="200"> |
-user profile page<br/>reference[`PagingViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/Personal/PagingViewController.swift)<br/> more styles just click[JXPagingView](https://github.com/pujiaxin33/JXPagingView) |  <img src="JXSegmentedView/Gif/Special/Personal.gif" width="350" height="567"> |
-data load & refresh<br/>reference[`LoadDataViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/WithListContainerView/LoadDataViewController.swift) |  <img src="JXSegmentedView/Gif/Special/LoadData.gif" width="350" height="200"> |
+less data<br/> isItemSpacingAverageEnabled is true |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Special/ItemAveTrue.gif" width="350" height="80"> |
+less data<br/> isItemSpacingAverageEnabled is false |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Special/ItemAveFalse.gif" width="350" height="80"> |
+SegmentedControl<br/>reference[`SegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/SegmentedControl/SegmentedControlViewController.swift) |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Special/SegmentedControl.gif" width="350" height="80"> |
+SegmentedControl<br/>reference[`SegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/SegmentedControl/SegmentedControlViewController.swift) |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Special/SegmentedControl.gif" width="350" height="80"> |
+use in navigation bar <br/>reference[`NaviSegmentedControlViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/SegmentedControl/NaviSegmentedControlViewController.swift) |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Special/NavigationBar.gif" width="350" height="80"> |
+nestable<br/>reference[`NestViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/Nest/NestViewController.swift) |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Special/Nest.gif" width="350" height="200"> |
+user profile page<br/>reference[`PagingViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/Personal/PagingViewController.swift)<br/> more styles just click[JXPagingView](https://github.com/pujiaxin33/JXPagingView) |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Special/Personal.gif" width="350" height="567"> |
+data load & refresh<br/>reference[`LoadDataViewController`](https://github.com/pujiaxin33/JXSegmentedView/blob/master/JXSegmentedView/Special/LoadData/WithListContainerView/LoadDataViewController.swift) |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXSegmentedView/Special/LoadData.gif" width="350" height="200"> |
 
 
 ## Requirements
