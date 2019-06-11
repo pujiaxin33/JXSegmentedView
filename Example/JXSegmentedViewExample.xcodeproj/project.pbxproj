@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19059C3722AF3CBB005E83DB /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
+		19059C3822AF3CBB005E83DB /* JXSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1908EEAF226F05BA00E03FD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE51226F05BA00E03FD5 /* ViewController.swift */; };
 		1908EEB0226F05BA00E03FD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE52226F05BA00E03FD5 /* Assets.xcassets */; };
 		1908EEB1226F05BA00E03FD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE53226F05BA00E03FD5 /* LaunchScreen.storyboard */; };
@@ -48,6 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				19059C3822AF3CBB005E83DB /* JXSegmentedView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19059C3722AF3CBB005E83DB /* JXSegmentedView.framework in Frameworks */,
 				1908F031226F14E000E03FD5 /* JXSegmentedView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +450,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -500,6 +505,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -509,18 +515,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CUHY5967Q2;
 				INFOPLIST_FILE = "$(SRCROOT)/JXSegmentedViewExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample;
+				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -530,18 +536,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CUHY5967Q2;
 				INFOPLIST_FILE = "$(SRCROOT)/JXSegmentedViewExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample;
+				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
