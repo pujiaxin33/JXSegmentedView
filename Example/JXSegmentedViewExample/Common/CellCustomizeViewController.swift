@@ -164,13 +164,24 @@ class CellCustomizeViewController: UITableViewController {
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
-        case "多行文字":
+        case "多行文字(自己添加换行符)":
             //配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.titleNumberOfLines = 2
             dataSource.titles = ["猴哥\nmonkey", "青蛙王子\nfrog", "旺财\ndot", "粉红猪\npig", "喜羊羊\nsheep", "黄焖鸡\nchicken", "小马哥\nhorse", "牛魔王\ncow", "大象先生\nelepant", "神龙\ndragon"]
+            //reloadData(selectedIndex:)一定要调用
+            dataSource.reloadData(selectedIndex: 0)
+            vc.segmentedDataSource = dataSource
+        case "多行文字(固定宽度自动换行)":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titleSelectedColor = UIColor.red
+            dataSource.titleNumberOfLines = 2
+            dataSource.itemContentWidth = 60
+            dataSource.titles = ["猴哥 monkey", "青蛙王子 frog", "旺财 dot", "粉红猪 pig", "喜羊羊 sheep", "黄焖鸡 chicken", "小马哥 horse", "牛魔王 cow", "大象先生 elepant", "神龙 dragon"]
             //reloadData(selectedIndex:)一定要调用
             dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource

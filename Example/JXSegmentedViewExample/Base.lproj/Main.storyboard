@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OPa-Zj-dfb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OPa-Zj-dfb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Title Image Setting View Controller-->
         <scene sceneID="sAr-PF-dxd">
             <objects>
-                <tableViewController storyboardIdentifier="TitleImageSettingViewController" id="ecj-7b-cLN" customClass="TitleImageSettingViewController" customModule="JXSegmentedView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TitleImageSettingViewController" id="ecj-7b-cLN" customClass="TitleImageSettingViewController" customModule="JXSegmentedViewExample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xYD-xj-kgN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,7 +180,7 @@
         <!--View Controller-->
         <scene sceneID="gXO-02-GlN">
             <objects>
-                <tableViewController id="trf-N8-vPU" customClass="ViewController" customModule="JXSegmentedView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="trf-N8-vPU" customClass="ViewController" customModule="JXSegmentedViewExample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RRI-3M-TdF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -268,7 +268,7 @@
         <!--Indicator Customize View Controller-->
         <scene sceneID="7dY-XZ-jTM">
             <objects>
-                <tableViewController storyboardIdentifier="IndicatorCustomizeViewController" id="UXy-87-uT1" customClass="IndicatorCustomizeViewController" customModule="JXSegmentedView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="IndicatorCustomizeViewController" id="UXy-87-uT1" customClass="IndicatorCustomizeViewController" customModule="JXSegmentedViewExample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WNY-Yf-cuc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -650,7 +650,7 @@
         <!--Cell Customize View Controller-->
         <scene sceneID="mT3-8d-0Nc">
             <objects>
-                <tableViewController storyboardIdentifier="CellCustomizeViewController" id="nMi-XG-NOJ" customClass="CellCustomizeViewController" customModule="JXSegmentedView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CellCustomizeViewController" id="nMi-XG-NOJ" customClass="CellCustomizeViewController" customModule="JXSegmentedViewExample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pk7-ae-bqa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -875,8 +875,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="多行文字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jje-NO-Jap">
-                                                    <rect key="frame" x="16" y="11.5" width="70" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="多行文字(自己添加换行符)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jje-NO-Jap">
+                                                    <rect key="frame" x="16" y="11.5" width="203" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -889,8 +889,29 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="A4D-cA-GEj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="K6n-fY-dRc">
                                         <rect key="frame" x="0.0" y="484" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K6n-fY-dRc" id="0to-lK-Fuu">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="多行文字(固定宽度自动换行)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TG0-3p-aU7">
+                                                    <rect key="frame" x="16" y="11.5" width="221" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TG0-3p-aU7" firstAttribute="centerY" secondItem="0to-lK-Fuu" secondAttribute="centerY" id="Ca1-vM-bO5"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TG0-3p-aU7" secondAttribute="trailing" constant="20" symbolic="YES" id="EqM-bf-nyn"/>
+                                                <constraint firstItem="TG0-3p-aU7" firstAttribute="leading" secondItem="0to-lK-Fuu" secondAttribute="leading" constant="16" id="m1S-Kd-ZUh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="A4D-cA-GEj">
+                                        <rect key="frame" x="0.0" y="528" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A4D-cA-GEj" id="C8u-kM-tu5">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -911,7 +932,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="POK-1i-yE0">
-                                        <rect key="frame" x="0.0" y="528" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="572" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="POK-1i-yE0" id="9QP-8s-zYo">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -947,7 +968,7 @@
         <!--Special Customize View Controller-->
         <scene sceneID="w1R-0w-rk8">
             <objects>
-                <tableViewController storyboardIdentifier="SpecialCustomizeViewController" id="rpf-C1-23m" customClass="SpecialCustomizeViewController" customModule="JXSegmentedView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SpecialCustomizeViewController" id="rpf-C1-23m" customClass="SpecialCustomizeViewController" customModule="JXSegmentedViewExample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oIA-Zp-SjD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
