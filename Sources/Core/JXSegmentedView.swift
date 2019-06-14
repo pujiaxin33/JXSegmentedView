@@ -509,13 +509,6 @@ open class JXSegmentedView: UIView {
 
         let lastSelectedIndex = selectedIndex
         selectedIndex = index
-        if selectedType == .click {
-            delegate?.segmentedView(self, didClickSelectedItemAt: index)
-        }else if selectedType == .scroll {
-            delegate?.segmentedView(self, didScrollSelectedItemAt: index)
-        }
-        delegate?.segmentedView(self, didSelectedItemAt: index)
-        scrollingTargetIndex = -1
 
         let currentSelectedItemFrame = getItemFrameAt(index: selectedIndex)
         for indicator in indicators {
@@ -533,6 +526,14 @@ open class JXSegmentedView: UIView {
                 willSelectedCell?.reloadData(itemModel: willSelectedItemModel, selectedType: selectedType)
             }
         }
+
+        scrollingTargetIndex = -1
+        if selectedType == .click {
+            delegate?.segmentedView(self, didClickSelectedItemAt: index)
+        }else if selectedType == .scroll {
+            delegate?.segmentedView(self, didScrollSelectedItemAt: index)
+        }
+        delegate?.segmentedView(self, didSelectedItemAt: index)
     }
 
     private func getItemFrameAt(index: Int) -> CGRect {
