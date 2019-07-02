@@ -10,11 +10,11 @@ import UIKit
 import JXSegmentedView
 
 class NaviSegmentedControlViewController: ContentBaseViewController {
+    let totalItemWidth: CGFloat = 150
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let totalItemWidth: CGFloat = 150
         let titles = ["吃饭🍚", "睡觉😴"]
         let titleDataSource = JXSegmentedTitleDataSource()
         titleDataSource.itemContentWidth = totalItemWidth/CGFloat(titles.count)
@@ -44,6 +44,7 @@ class NaviSegmentedControlViewController: ContentBaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        segmentedView.frame = CGRect(x: 0, y: 0, width: totalItemWidth, height: 30)
         listContainerView.frame = view.bounds
     }
 }
