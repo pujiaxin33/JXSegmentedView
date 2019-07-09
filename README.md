@@ -3,6 +3,7 @@
 [![platform](https://img.shields.io/badge/platform-iOS-blue.svg?style=plastic)](#)
 [![languages](https://img.shields.io/badge/language-swift-blue.svg)](#) 
 [![cocoapods](https://img.shields.io/badge/cocoapods-supported-4BC51D.svg?style=plastic)](https://cocoapods.org/pods/JXSegmentedView)
+[![carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage/)
 [![support](https://img.shields.io/badge/support-ios%208%2B-orange.svg)](#) 
 
 [There is an English document here, click to view](https://github.com/pujiaxin33/JXSegmentedView/blob/master/README-English.md)
