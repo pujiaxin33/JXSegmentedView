@@ -20,7 +20,7 @@ class ContentBaseViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-
+        
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedView.dataSource = segmentedDataSource
         segmentedView.delegate = self

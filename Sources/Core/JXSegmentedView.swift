@@ -353,6 +353,11 @@ open class JXSegmentedView: UIView {
         cell?.reloadData(itemModel: itemDataSource[index], selectedType: .unknown)
     }
 
+
+    /// 代码选中指定index
+    /// 如果要同时触发列表容器对应index的列表加载，请再调用`listContainerView.didClickSelectedItem(at: index)`方法
+    ///
+    /// - Parameter index: 目标index
     open func selectItemAt(index: Int) {
         selectItemAt(index: index, selectedType: .code)
     }
