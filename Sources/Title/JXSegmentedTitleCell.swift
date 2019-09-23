@@ -145,7 +145,11 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
                 let titleColorClosure = preferredTitleColorAnimateClosure(itemModel: myItemModel)
                 appendSelectedAnimationClosure(closure: titleColorClosure)
             }else {
-                titleLabel.textColor = myItemModel.titleCurrentColor
+                if itemModel.isSelected {
+                    titleLabel.textColor = myItemModel.titleSelectedColor
+                }else{
+                    titleLabel.textColor = myItemModel.titleCurrentColor
+                }
             }
         }
 
