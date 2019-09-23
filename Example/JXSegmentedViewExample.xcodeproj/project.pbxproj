@@ -39,6 +39,20 @@
 		1908EECC226F05BA00E03FD5 /* SpecialCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7B226F05BA00E03FD5 /* SpecialCustomizeViewController.swift */; };
 		1908EECD226F05BA00E03FD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7C226F05BA00E03FD5 /* AppDelegate.swift */; };
 		1908EECE226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7F226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift */; };
+		195AC3D22338955000181212 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C42338955000181212 /* dog.png */; };
+		195AC3D32338955000181212 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C52338955000181212 /* horse.png */; };
+		195AC3D42338955000181212 /* JXSegmentedViewSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C62338955000181212 /* JXSegmentedViewSmall.png */; };
+		195AC3D52338955000181212 /* elephant.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C72338955000181212 /* elephant.png */; };
+		195AC3D62338955000181212 /* lufei.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C82338955000181212 /* lufei.jpg */; };
+		195AC3D72338955000181212 /* dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C92338955000181212 /* dragon.png */; };
+		195AC3D82338955000181212 /* chicken.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3CA2338955000181212 /* chicken.png */; };
+		195AC3D92338955000181212 /* sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3CB2338955000181212 /* sheep.png */; };
+		195AC3DA2338955000181212 /* cow.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3CC2338955000181212 /* cow.png */; };
+		195AC3DB2338955000181212 /* light.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3CD2338955000181212 /* light.png */; };
+		195AC3DC2338955000181212 /* frog.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3CE2338955000181212 /* frog.png */; };
+		195AC3DD2338955000181212 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3CF2338955000181212 /* car.png */; };
+		195AC3DE2338955000181212 /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3D02338955000181212 /* monkey.png */; };
+		195AC3DF2338955000181212 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3D12338955000181212 /* pig.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +103,20 @@
 		1908EE7F226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedMixcellDataSource.swift; sourceTree = "<group>"; };
 		1908EE80226F05BA00E03FD5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1908F030226F14E000E03FD5 /* JXSegmentedView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JXSegmentedView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		195AC3C42338955000181212 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
+		195AC3C52338955000181212 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
+		195AC3C62338955000181212 /* JXSegmentedViewSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JXSegmentedViewSmall.png; sourceTree = "<group>"; };
+		195AC3C72338955000181212 /* elephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elephant.png; sourceTree = "<group>"; };
+		195AC3C82338955000181212 /* lufei.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lufei.jpg; sourceTree = "<group>"; };
+		195AC3C92338955000181212 /* dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragon.png; sourceTree = "<group>"; };
+		195AC3CA2338955000181212 /* chicken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chicken.png; sourceTree = "<group>"; };
+		195AC3CB2338955000181212 /* sheep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sheep.png; sourceTree = "<group>"; };
+		195AC3CC2338955000181212 /* cow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow.png; sourceTree = "<group>"; };
+		195AC3CD2338955000181212 /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light.png; sourceTree = "<group>"; };
+		195AC3CE2338955000181212 /* frog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frog.png; sourceTree = "<group>"; };
+		195AC3CF2338955000181212 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
+		195AC3D02338955000181212 /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
+		195AC3D12338955000181212 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +151,7 @@
 		1908EE50226F05BA00E03FD5 /* JXSegmentedViewExample */ = {
 			isa = PBXGroup;
 			children = (
+				195AC3C32338955000181212 /* Image */,
 				1908EE51226F05BA00E03FD5 /* ViewController.swift */,
 				1908EE52226F05BA00E03FD5 /* Assets.xcassets */,
 				1908EE53226F05BA00E03FD5 /* LaunchScreen.storyboard */,
@@ -263,6 +292,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		195AC3C32338955000181212 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				195AC3C42338955000181212 /* dog.png */,
+				195AC3C52338955000181212 /* horse.png */,
+				195AC3C62338955000181212 /* JXSegmentedViewSmall.png */,
+				195AC3C72338955000181212 /* elephant.png */,
+				195AC3C82338955000181212 /* lufei.jpg */,
+				195AC3C92338955000181212 /* dragon.png */,
+				195AC3CA2338955000181212 /* chicken.png */,
+				195AC3CB2338955000181212 /* sheep.png */,
+				195AC3CC2338955000181212 /* cow.png */,
+				195AC3CD2338955000181212 /* light.png */,
+				195AC3CE2338955000181212 /* frog.png */,
+				195AC3CF2338955000181212 /* car.png */,
+				195AC3D02338955000181212 /* monkey.png */,
+				195AC3D12338955000181212 /* pig.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,9 +372,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				195AC3DE2338955000181212 /* monkey.png in Resources */,
+				195AC3D22338955000181212 /* dog.png in Resources */,
+				195AC3DC2338955000181212 /* frog.png in Resources */,
 				1908EEB2226F05BA00E03FD5 /* Main.storyboard in Resources */,
+				195AC3D32338955000181212 /* horse.png in Resources */,
+				195AC3DA2338955000181212 /* cow.png in Resources */,
+				195AC3D42338955000181212 /* JXSegmentedViewSmall.png in Resources */,
+				195AC3DB2338955000181212 /* light.png in Resources */,
+				195AC3DF2338955000181212 /* pig.png in Resources */,
 				1908EEB0226F05BA00E03FD5 /* Assets.xcassets in Resources */,
+				195AC3D72338955000181212 /* dragon.png in Resources */,
+				195AC3D62338955000181212 /* lufei.jpg in Resources */,
+				195AC3D52338955000181212 /* elephant.png in Resources */,
+				195AC3D92338955000181212 /* sheep.png in Resources */,
+				195AC3DD2338955000181212 /* car.png in Resources */,
 				1908EEB1226F05BA00E03FD5 /* LaunchScreen.storyboard in Resources */,
+				195AC3D82338955000181212 /* chicken.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +587,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.33;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -545,7 +609,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.33;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
