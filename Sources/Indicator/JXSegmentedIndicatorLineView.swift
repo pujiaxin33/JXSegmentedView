@@ -65,7 +65,7 @@ open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
         case .normal:
             targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: CGFloat(percent))
             if indicatorWidth == JXSegmentedViewAutomaticDimension {
-                targetWidth = JXSegmentedViewTool.interpolate(from: leftItemFrame.size.width, to: rightItemFrame.size.width, percent: CGFloat(percent))
+                targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: rightWidth, percent: CGFloat(percent))
             }
         case .lengthen:
             //前50%，只增加width；后50%，移动x并减小width
