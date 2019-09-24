@@ -148,7 +148,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
                 if itemModel.isSelected {
                     titleLabel.textColor = myItemModel.titleSelectedColor
                 }else{
-                    titleLabel.textColor = myItemModel.titleCurrentColor
+                    titleLabel.textColor = myItemModel.titleNormalColor
                 }
             }
         }
