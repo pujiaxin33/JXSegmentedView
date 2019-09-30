@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19059C3722AF3CBB005E83DB /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
 		1908EEAF226F05BA00E03FD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE51226F05BA00E03FD5 /* ViewController.swift */; };
 		1908EEB0226F05BA00E03FD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE52226F05BA00E03FD5 /* Assets.xcassets */; };
 		1908EEB1226F05BA00E03FD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1908EE53226F05BA00E03FD5 /* LaunchScreen.storyboard */; };
@@ -53,6 +52,8 @@
 		195AC3DD2338955000181212 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3CF2338955000181212 /* car.png */; };
 		195AC3DE2338955000181212 /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3D02338955000181212 /* monkey.png */; };
 		195AC3DF2338955000181212 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3D12338955000181212 /* pig.png */; };
+		19F1D2F92339B0D100EEFB77 /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
+		19F1D2FA2339B0D100EEFB77 /* JXSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +63,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				19F1D2FA2339B0D100EEFB77 /* JXSegmentedView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,7 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19059C3722AF3CBB005E83DB /* JXSegmentedView.framework in Frameworks */,
+				19F1D2F92339B0D100EEFB77 /* JXSegmentedView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +586,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.33;
+				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.333;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -606,7 +608,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.33;
+				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.333;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
