@@ -11,7 +11,6 @@ import JXSegmentedView
 
 class LoadDataListViewController: UITableViewController {
     var typeString: String = ""
-    weak var naviController: UINavigationController?
     var dataSource = [String]()
     var isDataLoaded = false
 
@@ -76,7 +75,7 @@ class LoadDataListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = LoadDataDetailViewController()
         vc.detailText = dataSource[indexPath.row]
-        naviController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

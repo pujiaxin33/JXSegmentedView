@@ -83,7 +83,6 @@ extension LoadDataViewController: JXSegmentedListContainerViewDataSource {
 
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         let vc = LoadDataListViewController()
-        vc.naviController = navigationController
         vc.typeString = segmentedDataSource.titles[index]
         return vc
     }
