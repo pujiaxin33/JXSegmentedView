@@ -117,9 +117,9 @@ github "pujiaxin33/JXSegmentedView"
 
 1.初始化JXSegmentedView
 ```Swift
-self.segmentedView = JXSegmentedView()
-self.delegate = self
-self.view.addSubview(self.segmentedView)
+segmentedView = JXSegmentedView()
+segmentedView.delegate = self
+view.addSubview(self.segmentedView)
 ```
 
 2.初始化dataSource
@@ -127,32 +127,29 @@ self.view.addSubview(self.segmentedView)
 `dataSouce`类型为`JXSegmentedViewDataSource`协议。使用单独的类实现`JXSegmentedViewDataSource`协议，实现代码隔离。选择不同的类赋值给`dataSource`，就可以控制`JXSegmentedView`显示效果，实现插件化。比如选择`JXSegmentedTitleImageDataSource`类作为`dataSource`就选择了文字图片的显示效果；选择`JXSegmentedNumberDataSource`类作为`dataSource`就选择了文字加数字的显示效果；
 ```Swift
 //segmentedDataSource一定要通过属性强持有，不然会被释放掉
-self.segmentedDataSource = JXSegmentedTitleDataSource()
+segmentedDataSource = JXSegmentedTitleDataSource()
 //配置数据源相关配置属性
-self.segmentedDataSource.titles = ["猴哥", "青蛙王子", "旺财"]
-self.segmentedDataSource.isTitleColorGradientEnabled = true
+segmentedDataSource.titles = ["猴哥", "青蛙王子", "旺财"]
+egmentedDataSource.isTitleColorGradientEnabled = true
 //关联dataSource
-self.segmentedView.dataSource = self.segmentedDataSource
+segmentedView.dataSource = self.segmentedDataSource
 ```
 
 3.初始化指示器indicator
 ```Swift
 let indicator = JXSegmentedIndicatorLineView()
 indicator.indicatorWidth = 20
-self.segmentedView.indicators = [indicator]
+segmentedView.indicators = [indicator]
 ```
 
 4.可选实现`JXSegmentedViewDelegate`代理
 ```Swift
 //点击选中或者滚动选中都会调用该方法。适用于只关心选中事件，而不关心具体是点击还是滚动选中的情况。
 func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {}
-
 // 点击选中的情况才会调用该方法
 func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {}
-
 // 滚动选中的情况才会调用该方法
 func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int) {}
-
 // 正在滚动中的回调
 func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {}
 ```
@@ -172,12 +169,13 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 `JXSegmentedListContainerView`是对列表视图高度封装的类，具有以下优点：
 - 相对于直接使用`UIScrollView`自定义，封装度高、代码集中、使用简单；
 - 列表懒加载：当显示某个列表的时候，才进行列表初始化。而不是一次性加载全部列表，性能更优；
+- 可以选用CollectionView作为列表容器，内存管理更加优秀；
 - 支持列表的整个生命周期方法调用；
 
 1.初始化`JXSegmentedListContainerView`
 ```Swift
-self.listContainerView = JXSegmentedListContainerView(dataSource: self)
-self.view.addSubview(self.listContainerView)
+listContainerView = JXSegmentedListContainerView(dataSource: self)
+view.addSubview(self.listContainerView)
 //关联listContainer
 segmentedView.listContainer = listContainerView
 ```
@@ -186,7 +184,7 @@ segmentedView.listContainer = listContainerView
 ```Swift
 //返回列表的数量
 func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
-    return self.segmentedDataSource.titles.count
+    return segmentedDataSource.titles.count
 }
 //返回遵从`JXSegmentedListContainerViewListDelegate`协议的实例
 func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
@@ -241,7 +239,7 @@ func listDidDisappear() {}
 
 ## 其他使用注意事项
 
-[其他使用注意事项文档地址](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.md)
+[其他使用注意事项文档总地址](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.md)
 
 - [个人主页效果](https://github.com/pujiaxin33/JXPagingView)
 - [侧滑手势处理说明文档](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/%E4%BE%A7%E6%BB%91%E6%89%8B%E5%8A%BF%E5%A4%84%E7%90%86%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3.md)

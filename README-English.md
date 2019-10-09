@@ -109,7 +109,7 @@ Execute `pod repo update` first, then execute `pod install`
 1.JXSegmentedView initialize
 ```Swift
 self.segmentedView = JXSegmentedView()
-self.delegate = self
+self.segmentedView.delegate = self
 self.view.addSubview(self.segmentedView)
 ```
 
