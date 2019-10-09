@@ -14,6 +14,7 @@ A powerful and easy to use segmented view (segmentedcontrol, pagingview, pagervi
 - 指示器逻辑面向协议编程(Protocol Oriented Programming)，可以为所欲为的扩展指示器效果；
 - 提供更加全面丰富效果，几乎支持所有主流APP效果；
 - 使用子类化管理cell样式，逻辑更清晰，扩展更简单；
+- 列表支持整个生命周期方法；
 
 ## Objective-C版本
 
@@ -130,8 +131,6 @@ self.segmentedDataSource = JXSegmentedTitleDataSource()
 //配置数据源相关配置属性
 self.segmentedDataSource.titles = ["猴哥", "青蛙王子", "旺财"]
 self.segmentedDataSource.isTitleColorGradientEnabled = true
-//reloadData(selectedIndex:)方法一定要调用，方法内部会刷新数据源数组
-self.segmentedDataSource.reloadData(selectedIndex: 0)
 //关联dataSource
 self.segmentedView.dataSource = self.segmentedDataSource
 ```
@@ -143,7 +142,7 @@ indicator.indicatorWidth = 20
 self.segmentedView.indicators = [indicator]
 ```
 
-4.实现`JXSegmentedViewDelegate`代理
+4.可选实现`JXSegmentedViewDelegate`代理
 ```Swift
 //点击选中或者滚动选中都会调用该方法。适用于只关心选中事件，而不关心具体是点击还是滚动选中的情况。
 func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {}
@@ -173,13 +172,14 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 `JXSegmentedListContainerView`是对列表视图高度封装的类，具有以下优点：
 - 相对于直接使用`UIScrollView`自定义，封装度高、代码集中、使用简单；
 - 列表懒加载：当显示某个列表的时候，才进行列表初始化。而不是一次性加载全部列表，性能更优；
+- 支持列表的整个生命周期方法调用；
 
 1.初始化`JXSegmentedListContainerView`
 ```Swift
 self.listContainerView = JXSegmentedListContainerView(dataSource: self)
 self.view.addSubview(self.listContainerView)
-//关联cotentScrollView，关联之后才可以互相联动！！！
-self.segmentedView.contentScrollView = self.listContainerView.scrollView
+//关联listContainer
+segmentedView.listContainer = listContainerView
 ```
 
 2.实现`JXSegmentedListContainerViewDataSource`代理方法
@@ -210,21 +210,6 @@ func listDidAppear() {}
 
 //可选使用，列表消失的时候调用
 func listDidDisappear() {}
-```
-
-4.将关键事件告知`JXSegmentedListContainerView`
-
-在下面两个`JXSegmentedViewDelegate`代理方法里面调用对应的代码，一定不要忘记这一条❗️❗️❗️
-```Swift
-func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
-    //传递didClickSelectedItemAt事件给listContainerView，必须调用！！！
-    listContainerView.didClickSelectedItem(at: index)
-}
-
-func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {
-    //传递scrolling事件给listContainerView，必须调用！！！
-    listContainerView.segmentedViewScrolling(from: leftIndex, to: rightIndex, percent: percent, selectedIndex: segmentedView.selectedIndex)
-}
 ```
 
 具体点击[LoadDataViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/LoadData/WithListContainerView/LoadDataViewController.swift)查看源代码了解
@@ -259,6 +244,9 @@ func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: In
 ## 其他使用注意事项
 
 [其他使用注意事项文档地址](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.md)
+
+- [侧滑手势处理说明文档](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Document/%E4%BE%A7%E6%BB%91%E6%89%8B%E5%8A%BF%E5%A4%84%E7%90%86%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3.md)
+- 
 
 ## 补充
 
