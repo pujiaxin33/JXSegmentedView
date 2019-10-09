@@ -27,7 +27,6 @@ class LoadDataViewController: UIViewController {
         segmentedDataSource = JXSegmentedTitleDataSource()
         segmentedDataSource.titles = getRandomTitles()
         segmentedDataSource.isTitleColorGradientEnabled = true
-        segmentedDataSource.reloadData(selectedIndex: 0)
         segmentedView.dataSource = segmentedDataSource
         
         //3、配置指示器
@@ -37,32 +36,22 @@ class LoadDataViewController: UIViewController {
         segmentedView.indicators = [indicator]
 
         //4、配置JXSegmentedView的属性
-        segmentedView.isContentScrollViewClickTransitionAnimationEnabled = false
-        segmentedView.delegate = self
         view.addSubview(segmentedView)
 
         //5、初始化JXSegmentedListContainerView
         listContainerView = JXSegmentedListContainerView(dataSource: self)
-        listContainerView.didAppearPercent = 0.9
         view.addSubview(listContainerView)
 
         //6、将listContainerView.scrollView和segmentedView.contentScrollView进行关联
-        segmentedView.contentScrollView = listContainerView.scrollView
+        segmentedView.listContainer = listContainerView
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刷新数据", style: UIBarButtonItem.Style.plain, target: self, action: #selector(reloadData))
     }
 
     @objc func reloadData() {
-        //一定要统一segmentedDataSource、segmentedView、listContainerView的defaultSelectedIndex
         segmentedDataSource.titles = getRandomTitles()
-        //reloadData(selectedIndex:)一定要调用
-        segmentedDataSource.reloadData(selectedIndex: 0)
-
-        segmentedView.defaultSelectedIndex = 0
+        segmentedView.defaultSelectedIndex = 1
         segmentedView.reloadData()
-
-        listContainerView.defaultSelectedIndex = 0
-        listContainerView.reloadData()
     }
 
     override func viewDidLayoutSubviews() {
@@ -84,18 +73,6 @@ class LoadDataViewController: UIViewController {
             tempTitles.remove(at: randomIndex)
         }
         return resultTitles
-    }
-}
-
-extension LoadDataViewController: JXSegmentedViewDelegate {
-    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
-        //传递didClickSelectedItemAt事件给listContainerView，必须调用！！！
-        listContainerView.didClickSelectedItem(at: index)
-    }
-
-    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {
-        //传递scrollingFrom事件给listContainerView，必须调用！！！
-        listContainerView.segmentedViewScrolling(from: leftIndex, to: rightIndex, percent: percent, selectedIndex: segmentedView.selectedIndex)
     }
 }
 

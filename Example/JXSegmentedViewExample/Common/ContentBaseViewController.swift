@@ -26,8 +26,7 @@ class ContentBaseViewController: UIViewController {
         segmentedView.delegate = self
         view.addSubview(segmentedView)
 
-        segmentedView.contentScrollView = listContainerView.scrollView
-        listContainerView.didAppearPercent = 0.01
+        segmentedView.listContainer = listContainerView
         view.addSubview(listContainerView)
 
         for indicaotr in segmentedView.indicators {
@@ -94,7 +93,7 @@ class ContentBaseViewController: UIViewController {
                 indicaotr.indicatorPosition = .bottom
             }
         }
-        segmentedView.reloadData()
+        segmentedView.reloadDataWithoutListContainer()
     }
     
     //MARK: 数字刷新demo
@@ -105,8 +104,7 @@ class ContentBaseViewController: UIViewController {
             _segDataSource.numberHeight = 18
             _segDataSource.numberOffset = CGPoint(x: -5, y: 5)
             _segDataSource.numbers = newNumbers
-            _segDataSource.reloadData(selectedIndex: 0)
-            segmentedView.reloadData()
+            segmentedView.reloadDataWithoutListContainer()
         }
     }
 
@@ -122,16 +120,6 @@ extension ContentBaseViewController: JXSegmentedViewDelegate {
         }
 
         navigationController?.interactivePopGestureRecognizer?.isEnabled = (segmentedView.selectedIndex == 0)
-    }
-
-    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
-        //传递didClickSelectedItemAt事件给listContainerView，必须调用！！！
-        listContainerView.didClickSelectedItem(at: index)
-    }
-
-    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {
-        //传递scrollingFrom事件给listContainerView，必须调用！！！
-        listContainerView.segmentedViewScrolling(from: leftIndex, to: rightIndex, percent: percent, selectedIndex: segmentedView.selectedIndex)
     }
 }
 

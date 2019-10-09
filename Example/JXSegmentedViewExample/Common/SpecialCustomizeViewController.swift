@@ -59,8 +59,6 @@ class SpecialCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isItemSpacingAverageEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()
@@ -73,8 +71,6 @@ class SpecialCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isItemSpacingAverageEnabled = false
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()

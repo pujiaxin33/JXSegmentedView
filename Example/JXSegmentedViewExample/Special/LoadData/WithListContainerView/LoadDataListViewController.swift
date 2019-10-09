@@ -26,6 +26,26 @@ class LoadDataListViewController: UITableViewController {
         headerRefresh()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear:\(typeString)")
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear:\(typeString)")
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear:\(typeString)")
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidDisappear:\(typeString)")
+    }
+
     @objc func headerRefresh() {
         refreshControl?.beginRefreshing()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(1)) {
@@ -66,10 +86,18 @@ extension LoadDataListViewController: JXSegmentedListContainerViewListDelegate {
     }
 
     func listDidAppear() {
-        print("listDidAppear")
+        //因为`JXSegmentedListContainerView`内部通过`UICollectionView`的cell加载列表。当切换tab的时候，之前的列表所在的cell就被回收到缓存池，就会从视图层级树里面被剔除掉，即没有显示出来且不在视图层级里面。这个时候MJRefreshHeader所持有的UIActivityIndicatorView就会被设置hidden。所以需要在列表显示的时候，且isRefreshing==YES的时候，再让UIActivityIndicatorView重新开启动画。
+//        if (self.tableView.mj_header.isRefreshing) {
+//            UIActivityIndicatorView *activity = [self.tableView.mj_header valueForKey:@"loadingView"];
+//            [activity startAnimating];
+//        }
+        if refreshControl?.isRefreshing == true {
+            refreshControl?.beginRefreshing()
+        }
+//        print("listDidAppear")
     }
 
     func listDidDisappear() {
-        print("listDidDisappear")
+//        print("listDidDisappear")
     }
 }

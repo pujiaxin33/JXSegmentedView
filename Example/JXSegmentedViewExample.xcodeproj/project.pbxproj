@@ -222,8 +222,8 @@
 		1908EE66226F05BA00E03FD5 /* WithListContainerView */ = {
 			isa = PBXGroup;
 			children = (
-				1908EE67226F05BA00E03FD5 /* LoadDataListViewController.swift */,
 				1908EE68226F05BA00E03FD5 /* LoadDataViewController.swift */,
+				1908EE67226F05BA00E03FD5 /* LoadDataListViewController.swift */,
 			);
 			path = WithListContainerView;
 			sourceTree = "<group>";

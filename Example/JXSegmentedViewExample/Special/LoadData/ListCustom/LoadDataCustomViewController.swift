@@ -62,11 +62,7 @@ class LoadDataCustomViewController: UIViewController {
     }
 
     @objc func reloadData() {
-        //一定要统一segmentedDataSource、segmentedView的defaultSelectedIndex
         segmentedDataSource.titles = getRandomTitles()
-        //reloadData(selectedIndex:)一定要调用
-        segmentedDataSource.reloadData(selectedIndex: 0)
-
         segmentedView.defaultSelectedIndex = 0
         segmentedView.reloadData()
 
@@ -84,7 +80,6 @@ class LoadDataCustomViewController: UIViewController {
         }
 
         view.setNeedsLayout()
-        view.layoutIfNeeded()
 
         listVCArray.first?.loadDataForFirst()
     }

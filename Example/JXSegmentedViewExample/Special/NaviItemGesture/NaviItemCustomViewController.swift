@@ -24,8 +24,6 @@ class NaviItemCustomViewController: ContentBaseViewController {
         let dataSource = JXSegmentedTitleDataSource()
         dataSource.isTitleColorGradientEnabled = true
         dataSource.titles = titles
-        //reloadData(selectedIndex:)一定要调用
-        dataSource.reloadData(selectedIndex: 0)
         segmentedDataSource = dataSource
         segmentedView.dataSource = segmentedDataSource
 

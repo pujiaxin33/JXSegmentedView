@@ -23,7 +23,6 @@ class NaviSegmentedControlViewController: ContentBaseViewController {
         titleDataSource.titleNormalColor = UIColor.red
         titleDataSource.titleSelectedColor = UIColor.white
         titleDataSource.itemSpacing = 0
-        titleDataSource.reloadData(selectedIndex: 0)
         segmentedDataSource = titleDataSource
 
         segmentedView.dataSource = titleDataSource

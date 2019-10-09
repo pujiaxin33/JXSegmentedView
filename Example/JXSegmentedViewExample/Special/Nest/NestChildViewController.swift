@@ -25,8 +25,6 @@ class NestChildViewController: UIViewController {
         //配置数据源
         segmentedDataSource.isTitleColorGradientEnabled = true
         segmentedDataSource.titles = titles
-        //reloadData(selectedIndex:)一定要调用
-        segmentedDataSource.reloadData(selectedIndex: 0)
 
         //配置指示器
         let indicator = JXSegmentedIndicatorLineView()
@@ -36,11 +34,10 @@ class NestChildViewController: UIViewController {
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedView.dataSource = segmentedDataSource
         segmentedView.indicators = [indicator]
-        segmentedView.delegate = self
         segmentedView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 50)
         view.addSubview(segmentedView)
 
-        segmentedView.contentScrollView = listContainerView.scrollView
+        segmentedView.listContainer = listContainerView
         view.addSubview(listContainerView)
     }
 
@@ -54,16 +51,6 @@ class NestChildViewController: UIViewController {
 extension NestChildViewController: JXSegmentedListContainerViewListDelegate {
     func listView() -> UIView {
         return view
-    }
-}
-
-extension NestChildViewController: JXSegmentedViewDelegate {
-    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
-        listContainerView.didClickSelectedItem(at: index)
-    }
-
-    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {
-        listContainerView.segmentedViewScrolling(from: leftIndex, to: rightIndex, percent: percent, selectedIndex: segmentedView.selectedIndex)
     }
 }
 

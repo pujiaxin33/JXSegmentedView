@@ -10,11 +10,12 @@ import UIKit
 import JXSegmentedView
 
 class SegmentedControlViewController: ContentBaseViewController {
+    var totalItemWidth: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let totalItemWidth = UIScreen.main.bounds.size.width - 30*2
+        totalItemWidth = UIScreen.main.bounds.size.width - 30*2
         let titles = ["吃饭🍚", "睡觉😴", "游泳🏊", "跳舞💃"]
         let titleDataSource = JXSegmentedTitleDataSource()
         titleDataSource.itemContentWidth = totalItemWidth/CGFloat(titles.count)
@@ -23,11 +24,9 @@ class SegmentedControlViewController: ContentBaseViewController {
         titleDataSource.titleNormalColor = UIColor.red
         titleDataSource.titleSelectedColor = UIColor.white
         titleDataSource.itemSpacing = 0
-        titleDataSource.reloadData(selectedIndex: 0)
         segmentedDataSource = titleDataSource
 
         segmentedView.dataSource = titleDataSource
-        segmentedView.frame = CGRect(x: 30, y: 10, width: totalItemWidth, height: 30)
         segmentedView.layer.masksToBounds = true
         segmentedView.layer.cornerRadius = 15
         segmentedView.layer.borderColor = UIColor.red.cgColor
@@ -40,5 +39,9 @@ class SegmentedControlViewController: ContentBaseViewController {
         segmentedView.indicators = [indicator]
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
+        segmentedView.frame = CGRect(x: 30, y: 10, width: totalItemWidth, height: 30)
+    }
 }

@@ -30,7 +30,6 @@ class NestViewController: UIViewController {
         segmentedDataSource.titleNormalColor = UIColor.red
         segmentedDataSource.titleSelectedColor = UIColor.white
         segmentedDataSource.itemSpacing = 0
-        segmentedDataSource.reloadData(selectedIndex: 0)
 
         let indicator = JXSegmentedIndicatorBackgroundView()
         indicator.indicatorHeight = 30
@@ -44,10 +43,9 @@ class NestViewController: UIViewController {
         segmentedView.layer.borderWidth = 1/UIScreen.main.scale
         segmentedView.dataSource = segmentedDataSource
         segmentedView.indicators = [indicator]
-        segmentedView.delegate = self
         navigationItem.titleView = segmentedView
 
-        segmentedView.contentScrollView = listContainerView.scrollView
+        segmentedView.listContainer = listContainerView
         view.addSubview(listContainerView)
     }
 
@@ -55,16 +53,6 @@ class NestViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         listContainerView.frame = view.bounds
-    }
-}
-
-extension NestViewController: JXSegmentedViewDelegate {
-    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
-        listContainerView.didClickSelectedItem(at: index)
-    }
-
-    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {
-        listContainerView.segmentedViewScrolling(from: leftIndex, to: rightIndex, percent: percent, selectedIndex: segmentedView.selectedIndex)
     }
 }
 

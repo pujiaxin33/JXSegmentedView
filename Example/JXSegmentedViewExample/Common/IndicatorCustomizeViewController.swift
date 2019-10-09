@@ -37,8 +37,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()
@@ -49,8 +47,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()
@@ -61,8 +57,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()
@@ -74,8 +68,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()
@@ -87,8 +79,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorRainbowLineView()
@@ -101,8 +91,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorTriangleView()
@@ -112,8 +100,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
@@ -124,8 +110,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
@@ -136,8 +120,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
@@ -153,8 +135,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = false
             dataSource.isTitleMaskEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
@@ -167,8 +147,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = false
             dataSource.isTitleMaskEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
@@ -181,8 +159,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
@@ -201,8 +177,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorImageView()
@@ -215,8 +189,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorImageView()
@@ -229,8 +201,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let lineIndicator = JXSegmentedIndicatorLineView()
@@ -245,8 +215,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorDotLineView()
@@ -256,8 +224,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorDoubleLineView()
@@ -267,8 +233,6 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorGradientView()

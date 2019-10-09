@@ -40,8 +40,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "文字渐变":
             //配置数据源
@@ -49,8 +47,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "大小缩放":
             //配置数据源
@@ -60,8 +56,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleZoomEnabled = true
             dataSource.titleSelectedZoomScale = 1.3
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "大小缩放+字体粗细":
             //配置数据源
@@ -72,8 +66,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titleSelectedZoomScale = 1.3
             dataSource.isTitleStrokeWidthEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "大小缩放+点击动画":
             //配置数据源
@@ -85,8 +77,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleStrokeWidthEnabled = true
             dataSource.isSelectedAnimable = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "大小缩放+Cell宽度缩放":
             //高仿汽车之家
@@ -100,8 +90,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isSelectedAnimable = true
             dataSource.isItemWidthZoomEnabled = true
             dataSource.titles = titles
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "数字":
             //配置数据源
@@ -116,8 +104,6 @@ class CellCustomizeViewController: UITableViewController {
                 }
                 return "\(number)"
             }
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "红点":
             //配置数据源
@@ -125,8 +111,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
             dataSource.dotStates = dotStates
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "文字和图片":
             //配置数据源
@@ -141,8 +125,6 @@ class CellCustomizeViewController: UITableViewController {
                 //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
                 imageView.image = UIImage(named: normalImageInfo)
             }
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "文字或者图片":
             //配置数据源
@@ -161,8 +143,6 @@ class CellCustomizeViewController: UITableViewController {
                 //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
                 imageView.image = UIImage(named: normalImageInfo)
             }
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "多行文字(自己添加换行符)":
             //配置数据源
@@ -171,8 +151,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titleSelectedColor = UIColor.red
             dataSource.titleNumberOfLines = 2
             dataSource.titles = ["猴哥\nmonkey", "青蛙王子\nfrog", "旺财\ndot", "粉红猪\npig", "喜羊羊\nsheep", "黄焖鸡\nchicken", "小马哥\nhorse", "牛魔王\ncow", "大象先生\nelepant", "神龙\ndragon"]
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "多行文字(固定宽度自动换行)":
             //配置数据源
@@ -182,8 +160,6 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titleNumberOfLines = 2
             dataSource.itemContentWidth = 60
             dataSource.titles = ["猴哥 monkey", "青蛙王子 frog", "旺财 dot", "粉红猪 pig", "喜羊羊 sheep", "黄焖鸡 chicken", "小马哥 horse", "牛魔王 cow", "大象先生 elepant", "神龙 dragon"]
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         case "多行富文本":
             //配置数据源
@@ -208,8 +184,6 @@ class CellCustomizeViewController: UITableViewController {
             formatSelected(attriText: tuesdayAttriText)
             formatSelected(attriText: wednesdayAttriText)
             dataSource.selectedAttributedTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as? [NSAttributedString]
-            //reloadData(selectedIndex:)一定要调用
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
@@ -218,7 +192,6 @@ class CellCustomizeViewController: UITableViewController {
             vc.segmentedView.indicators = [indicator]
         case "多种cell":
             let dataSource = JXSegmentedMixcellDataSource()
-            dataSource.reloadData(selectedIndex: 0)
             vc.segmentedDataSource = dataSource
         default:
             break
