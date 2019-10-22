@@ -19,8 +19,6 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
 
         let titleModel = JXSegmentedTitleItemModel()
         titleModel.title = "我只是title"
-        titleModel.isSelected = true
-        titleModel.titleCurrentColor = titleModel.titleSelectedColor
         dataSource.append(titleModel)
 
         let titleImageModel = JXSegmentedTitleImageItemModel()
@@ -42,6 +40,14 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
         dotModel.dotSize = CGSize(width: 10, height: 10)
         dotModel.dotCornerRadius = 5
         dataSource.append(dotModel)
+
+        for (index, model) in (dataSource as! [JXSegmentedTitleItemModel]).enumerated() {
+            if index == selectedIndex {
+                model.isSelected = true
+                model.titleCurrentColor = model.titleSelectedColor
+                break
+            }
+        }
     }
 
     override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
