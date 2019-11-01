@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "JXSegmentedView"
-  s.version = "1.0.0"
+  s.version = "1.0.1"
   s.summary      = "一个轻量级、配置丰富、灵活扩展的分段控制器"
   s.homepage     = "https://github.com/pujiaxin33/JXSegmentedView"
   s.license      = "MIT"
