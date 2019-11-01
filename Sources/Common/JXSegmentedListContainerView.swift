@@ -77,6 +77,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer {
             }
         }
     }
+    public var listCellBackgroundColor: UIColor = .white
     /// 需要和segmentedView.defaultSelectedIndex保持一致，用于触发默认index列表的加载
     public var defaultSelectedIndex: Int = 0 {
         didSet {
@@ -397,7 +398,7 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.contentView.backgroundColor = .white
+        cell.contentView.backgroundColor = listCellBackgroundColor
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         let list = validListDict[indexPath.item]
         if list != nil {
