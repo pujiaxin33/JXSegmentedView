@@ -17,22 +17,12 @@ public enum JXSegmentedListContainerType {
 }
 
 @objc
-public protocol JXSegmentedListContainerViewListViewProvider {
+public protocol JXSegmentedListContainerViewListDelegate {
     /// 如果列表是VC，就返回VC.view
     /// 如果列表是View，就返回View自己
     ///
     /// - Returns: 返回列表视图
     func listView() -> UIView
-}
-public extension JXSegmentedListContainerViewListViewProvider where Self: UIViewController {
-    func listView() -> UIView { return view }
-}
-public extension JXSegmentedListContainerViewListViewProvider where Self: UIView {
-    func listView() -> UIView { return self }
-}
-
-@objc
-public protocol JXSegmentedListContainerViewListDelegate: JXSegmentedListContainerViewListViewProvider {
     /// 可选实现，列表将要显示的时候调用
     @objc optional func listWillAppear()
     /// 可选实现，列表显示的时候调用
