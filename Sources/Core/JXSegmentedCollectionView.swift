@@ -28,6 +28,9 @@ open class JXSegmentedCollectionView: UICollectionView {
 
         for indicator in indicators {
             sendSubviewToBack(indicator)
+            if let backgroundView = backgroundView {
+                sendSubviewToBack(backgroundView)
+            }
         }
     }
 

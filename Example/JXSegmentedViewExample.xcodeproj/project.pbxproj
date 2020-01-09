@@ -38,6 +38,7 @@
 		1908EECC226F05BA00E03FD5 /* SpecialCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7B226F05BA00E03FD5 /* SpecialCustomizeViewController.swift */; };
 		1908EECD226F05BA00E03FD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7C226F05BA00E03FD5 /* AppDelegate.swift */; };
 		1908EECE226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EE7F226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift */; };
+		194A91E923C70124006BE6AB /* GridCellExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194A91E823C70124006BE6AB /* GridCellExampleViewController.swift */; };
 		195AC3D22338955000181212 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C42338955000181212 /* dog.png */; };
 		195AC3D32338955000181212 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C52338955000181212 /* horse.png */; };
 		195AC3D42338955000181212 /* JXSegmentedViewSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 195AC3C62338955000181212 /* JXSegmentedViewSmall.png */; };
@@ -105,6 +106,7 @@
 		1908EE7F226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedMixcellDataSource.swift; sourceTree = "<group>"; };
 		1908EE80226F05BA00E03FD5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1908F030226F14E000E03FD5 /* JXSegmentedView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JXSegmentedView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		194A91E823C70124006BE6AB /* GridCellExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCellExampleViewController.swift; sourceTree = "<group>"; };
 		195AC3C42338955000181212 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		195AC3C52338955000181212 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
 		195AC3C62338955000181212 /* JXSegmentedViewSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JXSegmentedViewSmall.png; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		1908EE7D226F05BA00E03FD5 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				194A91E123C6FCC7006BE6AB /* GridCell */,
 				1908EE7E226F05BA00E03FD5 /* MixCell */,
 			);
 			path = Custom;
@@ -292,6 +295,14 @@
 				1908F030226F14E000E03FD5 /* JXSegmentedView.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		194A91E123C6FCC7006BE6AB /* GridCell */ = {
+			isa = PBXGroup;
+			children = (
+				194A91E823C70124006BE6AB /* GridCellExampleViewController.swift */,
+			);
+			path = GridCell;
 			sourceTree = "<group>";
 		};
 		195AC3C32338955000181212 /* Image */ = {
@@ -407,6 +418,7 @@
 				1908EEC5226F05BA00E03FD5 /* NestChildViewController.swift in Sources */,
 				1908EEC2226F05BA00E03FD5 /* NaviSegmentedControlViewController.swift in Sources */,
 				1908EEB6226F05BA00E03FD5 /* JXPagingMainTableView.swift in Sources */,
+				194A91E923C70124006BE6AB /* GridCellExampleViewController.swift in Sources */,
 				1908EEC9226F05BA00E03FD5 /* ListBaseViewController.swift in Sources */,
 				1908EEC1226F05BA00E03FD5 /* LoadDataDetailViewController.swift in Sources */,
 				1908EEB4226F05BA00E03FD5 /* PagingViewController.swift in Sources */,

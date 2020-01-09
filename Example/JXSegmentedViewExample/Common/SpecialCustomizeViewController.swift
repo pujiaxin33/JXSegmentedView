@@ -80,6 +80,10 @@ class SpecialCustomizeViewController: UITableViewController {
             let vc = NaviItemCustomViewController()
             vc.title = title
             navigationController?.pushViewController(vc, animated: true)
+        case "自定义：网格cell":
+            let vc = GridCellExampleViewController()
+            vc.title = title
+            navigationController?.pushViewController(vc, animated: true)
         default: break
         }
     }
