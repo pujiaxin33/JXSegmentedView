@@ -14,6 +14,10 @@ class LoadDataListViewController: UITableViewController {
     var dataSource = [String]()
     var isDataLoaded = false
 
+    deinit {
+        print("LoadDataListViewController deinit")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
