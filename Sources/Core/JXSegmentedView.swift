@@ -408,6 +408,10 @@ open class JXSegmentedView: UIView {
             let contentOffset = change?[NSKeyValueChangeKey.newKey] as! CGPoint
             if contentScrollView?.isTracking == true || contentScrollView?.isDecelerating == true {
                 //用户滚动引起的contentOffset变化，才处理。
+                if contentScrollView?.bounds.size.width == 0 {
+                    // 如果contentScrollView Frame为零，直接忽略
+                    return
+                }
                 var progress = contentOffset.x/contentScrollView!.bounds.size.width
                 if Int(progress) > itemDataSource.count - 1 || progress < 0 {
                     //超过了边界，不需要处理
