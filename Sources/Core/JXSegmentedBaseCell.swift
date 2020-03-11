@@ -23,6 +23,7 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
         super.prepareForReuse()
 
         animator?.stop()
+        animator = nil
     }
 
     public override init(frame: CGRect) {
@@ -91,6 +92,7 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
                 animator?.duration = itemModel.selectedAnimationDuration
             }else {
                 animator?.stop()
+                animator = nil
             }
         }
     }
