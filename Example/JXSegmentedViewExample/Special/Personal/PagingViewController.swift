@@ -9,6 +9,8 @@
 import UIKit
 import JXSegmentedView
 
+extension JXPagingListContainerView: JXSegmentedViewListContainer {}
+
 class PagingViewController: UIViewController {
     var pagingView: JXPagingView!
     var userHeaderView: PagingViewTableHeaderView!
@@ -57,7 +59,7 @@ class PagingViewController: UIViewController {
 
         self.view.addSubview(pagingView)
         
-        segmentedView.contentScrollView = pagingView.listContainerView.collectionView
+        segmentedView.listContainer = pagingView.listContainerView
     }
 
     override func viewDidLayoutSubviews() {
