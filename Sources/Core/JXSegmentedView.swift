@@ -563,7 +563,7 @@ open class JXSegmentedView: UIView {
         let lastSelectedIndex = selectedIndex
         selectedIndex = index
 
-        let currentSelectedItemFrame = getItemFrameAt(index: selectedIndex)
+        let currentSelectedItemFrame = getSelectedItemFrameAt(index: selectedIndex)
         for indicator in indicators {
             let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
             indicatorParamsModel.lastSelectedIndex = lastSelectedIndex
@@ -615,6 +615,25 @@ open class JXSegmentedView: UIView {
         var width: CGFloat = 0
         let selectedItemModel = itemDataSource[index]
         if selectedItemModel.isTransitionAnimating && selectedItemModel.isItemWidthZoomEnabled {
+            width = (dataSource?.segmentedView(self, widthForItemAt: selectedItemModel.index, isItemWidthZoomValid: false) ?? 0) * selectedItemModel.itemWidthSelectedZoomScale
+        }else {
+            width = selectedItemModel.itemWidth
+        }
+        return CGRect(x: x, y: 0, width: width, height: bounds.size.height)
+    }
+
+    private func getSelectedItemFrameAt(index: Int) -> CGRect {
+        guard index < itemDataSource.count else {
+            return CGRect.zero
+        }
+        var x = getContentEdgeInsetLeft()
+        for i in 0..<index {
+            let itemWidth = (dataSource?.segmentedView(self, widthForItemAt: i, isItemWidthZoomValid: false) ?? 0)
+            x += itemWidth + innerItemSpacing
+        }
+        var width: CGFloat = 0
+        let selectedItemModel = itemDataSource[index]
+        if selectedItemModel.isItemWidthZoomEnabled {
             width = (dataSource?.segmentedView(self, widthForItemAt: selectedItemModel.index, isItemWidthZoomValid: false) ?? 0) * selectedItemModel.itemWidthSelectedZoomScale
         }else {
             width = selectedItemModel.itemWidth
