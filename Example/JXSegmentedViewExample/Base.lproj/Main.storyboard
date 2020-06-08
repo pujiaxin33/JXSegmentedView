@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OPa-Zj-dfb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OPa-Zj-dfb">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -628,6 +628,27 @@
                                                 <constraint firstItem="MwF-9A-VzP" firstAttribute="centerY" secondItem="07d-y9-LGI" secondAttribute="centerY" id="UEQ-qj-PFu"/>
                                                 <constraint firstItem="MwF-9A-VzP" firstAttribute="leading" secondItem="07d-y9-LGI" secondAttribute="leading" constant="16" id="vBq-Sw-Jp5"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MwF-9A-VzP" secondAttribute="trailing" constant="20" symbolic="YES" id="ves-gT-7a6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="fUo-sh-ufW">
+                                        <rect key="frame" x="0.0" y="776" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fUo-sh-ufW" id="IGq-6X-Cf0">
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="指示器宽度跟随内容而不是cell宽度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVY-bz-puU">
+                                                    <rect key="frame" x="16" y="11.5" width="269" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bVY-bz-puU" secondAttribute="trailing" constant="20" symbolic="YES" id="a3N-vL-0LN"/>
+                                                <constraint firstItem="bVY-bz-puU" firstAttribute="leading" secondItem="IGq-6X-Cf0" secondAttribute="leading" constant="16" id="bDW-fB-WGQ"/>
+                                                <constraint firstItem="bVY-bz-puU" firstAttribute="centerY" secondItem="IGq-6X-Cf0" secondAttribute="centerY" id="soB-Xe-879"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

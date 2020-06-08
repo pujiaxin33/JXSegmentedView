@@ -42,7 +42,7 @@ open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
 
         gradientLayer.colors = gradientColors
 
-        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
+        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
         let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
         let y = (model.currentSelectedItemFrame.size.height - height)/2
@@ -67,10 +67,10 @@ open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
         let rightItemFrame = model.rightItemFrame
         let leftItemFrame = model.leftItemFrame
         let percent = model.percent
-        var targetWidth = getIndicatorWidth(itemFrame: leftItemFrame)
+        var targetWidth = getIndicatorWidth(itemFrame: leftItemFrame, itemContentWidth: model.leftItemContentWidth)
 
         let leftWidth = targetWidth
-        let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame)
+        let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame, itemContentWidth: model.rightItemContentWidth)
         let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - leftWidth)/2
         let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - rightWidth)/2
         let targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: CGFloat(percent))
@@ -90,7 +90,7 @@ open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
     open override func selectItem(model: JXSegmentedIndicatorParamsModel) {
         super.selectItem(model: model)
 
-        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
+        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         var toFrame = gradientMaskLayerFrame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
         toFrame.size.width = width
@@ -113,7 +113,7 @@ open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
         }
     }
 
-    open override func getIndicatorWidth(itemFrame: CGRect) -> CGFloat {
-        return super.getIndicatorWidth(itemFrame: itemFrame) + gradientViewWidthIncrement
+    open override func getIndicatorWidth(itemFrame: CGRect, itemContentWidth: CGFloat = 0) -> CGFloat {
+        return super.getIndicatorWidth(itemFrame: itemFrame, itemContentWidth: itemContentWidth) + gradientViewWidthIncrement
     }
 }

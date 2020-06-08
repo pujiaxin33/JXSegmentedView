@@ -33,6 +33,10 @@ open class JXSegmentedIndicatorParamsModel {
     open var lastSelectedIndex: Int = 0
     /// 选中的类型
     open var selectedType: JXSegmentedViewItemSelectedType = .unknown
+    /// item的内容宽度
+    open var leftItemContentWidth: CGFloat = 0
+    open var rightItemContentWidth: CGFloat = 0
+    open var currentItemContentWidth: CGFloat = 0
 
     public init() {
     }

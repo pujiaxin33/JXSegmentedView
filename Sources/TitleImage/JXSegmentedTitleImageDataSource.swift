@@ -80,6 +80,21 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         return itemWidth
     }
 
+    public override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
+        var itemWidth = super.segmentedView(segmentedView, widthForItemContentAt: index)
+        switch titleImageType {
+        case .leftImage, .rightImage:
+            itemWidth += titleImageSpacing + imageSize.width
+        case .topImage, .bottomImage:
+            itemWidth = max(itemWidth, imageSize.width)
+        case .onlyImage:
+            itemWidth = imageSize.width
+        case .onlyTitle:
+            break
+        }
+        return itemWidth
+    }
+
     //MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.collectionView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "cell")

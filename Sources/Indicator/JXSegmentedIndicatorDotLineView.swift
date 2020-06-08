@@ -26,7 +26,7 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
         backgroundColor = indicatorColor
         layer.cornerRadius = getIndicatorCornerRadius(itemFrame: model.currentSelectedItemFrame)
 
-        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
+        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
         let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
         var y = model.currentSelectedItemFrame.size.height - height - verticalOffset
@@ -49,11 +49,11 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
         let leftItemFrame = model.leftItemFrame
         let percent = model.percent
         var targetX: CGFloat = leftItemFrame.origin.x
-        let dotWidth = getIndicatorWidth(itemFrame: leftItemFrame)
+        let dotWidth = getIndicatorWidth(itemFrame: leftItemFrame, itemContentWidth: model.leftItemContentWidth)
         var targetWidth = dotWidth
 
         let leftWidth = targetWidth
-        let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame)
+        let rightWidth = getIndicatorWidth(itemFrame: rightItemFrame, itemContentWidth: model.rightItemContentWidth)
         let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - leftWidth)/2
         let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - rightWidth)/2
         let centerX = leftX + (rightX - leftX - lineMaxWidth)/2
@@ -74,7 +74,7 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
     open override func selectItem(model: JXSegmentedIndicatorParamsModel) {
         super.selectItem(model: model)
 
-        let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
+        let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         var toFrame = self.frame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - targetWidth)/2
         toFrame.size.width = targetWidth

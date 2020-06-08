@@ -29,7 +29,7 @@ open class JXSegmentedIndicatorTriangleView: JXSegmentedIndicatorBaseView {
         let shapeLayer = self.layer as! CAShapeLayer
         shapeLayer.fillColor = indicatorColor.cgColor
 
-        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
+        let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
         let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
         var y = model.currentSelectedItemFrame.size.height - height - verticalOffset
@@ -65,7 +65,7 @@ open class JXSegmentedIndicatorTriangleView: JXSegmentedIndicatorBaseView {
         let rightItemFrame = model.rightItemFrame
         let leftItemFrame = model.leftItemFrame
         let percent = model.percent
-        let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
+        let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
 
         let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - targetWidth)/2
         let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - targetWidth)/2
@@ -77,7 +77,7 @@ open class JXSegmentedIndicatorTriangleView: JXSegmentedIndicatorBaseView {
     open override func selectItem(model: JXSegmentedIndicatorParamsModel) {
         super.selectItem(model: model)
 
-        let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame)
+        let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         var toFrame = self.frame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - targetWidth)/2
         if isScrollEnabled && (model.selectedType == .click || model.selectedType == .code) {

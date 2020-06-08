@@ -90,6 +90,10 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         }
     }
 
+    public func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
+        return self.segmentedView(segmentedView, widthForItemAt: index, isItemWidthZoomValid: false)
+    }
+
     open func registerCellClass(in segmentedView: JXSegmentedView) {
 
     }

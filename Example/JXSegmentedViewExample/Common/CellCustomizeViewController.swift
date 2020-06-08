@@ -77,6 +77,10 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isTitleStrokeWidthEnabled = true
             dataSource.isSelectedAnimable = true
             dataSource.titles = titles
+            let indicator = JXSegmentedIndicatorLineView()
+            indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
+            vc.segmentedView.indicators = [indicator]
+
             vc.segmentedDataSource = dataSource
         case "大小缩放+Cell宽度缩放":
             //高仿汽车之家
@@ -90,6 +94,11 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isSelectedAnimable = true
             dataSource.isItemWidthZoomEnabled = true
             dataSource.titles = titles
+
+            let indicator = JXSegmentedIndicatorLineView()
+            indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
+            vc.segmentedView.indicators = [indicator]
+
             vc.segmentedDataSource = dataSource
         case "数字":
             //配置数据源

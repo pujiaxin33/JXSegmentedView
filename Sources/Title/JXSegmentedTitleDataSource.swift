@@ -117,6 +117,15 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         return cell
     }
 
+    public override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
+        let model = dataSource[index] as! JXSegmentedTitleItemModel
+        if isTitleZoomEnabled {
+            return model.textWidth*model.titleCurrentZoomScale
+        }else {
+            return model.textWidth
+        }
+    }
+
     open override func refreshItemModel(_ segmentedView: JXSegmentedView, leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
         super.refreshItemModel(segmentedView, leftItemModel: leftItemModel, rightItemModel: rightItemModel, percent: percent)
         

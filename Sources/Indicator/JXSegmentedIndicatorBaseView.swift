@@ -35,6 +35,8 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
     open var isIndicatorConvertToItemFrameEnabled: Bool = true
     /// 点击选中时的滚动动画时长
     open var scrollAnimationDuration: TimeInterval = 0.25
+    ///  指示器的宽度是否跟随item的内容变化。indicatorWidth=JXSegmentedViewAutomaticDimension才能生效
+    open var isIndicatorWidthAdjustByItemContent = false
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,9 +60,13 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
         return indicatorCornerRadius
     }
 
-    public func getIndicatorWidth(itemFrame: CGRect) -> CGFloat {
+    public func getIndicatorWidth(itemFrame: CGRect, itemContentWidth: CGFloat) -> CGFloat {
         if indicatorWidth == JXSegmentedViewAutomaticDimension {
-            return itemFrame.size.width + indicatorWidthIncrement
+            if isIndicatorWidthAdjustByItemContent {
+                return itemContentWidth + indicatorWidthIncrement
+            }else {
+                return itemFrame.size.width + indicatorWidthIncrement
+            }
         }
         return indicatorWidth + indicatorWidthIncrement
     }

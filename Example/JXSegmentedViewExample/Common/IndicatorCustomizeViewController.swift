@@ -238,6 +238,20 @@ class IndicatorCustomizeViewController: UITableViewController {
             let indicator = JXSegmentedIndicatorGradientView()
 
             vc.segmentedView.indicators = [indicator]
+        case "指示器宽度跟随内容而不是cell宽度":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = ["很长的第一名", "第二", "普通第三"]
+            dataSource.itemContentWidth = view.bounds.size.width/3
+            dataSource.itemSpacing = 0
+            dataSource.isTitleZoomEnabled = true
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorLineView()
+            indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
+            indicator.isIndicatorWidthAdjustByItemContent = true
+            vc.segmentedView.indicators = [indicator]
         default:
             break
         }

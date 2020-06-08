@@ -45,7 +45,7 @@ public protocol JXSegmentedViewDataSource: AnyObject {
     /// - Returns: 数据源数组
     func itemDataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel]
 
-    /// 返回index对应item的宽度。
+    /// 返回index对应item的宽度。等同于获取cell的宽度。
     ///
     /// - Parameters:
     ///   - segmentedView: JXSegmentedView
@@ -53,6 +53,12 @@ public protocol JXSegmentedViewDataSource: AnyObject {
     ///   - isItemWidthZoomValid: 计算的宽度是否需要受isItemWidthZoomEnabled影响
     /// - Returns: item的宽度
     func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int, isItemWidthZoomValid: Bool) -> CGFloat
+
+    /// 返回index对应item的content宽度。等同于获取cell上面内容的宽度。与上面的代理方法不同，需要注意辨别。部分使用场景下，cell的宽度比较大，但是内容的宽度比较小。这个时候指示器又需要和item的content等宽。所以，添加了此代理方法。
+    /// - Parameters:
+    ///   - segmentedView: JXSegmentedView
+    ///   - index: 目标index
+    func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat
 
     /// 注册cell class
     ///
@@ -370,6 +376,7 @@ open class JXSegmentedView: UIView {
                 indicatorParamsModel.currentSelectedIndex = selectedIndex
                 let selectedItemFrame = getItemFrameAt(index: selectedIndex)
                 indicatorParamsModel.currentSelectedItemFrame = selectedItemFrame
+                indicatorParamsModel.currentItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: selectedIndex) ?? 0
                 indicator.refreshIndicatorState(model: indicatorParamsModel)
 
                 if indicator.isIndicatorConvertToItemFrameEnabled {
@@ -441,6 +448,10 @@ open class JXSegmentedView: UIView {
                 indicatorParamsModel.rightIndex = baseIndex + 1
                 indicatorParamsModel.rightItemFrame = rightItemFrame
                 indicatorParamsModel.percent = remainderProgress
+                indicatorParamsModel.leftItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: baseIndex) ?? 0
+                if baseIndex + 1 < itemDataSource.count {
+                    indicatorParamsModel.rightItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: baseIndex + 1) ?? 0
+                }
 
                 if remainderProgress == 0 {
                     //滑动翻页，需要更新选中状态
@@ -570,6 +581,7 @@ open class JXSegmentedView: UIView {
             indicatorParamsModel.currentSelectedIndex = selectedIndex
             indicatorParamsModel.currentSelectedItemFrame = currentSelectedItemFrame
             indicatorParamsModel.selectedType = selectedType
+            indicatorParamsModel.currentItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: selectedIndex) ?? 0
             indicator.selectItem(model: indicatorParamsModel)
 
             if indicator.isIndicatorConvertToItemFrameEnabled {

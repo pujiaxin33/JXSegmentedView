@@ -47,4 +47,5 @@ open class JXSegmentedTitleOrImageDataSource: JXSegmentedTitleDataSource {
         let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         return cell
     }
+
 }
