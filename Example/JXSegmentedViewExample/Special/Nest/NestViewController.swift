@@ -24,7 +24,7 @@ class NestViewController: UIViewController {
         let totalItemWidth: CGFloat = 150
         let titles = ["吃饭🍚", "运动💪"]
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
-        segmentedDataSource.itemContentWidth = totalItemWidth/CGFloat(titles.count)
+        segmentedDataSource.itemWidth = totalItemWidth/CGFloat(titles.count)
         segmentedDataSource.titles = titles
         segmentedDataSource.isTitleMaskEnabled = true
         segmentedDataSource.titleNormalColor = UIColor.red

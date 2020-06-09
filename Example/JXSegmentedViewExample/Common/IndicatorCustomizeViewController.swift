@@ -243,7 +243,7 @@ class IndicatorCustomizeViewController: UITableViewController {
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = ["很长的第一名", "第二", "普通第三"]
-            dataSource.itemContentWidth = view.bounds.size.width/3
+            dataSource.itemWidth = view.bounds.size.width/3
             dataSource.itemSpacing = 0
             dataSource.isTitleZoomEnabled = true
             vc.segmentedDataSource = dataSource

@@ -12,10 +12,6 @@ import JXSegmentedView
 class TitleImageSettingViewController: UITableViewController {
     var clickedClosure: ((JXSegmentedTitleImageType) -> ())?
 
-    deinit {
-        clickedClosure = nil
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

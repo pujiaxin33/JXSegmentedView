@@ -18,22 +18,12 @@ open class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
     /// title的numberOfLines
     open var titleNumberOfLines: Int = 2
 
-    deinit {
-        widthForTitleClosure = nil
-    }
-
     open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
         return JXSegmentedTitleAttributeItemModel()
     }
 
-    open override func reloadData(selectedIndex: Int) {
-        super.reloadData(selectedIndex: selectedIndex)
-
-        for index in 0..<attributedTitles.count {
-            let itemModel = preferredItemModelInstance() as! JXSegmentedTitleAttributeItemModel
-            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
-            dataSource.append(itemModel)
-        }
+    open override func preferredItemCount() -> Int {
+        return attributedTitles.count
     }
 
     open override func preferredRefreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
@@ -45,11 +35,11 @@ open class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
 
         myItemModel.attributedTitle = attributedTitles[index]
         myItemModel.selectedAttributedTitle = selectedAttributedTitles?[index]
-        myItemModel.textWidth = widthForItem(title: myItemModel.attributedTitle, selectedTitle: myItemModel.selectedAttributedTitle)
+        myItemModel.textWidth = widthForTitle(myItemModel.attributedTitle, selectedTitle: myItemModel.selectedAttributedTitle)
         myItemModel.titleNumberOfLines = titleNumberOfLines
     }
 
-    open func widthForItem(title: NSAttributedString?, selectedTitle: NSAttributedString?) -> CGFloat {
+    open func widthForTitle(_ title: NSAttributedString?, selectedTitle: NSAttributedString?) -> CGFloat {
         let attriText = selectedTitle != nil ? selectedTitle : title
         guard let text = attriText else {
             return 0
@@ -65,11 +55,11 @@ open class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
     /// 因为该方法会被频繁调用，所以应该在`preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int)`方法里面，根据数据源计算好文字宽度，然后缓存起来。该方法直接使用已经计算好的文字宽度即可。
     open override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
         var itemWidth: CGFloat = 0
-        if itemContentWidth == JXSegmentedViewAutomaticDimension {
+        if itemWidth == JXSegmentedViewAutomaticDimension {
             let myItemModel = dataSource[index] as! JXSegmentedTitleAttributeItemModel
             itemWidth = myItemModel.textWidth + itemWidthIncrement
         }else {
-            itemWidth = itemContentWidth + itemWidthIncrement
+            itemWidth = itemWidth + itemWidthIncrement
         }
         return itemWidth
     }

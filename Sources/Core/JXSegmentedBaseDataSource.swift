@@ -12,8 +12,8 @@ import  UIKit
 open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     /// 最终传递给JXSegmentedView的数据源数组
     open var dataSource = [JXSegmentedBaseItemModel]()
-    /// cell的内容宽度，为JXSegmentedViewAutomaticDimension时就以内容计算的宽度为准，否则以itemContentWidth的具体值为准。
-    open var itemContentWidth: CGFloat = JXSegmentedViewAutomaticDimension
+    /// cell的宽度。为JXSegmentedViewAutomaticDimension时就以内容计算的宽度为准，否则以itemWidth的具体值为准。
+    open var itemWidth: CGFloat = JXSegmentedViewAutomaticDimension
     /// 真实的item宽度 = itemContentWidth + itemWidthIncrement。
     open var itemWidthIncrement: CGFloat = 0
     /// item之前的间距
@@ -31,6 +31,13 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     /// item宽度选中时的scale
     open var itemWidthSelectedZoomScale: CGFloat = 1.5
 
+    @available(*, deprecated, renamed: "itemWidth")
+    open var itemContentWidth: CGFloat = JXSegmentedViewAutomaticDimension {
+        didSet {
+            itemWidth = itemContentWidth
+        }
+    }
+
     private var animator: JXSegmentedAnimator?
 
     deinit {
@@ -45,19 +52,28 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     /// - Parameter selectedIndex: 当前选中的index
     open func reloadData(selectedIndex: Int) {
         dataSource.removeAll()
+        for index in 0..<preferredItemCount() {
+            let itemModel = preferredItemModelInstance()
+            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+            dataSource.append(itemModel)
+        }
+    }
+
+    open func preferredItemCount() -> Int {
+        return 0
     }
 
     /// 子类需要重载该方法，用于返回自己定义的JXSegmentedBaseItemModel子类实例
-    ///
-    /// - Returns: JXSegmentedBaseItemModel子类实例
     open func preferredItemModelInstance() -> JXSegmentedBaseItemModel  {
         return JXSegmentedBaseItemModel()
     }
 
+    /// 子类需要重载该方法，用于返回索引为index的item宽度
     open func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
         return itemWidthIncrement
     }
 
+    /// 子类需要重载该方法，用于更新索引为index的itemModel
     open func preferredRefreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
         itemModel.index = index
         itemModel.isItemTransitionEnabled = isItemTransitionEnabled
@@ -81,17 +97,12 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     }
 
     /// 自定义子类请继承方法`func preferredWidthForItem(at index: Int) -> CGFloat`
-    public final func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int, isItemWidthZoomValid: Bool) -> CGFloat {
-        let itemWidth = preferredSegmentedView(segmentedView, widthForItemAt: index)
-        if isItemWidthZoomEnabled && isItemWidthZoomValid {
-            return itemWidth * dataSource[index].itemWidthCurrentZoomScale
-        }else {
-            return itemWidth
-        }
+    public final func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
+        return preferredSegmentedView(segmentedView, widthForItemAt: index)
     }
 
     public func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
-        return self.segmentedView(segmentedView, widthForItemAt: index, isItemWidthZoomValid: false)
+        return self.segmentedView(segmentedView, widthForItemAt: index)
     }
 
     open func registerCellClass(in segmentedView: JXSegmentedView) {
@@ -113,10 +124,11 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
                 animator = JXSegmentedAnimator()
                 animator?.duration = selectedAnimationDuration
                 animator?.progressClosure = {[weak self] (percent) in
+                    guard let self = self else { return }
                     currentSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: currentSelectedItemModel.itemWidthSelectedZoomScale, to: currentSelectedItemModel.itemWidthNormalZoomScale, percent: percent)
-                    currentSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: currentSelectedItemModel.index, isItemWidthZoomValid: true) ?? 0
+                    currentSelectedItemModel.itemWidth = self.itemWidthWithZoom(at: currentSelectedItemModel.index, model: currentSelectedItemModel)
                     willSelectedItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: willSelectedItemModel.itemWidthNormalZoomScale, to: willSelectedItemModel.itemWidthSelectedZoomScale, percent: percent)
-                    willSelectedItemModel.itemWidth = self?.segmentedView(segmentedView, widthForItemAt: willSelectedItemModel.index, isItemWidthZoomValid: true) ?? 0
+                    willSelectedItemModel.itemWidth = self.itemWidthWithZoom(at: willSelectedItemModel.index, model: willSelectedItemModel)
                     segmentedView.collectionView.collectionViewLayout.invalidateLayout()
                 }
                 animator?.start()
@@ -134,9 +146,9 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         if isItemWidthZoomEnabled && isItemTransitionEnabled {
             //允许itemWidth缩放动画且允许item渐变过渡
             leftItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: leftItemModel.itemWidthSelectedZoomScale, to: leftItemModel.itemWidthNormalZoomScale, percent: percent)
-            leftItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: leftItemModel.index, isItemWidthZoomValid: true)
+            leftItemModel.itemWidth = itemWidthWithZoom(at: leftItemModel.index, model: leftItemModel)
             rightItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: rightItemModel.itemWidthNormalZoomScale, to: rightItemModel.itemWidthSelectedZoomScale, percent: percent)
-            rightItemModel.itemWidth = self.segmentedView(segmentedView, widthForItemAt: rightItemModel.index, isItemWidthZoomValid: true)
+            rightItemModel.itemWidth = itemWidthWithZoom(at: rightItemModel.index, model: rightItemModel)
             segmentedView.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
@@ -144,5 +156,13 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     /// 自定义子类请继承方法`func preferredRefreshItemModel(_ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int)`
     public final func refreshItemModel(_ segmentedView: JXSegmentedView, _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
         preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
+    }
+
+    private func itemWidthWithZoom(at index: Int, model: JXSegmentedBaseItemModel) -> CGFloat {
+        var width = self.segmentedView(JXSegmentedView(), widthForItemAt: index)
+        if isItemWidthZoomEnabled {
+            width *= model.itemWidthCurrentZoomScale
+        }
+        return width
     }
 }

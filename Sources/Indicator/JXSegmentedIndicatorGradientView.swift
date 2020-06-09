@@ -9,6 +9,13 @@
 import UIKit
 
 open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
+    @available(*, deprecated, renamed: "indicatorWidthIncrement")
+    open var gradientViewWidthIncrement: CGFloat = 20 {
+        didSet {
+            indicatorWidthIncrement = gradientViewWidthIncrement
+        }
+    }
+
     /// 渐变colors
     open var gradientColors = [CGColor]()
     /// 渐变CAGradientLayer，通过它设置startPoint、endPoint等其他属性

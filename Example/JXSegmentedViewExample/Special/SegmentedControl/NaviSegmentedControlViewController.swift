@@ -17,7 +17,7 @@ class NaviSegmentedControlViewController: ContentBaseViewController {
 
         let titles = ["吃饭🍚", "睡觉😴"]
         let titleDataSource = JXSegmentedTitleDataSource()
-        titleDataSource.itemContentWidth = totalItemWidth/CGFloat(titles.count)
+        titleDataSource.itemWidth = totalItemWidth/CGFloat(titles.count)
         titleDataSource.titles = titles
         titleDataSource.isTitleMaskEnabled = true
         titleDataSource.titleNormalColor = UIColor.red

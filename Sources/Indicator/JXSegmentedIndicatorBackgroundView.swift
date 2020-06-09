@@ -10,6 +10,12 @@ import UIKit
 
 /// 不支持indicatorPosition、verticalOffset。默认垂直居中。
 open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
+    @available(*, deprecated, renamed: "indicatorWidthIncrement")
+    open var backgroundWidthIncrement: CGFloat = 20 {
+        didSet {
+            indicatorWidthIncrement = backgroundWidthIncrement
+        }
+    }
 
     open override func commonInit() {
         super.commonInit()

@@ -45,16 +45,15 @@ public protocol JXSegmentedViewDataSource: AnyObject {
     /// - Returns: 数据源数组
     func itemDataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel]
 
-    /// 返回index对应item的宽度。等同于获取cell的宽度。
+    /// 返回index对应item的宽度，等同于cell的宽度。
     ///
     /// - Parameters:
     ///   - segmentedView: JXSegmentedView
     ///   - index: 目标index
-    ///   - isItemWidthZoomValid: 计算的宽度是否需要受isItemWidthZoomEnabled影响
     /// - Returns: item的宽度
-    func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int, isItemWidthZoomValid: Bool) -> CGFloat
+    func segmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat
 
-    /// 返回index对应item的content宽度。等同于获取cell上面内容的宽度。与上面的代理方法不同，需要注意辨别。部分使用场景下，cell的宽度比较大，但是内容的宽度比较小。这个时候指示器又需要和item的content等宽。所以，添加了此代理方法。
+    /// 返回index对应item的content宽度，等同于cell上面内容的宽度。与上面的代理方法不同，需要注意辨别。部分使用场景下，cell的宽度比较大，但是内容的宽度比较小。这个时候指示器又需要和item的content等宽。所以，添加了此代理方法。
     /// - Parameters:
     ///   - segmentedView: JXSegmentedView
     ///   - index: 目标index
@@ -300,7 +299,10 @@ open class JXSegmentedView: UIView {
         var totalContentWidth: CGFloat = getContentEdgeInsetLeft()
         for (index, itemModel) in itemDataSource.enumerated() {
             itemModel.index = index
-            itemModel.itemWidth = (dataSource?.segmentedView(self, widthForItemAt: index, isItemWidthZoomValid: true) ?? 0)
+            itemModel.itemWidth = (dataSource?.segmentedView(self, widthForItemAt: index) ?? 0)
+            if dataSource?.isItemWidthZoomEnabled == true {
+                itemModel.itemWidth *= itemModel.itemWidthCurrentZoomScale
+            }
             itemModel.isSelected = (index == selectedIndex)
             totalItemWidth += itemModel.itemWidth
             if index == itemDataSource.count - 1 {
@@ -613,9 +615,9 @@ open class JXSegmentedView: UIView {
             if itemModel.isTransitionAnimating && itemModel.isItemWidthZoomEnabled {
                 //正在进行动画的时候，itemWidthCurrentZoomScale是随着动画渐变的，而没有立即更新到目标值
                 if itemModel.isSelected {
-                    itemWidth = (dataSource?.segmentedView(self, widthForItemAt: itemModel.index, isItemWidthZoomValid: false) ?? 0) * itemModel.itemWidthSelectedZoomScale
+                    itemWidth = (dataSource?.segmentedView(self, widthForItemAt: itemModel.index) ?? 0) * itemModel.itemWidthSelectedZoomScale
                 }else {
-                    itemWidth = (dataSource?.segmentedView(self, widthForItemAt: itemModel.index, isItemWidthZoomValid: false) ?? 0) * itemModel.itemWidthNormalZoomScale
+                    itemWidth = (dataSource?.segmentedView(self, widthForItemAt: itemModel.index) ?? 0) * itemModel.itemWidthNormalZoomScale
                 }
             }else {
                 itemWidth = itemModel.itemWidth
@@ -625,7 +627,7 @@ open class JXSegmentedView: UIView {
         var width: CGFloat = 0
         let selectedItemModel = itemDataSource[index]
         if selectedItemModel.isTransitionAnimating && selectedItemModel.isItemWidthZoomEnabled {
-            width = (dataSource?.segmentedView(self, widthForItemAt: selectedItemModel.index, isItemWidthZoomValid: false) ?? 0) * selectedItemModel.itemWidthSelectedZoomScale
+            width = (dataSource?.segmentedView(self, widthForItemAt: selectedItemModel.index) ?? 0) * selectedItemModel.itemWidthSelectedZoomScale
         }else {
             width = selectedItemModel.itemWidth
         }
@@ -638,13 +640,13 @@ open class JXSegmentedView: UIView {
         }
         var x = getContentEdgeInsetLeft()
         for i in 0..<index {
-            let itemWidth = (dataSource?.segmentedView(self, widthForItemAt: i, isItemWidthZoomValid: false) ?? 0)
+            let itemWidth = (dataSource?.segmentedView(self, widthForItemAt: i) ?? 0)
             x += itemWidth + innerItemSpacing
         }
         var width: CGFloat = 0
         let selectedItemModel = itemDataSource[index]
         if selectedItemModel.isItemWidthZoomEnabled {
-            width = (dataSource?.segmentedView(self, widthForItemAt: selectedItemModel.index, isItemWidthZoomValid: false) ?? 0) * selectedItemModel.itemWidthSelectedZoomScale
+            width = (dataSource?.segmentedView(self, widthForItemAt: selectedItemModel.index) ?? 0) * selectedItemModel.itemWidthSelectedZoomScale
         }else {
             width = selectedItemModel.itemWidth
         }

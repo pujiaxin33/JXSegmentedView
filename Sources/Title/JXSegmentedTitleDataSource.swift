@@ -36,22 +36,13 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     /// title是否使用遮罩过渡
     open var isTitleMaskEnabled: Bool = false
 
-    deinit {
-        widthForTitleClosure = nil
+
+    open override func preferredItemCount() -> Int {
+        return titles.count
     }
 
     open override func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
         return JXSegmentedTitleItemModel()
-    }
-
-    open override func reloadData(selectedIndex: Int) {
-        super.reloadData(selectedIndex: selectedIndex)
-        
-        for (index, _) in titles.enumerated() {
-            let itemModel = preferredItemModelInstance()
-            preferredRefreshItemModel(itemModel, at: index, selectedIndex: selectedIndex)
-            dataSource.append(itemModel)
-        }
     }
 
     open override func preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int) {
@@ -62,7 +53,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         }
 
         myItemModel.title = titles[index]
-        myItemModel.textWidth = widthForItem(title: myItemModel.title ?? "")
+        myItemModel.textWidth = widthForTitle(myItemModel.title ?? "")
         myItemModel.titleNumberOfLines = titleNumberOfLines
         myItemModel.isSelectedAnimable = isSelectedAnimable
         myItemModel.titleNormalColor = titleNormalColor
@@ -87,7 +78,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         }
     }
 
-    open func widthForItem(title: String) -> CGFloat {
+    open func widthForTitle(_ title: String) -> CGFloat {
         if widthForTitleClosure != nil {
             return widthForTitleClosure!(title)
         }else {
@@ -98,13 +89,13 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
     /// 因为该方法会被频繁调用，所以应该在`preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int)`方法里面，根据数据源计算好文字宽度，然后缓存起来。该方法直接使用已经计算好的文字宽度即可。
     open override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
-        var itemWidth = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
-        if itemContentWidth == JXSegmentedViewAutomaticDimension {
-            itemWidth += (dataSource[index] as! JXSegmentedTitleItemModel).textWidth
+        var width = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
+        if itemWidth == JXSegmentedViewAutomaticDimension {
+            width += (dataSource[index] as! JXSegmentedTitleItemModel).textWidth
         }else {
-            itemWidth += itemContentWidth
+            width += itemWidth
         }
-        return itemWidth
+        return width
     }
 
     //MARK: - JXSegmentedViewDataSource

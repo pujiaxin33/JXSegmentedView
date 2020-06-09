@@ -18,7 +18,7 @@ class GridCellExampleViewController: ContentBaseViewController {
         totalItemWidth = UIScreen.main.bounds.size.width - 30*2
         let titles = ["吃饭🍚", "睡觉😴", "游泳🏊", "跳舞💃"]
         let titleDataSource = JXSegmentedTitleDataSource()
-        titleDataSource.itemContentWidth = totalItemWidth/CGFloat(titles.count)
+        titleDataSource.itemWidth = totalItemWidth/CGFloat(titles.count)
         titleDataSource.titles = titles
         titleDataSource.isTitleMaskEnabled = true
         titleDataSource.titleNormalColor = UIColor.red
