@@ -47,7 +47,7 @@ class GridCellExampleViewController: ContentBaseViewController {
         let indicator = JXSegmentedIndicatorBackgroundView()
         indicator.indicatorHeight = 30
         indicator.indicatorCornerRadius = 3
-        indicator.backgroundWidthIncrement = 2
+        indicator.indicatorWidthIncrement = 2
         indicator.indicatorColor = UIColor.red
         segmentedView.indicators = [indicator]
     }

@@ -24,7 +24,7 @@
 		1908F00D226F0B3800E03FD5 /* JXSegmentedIndicatorBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFDD226F0B3700E03FD5 /* JXSegmentedIndicatorBackgroundView.swift */; };
 		1908F00E226F0B3800E03FD5 /* JXSegmentedIndicatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFDE226F0B3700E03FD5 /* JXSegmentedIndicatorLineView.swift */; };
 		1908F00F226F0B3800E03FD5 /* JXSegmentedIndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFDF226F0B3700E03FD5 /* JXSegmentedIndicatorProtocol.swift */; };
-		1908F010226F0B3800E03FD5 /* JXSegmentedIndicatorParamsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFE0226F0B3700E03FD5 /* JXSegmentedIndicatorParamsModel.swift */; };
+		1908F010226F0B3800E03FD5 /* JXSegmentedIndicatorParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFE0226F0B3700E03FD5 /* JXSegmentedIndicatorParams.swift */; };
 		1908F011226F0B3800E03FD5 /* JXSegmentedIndicatorDoubleLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFE1226F0B3700E03FD5 /* JXSegmentedIndicatorDoubleLineView.swift */; };
 		1908F012226F0B3800E03FD5 /* JXSegmentedComponetGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFE2226F0B3700E03FD5 /* JXSegmentedComponetGradientView.swift */; };
 		1908F013226F0B3800E03FD5 /* JXSegmentedDotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFE4226F0B3700E03FD5 /* JXSegmentedDotCell.swift */; };
@@ -70,7 +70,7 @@
 		1908EFDD226F0B3700E03FD5 /* JXSegmentedIndicatorBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorBackgroundView.swift; sourceTree = "<group>"; };
 		1908EFDE226F0B3700E03FD5 /* JXSegmentedIndicatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorLineView.swift; sourceTree = "<group>"; };
 		1908EFDF226F0B3700E03FD5 /* JXSegmentedIndicatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorProtocol.swift; sourceTree = "<group>"; };
-		1908EFE0226F0B3700E03FD5 /* JXSegmentedIndicatorParamsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorParamsModel.swift; sourceTree = "<group>"; };
+		1908EFE0226F0B3700E03FD5 /* JXSegmentedIndicatorParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorParams.swift; sourceTree = "<group>"; };
 		1908EFE1226F0B3700E03FD5 /* JXSegmentedIndicatorDoubleLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorDoubleLineView.swift; sourceTree = "<group>"; };
 		1908EFE2226F0B3700E03FD5 /* JXSegmentedComponetGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedComponetGradientView.swift; sourceTree = "<group>"; };
 		1908EFE4226F0B3700E03FD5 /* JXSegmentedDotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedDotCell.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 				1908EFDD226F0B3700E03FD5 /* JXSegmentedIndicatorBackgroundView.swift */,
 				1908EFDE226F0B3700E03FD5 /* JXSegmentedIndicatorLineView.swift */,
 				1908EFDF226F0B3700E03FD5 /* JXSegmentedIndicatorProtocol.swift */,
-				1908EFE0226F0B3700E03FD5 /* JXSegmentedIndicatorParamsModel.swift */,
+				1908EFE0226F0B3700E03FD5 /* JXSegmentedIndicatorParams.swift */,
 				1908EFE1226F0B3700E03FD5 /* JXSegmentedIndicatorDoubleLineView.swift */,
 				1908EFE2226F0B3700E03FD5 /* JXSegmentedComponetGradientView.swift */,
 			);
@@ -329,7 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1908F010226F0B3800E03FD5 /* JXSegmentedIndicatorParamsModel.swift in Sources */,
+				1908F010226F0B3800E03FD5 /* JXSegmentedIndicatorParams.swift in Sources */,
 				1908EFFF226F0B3800E03FD5 /* JXSegmentedTitleOrImageItemModel.swift in Sources */,
 				1908F00B226F0B3800E03FD5 /* JXSegmentedIndicatorRainbowLineView.swift in Sources */,
 				1908F006226F0B3800E03FD5 /* JXSegmentedView.swift in Sources */,

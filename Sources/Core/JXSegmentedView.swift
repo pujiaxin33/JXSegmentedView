@@ -371,13 +371,13 @@ open class JXSegmentedView: UIView {
                 indicator.isHidden = true
             }else {
                 indicator.isHidden = false
-                let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
-                indicatorParamsModel.contentSize = CGSize(width: totalContentWidth, height: bounds.size.height)
-                indicatorParamsModel.currentSelectedIndex = selectedIndex
                 let selectedItemFrame = getItemFrameAt(index: selectedIndex)
-                indicatorParamsModel.currentSelectedItemFrame = selectedItemFrame
-                indicatorParamsModel.currentItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: selectedIndex) ?? 0
-                indicator.refreshIndicatorState(model: indicatorParamsModel)
+                let indicatorParams = JXSegmentedIndicatorSelectedParams(currentSelectedIndex: selectedIndex,
+                                                                         currentSelectedItemFrame: selectedItemFrame,
+                                                                         selectedType: .unknown,
+                                                                         currentItemContentWidth: dataSource?.segmentedView(self, widthForItemContentAt: selectedIndex) ?? 0,
+                                                                         collectionViewContentSize: CGSize(width: totalContentWidth, height: bounds.size.height))
+                indicator.refreshIndicatorState(model: indicatorParams)
 
                 if indicator.isIndicatorConvertToItemFrameEnabled {
                     var indicatorConvertToItemFrame = indicator.frame
@@ -440,18 +440,18 @@ open class JXSegmentedView: UIView {
 
                 let leftItemFrame = getItemFrameAt(index: baseIndex)
                 let rightItemFrame = getItemFrameAt(index: baseIndex + 1)
-
-                let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
-                indicatorParamsModel.currentSelectedIndex = selectedIndex
-                indicatorParamsModel.leftIndex = baseIndex
-                indicatorParamsModel.leftItemFrame = leftItemFrame
-                indicatorParamsModel.rightIndex = baseIndex + 1
-                indicatorParamsModel.rightItemFrame = rightItemFrame
-                indicatorParamsModel.percent = remainderProgress
-                indicatorParamsModel.leftItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: baseIndex) ?? 0
+                var rightItemContentWidth: CGFloat = 0
                 if baseIndex + 1 < itemDataSource.count {
-                    indicatorParamsModel.rightItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: baseIndex + 1) ?? 0
+                    rightItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: baseIndex + 1) ?? 0
                 }
+                let indicatorParams = JXSegmentedIndicatorTransitionParams(currentSelectedIndex: selectedIndex,
+                                                                           leftIndex: baseIndex,
+                                                                           leftItemFrame: leftItemFrame,
+                                                                           leftItemContentWidth: dataSource?.segmentedView(self, widthForItemContentAt: baseIndex) ?? 0,
+                                                                           rightIndex: baseIndex + 1,
+                                                                           rightItemFrame: rightItemFrame,
+                                                                           rightItemContentWidth: rightItemContentWidth,
+                                                                           percent: remainderProgress)
 
                 if remainderProgress == 0 {
                     //滑动翻页，需要更新选中状态
@@ -477,7 +477,7 @@ open class JXSegmentedView: UIView {
                     dataSource?.refreshItemModel(self, leftItemModel: itemDataSource[baseIndex], rightItemModel: itemDataSource[baseIndex + 1], percent: remainderProgress)
 
                     for indicator in indicators {
-                        indicator.contentScrollViewDidScroll(model: indicatorParamsModel)
+                        indicator.contentScrollViewDidScroll(model: indicatorParams)
                         if indicator.isIndicatorConvertToItemFrameEnabled {
                             var leftIndicatorConvertToItemFrame = indicator.frame
                             leftIndicatorConvertToItemFrame.origin.x -= leftItemFrame.origin.x
@@ -571,18 +571,16 @@ open class JXSegmentedView: UIView {
             contentScrollView!.setContentOffset(CGPoint(x: contentScrollView!.bounds.size.width*CGFloat(index), y: 0), animated: isContentScrollViewClickTransitionAnimationEnabled)
         }
 
-        let lastSelectedIndex = selectedIndex
         selectedIndex = index
 
         let currentSelectedItemFrame = getSelectedItemFrameAt(index: selectedIndex)
         for indicator in indicators {
-            let indicatorParamsModel = JXSegmentedIndicatorParamsModel()
-            indicatorParamsModel.lastSelectedIndex = lastSelectedIndex
-            indicatorParamsModel.currentSelectedIndex = selectedIndex
-            indicatorParamsModel.currentSelectedItemFrame = currentSelectedItemFrame
-            indicatorParamsModel.selectedType = selectedType
-            indicatorParamsModel.currentItemContentWidth = dataSource?.segmentedView(self, widthForItemContentAt: selectedIndex) ?? 0
-            indicator.selectItem(model: indicatorParamsModel)
+            let indicatorParams = JXSegmentedIndicatorSelectedParams(currentSelectedIndex: selectedIndex,
+                                                                     currentSelectedItemFrame: currentSelectedItemFrame,
+                                                                     selectedType: selectedType,
+                                                                     currentItemContentWidth: dataSource?.segmentedView(self, widthForItemContentAt: selectedIndex) ?? 0,
+                                                                     collectionViewContentSize: nil)
+            indicator.selectItem(model: indicatorParams)
 
             if indicator.isIndicatorConvertToItemFrameEnabled {
                 var indicatorConvertToItemFrame = indicator.frame

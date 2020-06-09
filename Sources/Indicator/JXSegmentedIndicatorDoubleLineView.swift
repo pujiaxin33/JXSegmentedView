@@ -25,7 +25,7 @@ open class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
         addSubview(otherLineView)
     }
 
-    open override func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel) {
+    open override func refreshIndicatorState(model: JXSegmentedIndicatorSelectedParams) {
         super.refreshIndicatorState(model: model)
 
         selectedLineView.backgroundColor = indicatorColor
@@ -44,12 +44,10 @@ open class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
         otherLineView.frame = selectedLineView.frame
     }
 
-    open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
+    open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorTransitionParams) {
         super.contentScrollViewDidScroll(model: model)
 
-        if model.percent == 0 || !isScrollEnabled {
-            //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
-            //isScrollEnabled为false不需要处理
+        guard canHandleTransition(model: model) else {
             return
         }
 
@@ -88,7 +86,7 @@ open class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
         }
     }
 
-    open override func selectItem(model: JXSegmentedIndicatorParamsModel) {
+    open override func selectItem(model: JXSegmentedIndicatorSelectedParams) {
         super.selectItem(model: model)
 
         let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)

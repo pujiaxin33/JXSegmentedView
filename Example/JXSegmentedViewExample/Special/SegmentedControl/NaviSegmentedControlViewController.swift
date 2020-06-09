@@ -35,7 +35,7 @@ class NaviSegmentedControlViewController: ContentBaseViewController {
 
         let indicator = JXSegmentedIndicatorBackgroundView()
         indicator.indicatorHeight = 30
-        indicator.backgroundWidthIncrement = 0
+        indicator.indicatorWidthIncrement = 0
         indicator.indicatorColor = UIColor.red
         segmentedView.indicators = [indicator]
     }

@@ -250,7 +250,7 @@ class IndicatorCustomizeViewController: UITableViewController {
             //配置指示器
             let indicator = JXSegmentedIndicatorLineView()
             indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
-            indicator.isIndicatorWidthAdjustByItemContent = true
+            indicator.isIndicatorWidthSameAsItemContent = true
             vc.segmentedView.indicators = [indicator]
         default:
             break

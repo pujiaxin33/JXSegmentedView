@@ -20,7 +20,7 @@ public protocol JXSegmentedIndicatorProtocol {
     /// param selectedCellFrame 当前选中的cellFrame
     /// param contentSize collectionView的contentSize
     /// - Parameter model: model description
-    func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel)
+    func refreshIndicatorState(model: JXSegmentedIndicatorSelectedParams)
 
     /// contentScrollView在进行手势滑动时，处理指示器跟随手势变化UI逻辑；
     /// param selectedIndex 当前选中的index
@@ -30,13 +30,12 @@ public protocol JXSegmentedIndicatorProtocol {
     /// param rightCellFrame 正在过渡中的两个cell，相对位置在右边的cell的frame
     /// param percent 过渡百分比
     /// - Parameter model: model description
-    func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel)
+    func contentScrollViewDidScroll(model: JXSegmentedIndicatorTransitionParams)
 
     /// 点击选中了某一个item
-    /// param lastSelectedIndex 之前选中的index
     /// param selectedIndex 选中的index
     /// param selectedCellFrame 选中的cellFrame
     /// param selectedType 选中的类型
     /// - Parameter model: model description
-    func selectItem(model: JXSegmentedIndicatorParamsModel)
+    func selectItem(model: JXSegmentedIndicatorSelectedParams)
 }

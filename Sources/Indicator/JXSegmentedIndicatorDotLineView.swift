@@ -20,7 +20,7 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
         indicatorHeight = 10
     }
 
-    open override func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel) {
+    open override func refreshIndicatorState(model: JXSegmentedIndicatorSelectedParams) {
         super.refreshIndicatorState(model: model)
 
         backgroundColor = indicatorColor
@@ -36,12 +36,10 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
         frame = CGRect(x: x, y: y, width: width, height: height)
     }
 
-    open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
+    open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorTransitionParams) {
         super.contentScrollViewDidScroll(model: model)
 
-        if model.percent == 0 || !isScrollEnabled {
-            //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
-            //isScrollEnabled为false不需要处理
+        guard canHandleTransition(model: model) else {
             return
         }
 
@@ -71,15 +69,14 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
         self.frame.size.width = targetWidth
     }
 
-    open override func selectItem(model: JXSegmentedIndicatorParamsModel) {
+    open override func selectItem(model: JXSegmentedIndicatorSelectedParams) {
         super.selectItem(model: model)
 
         let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         var toFrame = self.frame
         toFrame.origin.x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - targetWidth)/2
         toFrame.size.width = targetWidth
-        if isScrollEnabled && (model.selectedType == .click || model.selectedType == .code) {
-            //允许滚动且选中类型是点击或代码选中，才进行动画过渡
+        if canSelectedWithAnimation(model: model) {
             UIView.animate(withDuration: scrollAnimationDuration, delay: 0, options: .curveEaseOut, animations: {
                 self.frame = toFrame
             }) { (_) in

@@ -33,7 +33,7 @@ class NestViewController: UIViewController {
 
         let indicator = JXSegmentedIndicatorBackgroundView()
         indicator.indicatorHeight = 30
-        indicator.backgroundWidthIncrement = 0
+        indicator.indicatorWidthIncrement = 0
         indicator.indicatorColor = UIColor.red
 
         segmentedView.frame = CGRect(x: 0, y: 0, width: totalItemWidth, height: 30)

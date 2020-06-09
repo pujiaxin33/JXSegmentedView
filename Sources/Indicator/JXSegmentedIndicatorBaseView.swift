@@ -35,8 +35,8 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
     open var isIndicatorConvertToItemFrameEnabled: Bool = true
     /// 点击选中时的滚动动画时长
     open var scrollAnimationDuration: TimeInterval = 0.25
-    ///  指示器的宽度是否跟随item的内容变化。indicatorWidth=JXSegmentedViewAutomaticDimension才能生效
-    open var isIndicatorWidthAdjustByItemContent = false
+    ///  指示器的宽度是否跟随item的内容变化（而不是跟着cell的宽度变化）。indicatorWidth=JXSegmentedViewAutomaticDimension才能生效
+    open var isIndicatorWidthSameAsItemContent = false
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,7 +62,7 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
 
     public func getIndicatorWidth(itemFrame: CGRect, itemContentWidth: CGFloat) -> CGFloat {
         if indicatorWidth == JXSegmentedViewAutomaticDimension {
-            if isIndicatorWidthAdjustByItemContent {
+            if isIndicatorWidthSameAsItemContent {
                 return itemContentWidth + indicatorWidthIncrement
             }else {
                 return itemFrame.size.width + indicatorWidthIncrement
@@ -78,13 +78,30 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
         return indicatorHeight
     }
 
+    public func canHandleTransition(model: JXSegmentedIndicatorTransitionParams) -> Bool {
+        if model.percent == 0 || !isScrollEnabled {
+            //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
+            //isScrollEnabled为false不需要处理
+            return false
+        }
+        return true
+    }
+
+    public func canSelectedWithAnimation(model: JXSegmentedIndicatorSelectedParams) -> Bool {
+        if isScrollEnabled && (model.selectedType == .click || model.selectedType == .code) {
+            //允许滚动且选中类型是点击或代码选中，才进行动画过渡
+            return true
+        }
+        return false
+    }
+
     //MARK: - JXSegmentedIndicatorProtocol
-    open func refreshIndicatorState(model: JXSegmentedIndicatorParamsModel) {
+    open func refreshIndicatorState(model: JXSegmentedIndicatorSelectedParams) {
     }
 
-    open func contentScrollViewDidScroll(model: JXSegmentedIndicatorParamsModel) {
+    open func contentScrollViewDidScroll(model: JXSegmentedIndicatorTransitionParams) {
     }
 
-    open func selectItem(model: JXSegmentedIndicatorParamsModel) {
+    open func selectItem(model: JXSegmentedIndicatorSelectedParams) {
     }
 }
