@@ -14,7 +14,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     open var dataSource = [JXSegmentedBaseItemModel]()
     /// cell的宽度。为JXSegmentedViewAutomaticDimension时就以内容计算的宽度为准，否则以itemWidth的具体值为准。
     open var itemWidth: CGFloat = JXSegmentedViewAutomaticDimension
-    /// 真实的item宽度 = itemContentWidth + itemWidthIncrement。
+    /// 真实的item宽度 = itemWidth + itemWidthIncrement。
     open var itemWidthIncrement: CGFloat = 0
     /// item之前的间距
     open var itemSpacing: CGFloat = 20
