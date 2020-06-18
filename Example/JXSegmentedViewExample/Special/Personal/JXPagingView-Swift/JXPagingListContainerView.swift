@@ -81,7 +81,7 @@ public protocol JXPagingListContainerViewDataSource {
     @objc optional func listContainerView(_ listContainerView: JXPagingListContainerView, listDidAppearAt index: Int)
 }
 
-open class JXPagingListContainerView: UIView {
+open class JXPagingListContainerView: UIView, JXPagingViewRTLCompatible {
     public private(set) var type: JXPagingListContainerType
     public private(set) weak var dataSource: JXPagingListContainerViewDataSource?
     public private(set) var scrollView: UIScrollView!
@@ -164,6 +164,10 @@ open class JXPagingListContainerView: UIView {
                 scrollView.contentInsetAdjustmentBehavior = .never
             }
             containerVC.view.addSubview(scrollView)
+            
+            if pagingViewShouldRTLLayout() {
+                pagingView(horizontalFlipForView: scrollView)
+            }
         }else if type == .collectionView {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
@@ -182,12 +186,16 @@ open class JXPagingListContainerView: UIView {
             collectionView.bounces = false
             collectionView.dataSource = self
             collectionView.delegate = self
-            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+            collectionView.register(PagingRTLCollectionCell.self, forCellWithReuseIdentifier: "cell")
             if #available(iOS 10.0, *) {
                 collectionView.isPrefetchingEnabled = false
             }
             if #available(iOS 11.0, *) {
                 self.collectionView.contentInsetAdjustmentBehavior = .never
+            }
+            if pagingViewShouldRTLLayout() {
+                collectionView.semanticContentAttribute = .forceLeftToRight
+                pagingView(horizontalFlipForView: collectionView)
             }
             containerVC.view.addSubview(collectionView)
             //让外部统一访问scrollView
@@ -328,6 +336,10 @@ open class JXPagingListContainerView: UIView {
         if type == .scrollView {
             list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
             scrollView.addSubview(list.listView())
+            
+            if pagingViewShouldRTLLayout() {
+                pagingView(horizontalFlipForView: list.listView())
+            }
         }else {
             let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0))
             cell?.contentView.subviews.forEach { $0.removeFromSuperview() }
@@ -365,6 +377,10 @@ open class JXPagingListContainerView: UIView {
                 if list.listView().superview == nil {
                     list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
                     scrollView.addSubview(list.listView())
+                    
+                    if pagingViewShouldRTLLayout() {
+                        pagingView(horizontalFlipForView: list.listView())
+                    }
                 }
                 list.listWillAppear?()
                 if let vc = list as? UIViewController {
@@ -435,7 +451,7 @@ extension JXPagingListContainerView: UICollectionViewDataSource, UICollectionVie
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PagingRTLCollectionCell
         cell.contentView.backgroundColor = listCellBackgroundColor
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         let list = validListDict[indexPath.item]

@@ -24,7 +24,7 @@ class LoadDataListViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Loading...", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
         refreshControl?.addTarget(self, action: #selector(headerRefresh), for: .valueChanged)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(PagingListBaseCell.self, forCellReuseIdentifier: "cell")
 
         headerRefresh()
     }
@@ -71,8 +71,8 @@ class LoadDataListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = dataSource[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PagingListBaseCell
+        cell.titleLabel.text = dataSource[indexPath.row]
         return cell
     }
 

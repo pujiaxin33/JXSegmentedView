@@ -10,7 +10,7 @@ import UIKit
 
 public typealias JXSegmentedCellSelectedAnimationClosure = (CGFloat)->()
 
-open class JXSegmentedBaseCell: UICollectionViewCell {
+open class JXSegmentedBaseCell: UICollectionViewCell, JXSegmentedViewRTLCompatible {
     open var itemModel: JXSegmentedBaseItemModel?
     open var animator: JXSegmentedAnimator?
     private var selectedAnimationClosureArray = [JXSegmentedCellSelectedAnimationClosure]()
@@ -39,7 +39,10 @@ open class JXSegmentedBaseCell: UICollectionViewCell {
     }
 
     open func commonInit() {
-        
+        if segmentedViewShouldRTLLayout() {
+            segmentedView(horizontalFlipForView: self)
+            segmentedView(horizontalFlipForView: contentView)
+        }
     }
 
     open func canStartSelectedAnimation(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) -> Bool {

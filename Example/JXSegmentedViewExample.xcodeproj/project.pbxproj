@@ -56,6 +56,7 @@
 		19B69010243DCD230014B211 /* JXPagingMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B6900B243DCD230014B211 /* JXPagingMainTableView.swift */; };
 		19F1D2F92339B0D100EEFB77 /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
 		19F1D2FA2339B0D100EEFB77 /* JXSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8BA413F249B3530004E6389 /* JXPagingViewRTLLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA413E249B3530004E6389 /* JXPagingViewRTLLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +124,7 @@
 		19B69009243DCD230014B211 /* JXPagingListContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListContainerView.swift; sourceTree = "<group>"; };
 		19B6900A243DCD230014B211 /* JXPagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingView.swift; sourceTree = "<group>"; };
 		19B6900B243DCD230014B211 /* JXPagingMainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingMainTableView.swift; sourceTree = "<group>"; };
+		A8BA413E249B3530004E6389 /* JXPagingViewRTLLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXPagingViewRTLLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				19B6900B243DCD230014B211 /* JXPagingMainTableView.swift */,
 				19B69008243DCD220014B211 /* JXPagingSmoothView.swift */,
 				19B6900A243DCD230014B211 /* JXPagingView.swift */,
+				A8BA413E249B3530004E6389 /* JXPagingViewRTLLayout.swift */,
 			);
 			path = "JXPagingView-Swift";
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				1908EEC2226F05BA00E03FD5 /* NaviSegmentedControlViewController.swift in Sources */,
 				194A91E923C70124006BE6AB /* GridCellExampleViewController.swift in Sources */,
 				1908EEC9226F05BA00E03FD5 /* ListBaseViewController.swift in Sources */,
+				A8BA413F249B3530004E6389 /* JXPagingViewRTLLayout.swift in Sources */,
 				19B69010243DCD230014B211 /* JXPagingMainTableView.swift in Sources */,
 				1908EEC1226F05BA00E03FD5 /* LoadDataDetailViewController.swift in Sources */,
 				1908EEB4226F05BA00E03FD5 /* PagingViewController.swift in Sources */,
@@ -595,9 +599,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = CUHY5967Q2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/JXSegmentedViewExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -617,9 +621,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = CUHY5967Q2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/JXSegmentedViewExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

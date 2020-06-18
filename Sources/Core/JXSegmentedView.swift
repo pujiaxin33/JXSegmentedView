@@ -148,7 +148,7 @@ public extension JXSegmentedViewDelegate {
 }
 
 /// 内部会自己找到父UIViewController，然后将其automaticallyAdjustsScrollViewInsets设置为false，这一点请知晓。
-open class JXSegmentedView: UIView {
+open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
     open weak var dataSource: JXSegmentedViewDataSource? {
         didSet {
             dataSource?.reloadData(selectedIndex: selectedIndex)
@@ -232,6 +232,10 @@ open class JXSegmentedView: UIView {
         }
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
+        }
+        if segmentedViewShouldRTLLayout() {
+            collectionView.semanticContentAttribute = .forceLeftToRight
+            segmentedView(horizontalFlipForView: collectionView)
         }
         addSubview(collectionView)
     }
