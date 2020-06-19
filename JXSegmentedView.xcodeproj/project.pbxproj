@@ -48,6 +48,7 @@
 		1908F025226F0B3800E03FD5 /* JXSegmentedTitleAttributeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFFC226F0B3800E03FD5 /* JXSegmentedTitleAttributeDataSource.swift */; };
 		1908F026226F0B3800E03FD5 /* JXSegmentedTitleAttributeItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFFD226F0B3800E03FD5 /* JXSegmentedTitleAttributeItemModel.swift */; };
 		1908F027226F0B3800E03FD5 /* JXSegmentedTitleAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFFE226F0B3800E03FD5 /* JXSegmentedTitleAttributeCell.swift */; };
+		A8BA413D249B0CB1004E6389 /* JXSegmentedRTLLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA413C249B0CB1004E6389 /* JXSegmentedRTLLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		1908EFFC226F0B3800E03FD5 /* JXSegmentedTitleAttributeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeDataSource.swift; sourceTree = "<group>"; };
 		1908EFFD226F0B3800E03FD5 /* JXSegmentedTitleAttributeItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeItemModel.swift; sourceTree = "<group>"; };
 		1908EFFE226F0B3800E03FD5 /* JXSegmentedTitleAttributeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeCell.swift; sourceTree = "<group>"; };
+		A8BA413C249B0CB1004E6389 /* JXSegmentedRTLLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedRTLLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				1908EFF8226F0B3700E03FD5 /* JXSegmentedListContainerView.swift */,
 				1908EFF9226F0B3700E03FD5 /* JXSegmentedAnimator.swift */,
 				1908EFFA226F0B3800E03FD5 /* JXSegmentedViewTool.swift */,
+				A8BA413C249B0CB1004E6389 /* JXSegmentedRTLLayout.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				1908F01A226F0B3800E03FD5 /* JXSegmentedTitleItemModel.swift in Sources */,
 				1908F01F226F0B3800E03FD5 /* JXSegmentedNumberDataSource.swift in Sources */,
 				1908F022226F0B3800E03FD5 /* JXSegmentedListContainerView.swift in Sources */,
+				A8BA413D249B0CB1004E6389 /* JXSegmentedRTLLayout.swift in Sources */,
 				1908F014226F0B3800E03FD5 /* JXSegmentedDotDataSource.swift in Sources */,
 				1908F013226F0B3800E03FD5 /* JXSegmentedDotCell.swift in Sources */,
 				1908F000226F0B3800E03FD5 /* JXSegmentedTitleOrImageDataSource.swift in Sources */,
@@ -511,7 +515,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = JXSegmentedView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -534,7 +538,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = JXSegmentedView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

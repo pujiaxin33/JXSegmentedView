@@ -25,7 +25,7 @@ import UIKit
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
+        tableView.register(PagingListBaseCell.self, forCellReuseIdentifier: "cell")
         addSubview(tableView)
     }
 
@@ -58,8 +58,8 @@ extension PagingListBaseView: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = dataSource?[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PagingListBaseCell
+        cell.titleLabel.text = dataSource?[indexPath.row]
         return cell
     }
 

@@ -20,7 +20,7 @@ class TestListBaseView: UIView {
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
+        tableView.register(PagingListBaseCell.self, forCellReuseIdentifier: "cell")
         addSubview(tableView)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -41,8 +41,8 @@ extension TestListBaseView: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "row:\(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PagingListBaseCell
+        cell.titleLabel.text = "row:\(indexPath.row)"
         return cell
     }
 

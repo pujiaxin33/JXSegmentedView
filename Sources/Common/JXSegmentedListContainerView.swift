@@ -57,7 +57,7 @@ public protocol JXSegmentedListContainerViewDataSource {
     @objc optional func scrollViewClass(in listContainerView: JXSegmentedListContainerView) -> AnyClass
 }
 
-open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer {
+open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, JXSegmentedViewRTLCompatible {
     open private(set) var type: JXSegmentedListContainerType
     open private(set) weak var dataSource: JXSegmentedListContainerViewDataSource?
     open private(set) var scrollView: UIScrollView!
@@ -136,6 +136,9 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer {
             if #available(iOS 11.0, *) {
                 scrollView.contentInsetAdjustmentBehavior = .never
             }
+            if segmentedViewShouldRTLLayout() {
+                segmentedView(horizontalFlipForView: scrollView)
+            }
             containerVC.view.addSubview(scrollView)
         }else if type == .collectionView {
             collectionView.isPagingEnabled = true
@@ -145,12 +148,16 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer {
             collectionView.bounces = false
             collectionView.dataSource = self
             collectionView.delegate = self
-            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+            collectionView.register(JXSegmentedRTLCollectionCell.self, forCellWithReuseIdentifier: "cell")
             if #available(iOS 10.0, *) {
                 collectionView.isPrefetchingEnabled = false
             }
             if #available(iOS 11.0, *) {
                 self.collectionView.contentInsetAdjustmentBehavior = .never
+            }
+            if segmentedViewShouldRTLLayout() {
+                collectionView.semanticContentAttribute = .forceLeftToRight
+                segmentedView(horizontalFlipForView: collectionView)
             }
             containerVC.view.addSubview(collectionView)
             //让外部统一访问scrollView
@@ -298,6 +305,10 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer {
         if type == .scrollView {
             list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
             scrollView.addSubview(list.listView())
+            
+            if segmentedViewShouldRTLLayout() {
+                segmentedView(horizontalFlipForView: list.listView())
+            }
         }else {
             let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0))
             cell?.contentView.subviews.forEach { $0.removeFromSuperview() }
@@ -335,6 +346,10 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer {
                 if list.listView().superview == nil {
                     list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
                     scrollView.addSubview(list.listView())
+                    
+                    if segmentedViewShouldRTLLayout() {
+                        segmentedView(horizontalFlipForView: list.listView())
+                    }
                 }
                 list.listWillAppear?()
                 if let vc = list as? UIViewController {
@@ -404,7 +419,7 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JXSegmentedRTLCollectionCell
         cell.contentView.backgroundColor = listCellBackgroundColor
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         let list = validListDict[indexPath.item]
