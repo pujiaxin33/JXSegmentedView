@@ -25,48 +25,10 @@ extension JXPagingViewRTLCompatible {
     
 }
 
-class PagingRTLCollectionCell: UICollectionViewCell, JXPagingViewRTLCompatible {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    
-    func commonInit() {
-        if pagingViewShouldRTLLayout() {
-            pagingView(horizontalFlipForView: self)
-            pagingView(horizontalFlipForView: contentView)
-        }
-    }
-    
-}
+class JXPagingRTLCollectionLayout: UICollectionViewFlowLayout {
 
-class PagingListBaseCell: UITableViewCell {
-    
-    private(set) lazy var titleLabel = UILabel()
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        commonInit()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    
-    func commonInit() {
-        contentView.addSubview(titleLabel)
-        
-        let leading = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 10)
-        let top = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 10)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([leading, top])
+    override var flipsHorizontallyInOppositeLayoutDirection: Bool {
+        return UIView.userInterfaceLayoutDirection(for: UIView.appearance().semanticContentAttribute) == .rightToLeft
     }
 
 }

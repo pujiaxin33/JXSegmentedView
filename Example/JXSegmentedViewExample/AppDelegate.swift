@@ -15,13 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        // 由于手动设置布局方向需要iOS9以上系统，所以项目最低支持iOS9
-        // 调试时请将手机系统语言设置为阿拉伯语，JXSegment会根据当前semanticContentAttribute方向自动适配RTL布局
-        if Locale.preferredLanguages.first?.components(separatedBy: "-").first == "ar" {
-            UIView.appearance().semanticContentAttribute = .forceRightToLeft
-        }
-        
         // Override point for customization after application launch.
         return true
     }

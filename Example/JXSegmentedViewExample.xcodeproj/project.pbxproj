@@ -56,6 +56,7 @@
 		19B69010243DCD230014B211 /* JXPagingMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B6900B243DCD230014B211 /* JXPagingMainTableView.swift */; };
 		19F1D2F92339B0D100EEFB77 /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
 		19F1D2FA2339B0D100EEFB77 /* JXSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8168092249CCB9900837DEC /* PagingListBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8168091249CCB9900837DEC /* PagingListBaseCell.swift */; };
 		A8BA413F249B3530004E6389 /* JXPagingViewRTLLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA413E249B3530004E6389 /* JXPagingViewRTLLayout.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,9 @@
 		19B69009243DCD230014B211 /* JXPagingListContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListContainerView.swift; sourceTree = "<group>"; };
 		19B6900A243DCD230014B211 /* JXPagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingView.swift; sourceTree = "<group>"; };
 		19B6900B243DCD230014B211 /* JXPagingMainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingMainTableView.swift; sourceTree = "<group>"; };
+		A80CD84A24A04F6100FF22C8 /* ar-DZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-DZ"; path = "ar-DZ.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		A80CD84B24A04F6100FF22C8 /* ar-DZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-DZ"; path = "ar-DZ.lproj/Main.strings"; sourceTree = "<group>"; };
+		A8168091249CCB9900837DEC /* PagingListBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingListBaseCell.swift; sourceTree = "<group>"; };
 		A8BA413E249B3530004E6389 /* JXPagingViewRTLLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXPagingViewRTLLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +194,7 @@
 			children = (
 				1908EE5B226F05BA00E03FD5 /* PagingViewController.swift */,
 				1908EE5C226F05BA00E03FD5 /* PagingListBaseView.swift */,
+				A8168091249CCB9900837DEC /* PagingListBaseCell.swift */,
 				1908EE5D226F05BA00E03FD5 /* JXPagingView-Swift */,
 				1908EE62226F05BA00E03FD5 /* PagingViewTableHeaderView.swift */,
 			);
@@ -375,6 +380,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"ar-DZ",
 			);
 			mainGroup = 1904AA1A21D31F6400316F97;
 			productRefGroup = 1904AA2421D31F6400316F97 /* Products */;
@@ -418,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8168092249CCB9900837DEC /* PagingListBaseCell.swift in Sources */,
 				19B6900E243DCD230014B211 /* JXPagingListContainerView.swift in Sources */,
 				1908EEBD226F05BA00E03FD5 /* LoadDataViewController.swift in Sources */,
 				1908EECA226F05BA00E03FD5 /* TestListBaseView.swift in Sources */,
@@ -459,6 +466,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1908EE54226F05BA00E03FD5 /* Base */,
+				A80CD84A24A04F6100FF22C8 /* ar-DZ */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -467,6 +475,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1908EE56226F05BA00E03FD5 /* Base */,
+				A80CD84B24A04F6100FF22C8 /* ar-DZ */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -478,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -540,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -28,23 +28,10 @@ public extension JXSegmentedViewRTLCompatible {
     
 }
 
-class JXSegmentedRTLCollectionCell: UICollectionViewCell, JXSegmentedViewRTLCompatible {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
+class JXSegmentedRTLCollectionLayout: UICollectionViewFlowLayout {
+
+    override var flipsHorizontallyInOppositeLayoutDirection: Bool {
+        return UIView.userInterfaceLayoutDirection(for: UIView.appearance().semanticContentAttribute) == .rightToLeft
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    
-    func commonInit() {
-        if segmentedViewShouldRTLLayout() {
-            segmentedView(horizontalFlipForView: self)
-            segmentedView(horizontalFlipForView: contentView)
-        }
-    }
-    
+
 }
