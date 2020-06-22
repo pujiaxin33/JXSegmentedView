@@ -80,7 +80,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
     }
     private var currentIndex: Int = 0
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = JXSegmentedRTLCollectionLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
@@ -148,16 +148,12 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
             collectionView.bounces = false
             collectionView.dataSource = self
             collectionView.delegate = self
-            collectionView.register(JXSegmentedRTLCollectionCell.self, forCellWithReuseIdentifier: "cell")
+            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
             if #available(iOS 10.0, *) {
                 collectionView.isPrefetchingEnabled = false
             }
             if #available(iOS 11.0, *) {
                 self.collectionView.contentInsetAdjustmentBehavior = .never
-            }
-            if segmentedViewShouldRTLLayout() {
-                collectionView.semanticContentAttribute = .forceLeftToRight
-                segmentedView(horizontalFlipForView: collectionView)
             }
             containerVC.view.addSubview(collectionView)
             //让外部统一访问scrollView
@@ -419,7 +415,7 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JXSegmentedRTLCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.contentView.backgroundColor = listCellBackgroundColor
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         let list = validListDict[indexPath.item]
