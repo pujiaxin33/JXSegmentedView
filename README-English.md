@@ -82,7 +82,7 @@ data load & refresh<br/>reference[`LoadDataViewController`](https://github.com/p
 
 ## Requirements
 
-- iOS 8.0+
+- iOS 9.0+
 - Xcode 9+
 - Swift 4.2、5.0
 

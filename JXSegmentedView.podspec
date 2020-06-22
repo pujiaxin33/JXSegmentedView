@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/pujiaxin33/JXSegmentedView"
   s.license      = "MIT"
   s.author       = { "pujiaxin33" => "317437084@qq.com" }
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "9.0"
   s.swift_version = "5.0"
   s.source       = { :git => "https://github.com/pujiaxin33/JXSegmentedView.git", :tag => "#{s.version}" }
   s.framework    = "UIKit"
