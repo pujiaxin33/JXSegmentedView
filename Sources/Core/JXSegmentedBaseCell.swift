@@ -39,7 +39,10 @@ open class JXSegmentedBaseCell: UICollectionViewCell, JXSegmentedViewRTLCompatib
     }
 
     open func commonInit() {
-
+        if segmentedViewShouldRTLLayout() {
+            segmentedView(horizontalFlipForView: self)
+            segmentedView(horizontalFlipForView: contentView)
+        }
     }
 
     open func canStartSelectedAnimation(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) -> Bool {

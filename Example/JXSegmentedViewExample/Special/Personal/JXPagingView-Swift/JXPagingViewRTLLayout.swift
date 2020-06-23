@@ -25,11 +25,24 @@ extension JXPagingViewRTLCompatible {
     
 }
 
-class JXPagingRTLCollectionLayout: UICollectionViewFlowLayout {
-
-    override var flipsHorizontallyInOppositeLayoutDirection: Bool {
-        return UIView.userInterfaceLayoutDirection(for: UIView.appearance().semanticContentAttribute) == .rightToLeft
+class JXPagingRTLCollectionCell: UICollectionViewCell, JXPagingViewRTLCompatible {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
     }
-
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    func commonInit() {
+        if pagingViewShouldRTLLayout() {
+            pagingView(horizontalFlipForView: self)
+            pagingView(horizontalFlipForView: contentView)
+        }
+    }
+    
 }
 

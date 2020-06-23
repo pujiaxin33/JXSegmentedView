@@ -218,7 +218,7 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
     }
 
     private func commonInit() {
-        let layout = JXSegmentedRTLCollectionLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView = JXSegmentedCollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -232,6 +232,10 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         }
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
+        }
+        if segmentedViewShouldRTLLayout() {
+            collectionView.semanticContentAttribute = .forceLeftToRight
+            segmentedView(horizontalFlipForView: collectionView)
         }
         addSubview(collectionView)
     }

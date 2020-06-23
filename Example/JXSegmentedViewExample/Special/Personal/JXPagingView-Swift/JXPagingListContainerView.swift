@@ -169,7 +169,7 @@ open class JXPagingListContainerView: UIView, JXPagingViewRTLCompatible {
                 pagingView(horizontalFlipForView: scrollView)
             }
         }else if type == .collectionView {
-            let layout = JXPagingRTLCollectionLayout()
+            let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = 0
             layout.minimumInteritemSpacing = 0
@@ -186,12 +186,16 @@ open class JXPagingListContainerView: UIView, JXPagingViewRTLCompatible {
             collectionView.bounces = false
             collectionView.dataSource = self
             collectionView.delegate = self
-            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+            collectionView.register(JXPagingRTLCollectionCell.self, forCellWithReuseIdentifier: "cell")
             if #available(iOS 10.0, *) {
                 collectionView.isPrefetchingEnabled = false
             }
             if #available(iOS 11.0, *) {
                 self.collectionView.contentInsetAdjustmentBehavior = .never
+            }
+            if pagingViewShouldRTLLayout() {
+                collectionView.semanticContentAttribute = .forceLeftToRight
+                pagingView(horizontalFlipForView: collectionView)
             }
             containerVC.view.addSubview(collectionView)
             //让外部统一访问scrollView

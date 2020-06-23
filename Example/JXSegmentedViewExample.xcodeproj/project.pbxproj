@@ -125,8 +125,8 @@
 		19B69009243DCD230014B211 /* JXPagingListContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListContainerView.swift; sourceTree = "<group>"; };
 		19B6900A243DCD230014B211 /* JXPagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingView.swift; sourceTree = "<group>"; };
 		19B6900B243DCD230014B211 /* JXPagingMainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingMainTableView.swift; sourceTree = "<group>"; };
-		A80CD84A24A04F6100FF22C8 /* ar-DZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-DZ"; path = "ar-DZ.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		A80CD84B24A04F6100FF22C8 /* ar-DZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-DZ"; path = "ar-DZ.lproj/Main.strings"; sourceTree = "<group>"; };
+		A80CD84E24A1A73C00FF22C8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A80CD84F24A1A73C00FF22C8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		A8168091249CCB9900837DEC /* PagingListBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingListBaseCell.swift; sourceTree = "<group>"; };
 		A8BA413E249B3530004E6389 /* JXPagingViewRTLLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXPagingViewRTLLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -380,7 +380,7 @@
 			knownRegions = (
 				en,
 				Base,
-				"ar-DZ",
+				ar,
 			);
 			mainGroup = 1904AA1A21D31F6400316F97;
 			productRefGroup = 1904AA2421D31F6400316F97 /* Products */;
@@ -466,7 +466,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1908EE54226F05BA00E03FD5 /* Base */,
-				A80CD84A24A04F6100FF22C8 /* ar-DZ */,
+				A80CD84E24A1A73C00FF22C8 /* ar */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -475,7 +475,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1908EE56226F05BA00E03FD5 /* Base */,
-				A80CD84B24A04F6100FF22C8 /* ar-DZ */,
+				A80CD84F24A1A73C00FF22C8 /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -610,14 +610,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6635K6SJ8X;
 				INFOPLIST_FILE = "$(SRCROOT)/JXSegmentedViewExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.33333;
+				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.33334;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -632,14 +632,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6635K6SJ8X;
 				INFOPLIST_FILE = "$(SRCROOT)/JXSegmentedViewExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.33333;
+				PRODUCT_BUNDLE_IDENTIFIER = jiaxin.JXSegmentedViewExample.33334;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
