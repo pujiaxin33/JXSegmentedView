@@ -164,12 +164,14 @@ class IndicatorCustomizeViewController: UITableViewController {
             let indicator = JXSegmentedIndicatorBackgroundView()
             indicator.clipsToBounds = true
             indicator.indicatorHeight = 30
+//            indicator.indicatorHeight = 3
+//            indicator.indicatorPosition = .bottom
             //相当于把JXSegmentedIndicatorBackgroundView当做视图容器，你可以在上面添加任何想要的效果
             let gradientView = JXSegmentedComponetGradientView()
             gradientView.gradientLayer.endPoint = CGPoint(x: 1, y: 0)
             gradientView.gradientLayer.colors = [UIColor(red: 90/255, green: 215/255, blue: 202/255, alpha: 1).cgColor, UIColor(red: 122/255, green: 232/255, blue: 169/255, alpha: 1).cgColor]
             //设置gradientView布局和JXSegmentedIndicatorBackgroundView一样
-            gradientView.autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue | UIView.AutoresizingMask.flexibleHeight.rawValue)
+            gradientView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             indicator.addSubview(gradientView)
             vc.segmentedView.indicators = [indicator]
         case "ImageView底部":
@@ -236,6 +238,8 @@ class IndicatorCustomizeViewController: UITableViewController {
             vc.segmentedDataSource = dataSource
             //配置指示器
             let indicator = JXSegmentedIndicatorGradientView()
+//            indicator.indicatorHeight = 3
+//            indicator.indicatorPosition = .bottom
 
             vc.segmentedView.indicators = [indicator]
         case "指示器宽度跟随内容而不是cell宽度":

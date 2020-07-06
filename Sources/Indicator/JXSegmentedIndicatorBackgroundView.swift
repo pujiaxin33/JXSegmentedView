@@ -23,6 +23,8 @@ open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
         indicatorWidthIncrement = 20
         indicatorHeight = 26
         indicatorColor = .lightGray
+        indicatorPosition = .center
+        verticalOffset = 0
     }
 
     open override func refreshIndicatorState(model: JXSegmentedIndicatorSelectedParams) {
@@ -34,7 +36,15 @@ open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
         let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
         let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
-        let y = (model.currentSelectedItemFrame.size.height - height)/2
+        var y: CGFloat = 0
+        switch indicatorPosition {
+        case .top:
+            y = verticalOffset
+        case .bottom:
+            y = model.currentSelectedItemFrame.size.height - height - verticalOffset
+        case .center:
+            y = (model.currentSelectedItemFrame.size.height - height)/2 + verticalOffset
+        }
         frame = CGRect(x: x, y: y, width: width, height: height)
     }
 

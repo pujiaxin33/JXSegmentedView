@@ -36,9 +36,14 @@ open class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
         let width = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         let height = getIndicatorHeight(itemFrame: model.currentSelectedItemFrame)
         let x = model.currentSelectedItemFrame.origin.x + (model.currentSelectedItemFrame.size.width - width)/2
-        var y = model.currentSelectedItemFrame.size.height - height - verticalOffset
-        if indicatorPosition == .top {
+        var y: CGFloat = 0
+        switch indicatorPosition {
+        case .top:
             y = verticalOffset
+        case .bottom:
+            y = model.currentSelectedItemFrame.size.height - height - verticalOffset
+        case .center:
+            y = (model.currentSelectedItemFrame.size.height - height)/2 + verticalOffset
         }
         selectedLineView.frame = CGRect(x: x, y: y, width: width, height: height)
         otherLineView.frame = selectedLineView.frame

@@ -11,6 +11,7 @@ import UIKit
 public enum JXSegmentedIndicatorPosition {
     case top
     case bottom
+    case center
 }
 
 open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
@@ -23,7 +24,7 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
     open var indicatorCornerRadius: CGFloat = JXSegmentedViewAutomaticDimension
     /// 指示器的颜色
     open var indicatorColor: UIColor = .red
-    /// 指示器的位置，top或者bottom
+    /// 指示器的位置，top、bottom、center
     open var indicatorPosition: JXSegmentedIndicatorPosition = .bottom
     /// 垂直方向偏移，指示器默认贴着底部或者顶部，verticalOffset越大越靠近中心。
     open var verticalOffset: CGFloat = 0
