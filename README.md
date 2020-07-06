@@ -111,6 +111,19 @@ github "pujiaxin33/JXSegmentedView"
 ```
 然后执行`carthage update --platform iOS` 即可
 
+### Swift Package Manager
+
+1.在Package.swift文件添加如下代码:
+```
+dependencies: [
+  .package(url: "https://github.com/pujiaxin33/JXSegmentedView.git", from: "1.2.1")
+]
+```
+2.使用命令行构建:
+```
+$ swift build
+```
+
 ## 使用
 
 ### `JXSegmentedView`使用示例
