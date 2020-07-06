@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// 整个背景是一个渐变色layer，通过gradientMaskLayer遮罩显示不同位置，达到不同文字底部有不同的渐变色。
 open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
     @available(*, deprecated, renamed: "indicatorWidthIncrement")
     open var gradientViewWidthIncrement: CGFloat = 20 {

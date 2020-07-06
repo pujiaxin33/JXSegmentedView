@@ -167,12 +167,23 @@ class IndicatorCustomizeViewController: UITableViewController {
 //            indicator.indicatorHeight = 3
 //            indicator.indicatorPosition = .bottom
             //相当于把JXSegmentedIndicatorBackgroundView当做视图容器，你可以在上面添加任何想要的效果
+            //这里的方案主要提供一个可以在指示器视图添加自己视图的思路，如果只是需要渐变色lineView。请参考下面的【GradientLine渐变色】示例，使用JXSegmentedIndicatorGradientLineView类即可。
             let gradientView = JXSegmentedComponetGradientView()
             gradientView.gradientLayer.endPoint = CGPoint(x: 1, y: 0)
             gradientView.gradientLayer.colors = [UIColor(red: 90/255, green: 215/255, blue: 202/255, alpha: 1).cgColor, UIColor(red: 122/255, green: 232/255, blue: 169/255, alpha: 1).cgColor]
             //设置gradientView布局和JXSegmentedIndicatorBackgroundView一样
             gradientView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             indicator.addSubview(gradientView)
+            vc.segmentedView.indicators = [indicator]
+        case "GradientLine渐变色":
+            //配置数据源
+            let dataSource = JXSegmentedTitleDataSource()
+            dataSource.isTitleColorGradientEnabled = true
+            dataSource.titles = titles
+            vc.segmentedDataSource = dataSource
+            //配置指示器
+            let indicator = JXSegmentedIndicatorGradientLineView()
+            indicator.colors = [UIColor.red, UIColor.green]
             vc.segmentedView.indicators = [indicator]
         case "ImageView底部":
             //配置数据源
