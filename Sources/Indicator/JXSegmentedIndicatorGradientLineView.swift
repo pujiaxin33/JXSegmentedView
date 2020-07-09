@@ -23,24 +23,40 @@ open class JXSegmentedIndicatorGradientLineView: JXSegmentedIndicatorLineView {
         layer.addSublayer(gradientLayer)
     }
 
-    open override func layoutSubviews() {
-        super.layoutSubviews()
+    open override func refreshIndicatorState(model: JXSegmentedIndicatorSelectedParams) {
+        super.refreshIndicatorState(model: model)
 
+        backgroundColor = .clear
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        gradientLayer.frame = bounds
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        gradientLayer.locations = locations
+        CATransaction.commit()
+    }
+
+    open override func contentScrollViewDidScroll(model: JXSegmentedIndicatorTransitionParams) {
+        super.contentScrollViewDidScroll(model: model)
+
+        guard canHandleTransition(model: model) else {
+            return
+        }
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         gradientLayer.frame = bounds
         CATransaction.commit()
     }
 
-    open override func refreshIndicatorState(model: JXSegmentedIndicatorSelectedParams) {
-        super.refreshIndicatorState(model: model)
+    open override func selectItem(model: JXSegmentedIndicatorSelectedParams) {
+        super.selectItem(model: model)
 
+        let targetWidth = getIndicatorWidth(itemFrame: model.currentSelectedItemFrame, itemContentWidth: model.currentItemContentWidth)
         CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        gradientLayer.colors = colors.map { $0.cgColor }
-        gradientLayer.startPoint = startPoint
-        gradientLayer.endPoint = endPoint
-        gradientLayer.locations = locations
+        CATransaction.setAnimationDuration(scrollAnimationDuration)
+        CATransaction.setAnimationTimingFunction(.init(name: .easeOut))
+        gradientLayer.frame.size.width = targetWidth
         CATransaction.commit()
     }
 
