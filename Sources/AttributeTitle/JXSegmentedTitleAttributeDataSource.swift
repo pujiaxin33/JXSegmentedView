@@ -54,14 +54,14 @@ open class JXSegmentedTitleAttributeDataSource: JXSegmentedBaseDataSource {
 
     /// 因为该方法会被频繁调用，所以应该在`preferredRefreshItemModel( _ itemModel: JXSegmentedBaseItemModel, at index: Int, selectedIndex: Int)`方法里面，根据数据源计算好文字宽度，然后缓存起来。该方法直接使用已经计算好的文字宽度即可。
     open override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
-        var itemWidth: CGFloat = 0
+        var width: CGFloat = 0
         if itemWidth == JXSegmentedViewAutomaticDimension {
             let myItemModel = dataSource[index] as! JXSegmentedTitleAttributeItemModel
-            itemWidth = myItemModel.textWidth + itemWidthIncrement
+            width = myItemModel.textWidth + itemWidthIncrement
         }else {
-            itemWidth = itemWidth + itemWidthIncrement
+            width = itemWidth + itemWidthIncrement
         }
-        return itemWidth
+        return width
     }
 
     //MARK: - JXSegmentedViewDataSource
