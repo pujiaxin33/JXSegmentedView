@@ -214,37 +214,6 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
        }
 
     public func scrolling(from leftIndex: Int, to rightIndex: Int, percent: CGFloat, selectedIndex: Int) {
-        if rightIndex == selectedIndex {
-            //当前选中的在右边，用户正在从右边往左边滑动
-            if percent < (1 - initListPercent) {
-                initListIfNeeded(at: leftIndex)
-            }
-            if willAppearIndex == -1 {
-                willAppearIndex = leftIndex;
-                if validListDict[leftIndex] != nil {
-                    listWillAppear(at: willAppearIndex)
-                }
-            }
-            if willDisappearIndex == -1 {
-                willDisappearIndex = rightIndex
-                listWillDisappear(at: willDisappearIndex)
-            }
-        }else {
-            //当前选中的在左边，用户正在从左边往右边滑动
-            if percent > initListPercent {
-                initListIfNeeded(at: rightIndex)
-            }
-            if willAppearIndex == -1 {
-                willAppearIndex = rightIndex
-                if validListDict[rightIndex] != nil {
-                    listWillAppear(at: willAppearIndex)
-                }
-            }
-            if willDisappearIndex == -1 {
-                willDisappearIndex = leftIndex
-                listWillDisappear(at: willDisappearIndex)
-            }
-        }
     }
 
     open func didClickSelectedItem(at index: Int) {
@@ -435,6 +404,46 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let percent = scrollView.contentOffset.x/scrollView.bounds.size.width
+        let maxCount = Int(round(scrollView.contentSize.width/scrollView.bounds.size.width))
+        var leftIndex = Int(floor(Double(percent)))
+        leftIndex = max(0, min(maxCount - 1, leftIndex))
+        let rightIndex = leftIndex + 1;
+        let remainderRatio = percent - CGFloat(leftIndex)
+        if (remainderRatio != 0) {
+            if rightIndex == currentIndex {
+                //当前选中的在右边，用户正在从右边往左边滑动
+                if percent < (1 - initListPercent) {
+                    initListIfNeeded(at: leftIndex)
+                }
+                if willAppearIndex == -1 {
+                    willAppearIndex = leftIndex;
+                    if validListDict[leftIndex] != nil {
+                        listWillAppear(at: willAppearIndex)
+                    }
+                }
+                if willDisappearIndex == -1 {
+                    willDisappearIndex = rightIndex
+                    listWillDisappear(at: willDisappearIndex)
+                }
+            }else {
+                //当前选中的在左边，用户正在从左边往右边滑动
+                if percent > initListPercent {
+                    initListIfNeeded(at: rightIndex)
+                }
+                if willAppearIndex == -1 {
+                    willAppearIndex = rightIndex
+                    if validListDict[rightIndex] != nil {
+                        listWillAppear(at: willAppearIndex)
+                    }
+                }
+                if willDisappearIndex == -1 {
+                    willDisappearIndex = leftIndex
+                    listWillDisappear(at: willDisappearIndex)
+                }
+            }
+        }
+
         let currentIndexPercent = scrollView.contentOffset.x/scrollView.bounds.size.width
         if willAppearIndex != -1 || willDisappearIndex != -1 {
             let disappearIndex = willDisappearIndex
