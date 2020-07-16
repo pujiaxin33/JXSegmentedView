@@ -27,7 +27,6 @@ public protocol JXSegmentedViewListContainer {
     var defaultSelectedIndex: Int { set get }
     func contentScrollView() -> UIScrollView
     func reloadData()
-    func scrolling(from leftIndex: Int, to rightIndex: Int, percent: CGFloat, selectedIndex: Int)
     func didClickSelectedItem(at index: Int)
 }
 
@@ -501,7 +500,6 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
                     let rightCell = collectionView.cellForItem(at: IndexPath(item: baseIndex + 1, section: 0)) as? JXSegmentedBaseCell
                     rightCell?.reloadData(itemModel: itemDataSource[baseIndex + 1], selectedType: .unknown)
 
-                    listContainer?.scrolling(from: baseIndex, to: baseIndex + 1, percent: remainderProgress, selectedIndex: selectedIndex)
                     delegate?.segmentedView(self, scrollingFrom: baseIndex, to: baseIndex + 1, percent: remainderProgress)
                 }
             }
