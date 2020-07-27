@@ -378,6 +378,31 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
         }
         return true
     }
+
+    private func listDidAppearOrDisappear(scrollView: UIScrollView) {
+        let currentIndexPercent = scrollView.contentOffset.x/scrollView.bounds.size.width
+        if willAppearIndex != -1 || willDisappearIndex != -1 {
+            let disappearIndex = willDisappearIndex
+            let appearIndex = willAppearIndex
+            if willAppearIndex > willDisappearIndex {
+                //将要出现的列表在右边
+                if currentIndexPercent >= CGFloat(willAppearIndex) {
+                    willDisappearIndex = -1
+                    willAppearIndex = -1
+                    listDidDisappear(at: disappearIndex)
+                    listDidAppear(at: appearIndex)
+                }
+            }else {
+                //将要出现的列表在左边
+                if currentIndexPercent <= CGFloat(willAppearIndex) {
+                    willDisappearIndex = -1
+                    willAppearIndex = -1
+                    listDidDisappear(at: disappearIndex)
+                    listDidAppear(at: appearIndex)
+                }
+            }
+        }
+    }
 }
 
 extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -412,6 +437,7 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
         leftIndex = max(0, min(maxCount - 1, leftIndex))
         let rightIndex = leftIndex + 1;
         if percent < 0 || rightIndex >= maxCount {
+            listDidAppearOrDisappear(scrollView: scrollView)
             return
         }
         let remainderRatio = percent - CGFloat(leftIndex)
@@ -445,32 +471,11 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
                 listWillDisappear(at: willDisappearIndex)
             }
         }
-
-        let currentIndexPercent = scrollView.contentOffset.x/scrollView.bounds.size.width
-        if willAppearIndex != -1 || willDisappearIndex != -1 {
-            let disappearIndex = willDisappearIndex
-            let appearIndex = willAppearIndex
-            if willAppearIndex > willDisappearIndex {
-                //将要出现的列表在右边
-                if currentIndexPercent >= CGFloat(willAppearIndex) {
-                    willDisappearIndex = -1
-                    willAppearIndex = -1
-                    listDidDisappear(at: disappearIndex)
-                    listDidAppear(at: appearIndex)
-                }
-            }else {
-                //将要出现的列表在左边
-                if currentIndexPercent <= CGFloat(willAppearIndex) {
-                    willDisappearIndex = -1
-                    willAppearIndex = -1
-                    listDidDisappear(at: disappearIndex)
-                    listDidAppear(at: appearIndex)
-                }
-            }
-        }
+        listDidAppearOrDisappear(scrollView: scrollView)
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        //滑动到一半又取消滑动处理
         if willAppearIndex != -1 || willDisappearIndex != -1 {
             listWillDisappear(at: willAppearIndex)
             listWillAppear(at: willDisappearIndex)
