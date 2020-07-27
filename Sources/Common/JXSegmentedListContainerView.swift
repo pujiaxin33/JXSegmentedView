@@ -284,7 +284,6 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
             list.listView().frame = cell?.contentView.bounds ?? CGRect.zero
             cell?.contentView.addSubview(list.listView())
         }
-        listWillAppear(at: index)
     }
 
     private func listWillAppear(at index: Int) {
@@ -404,6 +403,9 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.isTracking || scrollView.isDragging else {
+            return
+        }
         let percent = scrollView.contentOffset.x/scrollView.bounds.size.width
         let maxCount = Int(round(scrollView.contentSize.width/scrollView.bounds.size.width))
         var leftIndex = Int(floor(Double(percent)))
@@ -415,27 +417,26 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
         let remainderRatio = percent - CGFloat(leftIndex)
         if rightIndex == currentIndex {
             //当前选中的在右边，用户正在从右边往左边滑动
-            if remainderRatio < (1 - initListPercent) {
+            if validListDict[leftIndex] == nil && remainderRatio < (1 - initListPercent) {
                 initListIfNeeded(at: leftIndex)
-            }
-            if willAppearIndex == -1 {
-                willAppearIndex = leftIndex;
-                if validListDict[leftIndex] != nil {
+            }else if validListDict[leftIndex] != nil {
+                if willAppearIndex == -1 {
+                    willAppearIndex = leftIndex;
                     listWillAppear(at: willAppearIndex)
                 }
             }
+
             if willDisappearIndex == -1 {
                 willDisappearIndex = rightIndex
                 listWillDisappear(at: willDisappearIndex)
             }
         }else {
             //当前选中的在左边，用户正在从左边往右边滑动
-            if remainderRatio > initListPercent {
+            if validListDict[rightIndex] == nil && remainderRatio > initListPercent {
                 initListIfNeeded(at: rightIndex)
-            }
-            if willAppearIndex == -1 {
-                willAppearIndex = rightIndex
-                if validListDict[rightIndex] != nil {
+            }else if validListDict[rightIndex] != nil {
+                if willAppearIndex == -1 {
+                    willAppearIndex = rightIndex
                     listWillAppear(at: willAppearIndex)
                 }
             }
