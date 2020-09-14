@@ -28,6 +28,11 @@ public protocol JXSegmentedViewListContainer {
     func contentScrollView() -> UIScrollView
     func reloadData()
     func didClickSelectedItem(at index: Int)
+    func invalidateList(at index: Int)
+}
+
+extension JXSegmentedViewListContainer {
+    public func invalidateList(at index: Int) {}
 }
 
 public protocol JXSegmentedViewDataSource: AnyObject {
