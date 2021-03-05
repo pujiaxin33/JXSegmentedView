@@ -16,6 +16,7 @@ public enum JXPagingListContainerType {
     case collectionView
 }
 
+
 @objc
 public protocol JXPagingViewListViewDelegate {
     /// 如果列表是VC，就返回VC.view
@@ -467,6 +468,54 @@ extension JXPagingListContainerView: UICollectionViewDataSource, UICollectionVie
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.isTracking || scrollView.isDragging else {
+            return
+        }
+        let percent = scrollView.contentOffset.x/scrollView.bounds.size.width
+        let maxCount = Int(round(scrollView.contentSize.width/scrollView.bounds.size.width))
+        var leftIndex = Int(floor(Double(percent)))
+        leftIndex = max(0, min(maxCount - 1, leftIndex))
+        let rightIndex = leftIndex + 1;
+        if percent < 0 || rightIndex >= maxCount {
+            listDidAppearOrDisappear(scrollView: scrollView)
+            return
+        }
+        let remainderRatio = percent - CGFloat(leftIndex)
+        if rightIndex == currentIndex {
+            //当前选中的在右边，用户正在从右边往左边滑动
+            if validListDict[leftIndex] == nil && remainderRatio < (1 - initListPercent) {
+                initListIfNeeded(at: leftIndex)
+            }else if validListDict[leftIndex] != nil {
+                if willAppearIndex == -1 {
+                    willAppearIndex = leftIndex;
+                    listWillAppear(at: willAppearIndex)
+                }
+            }
+
+            if willDisappearIndex == -1 {
+                willDisappearIndex = rightIndex
+                listWillDisappear(at: willDisappearIndex)
+            }
+        }else {
+            //当前选中的在左边，用户正在从左边往右边滑动
+            if validListDict[rightIndex] == nil && remainderRatio > initListPercent {
+                initListIfNeeded(at: rightIndex)
+            }else if validListDict[rightIndex] != nil {
+                if willAppearIndex == -1 {
+                    willAppearIndex = rightIndex
+                    listWillAppear(at: willAppearIndex)
+                }
+            }
+            if willDisappearIndex == -1 {
+                willDisappearIndex = leftIndex
+                listWillDisappear(at: willDisappearIndex)
+            }
+        }
+        listDidAppearOrDisappear(scrollView: scrollView)
+    }
+
+    
+    public func listDidAppearOrDisappear(scrollView: UIScrollView) {
         let currentIndexPercent = scrollView.contentOffset.x/scrollView.bounds.size.width
         if willAppearIndex != -1 || willDisappearIndex != -1 {
             let disappearIndex = willDisappearIndex
