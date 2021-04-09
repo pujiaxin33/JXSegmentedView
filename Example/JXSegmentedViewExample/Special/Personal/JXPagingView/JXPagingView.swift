@@ -27,8 +27,23 @@ import UIKit
     ///   - pagingView: pagingView description
     ///   - index: 新生成的列表实例
     func pagingView(_ pagingView: JXPagingView, initListAtIndex index: Int) -> JXPagingViewListViewDelegate
-    /// mainTableView的滚动回调，用于实现头图跟随缩放
+
+    /// 将要被弃用！请使用pagingView(_ pagingView: JXPagingView, mainTableViewDidScroll scrollView: UIScrollView) 方法作为替代。
+    @available(*, message: "Use pagingView(_ pagingView: JXPagingView, mainTableViewDidScroll scrollView: UIScrollView) method")
     @objc optional func mainTableViewDidScroll(_ scrollView: UIScrollView)
+    @objc optional func pagingView(_ pagingView: JXPagingView, mainTableViewDidScroll scrollView: UIScrollView)
+    @objc optional func pagingView(_ pagingView: JXPagingView, mainTableViewWillBeginDragging scrollView: UIScrollView)
+    @objc optional func pagingView(_ pagingView: JXPagingView, mainTableViewDidEndDragging scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    @objc optional func pagingView(_ pagingView: JXPagingView, mainTableViewDidEndDecelerating scrollView: UIScrollView)
+    @objc optional func pagingView(_ pagingView: JXPagingView, mainTableViewDidEndScrollingAnimation scrollView: UIScrollView)
+
+
+    /// 返回自定义UIScrollView或UICollectionView的Class
+    /// 某些特殊情况需要自己处理列表容器内UIScrollView内部逻辑。比如项目用了FDFullscreenPopGesture，需要处理手势相关代理。
+    ///
+    /// - Parameter pagingView: JXPagingView
+    /// - Returns: 自定义UIScrollView实例
+    @objc optional func scrollViewClassInListContainerView(in pagingView: JXPagingView) -> AnyClass
 }
 
 open class JXPagingView: UIView {
@@ -97,9 +112,11 @@ open class JXPagingView: UIView {
     open func reloadData() {
         currentList = nil
         currentScrollingListView = nil
-        validListDict.values.forEach { $0.listView().removeFromSuperview() }
         validListDict.removeAll()
         refreshTableHeaderView()
+        if pinSectionHeaderVerticalOffset != 0 && mainTableView.contentOffset.y > CGFloat(pinSectionHeaderVerticalOffset) {
+            mainTableView.contentOffset = .zero
+        }
         mainTableView.reloadData()
         listContainerView.reloadData()
     }
@@ -131,19 +148,18 @@ open class JXPagingView: UIView {
     }
 
     open func preferredProcessListViewDidScroll(scrollView: UIScrollView) {
-        guard let currentScrollingListView = currentScrollingListView, let currentList = currentList else { return }
         if (mainTableView.contentOffset.y < mainTableViewMaxContentOffsetY()) {
             //mainTableView的header还没有消失，让listScrollView一直为0
-            currentList.listScrollViewWillResetContentOffset?()
-            setListScrollViewToMinContentOffsetY(currentScrollingListView)
+            currentList?.listScrollViewWillResetContentOffset?()
+            setListScrollViewToMinContentOffsetY(scrollView)
             if automaticallyDisplayListVerticalScrollIndicator {
-                currentScrollingListView.showsVerticalScrollIndicator = false
+                scrollView.showsVerticalScrollIndicator = false
             }
         } else {
             //mainTableView的header刚好消失，固定mainTableView的位置，显示listScrollView的滚动条
             setMainTableViewToMaxContentOffsetY()
             if automaticallyDisplayListVerticalScrollIndicator {
-                currentScrollingListView.showsVerticalScrollIndicator = true
+                scrollView.showsVerticalScrollIndicator = true
             }
         }
     }
@@ -188,8 +204,17 @@ open class JXPagingView: UIView {
 
     func adjustMainScrollViewToTargetContentInsetIfNeeded(inset: UIEdgeInsets) {
         if mainTableView.contentInset != inset {
+            //防止循环调用
+            mainTableView.delegate = nil
             mainTableView.contentInset = inset
+            mainTableView.delegate = self
         }
+    }
+
+    //仅用于处理设置了pinSectionHeaderVerticalOffset，又添加了MJRefresh的下拉刷新。这种情况会导致JXPagingView和MJRefresh来回设置contentInset值。针对这种及其特殊的情况，就内部特殊处理了。通过下面的判断条件，来判定当前是否处于下拉刷新中。请勿让pinSectionHeaderVerticalOffset和下拉刷新设置的contentInset.top值相同。
+    //具体原因参考：https://github.com/pujiaxin33/JXPagingView/issues/203
+    func isSetMainScrollViewContentInsetToZeroEnabled(scrollView: UIScrollView) -> Bool {
+        return !(scrollView.contentInset.top != 0 && scrollView.contentInset.top != CGFloat(pinSectionHeaderVerticalOffset))
     }
 
     func mainTableViewMaxContentOffsetY() -> CGFloat {
@@ -219,87 +244,103 @@ open class JXPagingView: UIView {
 
     /// 外部传入的listView，当其内部的scrollView滚动时，需要调用该方法
     func listViewDidScroll(scrollView: UIScrollView) {
+        currentScrollingListView = scrollView
         preferredProcessListViewDidScroll(scrollView: scrollView)
     }
 }
 
 //MARK: - UITableViewDataSource, UITableViewDelegate
 extension JXPagingView: UITableViewDataSource, UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return max(bounds.height - pinSectionHeaderHeight() - CGFloat(pinSectionHeaderVerticalOffset), 0)
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
-        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
-        listContainerView.frame = cell.bounds
-        cell.contentView.addSubview(listContainerView)
+        if listContainerView.superview != cell.contentView {
+            cell.contentView.addSubview(listContainerView)
+        }
+        if listContainerView.frame != cell.bounds {
+            listContainerView.frame = cell.bounds
+        }
         return cell
     }
 
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return pinSectionHeaderHeight()
     }
 
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let delegate = delegate else { return nil }
         return delegate.viewForPinSectionHeader(in: self)
     }
 
     //加上footer之后，下滑滚动就变得丝般顺滑了
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
     }
 
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect.zero)
         footerView.backgroundColor = UIColor.clear
         return footerView
     }
 
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if pinSectionHeaderVerticalOffset != 0 {
-            if scrollView.contentOffset.y >= CGFloat(pinSectionHeaderVerticalOffset) {
-                //固定的位置就是contentInset.top
-               adjustMainScrollViewToTargetContentInsetIfNeeded(inset: UIEdgeInsets(top: CGFloat(pinSectionHeaderVerticalOffset), left: 0, bottom: 0, right: 0))
-            }else {
-                adjustMainScrollViewToTargetContentInsetIfNeeded(inset: UIEdgeInsets.zero)
+            if !(currentScrollingListView != nil && currentScrollingListView!.contentOffset.y > minContentOffsetYInListScrollView(currentScrollingListView!)) {
+                //没有处于滚动某一个listView的状态
+                if scrollView.contentOffset.y >= CGFloat(pinSectionHeaderVerticalOffset) {
+                    //固定的位置就是contentInset.top
+                   adjustMainScrollViewToTargetContentInsetIfNeeded(inset: UIEdgeInsets(top: CGFloat(pinSectionHeaderVerticalOffset), left: 0, bottom: 0, right: 0))
+                }else {
+                    if isSetMainScrollViewContentInsetToZeroEnabled(scrollView: scrollView) {
+                        adjustMainScrollViewToTargetContentInsetIfNeeded(inset: UIEdgeInsets.zero)
+                    }
+                }
             }
         }
         preferredProcessMainTableViewDidScroll(scrollView)
         delegate?.mainTableViewDidScroll?(scrollView)
+        delegate?.pagingView?(self, mainTableViewDidScroll: scrollView)
     }
 
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //用户正在上下滚动的时候，就不允许左右滚动
         listContainerView.scrollView.isScrollEnabled = false
+        delegate?.pagingView?(self, mainTableViewWillBeginDragging: scrollView)
     }
 
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if isListHorizontalScrollEnabled && !decelerate {
             listContainerView.scrollView.isScrollEnabled = true
         }
+        delegate?.pagingView?(self, mainTableViewDidEndDragging: scrollView, willDecelerate: decelerate)
     }
 
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if isListHorizontalScrollEnabled {
             listContainerView.scrollView.isScrollEnabled = true
         }
-        if mainTableView.contentInset.top != 0 && pinSectionHeaderVerticalOffset != 0 {
-            adjustMainScrollViewToTargetContentInsetIfNeeded(inset: UIEdgeInsets.zero)
+        if isSetMainScrollViewContentInsetToZeroEnabled(scrollView: scrollView) {
+            if mainTableView.contentInset.top != 0 && pinSectionHeaderVerticalOffset != 0 {
+                adjustMainScrollViewToTargetContentInsetIfNeeded(inset: UIEdgeInsets.zero)
+            }
         }
+        delegate?.pagingView?(self, mainTableViewDidEndDecelerating: scrollView)
     }
 
-    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         if isListHorizontalScrollEnabled {
             listContainerView.scrollView.isScrollEnabled = true
         }
+        delegate?.pagingView?(self, mainTableViewDidEndScrollingAnimation: scrollView)
     }
 }
 
@@ -321,6 +362,13 @@ extension JXPagingView: JXPagingListContainerViewDataSource {
             validListDict[index] = list!
         }
         return list!
+    }
+
+    public func scrollViewClass(in listContainerView: JXPagingListContainerView) -> AnyClass {
+        if let any = delegate?.scrollViewClassInListContainerView?(in: self) {
+            return any
+        }
+        return UIView.self
     }
 }
 

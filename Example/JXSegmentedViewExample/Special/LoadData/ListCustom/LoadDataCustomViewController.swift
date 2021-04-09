@@ -9,7 +9,7 @@
 import UIKit
 import JXSegmentedView
 
-class LoadDataCustomViewController: UIViewController, JXPagingViewRTLCompatible {
+class LoadDataCustomViewController: UIViewController {
     var segmentedDataSource: JXSegmentedTitleDataSource!
     var segmentedView: JXSegmentedView!
     var contentScrollView: UIScrollView!
@@ -52,10 +52,6 @@ class LoadDataCustomViewController: UIViewController, JXPagingViewRTLCompatible 
             contentScrollView.contentInsetAdjustmentBehavior = .never
         }
         view.addSubview(contentScrollView)
-        
-        if pagingViewShouldRTLLayout() {
-            pagingView(horizontalFlipForView: contentScrollView)
-        }
 
         //6、将contentScrollView和segmentedView.contentScrollView进行关联
         segmentedView.contentScrollView = contentScrollView
@@ -82,9 +78,9 @@ class LoadDataCustomViewController: UIViewController, JXPagingViewRTLCompatible 
             contentScrollView.addSubview(vc.view)
             listVCArray.append(vc)
             
-            if pagingViewShouldRTLLayout() {
-                pagingView(horizontalFlipForView: vc.view)
-            }
+//            if pagingViewShouldRTLLayout() {
+//                pagingView(horizontalFlipForView: vc.view)
+//            }
         }
 
         view.setNeedsLayout()

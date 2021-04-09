@@ -204,7 +204,10 @@ open class JXPagingSmoothView: UIView {
                 let minContentSizeHeight = bounds.size.height - heightForPinHeader
                 if minContentSizeHeight > scrollView.contentSize.height {
                     scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: minContentSizeHeight)
-                    scrollView.contentOffset = CGPoint(x: 0, y: currentListInitializeContentOffsetY)
+                    //新的scrollView第一次加载的时候重置contentOffset
+                    if currentListScrollView != nil, scrollView != currentListScrollView! {
+                        scrollView.contentOffset = CGPoint(x: 0, y: currentListInitializeContentOffsetY)
+                    }
                 }
             }
         }else {
@@ -321,9 +324,10 @@ extension JXPagingSmoothView: UICollectionViewDataSource, UICollectionViewDelega
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.pagingSmoothViewDidScroll?(scrollView)
+        let indexPercent = scrollView.contentOffset.x/scrollView.bounds.size.width
         let index = Int(scrollView.contentOffset.x/scrollView.bounds.size.width)
         let listScrollView = listDict[index]?.listScrollView()
-        if index != currentIndex && !(scrollView.isDragging || scrollView.isDecelerating) && listScrollView?.contentOffset.y ?? 0 <= -heightForPinHeader {
+        if (indexPercent - CGFloat(index) == 0) && index != currentIndex && !(scrollView.isDragging || scrollView.isDecelerating) && listScrollView?.contentOffset.y ?? 0 <= -heightForPinHeader {
             horizontalScrollDidEnd(at: index)
         }else {
             //左右滚动的时候，就把listHeaderContainerView添加到self，达到悬浮在顶部的效果
