@@ -58,3 +58,19 @@ public class JXSegmentedViewTool {
         return resultColors
     }
 }
+
+extension JXSegmentedViewTool {
+    public static func interpolateThemeColor(from: UIColor, to: UIColor, percent: CGFloat) -> UIColor {
+        
+        if #available(iOS 13.0, *) {
+            return UIColor { (traitCollection) -> UIColor in
+                let resolvedFrom = from.resolvedColor(with: traitCollection)
+                let resolvedTo = to.resolvedColor(with: traitCollection)
+                return interpolateColor(from: resolvedFrom, to: resolvedTo, percent: percent)
+            }
+            
+        } else {
+            return interpolateColor(from: from, to: to, percent: percent)
+        }
+    }
+}
