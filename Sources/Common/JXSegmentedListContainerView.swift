@@ -16,21 +16,27 @@ public enum JXSegmentedListContainerType {
     case collectionView
 }
 
-@objc
-public protocol JXSegmentedListContainerViewListDelegate {
+public protocol JXSegmentedListContainerViewListDelegate: AnyObject {
     /// 如果列表是VC，就返回VC.view
     /// 如果列表是View，就返回View自己
     ///
     /// - Returns: 返回列表视图
     func listView() -> UIView
-    @objc optional func listWillAppear()
-    @objc optional func listDidAppear()
-    @objc optional func listWillDisappear()
-    @objc optional func listDidDisappear()
+    func listWillAppear()
+    func listDidAppear()
+    func listWillDisappear()
+    func listDidDisappear()
 }
 
-@objc
-public protocol JXSegmentedListContainerViewDataSource {
+// default implementation for swift optional
+public extension JXSegmentedListContainerViewListDelegate {
+    func listWillAppear() {}
+    func listDidAppear() {}
+    func listWillDisappear() {}
+    func listDidDisappear() {}
+}
+
+public protocol JXSegmentedListContainerViewDataSource: AnyObject {
     /// 返回list的数量
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int
 
@@ -46,14 +52,21 @@ public protocol JXSegmentedListContainerViewDataSource {
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate
 
     /// 控制能否初始化对应index的列表。有些业务需求，需要在某些情况才允许初始化某些列表，通过通过该代理实现控制。
-    @objc optional func listContainerView(_ listContainerView: JXSegmentedListContainerView, canInitListAt index: Int) -> Bool
+    func listContainerView(_ listContainerView: JXSegmentedListContainerView, canInitListAt index: Int) -> Bool?
 
     /// 返回自定义UIScrollView或UICollectionView的Class
     /// 某些特殊情况需要自己处理UIScrollView内部逻辑。比如项目用了FDFullscreenPopGesture，需要处理手势相关代理。
     ///
     /// - Parameter listContainerView: JXSegmentedListContainerView
     /// - Returns: 自定义UIScrollView实例
-    @objc optional func scrollViewClass(in listContainerView: JXSegmentedListContainerView) -> AnyClass
+    func scrollViewClass(in listContainerView: JXSegmentedListContainerView) -> AnyClass?
+}
+
+// default implementation for swift optional
+public extension JXSegmentedListContainerViewDataSource {
+    func listContainerView(_ listContainerView: JXSegmentedListContainerView, canInitListAt index: Int) -> Bool? { nil }
+    func scrollViewClass(in listContainerView: JXSegmentedListContainerView) -> AnyClass? { nil }
+
 }
 
 open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, JXSegmentedViewRTLCompatible {
@@ -83,7 +96,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        if let collectionViewClass = dataSource?.scrollViewClass?(in: self) as? UICollectionView.Type {
+        if let collectionViewClass = dataSource?.scrollViewClass(in: self) as? UICollectionView.Type {
             return collectionViewClass.init(frame: CGRect.zero, collectionViewLayout: layout)
         } else {
             return UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
@@ -121,7 +134,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
             self?.listDidDisappear(at: self?.currentIndex ?? 0)
         }
         if type == .scrollView {
-            if let scrollViewClass = dataSource?.scrollViewClass?(in: self) as? UIScrollView.Type {
+            if let scrollViewClass = dataSource?.scrollViewClass(in: self) as? UIScrollView.Type {
                 scrollView = scrollViewClass.init()
             } else {
                 scrollView = UIScrollView.init()
@@ -254,7 +267,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
     // MARK: - Private
     func initListIfNeeded(at index: Int) {
         guard let dataSource = dataSource else { return }
-        if dataSource.listContainerView?(self, canInitListAt: index) == false {
+        if dataSource.listContainerView(self, canInitListAt: index) == false {
             return
         }
         var existedList = validListDict[index]
@@ -292,13 +305,13 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
         }
         var existedList = validListDict[index]
         if existedList != nil {
-            existedList?.listWillAppear?()
+            existedList?.listWillAppear()
             if let vc = existedList as? UIViewController {
                 vc.beginAppearanceTransition(true, animated: false)
             }
         } else {
             // 当前列表未被创建（页面初始化或通过点击触发的listWillAppear）
-            guard dataSource.listContainerView?(self, canInitListAt: index) != false else {
+            guard dataSource.listContainerView(self, canInitListAt: index) != false else {
                 return
             }
             existedList = dataSource.listContainerView(self, initListAt: index)
@@ -318,7 +331,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
                         segmentedView(horizontalFlipForView: list.listView())
                     }
                 }
-                list.listWillAppear?()
+                list.listWillAppear()
                 if let vc = list as? UIViewController {
                     vc.beginAppearanceTransition(true, animated: false)
                 }
@@ -327,7 +340,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
                 cell?.contentView.subviews.forEach { $0.removeFromSuperview() }
                 list.listView().frame = cell?.contentView.bounds ?? CGRect.zero
                 cell?.contentView.addSubview(list.listView())
-                list.listWillAppear?()
+                list.listWillAppear()
                 if let vc = list as? UIViewController {
                     vc.beginAppearanceTransition(true, animated: false)
                 }
@@ -341,7 +354,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
         }
         currentIndex = index
         let list = validListDict[index]
-        list?.listDidAppear?()
+        list?.listDidAppear()
         if let vc = list as? UIViewController {
             vc.endAppearanceTransition()
         }
@@ -352,7 +365,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
             return
         }
         let list = validListDict[index]
-        list?.listWillDisappear?()
+        list?.listWillDisappear()
         if let vc = list as? UIViewController {
             vc.beginAppearanceTransition(false, animated: false)
         }
@@ -363,7 +376,7 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
             return
         }
         let list = validListDict[index]
-        list?.listDidDisappear?()
+        list?.listDidDisappear()
         if let vc = list as? UIViewController {
             vc.endAppearanceTransition()
         }
@@ -487,10 +500,10 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
 }
 
 class JXSegmentedListContainerViewController: UIViewController {
-    var viewWillAppearClosure: (()->Void)?
-    var viewDidAppearClosure: (()->Void)?
-    var viewWillDisappearClosure: (()->Void)?
-    var viewDidDisappearClosure: (()->Void)?
+    var viewWillAppearClosure: (() -> Void)?
+    var viewDidAppearClosure: (() -> Void)?
+    var viewWillDisappearClosure: (() -> Void)?
+    var viewDidDisappearClosure: (() -> Void)?
     override var shouldAutomaticallyForwardAppearanceMethods: Bool { return false }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
