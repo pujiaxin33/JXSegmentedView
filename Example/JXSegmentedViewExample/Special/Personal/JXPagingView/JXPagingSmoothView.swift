@@ -40,15 +40,14 @@ public protocol JXPagingSmoothViewDelegate {
     @objc optional func pagingSmoothViewDidScroll(_ scrollView: UIScrollView)
 }
 
-
 open class JXPagingSmoothView: UIView {
-    public private(set) var listDict = [Int : JXPagingSmoothViewListViewDelegate]()
+    public private(set) var listDict = [Int: JXPagingSmoothViewListViewDelegate]()
     public let listCollectionView: JXPagingSmoothCollectionView
     public var defaultSelectedIndex: Int = 0
     public weak var delegate: JXPagingSmoothViewDelegate?
 
     weak var dataSource: JXPagingSmoothViewDataSource?
-    var listHeaderDict = [Int : UIView]()
+    var listHeaderDict = [Int: UIView]()
     var isSyncListContentOffsetEnabled: Bool = false
     let pagingHeaderContainerView: UIView
     var currentPagingHeaderContainerViewY: CGFloat = 0
@@ -134,7 +133,7 @@ open class JXPagingSmoothView: UIView {
             addSubview(singleScrollView!)
             singleScrollView?.addSubview(pagingHeader)
             singleScrollView?.contentSize = CGSize(width: bounds.size.width, height: heightForPagingHeader)
-        }else if singleScrollView != nil {
+        } else if singleScrollView != nil {
             singleScrollView?.removeFromSuperview()
             singleScrollView = nil
         }
@@ -175,7 +174,7 @@ open class JXPagingSmoothView: UIView {
                 pagingHeaderContainerView.frame.origin.y = 0
                 header?.addSubview(pagingHeaderContainerView)
             }
-        }else {
+        } else {
             if pagingHeaderContainerView.superview != self {
                 pagingHeaderContainerView.frame.origin.y = -heightForPagingHeader
                 addSubview(pagingHeaderContainerView)
@@ -192,30 +191,30 @@ open class JXPagingSmoothView: UIView {
         }
     }
 
-    //MARK: - KVO
+    // MARK: - KVO
 
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffset" {
             if let scrollView = object as? UIScrollView {
                 listDidScroll(scrollView: scrollView)
             }
-        }else if keyPath == "contentSize" {
+        } else if keyPath == "contentSize" {
             if let scrollView = object as? UIScrollView {
                 let minContentSizeHeight = bounds.size.height - heightForPinHeader
                 if minContentSizeHeight > scrollView.contentSize.height {
                     scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: minContentSizeHeight)
-                    //新的scrollView第一次加载的时候重置contentOffset
+                    // 新的scrollView第一次加载的时候重置contentOffset
                     if currentListScrollView != nil, scrollView != currentListScrollView! {
                         scrollView.contentOffset = CGPoint(x: 0, y: currentListInitializeContentOffsetY)
                     }
                 }
             }
-        }else {
+        } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
 
-    //MARK: - Private
+    // MARK: - Private
     func listHeader(for listScrollView: UIScrollView) -> UIView? {
         for (index, list) in listDict {
             if list.listScrollView() == listScrollView {
@@ -329,8 +328,8 @@ extension JXPagingSmoothView: UICollectionViewDataSource, UICollectionViewDelega
         let listScrollView = listDict[index]?.listScrollView()
         if (indexPercent - CGFloat(index) == 0) && index != currentIndex && !(scrollView.isDragging || scrollView.isDecelerating) && listScrollView?.contentOffset.y ?? 0 <= -heightForPinHeader {
             horizontalScrollDidEnd(at: index)
-        }else {
-            //左右滚动的时候，就把listHeaderContainerView添加到self，达到悬浮在顶部的效果
+        } else {
+            // 左右滚动的时候，就把listHeaderContainerView添加到self，达到悬浮在顶部的效果
             if pagingHeaderContainerView.superview != self {
                 pagingHeaderContainerView.frame.origin.y = currentPagingHeaderContainerViewY
                 addSubview(pagingHeaderContainerView)

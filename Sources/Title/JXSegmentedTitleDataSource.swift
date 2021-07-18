@@ -8,11 +8,11 @@
 
 import UIKit
 
-open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
+open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource {
     /// title数组
     open var titles = [String]()
     /// 如果将JXSegmentedView嵌套进UITableView的cell，每次重用的时候，JXSegmentedView进行reloadData时，会重新计算所有的title宽度。所以该应用场景，需要UITableView的cellModel缓存titles的文字宽度，再通过该闭包方法返回给JXSegmentedView。
-    open var widthForTitleClosure: ((String)->(CGFloat))?
+    open var widthForTitleClosure: ((String) -> (CGFloat))?
     /// label的numberOfLines
     open var titleNumberOfLines: Int = 1
     /// title普通状态的textColor
@@ -35,7 +35,6 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open var titleSelectedStrokeWidth: CGFloat = -2
     /// title是否使用遮罩过渡
     open var isTitleMaskEnabled: Bool = false
-
 
     open override func preferredItemCount() -> Int {
         return titles.count
@@ -71,7 +70,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
             myItemModel.titleCurrentColor = titleSelectedColor
             myItemModel.titleCurrentZoomScale = titleSelectedZoomScale
             myItemModel.titleCurrentStrokeWidth = titleSelectedStrokeWidth
-        }else {
+        } else {
             myItemModel.titleCurrentColor = titleNormalColor
             myItemModel.titleCurrentZoomScale = 1
             myItemModel.titleCurrentStrokeWidth = 0
@@ -81,8 +80,8 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
     open func widthForTitle(_ title: String) -> CGFloat {
         if widthForTitleClosure != nil {
             return widthForTitleClosure!(title)
-        }else {
-            let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat.infinity, height: CGFloat.infinity), options: [.usesFontLeading, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font : titleNormalFont], context: nil).size.width
+        } else {
+            let textWidth = NSString(string: title).boundingRect(with: CGSize(width: CGFloat.infinity, height: CGFloat.infinity), options: [.usesFontLeading, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: titleNormalFont], context: nil).size.width
             return CGFloat(ceilf(Float(textWidth)))
         }
     }
@@ -92,13 +91,13 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         var width = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
         if itemWidth == JXSegmentedViewAutomaticDimension {
             width += (dataSource[index] as! JXSegmentedTitleItemModel).textWidth
-        }else {
+        } else {
             width += itemWidth
         }
         return width
     }
 
-    //MARK: - JXSegmentedViewDataSource
+    // MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.collectionView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "cell")
     }
@@ -112,14 +111,14 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
         let model = dataSource[index] as! JXSegmentedTitleItemModel
         if isTitleZoomEnabled {
             return model.textWidth*model.titleCurrentZoomScale
-        }else {
+        } else {
             return model.textWidth
         }
     }
 
     open override func refreshItemModel(_ segmentedView: JXSegmentedView, leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
         super.refreshItemModel(segmentedView, leftItemModel: leftItemModel, rightItemModel: rightItemModel, percent: percent)
-        
+
         guard let leftModel = leftItemModel as? JXSegmentedTitleItemModel, let rightModel = rightItemModel as? JXSegmentedTitleItemModel else {
             return
         }
@@ -136,7 +135,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource{
 
         if isTitleColorGradientEnabled && isItemTransitionEnabled {
             leftModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: leftModel.titleSelectedColor, to: leftModel.titleNormalColor, percent: percent)
-            rightModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from:rightModel.titleNormalColor , to:rightModel.titleSelectedColor, percent: percent)
+            rightModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: rightModel.titleNormalColor, to: rightModel.titleSelectedColor, percent: percent)
         }
     }
 

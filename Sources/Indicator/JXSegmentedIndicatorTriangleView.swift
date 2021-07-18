@@ -48,7 +48,7 @@ open class JXSegmentedIndicatorTriangleView: JXSegmentedIndicatorBaseView {
             path.move(to: CGPoint(x: 0, y: height))
             path.addLine(to: CGPoint(x: width/2, y: 0))
             path.addLine(to: CGPoint(x: width, y: height))
-        }else {
+        } else {
             path.move(to: CGPoint(x: 0, y: 0))
             path.addLine(to: CGPoint(x: width/2, y: height))
             path.addLine(to: CGPoint(x: width, y: 0))
@@ -88,7 +88,7 @@ open class JXSegmentedIndicatorTriangleView: JXSegmentedIndicatorBaseView {
                 self.frame = toFrame
             }) { (_) in
             }
-        }else {
+        } else {
             frame = toFrame
         }
     }

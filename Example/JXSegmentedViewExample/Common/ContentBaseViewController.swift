@@ -20,8 +20,8 @@ class ContentBaseViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        
-        //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
+
+        // segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedView.dataSource = segmentedDataSource
         segmentedView.delegate = self
         view.addSubview(segmentedView)
@@ -44,8 +44,7 @@ class ContentBaseViewController: UIViewController {
         if (segmentedDataSource as? JXSegmentedTitleImageDataSource) != nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "设置", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didSetingsButtonClicked))
         }
-        
-        
+
         if let _ = segmentedDataSource as? JXSegmentedNumberDataSource {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刷新", style: UIBarButtonItem.Style.plain, target: self, action: #selector(hanldeNumberRefresh))
         }
@@ -54,17 +53,17 @@ class ContentBaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        //处于第一个item的时候，才允许屏幕边缘手势返回
+        // 处于第一个item的时候，才允许屏幕边缘手势返回
         navigationController?.interactivePopGestureRecognizer?.isEnabled = (segmentedView.selectedIndex == 0)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        //离开页面的时候，需要恢复屏幕边缘手势，不能影响其他页面
+        // 离开页面的时候，需要恢复屏幕边缘手势，不能影响其他页面
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -77,9 +76,9 @@ class ContentBaseViewController: UIViewController {
         vc.title = title
         vc.clickedClosure = {[weak self] (type) in
             (self?.segmentedDataSource as? JXSegmentedTitleImageDataSource)?.titleImageType = type
-            //先更新数据源
+            // 先更新数据源
             self?.segmentedDataSource?.reloadData(selectedIndex: self?.segmentedView.selectedIndex ?? 0)
-            //再更新segmentedView
+            // 再更新segmentedView
             self?.segmentedView.reloadData()
         }
         navigationController?.pushViewController(vc, animated: true)
@@ -89,16 +88,15 @@ class ContentBaseViewController: UIViewController {
         for indicaotr in (segmentedView.indicators as! [JXSegmentedIndicatorBaseView]) {
             if indicaotr.indicatorPosition == .bottom {
                 indicaotr.indicatorPosition = .top
-            }else {
+            } else {
                 indicaotr.indicatorPosition = .bottom
             }
         }
         segmentedView.reloadDataWithoutListContainer()
     }
-    
-    //MARK: 数字刷新demo
-    @objc func hanldeNumberRefresh()
-    {
+
+    // MARK: 数字刷新demo
+    @objc func hanldeNumberRefresh() {
         if let _segDataSource = segmentedDataSource as? JXSegmentedNumberDataSource {
             let newNumbers = [223, 12, 435, 332, 0, 32, 98, 0, 99999, 112]
             _segDataSource.numberHeight = 18
@@ -113,9 +111,9 @@ class ContentBaseViewController: UIViewController {
 extension ContentBaseViewController: JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
         if let dotDataSource = segmentedDataSource as? JXSegmentedDotDataSource {
-            //先更新数据源的数据
+            // 先更新数据源的数据
             dotDataSource.dotStates[index] = false
-            //再调用reloadItem(at: index)
+            // 再调用reloadItem(at: index)
             segmentedView.reloadItem(at: index)
         }
 
@@ -135,4 +133,3 @@ extension ContentBaseViewController: JXSegmentedListContainerViewDataSource {
         return ListBaseViewController()
     }
 }
-

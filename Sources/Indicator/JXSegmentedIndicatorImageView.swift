@@ -58,7 +58,7 @@ open class JXSegmentedIndicatorImageView: JXSegmentedIndicatorBaseView {
         let leftX = leftItemFrame.origin.x + (leftItemFrame.size.width - targetWidth)/2
         let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - targetWidth)/2
         let targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: CGFloat(percent))
-        
+
         self.frame.origin.x = targetX
     }
 
@@ -73,7 +73,7 @@ open class JXSegmentedIndicatorImageView: JXSegmentedIndicatorBaseView {
                 self.frame = toFrame
             }) { (_) in
             }
-        }else {
+        } else {
             frame = toFrame
         }
     }

@@ -37,12 +37,12 @@ open class JXSegmentedDotDataSource: JXSegmentedTitleDataSource {
         itemModel.dotSize = dotSize
         if dotCornerRadius == JXSegmentedViewAutomaticDimension {
             itemModel.dotCornerRadius = dotSize.height/2
-        }else {
+        } else {
             itemModel.dotCornerRadius = dotCornerRadius
         }
     }
 
-    //MARK: - JXSegmentedViewDataSource
+    // MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.collectionView.register(JXSegmentedDotCell.self, forCellWithReuseIdentifier: "cell")
     }

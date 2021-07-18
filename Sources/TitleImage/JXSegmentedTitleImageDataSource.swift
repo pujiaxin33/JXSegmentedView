@@ -58,7 +58,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         itemModel.titleImageSpacing = titleImageSpacing
         if index == selectedIndex {
             itemModel.imageCurrentZoomScale = itemModel.imageSelectedZoomScale
-        }else {
+        } else {
             itemModel.imageCurrentZoomScale = itemModel.imageNormalZoomScale
         }
     }
@@ -95,7 +95,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         return width
     }
 
-    //MARK: - JXSegmentedViewDataSource
+    // MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.collectionView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "cell")
     }

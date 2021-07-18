@@ -23,7 +23,7 @@ class NestViewController: UIViewController {
 
         let totalItemWidth: CGFloat = 150
         let titles = ["吃饭🍚", "运动💪"]
-        //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
+        // segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedDataSource.itemWidth = totalItemWidth/CGFloat(titles.count)
         segmentedDataSource.titles = titles
         segmentedDataSource.isTitleMaskEnabled = true
@@ -68,11 +68,9 @@ extension NestViewController: JXSegmentedListContainerViewDataSource {
         let vc = NestChildViewController()
         if index == 0 {
            vc.titles = ["吃鸡🍗", "吃西瓜🍉", "吃热狗🌭"]
-        }else if index == 1 {
+        } else if index == 1 {
             vc.titles = ["高尔夫🏌", "滑雪⛷", "自行车🚴"]
         }
         return vc
     }
 }
-
-

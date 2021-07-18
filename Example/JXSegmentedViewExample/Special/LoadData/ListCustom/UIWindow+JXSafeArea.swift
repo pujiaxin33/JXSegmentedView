@@ -14,7 +14,7 @@ extension UIWindow {
         if #available(iOS 11.0, *) {
             if safeAreaInsets.bottom > 0 {
                 return safeAreaInsets
-            }else {
+            } else {
                 return UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
             }
         }

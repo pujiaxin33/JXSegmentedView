@@ -64,7 +64,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     }
 
     /// 子类需要重载该方法，用于返回自己定义的JXSegmentedBaseItemModel子类实例
-    open func preferredItemModelInstance() -> JXSegmentedBaseItemModel  {
+    open func preferredItemModelInstance() -> JXSegmentedBaseItemModel {
         return JXSegmentedBaseItemModel()
     }
 
@@ -85,13 +85,13 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         if index == selectedIndex {
             itemModel.isSelected = true
             itemModel.itemWidthCurrentZoomScale = itemModel.itemWidthSelectedZoomScale
-        }else {
+        } else {
             itemModel.isSelected = false
             itemModel.itemWidthCurrentZoomScale = itemModel.itemWidthNormalZoomScale
         }
     }
 
-    //MARK: - JXSegmentedViewDataSource
+    // MARK: - JXSegmentedViewDataSource
     open func itemDataSource(in segmentedView: JXSegmentedView) -> [JXSegmentedBaseItemModel] {
         return dataSource
     }
@@ -133,18 +133,18 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
                 }
                 animator?.start()
             }
-        }else {
+        } else {
             currentSelectedItemModel.itemWidthCurrentZoomScale = currentSelectedItemModel.itemWidthNormalZoomScale
             willSelectedItemModel.itemWidthCurrentZoomScale = willSelectedItemModel.itemWidthSelectedZoomScale
         }
     }
 
     open func refreshItemModel(_ segmentedView: JXSegmentedView, leftItemModel: JXSegmentedBaseItemModel, rightItemModel: JXSegmentedBaseItemModel, percent: CGFloat) {
-        //如果正在进行itemWidth缩放动画，用户又立马滚动了contentScrollView，需要停止动画。
+        // 如果正在进行itemWidth缩放动画，用户又立马滚动了contentScrollView，需要停止动画。
         animator?.stop()
         animator = nil
         if isItemWidthZoomEnabled && isItemTransitionEnabled {
-            //允许itemWidth缩放动画且允许item渐变过渡
+            // 允许itemWidth缩放动画且允许item渐变过渡
             leftItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: leftItemModel.itemWidthSelectedZoomScale, to: leftItemModel.itemWidthNormalZoomScale, percent: percent)
             leftItemModel.itemWidth = itemWidthWithZoom(at: leftItemModel.index, model: leftItemModel)
             rightItemModel.itemWidthCurrentZoomScale = JXSegmentedViewTool.interpolate(from: rightItemModel.itemWidthNormalZoomScale, to: rightItemModel.itemWidthSelectedZoomScale, percent: percent)

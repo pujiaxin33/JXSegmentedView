@@ -11,8 +11,8 @@ import UIKit
 
 open class JXSegmentedAnimator {
     open var duration: TimeInterval = 0.25
-    open var progressClosure: ((CGFloat)->())?
-    open var completedClosure: (()->())?
+    open var progressClosure: ((CGFloat) -> Void)?
+    open var completedClosure: (() -> Void)?
     private var displayLink: CADisplayLink!
     private var firstTimestamp: CFTimeInterval?
 
@@ -39,7 +39,7 @@ open class JXSegmentedAnimator {
             progressClosure?(1)
             displayLink.invalidate()
             completedClosure?()
-        }else {
+        } else {
             progressClosure?(CGFloat(percent))
         }
     }

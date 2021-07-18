@@ -31,7 +31,7 @@ class PagingViewController: UIViewController {
         userHeaderView = PagingViewTableHeaderView(frame: userHeaderContainerView.bounds)
         userHeaderContainerView.addSubview(userHeaderView)
 
-        //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
+        // segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedViewDataSource = JXSegmentedTitleDataSource()
         segmentedViewDataSource.titles = titles
         segmentedViewDataSource.titleSelectedColor = UIColor(red: 105/255, green: 144/255, blue: 239/255, alpha: 1)
@@ -58,7 +58,7 @@ class PagingViewController: UIViewController {
         pagingView = JXPagingView(delegate: self)
 
         self.view.addSubview(pagingView)
-        
+
         segmentedView.listContainer = pagingView.listContainerView
     }
 
@@ -95,9 +95,9 @@ extension PagingViewController: JXPagingViewDelegate {
         let list = PagingListBaseView()
         if index == 0 {
             list.dataSource = ["橡胶火箭", "橡胶火箭炮", "橡胶机关枪", "橡胶子弹", "橡胶攻城炮", "橡胶象枪", "橡胶象枪乱打", "橡胶灰熊铳", "橡胶雷神象枪", "橡胶猿王枪", "橡胶犀·榴弹炮", "橡胶大蛇炮", "橡胶火箭", "橡胶火箭炮", "橡胶机关枪", "橡胶子弹", "橡胶攻城炮", "橡胶象枪", "橡胶象枪乱打", "橡胶灰熊铳", "橡胶雷神象枪", "橡胶猿王枪", "橡胶犀·榴弹炮", "橡胶大蛇炮"]
-        }else if index == 1 {
+        } else if index == 1 {
             list.dataSource = ["吃烤肉", "吃鸡腿肉", "吃牛肉", "各种肉"]
-        }else {
+        } else {
             list.dataSource = ["【剑士】罗罗诺亚·索隆", "【航海士】娜美", "【狙击手】乌索普", "【厨师】香吉士", "【船医】托尼托尼·乔巴", "【船匠】 弗兰奇", "【音乐家】布鲁克", "【考古学家】妮可·罗宾"]
         }
         list.beginFirstRefresh()
@@ -108,4 +108,3 @@ extension PagingViewController: JXPagingViewDelegate {
         userHeaderView?.scrollViewDidScroll(contentOffsetY: scrollView.contentOffset.y)
     }
 }
-

@@ -85,7 +85,7 @@ open class JXSegmentedIndicatorBackgroundView: JXSegmentedIndicatorBaseView {
                 self.frame = toFrame
             }) { (_) in
             }
-        }else {
+        } else {
             frame = toFrame
         }
     }

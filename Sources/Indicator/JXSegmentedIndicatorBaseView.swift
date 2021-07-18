@@ -17,7 +17,7 @@ public enum JXSegmentedIndicatorPosition {
 open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
     /// 默认JXSegmentedViewAutomaticDimension（与cell的宽度相等）。内部通过getIndicatorWidth方法获取实际的值
     open var indicatorWidth: CGFloat = JXSegmentedViewAutomaticDimension
-    open var indicatorWidthIncrement: CGFloat = 0   //指示器的宽度增量。比如需求是指示器宽度比cell宽度多10 point。就可以将该属性赋值为10。最终指示器的宽度=indicatorWidth+indicatorWidthIncrement
+    open var indicatorWidthIncrement: CGFloat = 0   // 指示器的宽度增量。比如需求是指示器宽度比cell宽度多10 point。就可以将该属性赋值为10。最终指示器的宽度=indicatorWidth+indicatorWidthIncrement
     /// 默认JXSegmentedViewAutomaticDimension（与cell的高度相等）。内部通过getIndicatorHeight方法获取实际的值
     open var indicatorHeight: CGFloat = JXSegmentedViewAutomaticDimension
     /// 默认JXSegmentedViewAutomaticDimension （等于indicatorHeight/2）。内部通过getIndicatorCornerRadius方法获取实际的值
@@ -65,7 +65,7 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
         if indicatorWidth == JXSegmentedViewAutomaticDimension {
             if isIndicatorWidthSameAsItemContent {
                 return itemContentWidth + indicatorWidthIncrement
-            }else {
+            } else {
                 return itemFrame.size.width + indicatorWidthIncrement
             }
         }
@@ -81,8 +81,8 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
 
     public func canHandleTransition(model: JXSegmentedIndicatorTransitionParams) -> Bool {
         if model.percent == 0 || !isScrollEnabled {
-            //model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
-            //isScrollEnabled为false不需要处理
+            // model.percent等于0时不需要处理，会调用selectItem(model: JXSegmentedIndicatorParamsModel)方法处理
+            // isScrollEnabled为false不需要处理
             return false
         }
         return true
@@ -90,13 +90,13 @@ open class JXSegmentedIndicatorBaseView: UIView, JXSegmentedIndicatorProtocol {
 
     public func canSelectedWithAnimation(model: JXSegmentedIndicatorSelectedParams) -> Bool {
         if isScrollEnabled && (model.selectedType == .click || model.selectedType == .code) {
-            //允许滚动且选中类型是点击或代码选中，才进行动画过渡
+            // 允许滚动且选中类型是点击或代码选中，才进行动画过渡
             return true
         }
         return false
     }
 
-    //MARK: - JXSegmentedIndicatorProtocol
+    // MARK: - JXSegmentedIndicatorProtocol
     open func refreshIndicatorState(model: JXSegmentedIndicatorSelectedParams) {
     }
 

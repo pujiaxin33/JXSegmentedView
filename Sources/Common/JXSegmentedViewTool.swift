@@ -31,7 +31,7 @@ public extension UIColor {
 }
 
 public class JXSegmentedViewTool {
-    public static func interpolate<T: SignedNumeric & Comparable>(from: T, to:  T, percent:  T) ->  T {
+    public static func interpolate<T: SignedNumeric & Comparable>(from: T, to: T, percent: T) -> T {
         let percent = max(0, min(1, percent))
         return from + (to - from) * percent
     }

@@ -35,21 +35,21 @@ class CellCustomizeViewController: UITableViewController {
 
         switch itemTitle! {
         case "颜色渐变":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.titles = titles
             vc.segmentedDataSource = dataSource
         case "文字渐变":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleGradientDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
             dataSource.titles = titles
             vc.segmentedDataSource = dataSource
         case "大小缩放":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
@@ -58,7 +58,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titles = titles
             vc.segmentedDataSource = dataSource
         case "大小缩放+字体粗细":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
@@ -68,7 +68,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titles = titles
             vc.segmentedDataSource = dataSource
         case "大小缩放+点击动画":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
@@ -83,8 +83,8 @@ class CellCustomizeViewController: UITableViewController {
 
             vc.segmentedDataSource = dataSource
         case "大小缩放+Cell宽度缩放":
-            //高仿汽车之家
-            //配置数据源
+            // 高仿汽车之家
+            // 配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
@@ -101,7 +101,7 @@ class CellCustomizeViewController: UITableViewController {
 
             vc.segmentedDataSource = dataSource
         case "数字":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedNumberDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
@@ -115,14 +115,14 @@ class CellCustomizeViewController: UITableViewController {
             }
             vc.segmentedDataSource = dataSource
         case "红点":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedDotDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
             dataSource.dotStates = dotStates
             vc.segmentedDataSource = dataSource
         case "文字和图片":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleImageDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titles = titles
@@ -130,13 +130,13 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.isImageZoomEnabled = true
             dataSource.normalImageInfos = ["monkey", "frog", "dog", "pig", "sheep", "chicken", "horse", "cow", "elephant", "dragon"]
             dataSource.loadImageClosure = {(imageView, normalImageInfo) in
-                //如果normalImageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
-                //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
+                // 如果normalImageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
+                // 加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
                 imageView.image = UIImage(named: normalImageInfo)
             }
             vc.segmentedDataSource = dataSource
         case "文字或者图片":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleOrImageDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
@@ -148,13 +148,13 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titles = titles
             dataSource.selectedImageInfos = ["monkey", nil, "dog", nil, "sheep", "chicken", "horse", nil, nil, "dragon"]
             dataSource.loadImageClosure = {(imageView, normalImageInfo) in
-                //如果normalImageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
-                //加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
+                // 如果normalImageInfo传递的是图片的地址，你需要借助SDWebImage等第三方库进行图片加载。
+                // 加载bundle内的图片，就用下面的方式，内部默认也采用该方法。
                 imageView.image = UIImage(named: normalImageInfo)
             }
             vc.segmentedDataSource = dataSource
         case "多行文字(自己添加换行符)":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
@@ -162,7 +162,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titles = ["猴哥\nmonkey", "青蛙王子\nfrog", "旺财\ndot", "粉红猪\npig", "喜羊羊\nsheep", "黄焖鸡\nchicken", "小马哥\nhorse", "牛魔王\ncow", "大象先生\nelepant", "神龙\ndragon"]
             vc.segmentedDataSource = dataSource
         case "多行文字(固定宽度自动换行)":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleDataSource()
             dataSource.isTitleColorGradientEnabled = true
             dataSource.titleSelectedColor = UIColor.red
@@ -171,15 +171,15 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titles = ["猴哥 monkey", "青蛙王子 frog", "旺财 dot", "粉红猪 pig", "喜羊羊 sheep", "黄焖鸡 chicken", "小马哥 horse", "牛魔王 cow", "大象先生 elepant", "神龙 dragon"]
             vc.segmentedDataSource = dataSource
         case "多行富文本":
-            //配置数据源
+            // 配置数据源
             let dataSource = JXSegmentedTitleAttributeDataSource()
             func formatNormal(attriText: NSMutableAttributedString) {
-                attriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.blue, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
-                attriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13)], range: NSRange(location: 2, length: attriText.string.count - 2))
+                attriText.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], range: NSRange(location: 0, length: 2))
+                attriText.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)], range: NSRange(location: 2, length: attriText.string.count - 2))
             }
             func formatSelected(attriText: NSMutableAttributedString) {
-                attriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.red, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], range: NSRange(location: 0, length: 2))
-                attriText.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)], range: NSRange(location: 2, length: attriText.string.count - 2))
+                attriText.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.red, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], range: NSRange(location: 0, length: 2))
+                attriText.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)], range: NSRange(location: 2, length: attriText.string.count - 2))
             }
             let mondayAttriText = NSMutableAttributedString(string: "周一\n1月7号")
             formatNormal(attriText: mondayAttriText)
@@ -194,7 +194,7 @@ class CellCustomizeViewController: UITableViewController {
             formatSelected(attriText: wednesdayAttriText)
             dataSource.selectedAttributedTitles = [mondayAttriText.copy(), tuesdayAttriText.copy(), wednesdayAttriText.copy()] as? [NSAttributedString]
             vc.segmentedDataSource = dataSource
-            //配置指示器
+            // 配置指示器
             let indicator = JXSegmentedIndicatorBackgroundView()
             indicator.indicatorHeight = 40
             indicator.indicatorCornerRadius = 5
@@ -207,6 +207,5 @@ class CellCustomizeViewController: UITableViewController {
         }
         navigationController?.pushViewController(vc, animated: true)
     }
-
 
 }

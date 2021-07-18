@@ -35,12 +35,12 @@ open class JXSegmentedTitleGradientDataSource: JXSegmentedTitleDataSource {
         itemModel.titleSelectedGradientColors = titleSelectedGradientColors
         if index == selectedIndex {
             itemModel.titleCurrentGradientColors = itemModel.titleSelectedGradientColors
-        }else {
+        } else {
             itemModel.titleCurrentGradientColors = itemModel.titleNormalGradientColors
         }
     }
 
-    //MARK: - JXSegmentedViewDataSource
+    // MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.collectionView.register(JXSegmentedTitleGradientCell.self, forCellWithReuseIdentifier: "cell")
     }

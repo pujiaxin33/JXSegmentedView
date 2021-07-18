@@ -71,23 +71,23 @@ open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
                 targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: rightWidth, percent: CGFloat(percent))
             }
         case .lengthen:
-            //前50%，只增加width；后50%，移动x并减小width
+            // 前50%，只增加width；后50%，移动x并减小width
             let maxWidth = rightX - leftX + rightWidth
             if percent <= 0.5 {
                 targetX = leftX
                 targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: maxWidth, percent: CGFloat(percent*2))
-            }else {
+            } else {
                 targetX = JXSegmentedViewTool.interpolate(from: leftX, to: rightX, percent: CGFloat((percent - 0.5)*2))
                 targetWidth = JXSegmentedViewTool.interpolate(from: maxWidth, to: rightWidth, percent: CGFloat((percent - 0.5)*2))
             }
         case .lengthenOffset:
-            //前50%，增加width，并少量移动x；后50%，少量移动x并减小width
+            // 前50%，增加width，并少量移动x；后50%，少量移动x并减小width
             let maxWidth = rightX - leftX + rightWidth - lineScrollOffsetX*2
             if percent <= 0.5 {
                 targetX = JXSegmentedViewTool.interpolate(from: leftX, to: leftX + lineScrollOffsetX, percent: CGFloat(percent*2))
                 targetWidth = JXSegmentedViewTool.interpolate(from: leftWidth, to: maxWidth, percent: CGFloat(percent*2))
-            }else {
-                targetX = JXSegmentedViewTool.interpolate(from:leftX + lineScrollOffsetX, to: rightX, percent: CGFloat((percent - 0.5)*2))
+            } else {
+                targetX = JXSegmentedViewTool.interpolate(from: leftX + lineScrollOffsetX, to: rightX, percent: CGFloat((percent - 0.5)*2))
                 targetWidth = JXSegmentedViewTool.interpolate(from: maxWidth, to: rightWidth, percent: CGFloat((percent - 0.5)*2))
             }
         }
@@ -108,7 +108,7 @@ open class JXSegmentedIndicatorLineView: JXSegmentedIndicatorBaseView {
                 self.frame = toFrame
             }) { (_) in
             }
-        }else {
+        } else {
             frame = toFrame
         }
     }

@@ -34,7 +34,7 @@ open class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
         titleLabel.numberOfLines = myItemModel.titleNumberOfLines
         if myItemModel.isSelected && myItemModel.selectedAttributedTitle != nil {
             titleLabel.attributedText = myItemModel.selectedAttributedTitle
-        }else {
+        } else {
             titleLabel.attributedText = myItemModel.attributedTitle
         }
     }

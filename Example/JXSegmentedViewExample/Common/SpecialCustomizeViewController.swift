@@ -60,7 +60,7 @@ class SpecialCustomizeViewController: UITableViewController {
             dataSource.isItemSpacingAverageEnabled = true
             dataSource.titles = titles
             vc.segmentedDataSource = dataSource
-            //配置指示器
+            // 配置指示器
             let indicator = JXSegmentedIndicatorLineView()
             vc.segmentedView.indicators = [indicator]
             navigationController?.pushViewController(vc, animated: true)
@@ -72,7 +72,7 @@ class SpecialCustomizeViewController: UITableViewController {
             dataSource.isItemSpacingAverageEnabled = false
             dataSource.titles = titles
             vc.segmentedDataSource = dataSource
-            //配置指示器
+            // 配置指示器
             let indicator = JXSegmentedIndicatorLineView()
             vc.segmentedView.indicators = [indicator]
             navigationController?.pushViewController(vc, animated: true)

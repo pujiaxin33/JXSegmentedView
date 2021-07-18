@@ -28,7 +28,7 @@ open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
     open class override var layerClass: AnyClass {
         return CAGradientLayer.self
     }
-    
+
     private var gradientMaskLayerFrame = CGRect.zero
 
     open override func commonInit() {
@@ -121,7 +121,7 @@ open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
             gradientMaskLayer.add(animation, forKey: "path")
             gradientMaskLayer.path = path.cgPath
-        }else {
+        } else {
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             gradientMaskLayer.path = path.cgPath

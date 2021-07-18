@@ -19,14 +19,14 @@ class LoadDataCustomListViewController: UITableViewController {
         super.viewDidLoad()
 
         refreshControl = UIRefreshControl()
-        refreshControl?.attributedTitle = NSAttributedString(string: "Loading...", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+        refreshControl?.attributedTitle = NSAttributedString(string: "Loading...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         refreshControl?.addTarget(self, action: #selector(headerRefresh), for: .valueChanged)
         tableView.register(PagingListBaseCell.self, forCellReuseIdentifier: "cell")
     }
 
     func loadDataForFirst() {
         if !isDataLoaded {
-            //为什么要手动设置contentoffset：https://stackoverflow.com/questions/14718850/uirefreshcontrol-beginrefreshing-not-working-when-uitableviewcontroller-is-ins
+            // 为什么要手动设置contentoffset：https://stackoverflow.com/questions/14718850/uirefreshcontrol-beginrefreshing-not-working-when-uitableviewcontroller-is-ins
             tableView.setContentOffset(CGPoint(x: 0, y: -refreshControl!.bounds.size.height), animated: true)
             headerRefresh()
         }
@@ -54,7 +54,7 @@ class LoadDataCustomListViewController: UITableViewController {
         }
     }
 
-    //MARK: - UITableViewDataSource & UITableViewDelegate
+    // MARK: - UITableViewDataSource & UITableViewDelegate
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }

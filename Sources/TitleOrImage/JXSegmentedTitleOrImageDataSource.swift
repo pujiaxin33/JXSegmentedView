@@ -38,7 +38,7 @@ open class JXSegmentedTitleOrImageDataSource: JXSegmentedTitleDataSource {
         itemModel.imageSize = imageSize
     }
 
-    //MARK: - JXSegmentedViewDataSource
+    // MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
         segmentedView.collectionView.register(JXSegmentedTitleOrImageCell.self, forCellWithReuseIdentifier: "cell")
     }

@@ -15,7 +15,7 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
     open override func commonInit() {
         super.commonInit()
 
-        //配置点的size
+        // 配置点的size
         indicatorWidth = 10
         indicatorHeight = 10
     }
@@ -61,11 +61,11 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
         let rightX = rightItemFrame.origin.x + (rightItemFrame.size.width - rightWidth)/2
         let centerX = leftX + (rightX - leftX - lineMaxWidth)/2
 
-        //前50%，移动x，增加宽度；后50%，移动x并减小width
+        // 前50%，移动x，增加宽度；后50%，移动x并减小width
         if percent <= 0.5 {
             targetX = JXSegmentedViewTool.interpolate(from: leftX, to: centerX, percent: CGFloat(percent*2))
             targetWidth = JXSegmentedViewTool.interpolate(from: dotWidth, to: lineMaxWidth, percent: CGFloat(percent*2))
-        }else {
+        } else {
             targetX = JXSegmentedViewTool.interpolate(from: centerX, to: rightX, percent: CGFloat((percent - 0.5)*2))
             targetWidth = JXSegmentedViewTool.interpolate(from: lineMaxWidth, to: dotWidth, percent: CGFloat((percent - 0.5)*2))
         }
@@ -86,7 +86,7 @@ open class JXSegmentedIndicatorDotLineView: JXSegmentedIndicatorBaseView {
                 self.frame = toFrame
             }) { (_) in
             }
-        }else {
+        } else {
             frame = toFrame
         }
     }

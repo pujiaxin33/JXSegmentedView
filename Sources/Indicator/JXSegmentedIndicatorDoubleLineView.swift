@@ -80,7 +80,7 @@ open class JXSegmentedIndicatorDoubleLineView: JXSegmentedIndicatorBaseView {
             otherLineView.bounds.size.width = rightWidth
             otherLineView.center = rightCenter
             otherLineView.alpha = rightAlpha
-        }else {
+        } else {
             otherLineView.bounds.size.width = leftWidth
             otherLineView.center = leftCenter
             otherLineView.alpha = leftAlpha

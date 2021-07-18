@@ -11,7 +11,7 @@ import UIKit
 @objc public class PagingListBaseView: UIView {
     @objc public var tableView: UITableView!
     @objc public var dataSource: [String]?
-    var listViewDidScrollCallback: ((UIScrollView) -> ())?
+    var listViewDidScrollCallback: ((UIScrollView) -> Void)?
     private var isHeaderRefreshed: Bool = false
     deinit {
         listViewDidScrollCallback = nil
@@ -35,7 +35,6 @@ import UIKit
             self.tableView.reloadData()
         }
     }
-
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -76,8 +75,8 @@ extension PagingListBaseView: JXPagingViewListViewDelegate {
     public func listView() -> UIView {
         return self
     }
-    
-    public func listViewDidScrollCallback(callback: @escaping (UIScrollView) -> ()) {
+
+    public func listViewDidScrollCallback(callback: @escaping (UIScrollView) -> Void) {
         self.listViewDidScrollCallback = callback
     }
 

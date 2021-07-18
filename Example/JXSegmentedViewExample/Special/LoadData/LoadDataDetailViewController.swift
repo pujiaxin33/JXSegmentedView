@@ -23,7 +23,7 @@ class LoadDataDetailViewController: UIViewController {
         textLabel.font = UIFont.systemFont(ofSize: 18)
         view.addSubview(textLabel)
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -31,6 +31,5 @@ class LoadDataDetailViewController: UIViewController {
         textLabel.sizeToFit()
         textLabel.center = view.center
     }
-
 
 }

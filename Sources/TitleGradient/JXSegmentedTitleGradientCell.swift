@@ -44,7 +44,7 @@ open class JXSegmentedTitleGradientCell: JXSegmentedTitleCell {
             let closure: JXSegmentedCellSelectedAnimationClosure = {[weak self] (percent) in
                 if myItemModel.isSelected {
                     myItemModel.titleCurrentGradientColors = JXSegmentedViewTool.interpolateColors(from: myItemModel.titleNormalGradientColors, to: myItemModel.titleSelectedGradientColors, percent: percent)
-                }else {
+                } else {
                     myItemModel.titleCurrentGradientColors = JXSegmentedViewTool.interpolateColors(from: myItemModel.titleSelectedGradientColors, to: myItemModel.titleNormalGradientColors, percent: percent)
                 }
                 CATransaction.begin()
@@ -58,7 +58,7 @@ open class JXSegmentedTitleGradientCell: JXSegmentedTitleCell {
             canStartSelectedAnimation = true
             startSelectedAnimationIfNeeded(itemModel: myItemModel, selectedType: selectedType)
             canStartSelectedAnimation = false
-        }else {
+        } else {
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             gradientLayer.startPoint = myItemModel.titleGradientStartPoint

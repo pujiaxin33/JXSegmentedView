@@ -21,17 +21,17 @@ class NestChildViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        
-        //配置数据源
+
+        // 配置数据源
         segmentedDataSource.isTitleColorGradientEnabled = true
         segmentedDataSource.titles = titles
 
-        //配置指示器
+        // 配置指示器
         let indicator = JXSegmentedIndicatorLineView()
         indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
         indicator.lineStyle = .lengthen
 
-        //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
+        // segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedView.dataSource = segmentedDataSource
         segmentedView.indicators = [indicator]
         segmentedView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 50)
