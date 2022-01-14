@@ -143,7 +143,7 @@ view.addSubview(self.segmentedView)
 segmentedDataSource = JXSegmentedTitleDataSource()
 //配置数据源相关配置属性
 segmentedDataSource.titles = ["猴哥", "青蛙王子", "旺财"]
-egmentedDataSource.isTitleColorGradientEnabled = true
+segmentedDataSource.isTitleColorGradientEnabled = true
 //关联dataSource
 segmentedView.dataSource = self.segmentedDataSource
 ```
