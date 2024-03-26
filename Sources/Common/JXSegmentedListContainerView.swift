@@ -428,7 +428,7 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView.isTracking || scrollView.isDragging else {
+        guard scrollView.isTracking || scrollView.isDragging || scrollView.isDecelerating else {
             return
         }
         let percent = scrollView.contentOffset.x/scrollView.bounds.size.width
