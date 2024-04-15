@@ -713,7 +713,11 @@ extension JXSegmentedView: UICollectionViewDelegateFlowLayout {
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemDataSource[indexPath.item].itemWidth, height: collectionView.bounds.size.height)
+        if indexPath.item >= 0, indexPath.item < itemDataSource.count {
+            return CGSize(width: itemDataSource[indexPath.item].itemWidth, height: collectionView.bounds.size.height)
+        } else {
+            return .zero
+        }
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return innerItemSpacing
