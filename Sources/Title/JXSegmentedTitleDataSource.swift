@@ -12,7 +12,7 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource {
     /// title数组
     open var titles = [String]()
     /// 根据index配置cell的不同属性
-    open var configuration: JXSegmentedTitleDynamicConfiguration?
+    open weak var configuration: JXSegmentedTitleDynamicConfiguration?
     /// 如果将JXSegmentedView嵌套进UITableView的cell，每次重用的时候，JXSegmentedView进行reloadData时，会重新计算所有的title宽度。所以该应用场景，需要UITableView的cellModel缓存titles的文字宽度，再通过该闭包方法返回给JXSegmentedView。
     open var widthForTitleClosure: ((String)->(CGFloat))?
     /// label的numberOfLines

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol JXSegmentedTitleDynamicConfiguration {
+public protocol JXSegmentedTitleDynamicConfiguration: NSObject {
     func titleNumberOfLines(at index: Int) -> Int
     func titleNormalColor(at index: Int) -> UIColor
     func titleSelectedColor(at index: Int) -> UIColor
