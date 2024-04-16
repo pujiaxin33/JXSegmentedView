@@ -16,6 +16,25 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.isTranslucent = false
         tableView.rowHeight = 44
         title = "JXSegmentedView Example"
+        configNavigationBar()
+    }
+    
+    private func configNavigationBar() {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 18, weight: .medium)]
+        if #available(iOS 15.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .white
+            appearance.titleTextAttributes = titleAttributes
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.standardAppearance = appearance
+        } else {
+            navigationController?.navigationBar.barTintColor = .white
+            navigationController?.navigationBar.titleTextAttributes = titleAttributes
+            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationController?.navigationBar.isTranslucent = false
+            navigationController?.navigationBar.tintColor = .black
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
