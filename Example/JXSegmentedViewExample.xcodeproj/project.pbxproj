@@ -57,6 +57,7 @@
 		19F1D2F92339B0D100EEFB77 /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
 		19F1D2FA2339B0D100EEFB77 /* JXSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A8168092249CCB9900837DEC /* PagingListBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8168091249CCB9900837DEC /* PagingListBaseCell.swift */; };
+		B28C5F1C2BCE492600AC384B /* TitleConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28C5F1B2BCE492600AC384B /* TitleConfigurationViewController.swift */; };
 		B2FCEB812BCE13A80046A814 /* ListCacheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FCEB802BCE13A80046A814 /* ListCacheViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +129,7 @@
 		A80CD84E24A1A73C00FF22C8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A80CD84F24A1A73C00FF22C8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		A8168091249CCB9900837DEC /* PagingListBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingListBaseCell.swift; sourceTree = "<group>"; };
+		B28C5F1B2BCE492600AC384B /* TitleConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConfigurationViewController.swift; sourceTree = "<group>"; };
 		B2FCEB802BCE13A80046A814 /* ListCacheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCacheViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 		1908EE59226F05BA00E03FD5 /* Special */ = {
 			isa = PBXGroup;
 			children = (
+				B28C5F1A2BCE2BD000AC384B /* Cell */,
 				1908EE5A226F05BA00E03FD5 /* Personal */,
 				1908EE63226F05BA00E03FD5 /* NaviItemGesture */,
 				1908EE65226F05BA00E03FD5 /* LoadData */,
@@ -337,6 +340,14 @@
 			path = JXPagingView;
 			sourceTree = "<group>";
 		};
+		B28C5F1A2BCE2BD000AC384B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B28C5F1B2BCE492600AC384B /* TitleConfigurationViewController.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B2FCEB7F2BCE13840046A814 /* ListCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +448,7 @@
 				197927B226203F2800BDA8AE /* JXPagingListRefreshView.swift in Sources */,
 				1908EECA226F05BA00E03FD5 /* TestListBaseView.swift in Sources */,
 				1908EEC7226F05BA00E03FD5 /* CellCustomizeViewController.swift in Sources */,
+				B28C5F1C2BCE492600AC384B /* TitleConfigurationViewController.swift in Sources */,
 				197927B026203F2800BDA8AE /* JXPagingSmoothView.swift in Sources */,
 				1908EEC5226F05BA00E03FD5 /* NestChildViewController.swift in Sources */,
 				B2FCEB812BCE13A80046A814 /* ListCacheViewController.swift in Sources */,

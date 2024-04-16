@@ -692,7 +692,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CellCustomizeViewController" id="nMi-XG-NOJ" customClass="CellCustomizeViewController" customModule="JXSegmentedViewExample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pk7-ae-bqa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -992,6 +992,27 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="itz-t3-JQL">
+                                        <rect key="frame" x="0.0" y="659" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="itz-t3-JQL" id="beN-8A-CFW">
+                                            <rect key="frame" x="0.0" y="0.0" width="348.5" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Configuration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgi-DX-zN7">
+                                                    <rect key="frame" x="16" y="11.5" width="141" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bgi-DX-zN7" firstAttribute="leading" secondItem="beN-8A-CFW" secondAttribute="leading" constant="16" id="28z-IW-NCg"/>
+                                                <constraint firstItem="bgi-DX-zN7" firstAttribute="centerY" secondItem="beN-8A-CFW" secondAttribute="centerY" id="9B3-QZ-tDW"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bgi-DX-zN7" secondAttribute="trailing" constant="20" symbolic="YES" id="Eqj-0p-Yh3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1000,10 +1021,11 @@
                             <outlet property="delegate" destination="nMi-XG-NOJ" id="1kt-ox-QMW"/>
                         </connections>
                     </tableView>
+                    <size key="freeformSize" width="375" height="800"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBR-Qv-zke" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2577" y="115"/>
+            <point key="canvasLocation" x="2577" y="152"/>
         </scene>
         <!--Special Customize View Controller-->
         <scene sceneID="w1R-0w-rk8">
@@ -1258,7 +1280,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oxp-9O-39B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2577" y="887"/>
+            <point key="canvasLocation" x="2577" y="945"/>
         </scene>
     </scenes>
 </document>

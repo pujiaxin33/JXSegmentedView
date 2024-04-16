@@ -203,6 +203,10 @@ class CellCustomizeViewController: UITableViewController {
         case "多种cell":
             let dataSource = JXSegmentedMixcellDataSource()
             vc.segmentedDataSource = dataSource
+        case "Title Configuration":
+            let vc = TitleConfigurationViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            return
         default:
             break
         }
