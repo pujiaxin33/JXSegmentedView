@@ -171,7 +171,7 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         }
     }
     /// indicators的元素必须是遵从JXSegmentedIndicatorProtocol协议的UIView及其子类
-    open var indicators = [JXSegmentedIndicatorProtocol & UIView]() {
+    open var indicators = [JXSegmentedIndicatorProtocol]() {
         didSet {
             collectionView.indicators = indicators
         }
