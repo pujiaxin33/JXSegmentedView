@@ -57,6 +57,7 @@
 		19F1D2F92339B0D100EEFB77 /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
 		19F1D2FA2339B0D100EEFB77 /* JXSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A8168092249CCB9900837DEC /* PagingListBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8168091249CCB9900837DEC /* PagingListBaseCell.swift */; };
+		B2FCEB812BCE13A80046A814 /* ListCacheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FCEB802BCE13A80046A814 /* ListCacheViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +128,7 @@
 		A80CD84E24A1A73C00FF22C8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A80CD84F24A1A73C00FF22C8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		A8168091249CCB9900837DEC /* PagingListBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingListBaseCell.swift; sourceTree = "<group>"; };
+		B2FCEB802BCE13A80046A814 /* ListCacheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCacheViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 		1908EE65226F05BA00E03FD5 /* LoadData */ = {
 			isa = PBXGroup;
 			children = (
+				B2FCEB7F2BCE13840046A814 /* ListCache */,
 				1908EE66226F05BA00E03FD5 /* WithListContainerView */,
 				1908EE69226F05BA00E03FD5 /* ListCustom */,
 				1908EE6D226F05BA00E03FD5 /* LoadDataDetailViewController.swift */,
@@ -334,6 +337,14 @@
 			path = JXPagingView;
 			sourceTree = "<group>";
 		};
+		B2FCEB7F2BCE13840046A814 /* ListCache */ = {
+			isa = PBXGroup;
+			children = (
+				B2FCEB802BCE13A80046A814 /* ListCacheViewController.swift */,
+			);
+			path = ListCache;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -428,6 +439,7 @@
 				1908EEC7226F05BA00E03FD5 /* CellCustomizeViewController.swift in Sources */,
 				197927B026203F2800BDA8AE /* JXPagingSmoothView.swift in Sources */,
 				1908EEC5226F05BA00E03FD5 /* NestChildViewController.swift in Sources */,
+				B2FCEB812BCE13A80046A814 /* ListCacheViewController.swift in Sources */,
 				1908EEC2226F05BA00E03FD5 /* NaviSegmentedControlViewController.swift in Sources */,
 				194A91E923C70124006BE6AB /* GridCellExampleViewController.swift in Sources */,
 				1908EEC9226F05BA00E03FD5 /* ListBaseViewController.swift in Sources */,
