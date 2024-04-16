@@ -1,4 +1,0 @@
-framework module JXSegmentedView {
-  header "JXSegmentedView-Swift.h"
-  requires objc
-}
