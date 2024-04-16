@@ -224,6 +224,7 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "JXSegmentedViewInnerEmptyCell")
         collectionView.dataSource = self
         collectionView.delegate = self
         if #available(iOS 10.0, *) {
@@ -686,7 +687,7 @@ extension JXSegmentedView: UICollectionViewDataSource {
             cell.reloadData(itemModel: itemDataSource[indexPath.item], selectedType: .unknown)
             return cell
         }else {
-            return UICollectionViewCell(frame: CGRect.zero)
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "JXSegmentedViewInnerEmptyCell", for: indexPath)
         }
     }
 }
