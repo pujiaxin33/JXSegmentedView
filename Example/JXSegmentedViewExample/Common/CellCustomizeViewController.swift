@@ -107,6 +107,7 @@ class CellCustomizeViewController: UITableViewController {
             dataSource.titles = titles
             dataSource.numbers = numbers
 //            dataSource.numberHeight = 20
+//            dataSource.numberFont = .systemFont(ofSize: 15)
             dataSource.numberStringFormatterClosure = {(number) -> String in
                 if number > 999 {
                     return "999+"
@@ -202,6 +203,10 @@ class CellCustomizeViewController: UITableViewController {
         case "多种cell":
             let dataSource = JXSegmentedMixcellDataSource()
             vc.segmentedDataSource = dataSource
+        case "Title Configuration":
+            let vc = TitleConfigurationViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            return
         default:
             break
         }

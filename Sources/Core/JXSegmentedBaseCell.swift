@@ -99,4 +99,20 @@ open class JXSegmentedBaseCell: UICollectionViewCell, JXSegmentedViewRTLCompatib
             }
         }
     }
+    
+    open override var isSelected: Bool {
+        didSet {
+            setSelectedStyle(isSelected: isSelected)
+        }
+    }
+    
+    open override var isHighlighted: Bool {
+        didSet {
+            setSelectedStyle(isSelected: isHighlighted)
+        }
+    }
+    
+    func setSelectedStyle(isSelected: Bool) {
+        
+    }
 }

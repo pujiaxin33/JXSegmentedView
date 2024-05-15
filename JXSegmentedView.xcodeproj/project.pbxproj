@@ -50,6 +50,8 @@
 		1908F027226F0B3800E03FD5 /* JXSegmentedTitleAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908EFFE226F0B3800E03FD5 /* JXSegmentedTitleAttributeCell.swift */; };
 		19F546C624B32DAA0090B70C /* JXSegmentedIndicatorGradientLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F546C524B32DAA0090B70C /* JXSegmentedIndicatorGradientLineView.swift */; };
 		A8BA413D249B0CB1004E6389 /* JXSegmentedRTLLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA413C249B0CB1004E6389 /* JXSegmentedRTLLayout.swift */; };
+		B28C5F192BCE26ED00AC384B /* JXSegmentedTitleDynamicConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28C5F182BCE26ED00AC384B /* JXSegmentedTitleDynamicConfiguration.swift */; };
+		B2D75F3A2BB1B35E00A26560 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2D75F392BB1B35E00A26560 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +100,8 @@
 		1908EFFE226F0B3800E03FD5 /* JXSegmentedTitleAttributeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeCell.swift; sourceTree = "<group>"; };
 		19F546C524B32DAA0090B70C /* JXSegmentedIndicatorGradientLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorGradientLineView.swift; sourceTree = "<group>"; };
 		A8BA413C249B0CB1004E6389 /* JXSegmentedRTLLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedRTLLayout.swift; sourceTree = "<group>"; };
+		B28C5F182BCE26ED00AC384B /* JXSegmentedTitleDynamicConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleDynamicConfiguration.swift; sourceTree = "<group>"; };
+		B2D75F392BB1B35E00A26560 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 				1908EFF3226F0B3700E03FD5 /* Number */,
 				1908EFF7226F0B3700E03FD5 /* Common */,
 				1908EFFB226F0B3800E03FD5 /* AttributeTitle */,
+				B2D75F392BB1B35E00A26560 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 			children = (
 				1908EFEC226F0B3700E03FD5 /* JXSegmentedTitleCell.swift */,
 				1908EFED226F0B3700E03FD5 /* JXSegmentedTitleItemModel.swift */,
+				B28C5F182BCE26ED00AC384B /* JXSegmentedTitleDynamicConfiguration.swift */,
 				1908EFEE226F0B3700E03FD5 /* JXSegmentedTitleDataSource.swift */,
 			);
 			path = Title;
@@ -325,6 +331,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2D75F3A2BB1B35E00A26560 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +351,7 @@
 				1908F019226F0B3800E03FD5 /* JXSegmentedTitleCell.swift in Sources */,
 				1908F00F226F0B3800E03FD5 /* JXSegmentedIndicatorProtocol.swift in Sources */,
 				1908F00C226F0B3800E03FD5 /* JXSegmentedIndicatorImageView.swift in Sources */,
+				B28C5F192BCE26ED00AC384B /* JXSegmentedTitleDynamicConfiguration.swift in Sources */,
 				1908F005226F0B3800E03FD5 /* JXSegmentedCollectionView.swift in Sources */,
 				1908F003226F0B3800E03FD5 /* JXSegmentedBaseItemModel.swift in Sources */,
 				1908F011226F0B3800E03FD5 /* JXSegmentedIndicatorDoubleLineView.swift in Sources */,

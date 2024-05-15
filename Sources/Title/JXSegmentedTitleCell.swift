@@ -188,12 +188,20 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
         return {[weak self] (percent) in
             if itemModel.isSelected {
                 //将要选中，textColor从titleNormalColor到titleSelectedColor插值渐变
-                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleNormalColor, to: itemModel.titleSelectedColor, percent: percent)
+                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateThemeColor(from: itemModel.titleNormalColor, to: itemModel.titleSelectedColor, percent: percent)
             }else {
                 //将要取消选中，textColor从titleSelectedColor到titleNormalColor插值渐变
-                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateColor(from: itemModel.titleSelectedColor, to: itemModel.titleNormalColor, percent: percent)
+                itemModel.titleCurrentColor = JXSegmentedViewTool.interpolateThemeColor(from: itemModel.titleSelectedColor, to: itemModel.titleNormalColor, percent: percent)
             }
             self?.titleLabel.textColor = itemModel.titleCurrentColor
+        }
+    }
+    
+    override func setSelectedStyle(isSelected: Bool) {
+        if isSelected {
+            self.titleLabel.textColor = (self.itemModel as? JXSegmentedTitleItemModel)?.titleSelectedColor
+        } else {
+            self.titleLabel.textColor = (self.itemModel as? JXSegmentedTitleItemModel)?.titleNormalColor
         }
     }
 }

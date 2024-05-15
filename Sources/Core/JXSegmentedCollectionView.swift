@@ -10,7 +10,7 @@ import UIKit
 
 open class JXSegmentedCollectionView: UICollectionView {
 
-    open var indicators = [JXSegmentedIndicatorProtocol & UIView]() {
+    open var indicators = [JXSegmentedIndicatorProtocol]() {
         willSet {
             for indicator in indicators {
                 indicator.removeFromSuperview()
