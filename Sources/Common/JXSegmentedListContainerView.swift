@@ -252,6 +252,27 @@ open class JXSegmentedListContainerView: UIView, JXSegmentedViewListContainer, J
         listDidAppear(at: currentIndex)
     }
 
+    open func invalidateList(at index: Int) {
+        guard let dataSource = dataSource, let list = validListDict[index] else { return }
+
+        if let listVC = list as? UIViewController {
+            listVC.removeFromParent()
+        }
+        list.listView().removeFromSuperview()
+        validListDict.removeValue(forKey: index)
+
+        if type == .scrollView {
+            scrollView.contentSize = CGSize(width: scrollView.bounds.size.width*CGFloat(dataSource.numberOfLists(in: self)), height: scrollView.bounds.size.height)
+        } else {
+            collectionView.reloadData()
+        }
+
+        if currentIndex == index {
+            listWillAppear(at: currentIndex)
+            listDidAppear(at: currentIndex)
+        }
+    }
+
     //MARK: - Private
     func initListIfNeeded(at index: Int) {
         guard let dataSource = dataSource else { return }
