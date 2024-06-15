@@ -118,7 +118,11 @@ open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
             animation.fromValue = gradientMaskLayer.path
             animation.toValue = path.cgPath
             animation.duration = scrollAnimationDuration
-            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+            if #available(iOS 12.0, *) {
+                animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+            } else {
+                animation.timingFunction = CAMediaTimingFunction(controlPoints: 0.0, 0.0, 0.58, 1.0)
+            }
             gradientMaskLayer.add(animation, forKey: "path")
             gradientMaskLayer.path = path.cgPath
         }else {
