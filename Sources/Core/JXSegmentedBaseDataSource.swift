@@ -44,6 +44,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
 
     deinit {
         animator?.stop()
+        animator = nil
     }
 
     public init() {
@@ -53,6 +54,8 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
     ///
     /// - Parameter selectedIndex: 当前选中的index
     open func reloadData(selectedIndex: Int) {
+        animator?.stop()
+        animator = nil
         dataSource.removeAll()
         for index in 0..<preferredItemCount() {
             let itemModel = preferredItemModelInstance()
