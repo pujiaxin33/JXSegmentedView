@@ -118,7 +118,7 @@ open class JXSegmentedIndicatorGradientView: JXSegmentedIndicatorBaseView {
             animation.fromValue = gradientMaskLayer.path
             animation.toValue = path.cgPath
             animation.duration = scrollAnimationDuration
-            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+            animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
             gradientMaskLayer.add(animation, forKey: "path")
             gradientMaskLayer.path = path.cgPath
         }else {
