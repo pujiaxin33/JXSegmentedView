@@ -55,6 +55,7 @@ open class JXSegmentedTitleImageCell: JXSegmentedTitleCell {
             case .onlyTitle:
                 titleLabel.center = CGPoint(x: contentView.bounds.size.width/2, y: contentView.bounds.size.height/2)
         }
+        maskTitleLabel.center = titleLabel.center
     }
 
     open override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {
