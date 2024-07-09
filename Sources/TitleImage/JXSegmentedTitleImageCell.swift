@@ -22,38 +22,41 @@ open class JXSegmentedTitleImageCell: JXSegmentedTitleCell {
         super.commonInit()
 
         imageView.contentMode = .scaleAspectFit
-        contentView.addSubview(imageView)
+        contentView.insertSubview(imageView, belowSubview: titleLabel)
     }
 
     open override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         guard let myItemModel = itemModel as? JXSegmentedTitleImageItemModel else {
             return
         }
-
+        
         let imageSize = myItemModel.imageSize
         switch myItemModel.titleImageType {
-            case .topImage:
-                let contentHeight = imageSize.height + myItemModel.titleImageSpacing + titleLabel.bounds.size.height
-                imageView.center = CGPoint(x: contentView.bounds.size.width/2, y: (contentView.bounds.size.height - contentHeight)/2 + imageSize.height/2)
-                titleLabel.center = CGPoint(x: contentView.bounds.size.width/2, y: imageView.frame.maxY + myItemModel.titleImageSpacing + titleLabel.bounds.size.height/2)
-            case .leftImage:
-                let contentWidth = imageSize.width + myItemModel.titleImageSpacing + titleLabel.bounds.size.width
-                imageView.center = CGPoint(x: (contentView.bounds.size.width - contentWidth)/2 + imageSize.width/2, y: contentView.bounds.size.height/2)
-                titleLabel.center = CGPoint(x: imageView.frame.maxX + myItemModel.titleImageSpacing + titleLabel.bounds.size.width/2, y: contentView.bounds.size.height/2)
-            case .bottomImage:
-                let contentHeight = imageSize.height + myItemModel.titleImageSpacing + titleLabel.bounds.size.height
-                titleLabel.center = CGPoint(x: contentView.bounds.size.width/2, y: (contentView.bounds.size.height - contentHeight)/2 + titleLabel.bounds.size.height/2)
-                imageView.center = CGPoint(x: contentView.bounds.size.width/2, y: titleLabel.frame.maxY + myItemModel.titleImageSpacing + imageSize.height/2)
-            case .rightImage:
-                let contentWidth = imageSize.width + myItemModel.titleImageSpacing + titleLabel.bounds.size.width
-                titleLabel.center = CGPoint(x: (contentView.bounds.size.width - contentWidth)/2 + titleLabel.bounds.size.width/2, y: contentView.bounds.size.height/2)
-                imageView.center = CGPoint(x: titleLabel.frame.maxX + myItemModel.titleImageSpacing + imageSize.width/2, y: contentView.bounds.size.height/2)
-            case .onlyImage:
-                imageView.center = CGPoint(x: contentView.bounds.size.width/2, y: contentView.bounds.size.height/2)
-            case .onlyTitle:
-                titleLabel.center = CGPoint(x: contentView.bounds.size.width/2, y: contentView.bounds.size.height/2)
+        case .topImage:
+            let contentHeight = imageSize.height + myItemModel.titleImageSpacing + titleLabel.bounds.size.height
+            imageView.center = CGPoint(x: contentView.bounds.size.width/2, y: (contentView.bounds.size.height - contentHeight)/2 + imageSize.height/2)
+            titleLabel.center = CGPoint(x: contentView.bounds.size.width/2, y: imageView.frame.maxY + myItemModel.titleImageSpacing + titleLabel.bounds.size.height/2)
+        case .leftImage:
+            let contentWidth = imageSize.width + myItemModel.titleImageSpacing + titleLabel.bounds.size.width
+            imageView.center = CGPoint(x: (contentView.bounds.size.width - contentWidth)/2 + imageSize.width/2, y: contentView.bounds.size.height/2)
+            titleLabel.center = CGPoint(x: imageView.frame.maxX + myItemModel.titleImageSpacing + titleLabel.bounds.size.width/2, y: contentView.bounds.size.height/2)
+        case .bottomImage:
+            let contentHeight = imageSize.height + myItemModel.titleImageSpacing + titleLabel.bounds.size.height
+            titleLabel.center = CGPoint(x: contentView.bounds.size.width/2, y: (contentView.bounds.size.height - contentHeight)/2 + titleLabel.bounds.size.height/2)
+            imageView.center = CGPoint(x: contentView.bounds.size.width/2, y: titleLabel.frame.maxY + myItemModel.titleImageSpacing + imageSize.height/2)
+        case .rightImage:
+            let contentWidth = imageSize.width + myItemModel.titleImageSpacing + titleLabel.bounds.size.width
+            titleLabel.center = CGPoint(x: (contentView.bounds.size.width - contentWidth)/2 + titleLabel.bounds.size.width/2, y: contentView.bounds.size.height/2)
+            imageView.center = CGPoint(x: titleLabel.frame.maxX + myItemModel.titleImageSpacing + imageSize.width/2, y: contentView.bounds.size.height/2)
+        case .onlyImage:
+            imageView.center = CGPoint(x: contentView.bounds.size.width/2, y: contentView.bounds.size.height/2)
+        case .onlyTitle:
+            titleLabel.center = CGPoint(x: contentView.bounds.size.width/2, y: contentView.bounds.size.height/2)
+        case .backgroundImage:
+            imageView.center = CGPoint(x: contentView.bounds.size.width/2, y: contentView.bounds.size.height/2)
+            titleLabel.center = CGPoint(x: contentView.bounds.size.width/2, y: contentView.bounds.size.height/2)
         }
         maskTitleLabel.center = titleLabel.center
     }

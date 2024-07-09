@@ -18,7 +18,7 @@ class TitleImageSettingViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let types: [JXSegmentedTitleImageType] = [.topImage, .leftImage, .bottomImage, .rightImage, .onlyImage, .onlyTitle]
+        let types: [JXSegmentedTitleImageType] = [.topImage, .leftImage, .bottomImage, .rightImage, .onlyImage, .onlyTitle, .backgroundImage]
         clickedClosure?(types[indexPath.row])
         navigationController?.popViewController(animated: true)
     }
