@@ -37,5 +37,6 @@ open class JXSegmentedTitleAttributeCell: JXSegmentedBaseCell {
         }else {
             titleLabel.attributedText = myItemModel.attributedTitle
         }
+        titleLabel.textAlignment = .center
     }
 }
