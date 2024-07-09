@@ -70,7 +70,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
             case .leftImage, .rightImage:
                 width += titleImageSpacing + imageSize.width
             case .topImage, .bottomImage:
-                width = max(itemWidth, imageSize.width)
+                width = max(width, imageSize.width)
             case .onlyImage:
                 width = imageSize.width
             case .onlyTitle:
