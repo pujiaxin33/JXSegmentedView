@@ -11,6 +11,10 @@ import JXSegmentedView
 
 class NaviSegmentedControlViewController: ContentBaseViewController {
     let totalItemWidth: CGFloat = 150
+    
+    deinit {
+        print("NaviSegmentedControlViewController deinited")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
