@@ -100,6 +100,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             //允许mask，maskTitleLabel在titleLabel上面，maskTitleLabel设置为titleSelectedColor。titleLabel设置为titleNormalColor
             //为了显示效果，使用了双遮罩。即titleMaskLayer遮罩titleLabel，maskTitleMaskLayer遮罩maskTitleLabel
             maskTitleLabel.isHidden = false
+            maskTitleLabel.layer.mask = maskTitleMaskLayer
             titleLabel.textColor = myItemModel.titleNormalColor
             maskTitleLabel.textColor = myItemModel.titleSelectedColor
             let labelSize = maskTitleLabel.sizeThatFits(self.contentView.bounds.size)
@@ -139,6 +140,7 @@ open class JXSegmentedTitleCell: JXSegmentedBaseCell {
             CATransaction.commit()
         }else {
             maskTitleLabel.isHidden = true
+            maskTitleLabel.layer.mask = nil
             titleLabel.layer.mask = nil
             if myItemModel.isSelectedAnimable && canStartSelectedAnimation(itemModel: itemModel, selectedType: selectedType) {
                 //允许动画且当前是点击的
