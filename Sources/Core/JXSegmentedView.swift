@@ -150,6 +150,7 @@ public extension JXSegmentedViewDelegate {
 open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
     open weak var dataSource: JXSegmentedViewDataSource? {
         didSet {
+            dataSource?.registerCellClass(in: self)
             dataSource?.reloadData(selectedIndex: selectedIndex)
         }
     }
@@ -289,7 +290,6 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
 
     open func reloadDataWithoutListContainer() {
         dataSource?.reloadData(selectedIndex: selectedIndex)
-        dataSource?.registerCellClass(in: self)
         if let itemSource = dataSource?.itemDataSource(in: self) {
             itemDataSource = itemSource
         }
