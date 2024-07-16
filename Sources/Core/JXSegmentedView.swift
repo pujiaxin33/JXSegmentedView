@@ -263,6 +263,11 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         if isFirstLayoutSubviews {
             isFirstLayoutSubviews = false
             collectionView.frame = targetFrame
+            
+            if let listContainerView = listContainer as? UIView {
+                listContainerView.layoutSubviews()
+            }
+
             reloadDataWithoutListContainer()
         }else {
             if collectionView.frame != targetFrame {
@@ -356,18 +361,6 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         collectionView.setContentOffset(CGPoint(x: max(min(maxX, targetX), minX), y: 0), animated: false)
 
         if contentScrollView != nil {
-            if contentScrollView!.frame.equalTo(CGRect.zero) &&
-                contentScrollView!.superview != nil {
-                //某些情况系统会出现JXSegmentedView先布局，contentScrollView后布局。就会导致下面指定defaultSelectedIndex失效，所以发现contentScrollView的frame为zero时，强行触发其父视图链里面已经有frame的一个父视图的layoutSubviews方法。
-                //比如JXSegmentedListContainerView会将contentScrollView包裹起来使用，该情况需要JXSegmentedListContainerView.superView触发布局更新
-                var parentView = contentScrollView?.superview
-                while parentView != nil && parentView?.frame.equalTo(CGRect.zero) == true {
-                    parentView = parentView?.superview
-                }
-                parentView?.setNeedsLayout()
-                parentView?.layoutIfNeeded()
-            }
-
             contentScrollView!.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * contentScrollView!.bounds.size.width
                 , y: 0), animated: false)
         }
