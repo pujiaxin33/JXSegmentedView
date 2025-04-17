@@ -25,6 +25,12 @@ open class JXSegmentedDotCell: JXSegmentedTitleCell {
         }
 
         dotView.center = CGPoint(x: titleLabel.frame.maxX + myItemModel.dotOffset.x, y: titleLabel.frame.minY + myItemModel.dotOffset.y)
+        
+        /// fix issue #167: 标题 只有小红点的话，显示的时候红点🔴会有被切掉的感觉，不是圆形展示
+        /// 原因：iOS设备的屏幕分辨率通常使用整数像素来进行渲染。带有小数点的坐标可能导致视图位置的像素对齐不精确，尤其是在某些较低分辨率的屏幕上，可能会导致视图边缘不平整，圆角部分被切割掉。
+        /// 解决方案：起始点取整
+        dotView.frame.origin.x = round(dotView.frame.origin.x)
+        dotView.frame.origin.y = round(dotView.frame.origin.y)
     }
 
     open override func reloadData(itemModel: JXSegmentedBaseItemModel, selectedType: JXSegmentedViewItemSelectedType) {

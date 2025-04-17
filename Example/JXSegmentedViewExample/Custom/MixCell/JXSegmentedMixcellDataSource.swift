@@ -33,6 +33,13 @@ class JXSegmentedMixcellDataSource: JXSegmentedBaseDataSource {
         numberModel.numberString = "33"
         numberModel.numberWidthIncrement = 10
         dataSource.append(numberModel)
+        
+        let minimumWidthNumberModel = JXSegmentedNumberItemModel()
+        minimumWidthNumberModel.title = "最小宽度数字"
+        minimumWidthNumberModel.number = 9
+        minimumWidthNumberModel.numberString = "9"
+        minimumWidthNumberModel.numberMinimumWidth = 14
+        dataSource.append(minimumWidthNumberModel)
 
         let dotModel = JXSegmentedDotItemModel()
         dotModel.title = "红点"
