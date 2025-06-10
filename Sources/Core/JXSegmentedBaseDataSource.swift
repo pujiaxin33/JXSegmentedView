@@ -106,7 +106,7 @@ open class JXSegmentedBaseDataSource: JXSegmentedViewDataSource {
         return preferredSegmentedView(segmentedView, widthForItemAt: index)
     }
 
-    public func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
+    open func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
         return self.segmentedView(segmentedView, widthForItemAt: index)
     }
 

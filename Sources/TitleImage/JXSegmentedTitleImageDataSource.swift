@@ -83,7 +83,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
         return width
     }
 
-    public override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
+    open override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
         var width = super.segmentedView(segmentedView, widthForItemContentAt: index)
         switch titleImageType {
         case .leftImage, .rightImage:
