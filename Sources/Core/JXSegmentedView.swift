@@ -194,6 +194,24 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
     /// 点击切换的时候，contentScrollView的切换是否需要动画
     open var isContentScrollViewClickTransitionAnimationEnabled: Bool = true
 
+    public enum Direction {
+        case horizontal
+        case vertical
+    }
+    open var customizeDirection: Direction?
+    
+    var scrollPosition: UICollectionView.ScrollPosition {
+        if let customizeDirection {
+            switch customizeDirection {
+            case .horizontal:
+                return .centeredHorizontally
+            case .vertical:
+                return .centeredVertically
+            }
+        }
+        return .centeredHorizontally
+    }
+    
     private var itemDataSource = [JXSegmentedBaseItemModel]()
     private var innerItemSpacing: CGFloat = 0
     private var lastContentOffset: CGPoint = CGPoint.zero
@@ -350,11 +368,36 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
             }
         }
 
-        let minX: CGFloat = 0
-        let maxX = totalContentWidth - bounds.size.width
-        let targetX = selectedItemFrameX - bounds.size.width/2 + selectedItemWidth/2
-        collectionView.setContentOffset(CGPoint(x: max(min(maxX, targetX), minX), y: 0), animated: false)
-
+        if let customizeDirection {
+            
+            let indexPath = IndexPath(row: selectedIndex,
+                                      section: 0)
+            if indexPath.item >= 0,
+               indexPath.section >= 0,
+               indexPath.section < collectionView.numberOfSections,
+               indexPath.item < collectionView.numberOfItems(inSection: indexPath.section) {
+                
+                switch customizeDirection {
+                case .horizontal:
+                    collectionView.selectItem(
+                        at: indexPath,
+                        animated: false,
+                        scrollPosition: .centeredHorizontally)
+                case .vertical:
+                    collectionView.selectItem(
+                        at: indexPath,
+                        animated: false,
+                        scrollPosition: .centeredVertically)
+                }
+            }
+            
+        } else {
+            let minX: CGFloat = 0
+            let maxX = totalContentWidth - bounds.size.width
+            let targetX = selectedItemFrameX - bounds.size.width/2 + selectedItemWidth/2
+            collectionView.setContentOffset(CGPoint(x: max(min(maxX, targetX), minX), y: 0), animated: false)
+        }
+        
         if contentScrollView != nil {
             if contentScrollView!.frame.equalTo(CGRect.zero) &&
                 contentScrollView!.superview != nil {
@@ -562,14 +605,23 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
                 //延时为了解决cellwidth变化，点击最后几个cell，scrollToItem会出现位置偏移bu。需要等cellWidth动画渐变结束后再滚动到index的cell位置。
                 let selectedAnimationDurationInMilliseconds = Int((dataSource?.selectedAnimationDuration ?? 0)*1000)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(selectedAnimationDurationInMilliseconds)) {
-                    self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+                    self.collectionView.scrollToItem(
+                        at: IndexPath(item: index, section: 0),
+                        at: self.scrollPosition,
+                        animated: true)
                 }
             }else if selectedType == .scroll {
                 //滚动选中的直接处理
-                collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+                collectionView.scrollToItem(
+                    at: IndexPath(item: index, section: 0),
+                    at: self.scrollPosition,
+                    animated: true)
             }
         }else {
-            collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+            collectionView.scrollToItem(
+                at: IndexPath(item: index, section: 0),
+                at: self.scrollPosition,
+                animated: true)
         }
 
         if contentScrollView != nil && (selectedType == .click || selectedType == .code) {
