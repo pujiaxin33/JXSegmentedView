@@ -260,7 +260,7 @@ open class JXPagingListContainerView: UIView {
         }
     }
 
-    public func reloadData() {
+    public func reloadData(animated: Bool = false) {
         guard let dataSource = dataSource else { return }
         if currentIndex < 0 || currentIndex >= dataSource.numberOfLists(in: self) {
             defaultSelectedIndex = 0

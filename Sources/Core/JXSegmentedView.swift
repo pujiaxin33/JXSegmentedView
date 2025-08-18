@@ -26,7 +26,7 @@ public enum JXSegmentedViewItemSelectedType {
 public protocol JXSegmentedViewListContainer {
     var defaultSelectedIndex: Int { set get }
     func contentScrollView() -> UIScrollView
-    func reloadData()
+    func reloadData(animated: Bool)
     func didClickSelectedItem(at index: Int)
 }
 
@@ -283,12 +283,12 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         return cell as! JXSegmentedBaseCell
     }
 
-    open func reloadData() {
-        reloadDataWithoutListContainer()
-        listContainer?.reloadData()
+    open func reloadData(animated: Bool = false) {
+        reloadDataWithoutListContainer(animated: animated)
+        listContainer?.reloadData(animated: animated)
     }
 
-    open func reloadDataWithoutListContainer() {
+    open func reloadDataWithoutListContainer(animated: Bool = false) {
         dataSource?.reloadData(selectedIndex: selectedIndex)
         if let itemSource = dataSource?.itemDataSource(in: self) {
             itemDataSource = itemSource
@@ -353,7 +353,7 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         let minX: CGFloat = 0
         let maxX = totalContentWidth - bounds.size.width
         let targetX = selectedItemFrameX - bounds.size.width/2 + selectedItemWidth/2
-        collectionView.setContentOffset(CGPoint(x: max(min(maxX, targetX), minX), y: 0), animated: false)
+        collectionView.setContentOffset(CGPoint(x: max(min(maxX, targetX), minX), y: 0), animated: animated)
 
         if contentScrollView != nil {
             if contentScrollView!.frame.equalTo(CGRect.zero) &&
@@ -369,7 +369,7 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
             }
 
             contentScrollView!.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * contentScrollView!.bounds.size.width
-                , y: 0), animated: false)
+                , y: 0), animated: animated)
         }
 
         for indicator in indicators {
