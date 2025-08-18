@@ -36,13 +36,21 @@ public protocol JXPagingViewListViewDelegate {
     /// 将要重置listScrollView的contentOffset
     @objc optional func listScrollViewWillResetContentOffset()
     /// 可选实现，列表将要显示的时候调用
-    @objc optional func listWillAppear()
+    ///
+    /// - Parameter isSystemTrigger: 是否是由生命周期方法触发
+    @objc optional func listWillAppear(isSystemTrigger: Bool)
     /// 可选实现，列表显示的时候调用
-    @objc optional func listDidAppear()
+    ///
+    /// - Parameter isSystemTrigger: 是否是由生命周期方法触发
+    @objc optional func listDidAppear(isSystemTrigger: Bool)
     /// 可选实现，列表将要消失的时候调用
-    @objc optional func listWillDisappear()
+    ///
+    /// - Parameter isSystemTrigger: 是否是由生命周期方法触发
+    @objc optional func listWillDisappear(isSystemTrigger: Bool)
     /// 可选实现，列表消失的时候调用
-    @objc optional func listDidDisappear()
+    ///
+    /// - Parameter isSystemTrigger: 是否是由生命周期方法触发
+    @objc optional func listDidDisappear(isSystemTrigger: Bool)
 }
 
 @objc
@@ -137,16 +145,16 @@ open class JXPagingListContainerView: UIView {
         containerVC.view.backgroundColor = .clear
         addSubview(containerVC.view)
         containerVC.viewWillAppearClosure = {[weak self] in
-            self?.listWillAppear(at: self?.currentIndex ?? 0)
+            self?.listWillAppear(at: self?.currentIndex ?? 0, isSystemTrigger: true)
         }
         containerVC.viewDidAppearClosure = {[weak self] in
-            self?.listDidAppear(at: self?.currentIndex ?? 0)
+            self?.listDidAppear(at: self?.currentIndex ?? 0, isSystemTrigger: true)
         }
         containerVC.viewWillDisappearClosure = {[weak self] in
-            self?.listWillDisappear(at: self?.currentIndex ?? 0)
+            self?.listWillDisappear(at: self?.currentIndex ?? 0, isSystemTrigger: true)
         }
         containerVC.viewDidDisappearClosure = {[weak self] in
-            self?.listDidDisappear(at: self?.currentIndex ?? 0)
+            self?.listDidDisappear(at: self?.currentIndex ?? 0, isSystemTrigger: true)
         }
         if type == .scrollView {
             if let scrollViewClass = dataSource.scrollViewClass?(in: self) as? UIScrollView.Type {
@@ -253,10 +261,10 @@ open class JXPagingListContainerView: UIView {
         willAppearIndex = -1
         willDisappearIndex = -1
         if currentIndex != index {
-            listWillDisappear(at: currentIndex)
-            listWillAppear(at: index)
-            listDidDisappear(at: currentIndex)
-            listDidAppear(at: index)
+            listWillDisappear(at: currentIndex, isSystemTrigger: false)
+            listWillAppear(at: index, isSystemTrigger: false)
+            listDidDisappear(at: currentIndex, isSystemTrigger: false)
+            listDidAppear(at: index, isSystemTrigger: false)
         }
     }
 
@@ -278,8 +286,8 @@ open class JXPagingListContainerView: UIView {
         }else {
             collectionView.reloadData()
         }
-        listWillAppear(at: currentIndex)
-        listDidAppear(at: currentIndex)
+        listWillAppear(at: currentIndex, isSystemTrigger: false)
+        listDidAppear(at: currentIndex, isSystemTrigger: false)
     }
 
     //MARK: - Private
@@ -314,14 +322,14 @@ open class JXPagingListContainerView: UIView {
         }
     }
 
-    private func listWillAppear(at index: Int) {
+    private func listWillAppear(at index: Int, isSystemTrigger: Bool) {
         guard let dataSource = dataSource else { return }
         guard checkIndexValid(index) else {
             return
         }
         var existedList = validListDict[index]
         if existedList != nil {
-            existedList?.listWillAppear?()
+            existedList?.listWillAppear?(isSystemTrigger: isSystemTrigger)
             if let vc = existedList as? UIViewController {
                 vc.beginAppearanceTransition(true, animated: false)
             }
@@ -343,7 +351,7 @@ open class JXPagingListContainerView: UIView {
                     list.listView().frame = CGRect(x: CGFloat(index)*scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
                     scrollView.addSubview(list.listView())
                 }
-                list.listWillAppear?()
+                list.listWillAppear?(isSystemTrigger: isSystemTrigger)
                 if let vc = list as? UIViewController {
                     vc.beginAppearanceTransition(true, animated: false)
                 }
@@ -352,7 +360,7 @@ open class JXPagingListContainerView: UIView {
                 cell?.contentView.subviews.forEach { $0.removeFromSuperview() }
                 list.listView().frame = cell?.contentView.bounds ?? CGRect.zero
                 cell?.contentView.addSubview(list.listView())
-                list.listWillAppear?()
+                list.listWillAppear?(isSystemTrigger: isSystemTrigger)
                 if let vc = list as? UIViewController {
                     vc.beginAppearanceTransition(true, animated: false)
                 }
@@ -360,36 +368,36 @@ open class JXPagingListContainerView: UIView {
         }
     }
 
-    private func listDidAppear(at index: Int) {
+    private func listDidAppear(at index: Int, isSystemTrigger: Bool) {
         guard checkIndexValid(index) else {
             return
         }
         currentIndex = index
         let list = validListDict[index]
-        list?.listDidAppear?()
+        list?.listDidAppear?(isSystemTrigger: isSystemTrigger)
         if let vc = list as? UIViewController {
             vc.endAppearanceTransition()
         }
         delegate?.listContainerView?(self, listDidAppearAt: index)
     }
 
-    private func listWillDisappear(at index: Int) {
+    private func listWillDisappear(at index: Int, isSystemTrigger: Bool) {
         guard checkIndexValid(index) else {
             return
         }
         let list = validListDict[index]
-        list?.listWillDisappear?()
+        list?.listWillDisappear?(isSystemTrigger: isSystemTrigger)
         if let vc = list as? UIViewController {
             vc.beginAppearanceTransition(false, animated: false)
         }
     }
 
-    private func listDidDisappear(at index: Int) {
+    private func listDidDisappear(at index: Int, isSystemTrigger: Bool) {
         guard checkIndexValid(index) else {
             return
         }
         let list = validListDict[index]
-        list?.listDidDisappear?()
+        list?.listDidDisappear?(isSystemTrigger: isSystemTrigger)
         if let vc = list as? UIViewController {
             vc.endAppearanceTransition()
         }
@@ -414,16 +422,16 @@ open class JXPagingListContainerView: UIView {
                 if currentIndexPercent >= CGFloat(willAppearIndex) {
                     willDisappearIndex = -1
                     willAppearIndex = -1
-                    listDidDisappear(at: disappearIndex)
-                    listDidAppear(at: appearIndex)
+                    listDidDisappear(at: disappearIndex, isSystemTrigger: false)
+                    listDidAppear(at: appearIndex, isSystemTrigger: false)
                 }
             }else {
                 //将要出现的列表在左边
                 if currentIndexPercent <= CGFloat(willAppearIndex) {
                     willDisappearIndex = -1
                     willAppearIndex = -1
-                    listDidDisappear(at: disappearIndex)
-                    listDidAppear(at: appearIndex)
+                    listDidDisappear(at: disappearIndex, isSystemTrigger: false)
+                    listDidAppear(at: appearIndex, isSystemTrigger: false)
                 }
             }
         }
@@ -478,12 +486,12 @@ extension JXPagingListContainerView: UICollectionViewDataSource, UICollectionVie
             }else if validListDict[leftIndex] != nil {
                 if willAppearIndex == -1 {
                     willAppearIndex = leftIndex;
-                    listWillAppear(at: willAppearIndex)
+                    listWillAppear(at: willAppearIndex, isSystemTrigger: false)
                 }
             }
             if willDisappearIndex == -1 {
                 willDisappearIndex = rightIndex
-                listWillDisappear(at: willDisappearIndex)
+                listWillDisappear(at: willDisappearIndex, isSystemTrigger: false)
             }
         }else {
             //当前选中的在左边，用户正在从左边往右边滑动
@@ -492,12 +500,12 @@ extension JXPagingListContainerView: UICollectionViewDataSource, UICollectionVie
             }else if validListDict[rightIndex] != nil {
                 if willAppearIndex == -1 {
                     willAppearIndex = rightIndex
-                    listWillAppear(at: willAppearIndex)
+                    listWillAppear(at: willAppearIndex, isSystemTrigger: false)
                 }
             }
             if willDisappearIndex == -1 {
                 willDisappearIndex = leftIndex
-                listWillDisappear(at: willDisappearIndex)
+                listWillDisappear(at: willDisappearIndex, isSystemTrigger: false)
             }
         }
         listDidAppearOrDisappear(scrollView: scrollView)
@@ -506,10 +514,10 @@ extension JXPagingListContainerView: UICollectionViewDataSource, UICollectionVie
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         //滑动到一半又取消滑动处理
         if willAppearIndex != -1 || willDisappearIndex != -1 {
-            listWillDisappear(at: willAppearIndex)
-            listWillAppear(at: willDisappearIndex)
-            listDidDisappear(at: willAppearIndex)
-            listDidAppear(at: willDisappearIndex)
+            listWillDisappear(at: willAppearIndex, isSystemTrigger: false)
+            listWillAppear(at: willDisappearIndex, isSystemTrigger: false)
+            listDidDisappear(at: willAppearIndex, isSystemTrigger: false)
+            listDidAppear(at: willDisappearIndex, isSystemTrigger: false)
             willDisappearIndex = -1
             willAppearIndex = -1
         }

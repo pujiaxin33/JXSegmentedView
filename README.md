@@ -215,10 +215,10 @@ func listContainerView(_ listContainerView: JXSegmentedListContainerView, initLi
 func listView() -> UIView {
     return view
 }
-func listWillAppear() {}
-func listDidAppear() {}
-func listDidDisappear() {}
-func listDidDisappear() {}
+func listWillAppear(isSystemTrigger: Bool) {}
+func listDidAppear(isSystemTrigger: Bool) {}
+func listDidDisappear(isSystemTrigger: Bool) {}
+func listDidDisappear(isSystemTrigger: Bool) {}
 ```
 
 具体点击[LoadDataViewController](https://github.com/pujiaxin33/JXSegmentedView/blob/master/Example/JXSegmentedViewExample/Special/LoadData/WithListContainerView/LoadDataViewController.swift)查看源代码了解
