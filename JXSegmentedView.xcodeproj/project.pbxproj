@@ -123,6 +123,7 @@
 				1908EF64226F0A1300E03FD5 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		1908EF64226F0A1300E03FD5 /* Products */ = {
 			isa = PBXGroup;
