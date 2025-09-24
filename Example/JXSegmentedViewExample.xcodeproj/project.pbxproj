@@ -56,6 +56,7 @@
 		197927B326203F2800BDA8AE /* JXPagingListContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197927AE26203F2800BDA8AE /* JXPagingListContainerView.swift */; };
 		19F1D2F92339B0D100EEFB77 /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
 		19F1D2FA2339B0D100EEFB77 /* JXSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21141B512E83D9740086998F /* SegmentedControlOptionalImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21141B502E83D9690086998F /* SegmentedControlOptionalImageController.swift */; };
 		96E5C2242E0E79AF00B24CE7 /* VerticalListWithCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C2232E0E79AF00B24CE7 /* VerticalListWithCollectionViewController.swift */; };
 		96E5C2262E0E7BF200B24CE7 /* VerticalListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C2252E0E7BF200B24CE7 /* VerticalListCollectionView.swift */; };
 		96E5C2292E0E7C2100B24CE7 /* VerticalListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C2282E0E7C2100B24CE7 /* VerticalListSectionModel.swift */; };
@@ -133,6 +134,7 @@
 		197927AC26203F2800BDA8AE /* JXPagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingView.swift; sourceTree = "<group>"; };
 		197927AD26203F2800BDA8AE /* JXPagingListRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListRefreshView.swift; sourceTree = "<group>"; };
 		197927AE26203F2800BDA8AE /* JXPagingListContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListContainerView.swift; sourceTree = "<group>"; };
+		21141B502E83D9690086998F /* SegmentedControlOptionalImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlOptionalImageController.swift; sourceTree = "<group>"; };
 		96E5C2232E0E79AF00B24CE7 /* VerticalListWithCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalListWithCollectionViewController.swift; sourceTree = "<group>"; };
 		96E5C2252E0E7BF200B24CE7 /* VerticalListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalListCollectionView.swift; sourceTree = "<group>"; };
 		96E5C2282E0E7C2100B24CE7 /* VerticalListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalListSectionModel.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				1908EE6F226F05BA00E03FD5 /* NaviSegmentedControlViewController.swift */,
 				1908EE70226F05BA00E03FD5 /* SegmentedControlViewController.swift */,
+				21141B502E83D9690086998F /* SegmentedControlOptionalImageController.swift */,
 			);
 			path = SegmentedControl;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				A8168092249CCB9900837DEC /* PagingListBaseCell.swift in Sources */,
 				1908EEBD226F05BA00E03FD5 /* LoadDataViewController.swift in Sources */,
 				197927B226203F2800BDA8AE /* JXPagingListRefreshView.swift in Sources */,
+				21141B512E83D9740086998F /* SegmentedControlOptionalImageController.swift in Sources */,
 				1908EECA226F05BA00E03FD5 /* TestListBaseView.swift in Sources */,
 				1908EEC7226F05BA00E03FD5 /* CellCustomizeViewController.swift in Sources */,
 				96E5C2312E0E7E0F00B24CE7 /* VerticalSectionHeaderView.swift in Sources */,

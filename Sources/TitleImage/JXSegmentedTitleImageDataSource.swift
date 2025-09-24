@@ -66,7 +66,7 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
 
     open override func preferredSegmentedView(_ segmentedView: JXSegmentedView, widthForItemAt index: Int) -> CGFloat {
         var width = super.preferredSegmentedView(segmentedView, widthForItemAt: index)
-        if itemWidth == JXSegmentedViewAutomaticDimension {
+        if itemWidth == JXSegmentedViewAutomaticDimension, hasImage(for: index) {
             switch titleImageType {
             case .leftImage, .rightImage:
                 width += titleImageSpacing + imageSize.width
@@ -85,28 +85,37 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
 
     public override func segmentedView(_ segmentedView: JXSegmentedView, widthForItemContentAt index: Int) -> CGFloat {
         var width = super.segmentedView(segmentedView, widthForItemContentAt: index)
-        switch titleImageType {
-        case .leftImage, .rightImage:
-            width += titleImageSpacing + imageSize.width
-        case .topImage, .bottomImage:
-            width = max(width, imageSize.width)
-        case .onlyImage:
-            width = imageSize.width
-        case .onlyTitle:
-            break
-        case .backgroundImage:
-            width = max(width, imageSize.width)
+        if hasImage(for: index) {
+            switch titleImageType {
+            case .leftImage, .rightImage:
+                width += titleImageSpacing + imageSize.width
+            case .topImage, .bottomImage:
+                width = max(width, imageSize.width)
+            case .onlyImage:
+                width = imageSize.width
+            case .onlyTitle:
+                break
+            case .backgroundImage:
+                width = max(width, imageSize.width)
+            }
         }
         return width
     }
 
     //MARK: - JXSegmentedViewDataSource
     open override func registerCellClass(in segmentedView: JXSegmentedView) {
-        segmentedView.collectionView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "cell")
+        segmentedView.collectionView.register(JXSegmentedTitleImageCell.self, forCellWithReuseIdentifier: "imageCell")
+        segmentedView.collectionView.register(JXSegmentedTitleCell.self, forCellWithReuseIdentifier: "textCell")
     }
 
     open override func segmentedView(_ segmentedView: JXSegmentedView, cellForItemAt index: Int) -> JXSegmentedBaseCell {
-        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        let cellIdentifier: String
+        if hasImage(for: index) {
+            cellIdentifier = "imageCell"
+        } else {
+            cellIdentifier = "textCell"
+        }
+        let cell = segmentedView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, at: index)
         return cell
     }
 
@@ -131,5 +140,9 @@ open class JXSegmentedTitleImageDataSource: JXSegmentedTitleDataSource {
 
         myCurrentSelectedItemModel.imageCurrentZoomScale = myCurrentSelectedItemModel.imageNormalZoomScale
         myWillSelectedItemModel.imageCurrentZoomScale = myWillSelectedItemModel.imageSelectedZoomScale
+    }
+    
+    private func hasImage(for index: Int) -> Bool {
+        !(normalImageInfos?[index].isEmpty ?? true)
     }
 }

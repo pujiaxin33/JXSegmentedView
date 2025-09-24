@@ -32,6 +32,10 @@ class SpecialCustomizeViewController: UITableViewController {
             let vc = PagingViewController()
             vc.title = itemTitle
             navigationController?.pushViewController(vc, animated: true)
+		case "SegmentedOptionalImage":
+			let vc = SegmentedControlOptionalImageController()
+			vc.title = itemTitle
+			navigationController?.pushViewController(vc, animated: true)
         case "SegmentedControl":
             let vc = SegmentedControlViewController()
             vc.title = itemTitle
