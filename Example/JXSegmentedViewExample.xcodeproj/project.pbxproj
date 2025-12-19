@@ -56,6 +56,13 @@
 		197927B326203F2800BDA8AE /* JXPagingListContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197927AE26203F2800BDA8AE /* JXPagingListContainerView.swift */; };
 		19F1D2F92339B0D100EEFB77 /* JXSegmentedView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; };
 		19F1D2FA2339B0D100EEFB77 /* JXSegmentedView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1908F030226F14E000E03FD5 /* JXSegmentedView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96E5C2242E0E79AF00B24CE7 /* VerticalListWithCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C2232E0E79AF00B24CE7 /* VerticalListWithCollectionViewController.swift */; };
+		96E5C2262E0E7BF200B24CE7 /* VerticalListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C2252E0E7BF200B24CE7 /* VerticalListCollectionView.swift */; };
+		96E5C2292E0E7C2100B24CE7 /* VerticalListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C2282E0E7C2100B24CE7 /* VerticalListSectionModel.swift */; };
+		96E5C22B2E0E7C2A00B24CE7 /* VerticalListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C22A2E0E7C2A00B24CE7 /* VerticalListCellModel.swift */; };
+		96E5C22D2E0E7CDE00B24CE7 /* VerticalSectionSegmentedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C22C2E0E7CDE00B24CE7 /* VerticalSectionSegmentedHeaderView.swift */; };
+		96E5C22F2E0E7DA800B24CE7 /* VerticalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C22E2E0E7DA800B24CE7 /* VerticalListCell.swift */; };
+		96E5C2312E0E7E0F00B24CE7 /* VerticalSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5C2302E0E7E0F00B24CE7 /* VerticalSectionHeaderView.swift */; };
 		A8168092249CCB9900837DEC /* PagingListBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8168091249CCB9900837DEC /* PagingListBaseCell.swift */; };
 		B28C5F1C2BCE492600AC384B /* TitleConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28C5F1B2BCE492600AC384B /* TitleConfigurationViewController.swift */; };
 		B2FCEB812BCE13A80046A814 /* ListCacheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FCEB802BCE13A80046A814 /* ListCacheViewController.swift */; };
@@ -126,6 +133,13 @@
 		197927AC26203F2800BDA8AE /* JXPagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingView.swift; sourceTree = "<group>"; };
 		197927AD26203F2800BDA8AE /* JXPagingListRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListRefreshView.swift; sourceTree = "<group>"; };
 		197927AE26203F2800BDA8AE /* JXPagingListContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPagingListContainerView.swift; sourceTree = "<group>"; };
+		96E5C2232E0E79AF00B24CE7 /* VerticalListWithCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalListWithCollectionViewController.swift; sourceTree = "<group>"; };
+		96E5C2252E0E7BF200B24CE7 /* VerticalListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalListCollectionView.swift; sourceTree = "<group>"; };
+		96E5C2282E0E7C2100B24CE7 /* VerticalListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalListSectionModel.swift; sourceTree = "<group>"; };
+		96E5C22A2E0E7C2A00B24CE7 /* VerticalListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalListCellModel.swift; sourceTree = "<group>"; };
+		96E5C22C2E0E7CDE00B24CE7 /* VerticalSectionSegmentedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSectionSegmentedHeaderView.swift; sourceTree = "<group>"; };
+		96E5C22E2E0E7DA800B24CE7 /* VerticalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalListCell.swift; sourceTree = "<group>"; };
+		96E5C2302E0E7E0F00B24CE7 /* VerticalSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSectionHeaderView.swift; sourceTree = "<group>"; };
 		A80CD84E24A1A73C00FF22C8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A80CD84F24A1A73C00FF22C8 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		A8168091249CCB9900837DEC /* PagingListBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingListBaseCell.swift; sourceTree = "<group>"; };
@@ -182,6 +196,7 @@
 		1908EE59226F05BA00E03FD5 /* Special */ = {
 			isa = PBXGroup;
 			children = (
+				96E5C2222E0E78D200B24CE7 /* VerticalList */,
 				B28C5F1A2BCE2BD000AC384B /* Cell */,
 				1908EE5A226F05BA00E03FD5 /* Personal */,
 				1908EE63226F05BA00E03FD5 /* NaviItemGesture */,
@@ -340,6 +355,28 @@
 			path = JXPagingView;
 			sourceTree = "<group>";
 		};
+		96E5C2222E0E78D200B24CE7 /* VerticalList */ = {
+			isa = PBXGroup;
+			children = (
+				96E5C2272E0E7C1A00B24CE7 /* Models */,
+				96E5C2232E0E79AF00B24CE7 /* VerticalListWithCollectionViewController.swift */,
+				96E5C2252E0E7BF200B24CE7 /* VerticalListCollectionView.swift */,
+				96E5C22C2E0E7CDE00B24CE7 /* VerticalSectionSegmentedHeaderView.swift */,
+				96E5C2302E0E7E0F00B24CE7 /* VerticalSectionHeaderView.swift */,
+				96E5C22E2E0E7DA800B24CE7 /* VerticalListCell.swift */,
+			);
+			path = VerticalList;
+			sourceTree = "<group>";
+		};
+		96E5C2272E0E7C1A00B24CE7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				96E5C2282E0E7C2100B24CE7 /* VerticalListSectionModel.swift */,
+				96E5C22A2E0E7C2A00B24CE7 /* VerticalListCellModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B28C5F1A2BCE2BD000AC384B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,10 +485,14 @@
 				197927B226203F2800BDA8AE /* JXPagingListRefreshView.swift in Sources */,
 				1908EECA226F05BA00E03FD5 /* TestListBaseView.swift in Sources */,
 				1908EEC7226F05BA00E03FD5 /* CellCustomizeViewController.swift in Sources */,
+				96E5C2312E0E7E0F00B24CE7 /* VerticalSectionHeaderView.swift in Sources */,
 				B28C5F1C2BCE492600AC384B /* TitleConfigurationViewController.swift in Sources */,
 				197927B026203F2800BDA8AE /* JXPagingSmoothView.swift in Sources */,
+				96E5C22F2E0E7DA800B24CE7 /* VerticalListCell.swift in Sources */,
 				1908EEC5226F05BA00E03FD5 /* NestChildViewController.swift in Sources */,
+				96E5C22D2E0E7CDE00B24CE7 /* VerticalSectionSegmentedHeaderView.swift in Sources */,
 				B2FCEB812BCE13A80046A814 /* ListCacheViewController.swift in Sources */,
+				96E5C2292E0E7C2100B24CE7 /* VerticalListSectionModel.swift in Sources */,
 				1908EEC2226F05BA00E03FD5 /* NaviSegmentedControlViewController.swift in Sources */,
 				194A91E923C70124006BE6AB /* GridCellExampleViewController.swift in Sources */,
 				1908EEC9226F05BA00E03FD5 /* ListBaseViewController.swift in Sources */,
@@ -461,6 +502,7 @@
 				197927B126203F2800BDA8AE /* JXPagingView.swift in Sources */,
 				1908EEBC226F05BA00E03FD5 /* LoadDataListViewController.swift in Sources */,
 				1908EEC0226F05BA00E03FD5 /* LoadDataCustomListViewController.swift in Sources */,
+				96E5C2242E0E79AF00B24CE7 /* VerticalListWithCollectionViewController.swift in Sources */,
 				1908EEBB226F05BA00E03FD5 /* NaviItemCustomViewController.swift in Sources */,
 				1908EEBA226F05BA00E03FD5 /* PagingViewTableHeaderView.swift in Sources */,
 				1908EECD226F05BA00E03FD5 /* AppDelegate.swift in Sources */,
@@ -470,12 +512,14 @@
 				1908EEBE226F05BA00E03FD5 /* UIWindow+JXSafeArea.swift in Sources */,
 				1908EEC6226F05BA00E03FD5 /* TitleImageSettingViewController.swift in Sources */,
 				1908EEC4226F05BA00E03FD5 /* NestViewController.swift in Sources */,
+				96E5C22B2E0E7C2A00B24CE7 /* VerticalListCellModel.swift in Sources */,
 				1908EECC226F05BA00E03FD5 /* SpecialCustomizeViewController.swift in Sources */,
 				1908EEC3226F05BA00E03FD5 /* SegmentedControlViewController.swift in Sources */,
 				1908EECB226F05BA00E03FD5 /* ContentBaseViewController.swift in Sources */,
 				1908EEBF226F05BA00E03FD5 /* LoadDataCustomViewController.swift in Sources */,
 				1908EECE226F05BA00E03FD5 /* JXSegmentedMixcellDataSource.swift in Sources */,
 				1908EEB5226F05BA00E03FD5 /* PagingListBaseView.swift in Sources */,
+				96E5C2262E0E7BF200B24CE7 /* VerticalListCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

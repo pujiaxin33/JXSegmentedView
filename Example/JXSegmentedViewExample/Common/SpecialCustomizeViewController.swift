@@ -88,6 +88,10 @@ class SpecialCustomizeViewController: UITableViewController {
             let vc = ListCacheViewController()
             vc.title = title
             navigationController?.pushViewController(vc, animated: true)
+        case "垂直列表滚动切换分类":
+            let vc = VerticalListViewController()
+            vc.title = title
+            navigationController?.pushViewController(vc, animated: true)
         default: break
         }
     }
