@@ -25,6 +25,12 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource {
     open var titleNormalFont: UIFont = UIFont.systemFont(ofSize: 15)
     /// title选中时的字体。如果不赋值，就默认与titleNormalFont一样
     open var titleSelectedFont: UIFont?
+    /// cell背景圆角
+    open var bgCornerRadius: CGFloat = 0
+    /// cell选中的背景色
+    open var bgSelectedColor:UIColor = UIColor.clear
+    //// cell普通状态时的背景色
+    open var bgNormalColor:UIColor = UIColor.clear
     /// title的颜色是否渐变过渡
     open var isTitleColorGradientEnabled: Bool = false
     /// title是否缩放。使用该效果时，务必保证titleNormalFont和titleSelectedFont值相同。
@@ -54,6 +60,9 @@ open class JXSegmentedTitleDataSource: JXSegmentedBaseDataSource {
         }
 
         myItemModel.title = titles[index]
+        myItemModel.bgNormalColor = self.bgNormalColor
+        myItemModel.bgSelectedColor = self.bgSelectedColor
+        myItemModel.bgCornerRadius = self.bgCornerRadius
         myItemModel.textWidth = widthForTitle(myItemModel.title ?? "", index)
         myItemModel.titleNumberOfLines = innerTitleNumberOfLines(at: index)
         myItemModel.isSelectedAnimable = isSelectedAnimable

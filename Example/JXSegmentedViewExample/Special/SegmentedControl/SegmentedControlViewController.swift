@@ -21,8 +21,6 @@ class SegmentedControlViewController: ContentBaseViewController {
         titleDataSource.itemWidth = totalItemWidth/CGFloat(titles.count)
         titleDataSource.titles = titles
         titleDataSource.isTitleMaskEnabled = true
-        titleDataSource.titleNormalColor = UIColor.red
-        titleDataSource.titleSelectedColor = UIColor.white
         titleDataSource.itemSpacing = 0
         segmentedDataSource = titleDataSource
 
